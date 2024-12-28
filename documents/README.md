@@ -1,3 +1,8 @@
+# 設計
+以下のページにまとめてあります
+https://www.figma.com/design/8HymERVjlvMWSHVYE0DnFh/apprentory?node-id=1-2&p=f&t=3PTcAWVirDfxgZYi-0
+
+# 要件定義
 ## 1.プロダクトテーマ
 アプレンティス生のアプレンティス生によるアプレンティス生のためのSNS
 
