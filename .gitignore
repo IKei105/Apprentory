@@ -26,3 +26,14 @@ yarn-error.log
 /storage/framework/cache/*
 /public/css
 /public/js
+.editorconfig
+.env.example
+.gitattributes
+artisan
+composer.json
+composer.lock
+package.json
+phpunit.xml
+postcss.config.js
+tailwind.config.js
+vite.config.js
