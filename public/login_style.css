@@ -1,0 +1,129 @@
+body {
+    background-color: #00D1D1;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    height: 135px;
+    margin-bottom: 20px;
+    padding: 25px 25px 25px;
+    background-color: #00D1D1;
+}
+
+.header-register-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 60px;
+    line-height: 26.5px;
+    text-align: center;
+    border-radius: 30px;
+    color:white;
+    background-color: #62D8D8;
+}
+
+.header-register-link:hover {
+    color:white;
+    opacity: 0.8;
+}
+
+.login {
+    max-width: 576px;
+    height: 813px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+}
+
+/* ログインって文字*/
+.login-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 63px 0;
+    text-align: center;
+    color: #6D6D6D;
+}
+
+/* 入力欄 */
+fieldset {
+    border: none !important;
+    margin: 0;
+    padding: 0;
+    background: none !important; /* 必要なら背景もリセット */
+}
+
+input {
+    border: none !important; /* 競合を無視して枠線を消す */
+    outline: none !important; /* 競合を無視してフォーカス時の青い枠を消す */
+    background: none; /* 必要なら背景色もリセット */
+    box-shadow: none !important; /* 入力欄の影もリセット */
+}
+
+/* 入力情報全体 */
+.input-info {
+    margin: 0 auto; /*　中央寄せ  */
+    margin-bottom:64px; 
+    border: 2px solid #D9D9D9; /* 全体の枠線 */
+    width: 460px; /* 全体の幅 */
+    height: 150px;
+    border-radius: 30px;
+    overflow: hidden; /* input入力枠と外枠が重なった時入力枠の無効化 */
+    display: flex; /* 内部要素を中央に配置する準備 */
+    flex-direction: column; /* 要素を縦に並べる */
+    justify-content: center; /* 縦方向に中央揃え */
+}
+
+/* メールアドレス入力欄 */
+.email {
+    line-height: 75px;
+    border: none ; 
+    outline: none ;
+    height: 50%; /* 各入力欄が全体の50%を占める */
+    display: flex; /* 内部の文字を中央揃えにする準備 */
+    align-items: center; /* 縦方向に中央揃え */
+    font-size: 16px; /* テキストサイズを調整 */
+    color: #6D6D6D; /* テキストの色 */
+    border: none; /* 不要な枠線を削除 */
+    outline: none; /* フォーカス時の青い枠を削除 */
+    background: none; /* 背景色をリセット */
+}
+
+/* パスワード入力欄 */
+.password {
+    line-height: 75px;
+    border: none; 
+    outline: none;
+    height: 50%; /* 各入力欄が全体の50%を占める */
+    display: flex; /* 内部の文字を中央揃えにする準備 */
+    align-items: center; /* 縦方向に中央揃え */
+    font-size: 16px; /* テキストサイズを調整 */
+    color: #6D6D6D; /* テキストの色 */
+    border: none; /* 不要な枠線を削除 */
+    outline: none; /* フォーカス時の青い枠を削除 */
+    background: none; /* 背景色をリセット */
+}
+
+/* パスワード忘れた場合 */
+.forgot-password {
+    display: block;
+    margin-bottom: 32px;
+    color:#00D1D1;
+    font-weight: 600;
+}
+
+.login-button {
+    width:460px;
+    height: 61px;
+    background-color: #00D1D1;
+    border: none; 
+    border-radius: 30px;
+    color: white;
+}
