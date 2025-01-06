@@ -11,7 +11,7 @@
 <body>
     <header>
         <a id="logo" href="">アプレントリィ</a>
-        <a class="header-register-link" id="header-register-link" href="">アカウント登録</a>
+        <a class="header-register-link" id="header-register-link" href="register">アカウント登録</a>
     </header>
     <div class="login">
         <p class="login-title" >ログイン</p>
@@ -19,10 +19,10 @@
               @csrf
             <div class=input-info>
                 <fieldset class="email">
-                    <input name="email" class="form-control form-control-lg" type="text" placeholder="ユーザーID" />
+                    <input class="email-input" name="email" type="text" placeholder="ユーザーID" />
                 </fieldset>
                 <fieldset class="password">
-                    <input name="password" class="form-control form-control-lg" type="password" placeholder="パスワード" />
+                    <input class="password-input" name="password" type="password" placeholder="パスワード" />
                 </fieldset>
             </div>
 
