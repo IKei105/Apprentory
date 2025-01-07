@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->id();  
-            $table->unsignedInteger('term')->unique();        
+            $table->string('term')->unique();        
             });
     }
 

@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('account_id');                // アカウントID(外部キー)
-            $table->unsignedInteger('term_id');         // 学期ID（外部キーにする予定）
+            $table->unsignedBigInteger('account_id');                // アカウントID(外部キー)
+            $table->unsignedBigInteger('term_id');         // 学期ID（外部キーにする予定）
             $table->string('username');                 // ユーザー名
             $table->string('profile_image');            // プロフィール画像
             $table->timestamps();
             
             //外部キー制約
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
-            $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');        });
+            //Accountのプライマリキー
+            $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');
+            //termのプライマリキー
+        });
     }
 
     /**
