@@ -23,15 +23,20 @@
             <div class="article">
                 <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
-                    <img class="post-user-image" src="" alt="">
-                    <h3 class="material-title"></h3>
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
                     <div class="material-price">
                         <p>¥</p>
-                        <p></p>
+                        <p>114,514</p>
                     </div>
                     <div class="post-likes">
                         <p>♡</p>
-                        <p>人がいいね</p>
+                        <p>810人がいいね</p>
                     </div>
                 </div>    
             </div>

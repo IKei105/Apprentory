@@ -3,6 +3,10 @@ p {
     margin: 0;
 }
 
+h3 {
+    margin: 0;
+}
+
 /* buttonをクリックした時の枠線を消す */
 button:focus {
     outline: none; /* 青い枠線を完全に消す */
@@ -64,6 +68,7 @@ button:focus {
 /* 複数の教材情報が入っているコンテナ、これにflexを適用する */
 .articles {
     background-color: pink;
+    padding: 0 40px;
 }
 
 /* 単一の教材情報が入ってる */
@@ -85,4 +90,45 @@ button:focus {
 .book-image {
     width: 120px;
     height: 168px;
+}
+
+/* ユーザープロフィール画像 */
+.post-user-image {
+    width: 26px;
+    height: auto;
+    border-radius: 50%; /* 丸くする */
+}
+
+/* ユーザー情報をホバーした時のやつ */
+.post-user-info a:hover {
+    text-decoration: none;
+}
+
+/* 本のタイトル */
+.material-title {
+    margin-top: 8px;
+    font-size: 16px;
+    color: black;
+}
+
+/* ポストユーザー名 */
+.post-user-name {
+    color: black;
+}
+
+/* ポストユーザー名をホバーした時 */
+.post-user-name:hover {
+    text-decoration: underline;
+}
+
+/* 教材の価格 */
+.material-price {
+    margin-top: 4px;
+}
+
+/* いいね数 */
+.post-likes {
+    margin-top: 4px;
+    font-size:11px;
+    
 }
