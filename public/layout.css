@@ -86,13 +86,13 @@ header{
     padding: 24px 12px 10px 12px;
 }
 
-li a{
+.tab{
     margin-left: 11px;
     margin-right: 48px;
     color: #6d6d6d;
     text-decoration: none;
 }
-li :visited{
+.tab :visited{
     color: #6d6d6d;
     text-decoration: none;
 }

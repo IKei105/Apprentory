@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="header-bottom">
-            <li><a href="#" class="tab active">教材共有</a></li>
-            <li><a href="#" class="tab">オリプロ共有</a></li>
+            <a href="#" class="tab active">教材共有</a>
+            <a href="#" class="tab">オリプロ共有</a>
             <div class="indicator"></div>
         </div>
     </header>
