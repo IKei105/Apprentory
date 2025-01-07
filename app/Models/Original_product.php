@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class OriginalProduct extends Model
+{
+    use HasFactory;
+
+    protected $table = 'original_products';
+
+    protected $fillable = [
+        'title',
+        'subtitle',
+        'product_detail',
+        'product_url',
+        'github_url',
+    ];
+
+    // 必要に応じてリレーションシップを定義
+}
