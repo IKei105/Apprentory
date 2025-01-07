@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OriginalProduct extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
     protected $table = 'original_products';
