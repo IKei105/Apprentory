@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model
+class Term extends Model
 {
     public $timestamps = false;
-
-    protected $fillable = ['name', 'userid', 'password'];
+    protected $fillable = ['term'];
 }
