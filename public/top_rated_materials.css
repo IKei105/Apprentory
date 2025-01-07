@@ -1,0 +1,52 @@
+
+
+/* buttonをクリックした時の枠線を消す */
+button:focus {
+    outline: none; /* 青い枠線を完全に消す */
+    box-shadow: none; /* フォーカス時の影も消す */
+}
+
+/* 教材切り替えボタンと絞り込みを含むdiv */
+.menu-select {
+    margin-top: 100px;
+    margin-left: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 3つのボタン */
+.recommended-button, .new-button, .high-rated-button {
+    width: 117px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid #D1E0E1;
+}
+
+/* 推奨教材ボタン */
+.recommended-button {
+    width: 117px;
+    height: 50px;
+    border-radius: 25px 0 0 25px;
+}
+
+/* 押下時の推奨教材ボタン */
+.recommended-button:focus {
+    background-color: #D1E0E1;
+}
+
+/* 押下時の新着教材ボタン */
+.new-button:focus {
+    background-color: #D1E0E1;
+}
+
+/* 評価の高い教材ボタン */
+.high-rated-button {
+    width: 117px;
+    height: 50px;
+    border-radius: 0 25px 25px 0;
+}
+
+/* 押下時の評価が高い教材ボタン */
+.high-rated-button:focus {
+    background-color: #D1E0E1;
+}
