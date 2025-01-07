@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Posts_original_product extends Model
+class Original_product_post extends Model
 {
     //
 }
