@@ -19,6 +19,22 @@
     </div>
     <div class="high-rated-materials">
         <h1>評価の高い教材</h1>
-        
+        <div class="articles">
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <img class="post-user-image" src="" alt="">
+                    <h3 class="material-title"></h3>
+                    <div class="material-price">
+                        <p>¥</p>
+                        <p></p>
+                    </div>
+                    <div class="post-likes">
+                        <p>♡</p>
+                        <p>人がいいね</p>
+                    </div>
+                </div>    
+            </div>
+        </div>
     </div>
 </body>

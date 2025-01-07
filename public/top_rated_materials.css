@@ -1,4 +1,7 @@
 
+p {
+    margin: 0;
+}
 
 /* buttonをクリックした時の枠線を消す */
 button:focus {
@@ -49,4 +52,37 @@ button:focus {
 /* 押下時の評価が高い教材ボタン */
 .high-rated-button:focus {
     background-color: #D1E0E1;
+}
+
+/* 教材情報全体のコンテナ */
+.high-rated-materials {
+    max-width: 960px;
+    background-color: aqua;
+    margin: 0 auto;
+}
+
+/* 複数の教材情報が入っているコンテナ、これにflexを適用する */
+.articles {
+    background-color: pink;
+}
+
+/* 単一の教材情報が入ってる */
+.article {
+    max-width: 425px;
+    height: 216px;
+    padding: 24px;
+    background-color: bisque;
+    display: flex;
+    justify-content: flex-start;
+    gap: 18px;
+}
+
+.article p{
+    display: inline;
+}
+
+/* 教材写真 */
+.book-image {
+    width: 120px;
+    height: 168px;
 }
