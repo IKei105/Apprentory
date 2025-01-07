@@ -15,13 +15,16 @@
             <div class="header-right">
                 <img src="{{ asset('assets/images/Search 02.svg') }}" alt="検索">
                 <img src="{{ asset('assets/images/Icon.svg') }}" alt="通知">
-                <a href="#" class="mypage">マイページ</a>
+                <a href="#" class="mypage">
+                    <img src="#" alt="M" class="profile-img">
+                </a>
                 <button class="new-post">新規投稿<img src="{{ asset('assets/images/Pencil 01.svg') }}"></button>
             </div>
         </div>
         <div class="header-bottom">
-            <li>教材共有</li>
-            <li>オリプロ共有</li>
+            <li><a href="#" class="tab active">教材共有</a></li>
+            <li><a href="#" class="tab">オリプロ共有</a></li>
+            <div class="indicator"></div>
         </div>
     </header>
 </body>
