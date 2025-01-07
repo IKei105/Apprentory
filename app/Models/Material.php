@@ -20,4 +20,8 @@ class Material extends Model
     {
         return $this->belongsTo(Rating::class);
     }
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'user_likes', 'material_id', 'user_id');
+    }
 }
