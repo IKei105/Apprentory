@@ -23,8 +23,9 @@ header{
     border-radius: 8px;
 }
 .header-right{
+    width: 45%;
     display: flex;
-    justify-content:center;
+    justify-content:space-around;
     align-items:center;
     padding-right: 8px;
 }
@@ -53,19 +54,19 @@ header{
     text-align: center;
 }
 .header-right img,a{
-    padding-right: 12px;
+    padding-right: 1px;
 }
 .new-post{
+    display: flex;
+    justify-content: space-between;
+    height: 28px;
+    width: 140px;
+    font-size: 20px;
     border: none;
     background-color: #49b3c3;
     border-radius: 30px;
     color: #FFFFFF;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 30px;
-    font-size: 20px;
     font-weight: bold;
 }
 .new-post img{
