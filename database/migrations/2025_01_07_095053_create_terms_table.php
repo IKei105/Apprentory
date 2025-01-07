@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('terms', function (Blueprint $table) {
-            $table->unsignedInteger('term')->primary(); // 主キー (term)
+            $table->id();  
+            $table->unsignedInteger('term')->unique();        
             });
     }
 
