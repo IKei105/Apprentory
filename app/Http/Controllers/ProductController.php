@@ -27,9 +27,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // バリデーションの定義
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'product_detail' => 'required|string|max:5000',
+            'product_url' => 'required|url|max:2048',
+            'github_url' => 'nullable|url|max:2048',
+        ]);
 
+        // バリデーション済みデータを使用してレコードを作成
+        OriginalProduct::create($validatedData);
+
+        return redirect()->back()->with('success', 'オリプロの投稿が完了しました。');
+    }
     /**
      * Display the specified resource.
      */
