@@ -15,7 +15,7 @@ header{
     width: 205px;
     height: 48px;
     text-align: center;
-    background-color: #62d8d8;
+    background-color: #00d1d1;
     font-size: 32px;
     color: #FFFFFF;
     font-family: Inter;
@@ -28,12 +28,36 @@ header{
     align-items:center;
     padding-right: 8px;
 }
+.mypage{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+.profile-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #aaa;
+    border-radius: 90px;
+}
+.profile-img[alt]:not([src]) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #49b3c3; /* プロフィール画像がないときの背景色 */
+    border-radius: 50%;
+    text-align: center;
+}
 .header-right img,a{
     padding-right: 12px;
 }
 .new-post{
     border: none;
-    background-color: #49B3C3;
+    background-color: #49b3c3;
     border-radius: 30px;
     color: #FFFFFF;
     display: flex;
@@ -51,9 +75,34 @@ header{
 }
 
 .header-bottom{
-    margin-top: 30px;
+    position: relative;
     display: flex;
     color: #6d6d6d;
     font-weight: bold;
+    padding-top: 24px;
+    padding-bottom: 10px;
 
+}
+
+li a{
+    margin-left: 11px;
+    margin-right: 48px;
+    color: #6d6d6d;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+li :visited{
+    color: #6d6d6d;
+    text-decoration: none;
+}
+.header-bottom .indicator{
+
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    height: 10px;
+    width: 70px; 
+    background-color: #49b3c3;
+    transition: left 0.3s ease, width 0.3s ease;
+    border-radius: 90px 90px 0 0;
 }
