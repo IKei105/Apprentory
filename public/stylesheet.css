@@ -1,17 +1,22 @@
+*{
+    box-sizing: border-box;
+}
 li{
     list-style: none;
 }
 header{
     background-color: #FFFFFF;
-    height: 15%;
+    width: 100%;
     border-bottom: 1px solid #d9d9d9;
+    position: fixed;
+    z-index: 100;
 }
 .header-top{
     display: flex;
     justify-content: space-between;
 }
-.header-logo{
-    margin: 8px;
+.header-left{
+    margin: 13px 0px 0px 13px;
     width: 205px;
     height: 48px;
     text-align: center;
@@ -23,7 +28,7 @@ header{
     border-radius: 8px;
 }
 .header-right{
-    width: 45%;
+    width: 40%;
     display: flex;
     justify-content:space-around;
     align-items:center;
@@ -53,9 +58,7 @@ header{
     border-radius: 50%;
     text-align: center;
 }
-.header-right img,a{
-    padding-right: 1px;
-}
+
 .new-post{
     display: flex;
     justify-content: space-between;
@@ -80,9 +83,7 @@ header{
     display: flex;
     color: #6d6d6d;
     font-weight: bold;
-    padding-top: 24px;
-    padding-bottom: 10px;
-
+    padding: 24px 12px 10px 12px;
 }
 
 li a{
@@ -90,7 +91,6 @@ li a{
     margin-right: 48px;
     color: #6d6d6d;
     text-decoration: none;
-    margin-bottom: 15px;
 }
 li :visited{
     color: #6d6d6d;
@@ -100,7 +100,7 @@ li :visited{
 
     position: absolute;
     bottom: 0;
-    left: 8px;
+    left: 20px;
     height: 10px;
     width: 70px; 
     background-color: #49b3c3;
