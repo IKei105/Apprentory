@@ -1,4 +1,15 @@
 
+p {
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+}
+
+button {
+    padding: 0;
+}
 
 /* buttonをクリックした時の枠線を消す */
 button:focus {
@@ -8,45 +19,140 @@ button:focus {
 
 /* 教材切り替えボタンと絞り込みを含むdiv */
 .menu-select {
+    width: 960px;
+    margin: 0 auto;
     margin-top: 100px;
-    margin-left: 100px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
 }
 
 /* 3つのボタン */
 .recommended-button, .new-button, .high-rated-button {
-    width: 117px;
-    height: 50px;
+    width: 100px;
+    height: 40px;
     background-color: transparent;
     border: 1px solid #D1E0E1;
 }
 
 /* 推奨教材ボタン */
 .recommended-button {
-    width: 117px;
-    height: 50px;
     border-radius: 25px 0 0 25px;
 }
 
 /* 押下時の推奨教材ボタン */
 .recommended-button:focus {
-    background-color: #D1E0E1;
+    background-color: #EFF9FA;
 }
 
 /* 押下時の新着教材ボタン */
 .new-button:focus {
-    background-color: #D1E0E1;
+    background-color: #EFF9FA;
 }
 
 /* 評価の高い教材ボタン */
 .high-rated-button {
-    width: 117px;
-    height: 50px;
     border-radius: 0 25px 25px 0;
 }
 
 /* 押下時の評価が高い教材ボタン */
 .high-rated-button:focus {
-    background-color: #D1E0E1;
+    background-color: #EFF9FA;
+}
+
+/* h1 評価の高い教材 */
+.high-rated-title {
+    padding: 0 40px;
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* 教材情報全体のコンテナ */
+.high-rated-materials {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 0 64px;
+}
+
+/* 複数の教材情報が入っているコンテナ、これにflexを適用する */
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 40px;
+}
+
+/* 単一の教材情報が入ってる */
+.article {
+    max-width: 425px;
+    height: 216px;
+    padding: 24px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 18px;
+    border-radius: 5px;
+    background-color: #EFF9FA;
+}
+
+.article p{
+    display: inline;
+}
+
+/* 教材写真 */
+.book-image {
+    width: 120px;
+    height: 168px;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
+}
+
+
+/* ユーザープロフィール画像 */
+.post-user-image {
+    width: 26px;
+    height: auto;
+    border-radius: 50%; /* 丸くする */
+}
+
+/* ユーザー情報をホバーした時のやつ */
+.article p,a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+/* 本のタイトル */
+.material-title {
+    margin-top: 8px;
+    font-size: 16px;
+    color: black;
+}
+
+/* ポストユーザー名 */
+.post-user-name {
+    color: black;
+    font-size: 12px;
+}
+
+/* ポストユーザー名をホバーした時 */
+.post-user-name:hover {
+    text-decoration: underline;
+}
+
+/* 本の評価 */
+.book-rating p {
+    font-size: 20px;
+
+}
+
+/* 教材の価格 */
+.material-price {
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+/* いいね数 */
+.post-likes {
+    margin-top: 4px;
+    font-size:11px;
+    
 }

@@ -18,7 +18,207 @@
         <div class="filter"><p>絞り込み</p></div>
     </div>
     <div class="high-rated-materials">
-        <h1>評価の高い教材</h1>
-        
+        <h1 class="high-rated-title">評価の高い教材</h1>
+        <div class="articles">
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
+            <div class="article">
+                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <div class="article-text-info">
+                    <div class="post-user-info">
+                        <a href="">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                            <p class="post-user-name">ポストユーザー名</p>
+                        </a>
+                    </div>
+                    <a href="">
+                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
+                        <div class="book-rating">
+                            <p>★★★★★</p>
+                        </div>
+                        <div class="material-price">
+                            <p>¥</p>
+                            <p>114,514</p>
+                        </div>
+                        <div class="post-likes">
+                            <p>♡</p>
+                            <p>810人がいいね</p>
+                        </div>
+                    </a>
+                </div>    
+            </div>
     </div>
 </body>
