@@ -1,11 +1,57 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>作品一覧</title>
-</head>
-<body>
-    <h1>作品一覧ページ</h1>
-</body>
-</html>
+@extends('layouts.layout')
+
+@section('title', '作品一覧 | Apprentory')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('public/products_style.css') }}">
+@endpush
+
+@section('content')
+<main class="products">
+    <div class="product-menu">
+        <h1>人気のタグ</h1>
+        <ul class="popular-tag">
+            <li>タグ</li>
+            <li>タグ</li>
+            <li>タグ</li>
+            <li>タグ</li>
+            <li>タグ</li>
+            <li>タグ</li>
+            <li>タグ</li>
+        </ul>
+        <div class="filter">絞り込み</div>
+    </div>
+    
+    <div class="main-contents">
+        <h1 class="title">アプレンティス生オリジナルプロダクト</h1>
+
+        <article class="product">
+            <div class="article-left">
+                <img class="product-image" src="" alt="" >
+                <div class="post-user-info">
+                    <a href="">
+                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                        <p class="post-user-name">ユーザー名</p>
+                    </a>
+                </div>
+            </div>
+            <div class="article-right">
+                <p class="product-element">テスター募集</p>
+                <h3 class="product-title">オリプロのタイトル</h3>
+                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
+                <p class="product-date">2025/1/8</p>
+                <ul class="product-tag">
+                    <li>タグ</li>
+                    <li>タグ</li>
+                </ul>
+
+            </div>        
+        </article>
+    </div>
+</main>
+
+
+@endsection
+
+
+
