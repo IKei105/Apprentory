@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class OriginalProduct extends Model
+
+class Original_product extends Model
 {
     public $timestamps = false;
     use HasFactory;
