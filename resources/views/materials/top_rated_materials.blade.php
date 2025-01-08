@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <link rel="stylesheet" href="top_rated_materials.css">
-    <link rel="stylesheet" href="menu-select.css">
+    <link rel="stylesheet" href="css/top_rated_materials.css">
+    <link rel="stylesheet" href="css/menu-select.css">
     <title>教材一覧ページ</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
         <h1 class="high-rated-title">評価の高い教材</h1>
         <div class="articles">
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">

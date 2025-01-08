@@ -40,7 +40,7 @@
 }
 
 /* 教材写真 */
-.book-image {
+.material-book-image {
     width: 120px;
     height: 168px;
     box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
