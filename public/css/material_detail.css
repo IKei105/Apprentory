@@ -1,0 +1,97 @@
+button {
+    all: unset;
+}
+
+p {
+    margin: 0;
+}
+
+body {
+    background-color: #F2F2F2;
+}
+
+.material-book-image {
+    max-width: 100%;
+    height: 330px;
+    background-color: #EFF9FA;
+    display: flex; /* 子要素をFlexboxで配置 */
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    margin-top: 120px;
+}
+
+/* 教材の画像 */
+.material-book-image img {
+    display: block;
+    max-width: 180px;
+    max-height: 240px;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
+    margin: auto;
+}
+
+/* 教材のテキスト情報と削除編集ボタンを囲むdiv */
+.material-info {
+    max-width: 960px;
+    margin: 0 auto;
+    margin-top: 16px;
+}
+
+/* 削除編集ボタン */
+.action-buttons {
+    margin-bottom: 68px;
+}
+
+.action-buttons button {
+    margin-right: 16px;
+}
+
+/* 教材投稿日 */
+.material_posted_date {
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+/* 教材タイトル */
+.material-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* 教材価格 */
+.material_price {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+/* 教材の星 */
+.material_rating {
+    margin-bottom: 32px;
+    color: #FCB41A;
+}
+
+/* 教材詳細タイトル */
+.material-detail-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* 詳細感想 */
+.material-thoughts {
+    margin-bottom: 32px;
+    font-size: 20px;
+}
+
+/* 教材のURLという文字 */
+.material_url p {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 27px;
+}
+
+/* 教材のURLのリンク */
+.material_url a {
+    color: #0F93FE;
+    font-weight: 700;
+}
