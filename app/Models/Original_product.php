@@ -12,6 +12,7 @@ class OriginalProduct extends Model
     protected $table = 'original_products';
 
     protected $fillable = [
+        'element',
         'title',
         'subtitle',
         'product_detail',
