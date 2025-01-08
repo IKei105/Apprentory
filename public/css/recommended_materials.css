@@ -1,0 +1,52 @@
+
+/* 推奨教材とタイトルが格納されているコンテナ */
+.recommended_materials {
+    max-width: 960px;
+    padding: 0 40px;
+    margin: 0 auto;
+    background-color: aqua;
+}
+
+/* 推奨教材一覧という文字 */
+.recommended_materials-title {
+    margin-bottom: 30px;
+    margin-top: 50px;
+    padding: 0 40px;
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* 教材情報が入っているコンテナ */
+.materials-list {
+    background-color: blanchedalmond;
+}
+
+/* 教材情報 */
+.material-item {
+    width: 148px;
+    background-color: rgb(193, 193, 193);
+}
+
+/* 教材の写真 */
+.material-book-image {
+    width: 148px;
+    height: auto;
+}
+
+/* 教材名 */
+.material-title {
+    font-size: 13.5px;
+    color: black;
+}
+
+/* 教材をホバーした時 */
+.material-title:hover {
+    text-decoration: none;
+}
+
+/* 推奨教材いいね数 */
+.post-likes {
+    font-size: 10px;
+    color: #8F9FAA;
+}
