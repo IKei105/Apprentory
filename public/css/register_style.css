@@ -1,0 +1,232 @@
+body {
+    background-color: #00D1D1;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    margin-bottom: 24px;
+    padding: 25px 40px 25px;
+    background-color: #00D1D1;
+}
+
+.header-login-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 42px;
+    padding: 0 25px;
+    line-height: 26.5px;
+    text-align: center;
+    border-radius: 30px;
+    color:white;
+    font-size: 14px;
+    font-weight: 900;
+    background-color: #62D8D8;
+}
+
+.header-login-link:hover {
+    color:white;
+    opacity: 0.8;
+}
+
+.login {
+    max-width: 420px;
+    height: 80%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+    padding: 24px 52px 32px 52px;
+}
+
+
+/*  新規登録って文字*/
+.login-title {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 auto;
+    margin-bottom: 32px;
+    text-align: center;
+    color: #000000;
+    height: 48px;
+    line-height: 48px;
+}
+
+/* 入力欄 */
+fieldset {
+    display: block;
+    border: none !important;
+    margin: 0;
+    padding: 0;
+    background: none !important; /* 必要なら背景もリセット */
+}
+
+input {
+    border: none !important; /* 競合を無視して枠線を消す */
+    outline: none !important; /* 競合を無視してフォーカス時の青い枠を消す */
+    background: none; /* 必要なら背景色もリセット */
+    box-shadow: none !important; /* 入力欄の影もリセット */
+}
+
+/* メールアドレス欄と期生入力欄 */
+.input-info {
+    margin: 0 auto; /*　中央寄せ  */
+    border: 1px solid #D9D9D9; /* 全体の枠線 */
+    width: 316px; /* 全体の幅 */
+    height: 105px;
+    border-radius: 10px;
+    overflow: hidden; /* input入力枠と外枠が重なった時入力枠の無効化 */
+    display: flex; /* 内部要素を中央に配置する準備 */
+    flex-direction: column; /* 要素を縦に並べる */
+    justify-content: center; /* 縦方向に中央揃え */
+    margin-bottom: 18px;
+}
+
+/* メールアドレス入力欄の親クラス */
+.email {
+    /* line-height: 75px; */
+    border: none ; 
+    outline: none ;
+    height: 50%; /* 各入力欄が全体の50%を占める */
+    display: flex; /* 内部の文字を中央揃えにする準備 */
+    align-items: center; /* 縦方向に中央揃え */
+    font-size: 14px; /* テキストサイズを調整 */
+    color: #6D6D6D; /* テキストの色 */
+    border: none; /* 不要な枠線を削除 */
+    outline: none; /* フォーカス時の青い枠を削除 */
+    background: none; /* 背景色をリセット */
+}
+
+/* メールアドレス入力欄 */
+.email-input {
+    padding: 0 16px;
+    width: 315px;
+}
+
+/* メールアドレス入力欄のプレースホルダー */
+.email-input::placeholder {
+    font-size: 12px; /* プレースホルダーの文字サイズ */
+    color: #979797; /* プレースホルダーの文字色 */
+}
+
+/* 期生親クラス */
+.term {
+    display: block;
+    width: 315px;
+}
+
+/* 期生選択欄 (セレクトボックス) */
+.term {
+    height: 50%; /* 全体の高さの50% */
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* セレクトボックスのスタイル */
+.term-input {
+    appearance: none; /* デフォルトの矢印を非表示 */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: none; /* 枠線を削除 */
+    outline: none; /* フォーカス時の枠線を削除 */
+    width: 100%; /* セレクトボックスを親要素に合わせる */
+    padding: 10px; /* 内側の余白を調整 */
+    font-size: 12px; /* テキストサイズ */
+    color: #979797; /* テキストの色 */
+    background: none; /* 背景色をリセット */
+    cursor: pointer; /* ポインタ表示 */
+    width: 315px; /* セレクトボックスの幅を指定 */
+}
+
+/* セレクトボックスの矢印 (カスタム) */
+.term::after {
+    content: "▼"; /* 矢印の記号 */
+    position: absolute;
+    right: 20px; /* 右端に配置 */
+    font-size: 10px; /* 矢印のサイズ */
+    color: #6D6D6D; /* 矢印の色 */
+    pointer-events: none; /* 矢印部分のクリックを無効化 */
+}
+
+/* セレクトボックスの親要素で配置を補助 */
+.term {
+    position: relative; /* 矢印を相対配置 */
+}
+
+
+
+/* パスワードを入力する */
+.password-info {
+    margin: 0 auto; /*　中央寄せ  */
+    border: 1px solid #D9D9D9; /* 全体の枠線 */
+    width: 316px; /* 全体の幅 */
+    height: 105px;
+    border-radius: 10px;
+    overflow: hidden; /* input入力枠と外枠が重なった時入力枠の無効化 */
+    display: flex; /* 内部要素を中央に配置する準備 */
+    flex-direction: column; /* 要素を縦に並べる */
+    justify-content: center; /* 縦方向に中央揃え */
+}
+
+.password {
+    width: 316px; /* 全体の幅 */
+    height: 50%;
+}
+
+/* パスワード入力欄 */
+.password-input {
+    /* line-height: 75px; */
+    margin: 0;
+    border: none ; 
+    outline: none ;
+    line-height: 51.5px;
+    display: flex; /* 内部の文字を中央揃えにする準備 */
+    align-items: center; /* 縦方向に中央揃え */
+    font-size: 14px; /* テキストサイズを調整 */
+    color: #6D6D6D; /* テキストの色 */
+    border: none; /* 不要な枠線を削除 */
+    outline: none; /* フォーカス時の青い枠を削除 */
+    background: none; /* 背景色をリセット */
+    width: 315px;
+    padding: 0 16px;
+}
+
+/* パスワード入力欄のプレースホルダー */
+.password-input::placeholder {
+    font-size: 12px; /* プレースホルダーの文字サイズ */
+    color: #979797; /* プレースホルダーの文字色 */
+}
+
+.password-upper {
+    position: relative;
+}
+
+.password-upper::after {
+    content: ''; /* 疑似要素に空のコンテンツを挿入。これが下線の見た目を形成する。 */
+    position: absolute; /* 親要素(.underline)を基準に配置を絶対位置で設定する。 */
+    height: 1px; /* 下線の高さを1ピクセルに設定。 */
+    width: 90%; /* 下線を親要素の幅いっぱいに設定。 */
+    left: 5%; /* 下線の左端を親要素の左端に揃える。 */
+    bottom: 0; /* 下線の下端を親要素の下端に揃える。 */
+    background: #dadada; /* 下線の色をダークグレー(#333)に設定。 */
+}
+
+.login-button {
+    margin-top:60px;
+    margin-bottom: 35px;
+    width: 316px; /* 全体の幅 */
+    height: 52px;
+    background-color: #00D1D1;
+    border: none; 
+    border-radius: 10px;
+    color: white;
+}

@@ -3,7 +3,7 @@
 @section('title', '作品一覧 | Apprentory')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('public/products_style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/products_style.css') }}">
 @endpush
 
 @section('content')
