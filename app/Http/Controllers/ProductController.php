@@ -46,9 +46,10 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = OriginalProduct::findOrFail($id);
+        return view('products.show', compact('product'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
