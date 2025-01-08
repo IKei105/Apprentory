@@ -8,19 +8,19 @@
 
 @section('content')
 <main class="products">
+    <h1>人気のタグ</h1>
     <div class="product-menu">
-        <h1>人気のタグ</h1>
-        <ul class="popular-tag">
-            <li>タグ</li>
-            <li>タグ</li>
-            <li>タグ</li>
-            <li>タグ</li>
-            <li>タグ</li>
-            <li>タグ</li>
-            <li>タグ</li>
-        </ul>
+        <div class="popular-tag">
+            <a href="#">タグ</a>
+            <a href="#">タグ</a>
+            <a href="#">タグ</a>
+            <a href="#">タグ</a>
+            <a href="#">タグ</a>
+            <a href="#">タグ</a>
+        </div>
         <div class="filter">絞り込み</div>
     </div>
+    
     
     <div class="main-contents">
         <h1 class="title">アプレンティス生オリジナルプロダクト</h1>
