@@ -27,8 +27,8 @@
 
         <article class="product">
             <div class="article-left">
-            <img src="{{ asset('assets/images/Group 226.png') }}" alt="" class="product-image">                <div class="post-user-info">
-                    <a href="">
+            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
+                    <a href="" class="post-user">
                         <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
                         <p class="post-user-name">ユーザー名</p>
                     </a>
@@ -39,13 +39,93 @@
                 <h3 class="product-title">オリプロのタイトル</h3>
                 <p class="product-subtitle">オリプロの内容を一言で紹介</p>
                 <p class="product-date">2025/1/8</p>
-                <ul class="product-tag">
-                    <li>タグ</li>
-                    <li>タグ</li>
-                </ul>
-
+                <div class="product-tag">
+                    <a href="#">タグ</a>
+                    <a href="#">タグ</a>
+                </div>
             </div>        
         </article>
+        <article class="product">
+            <div class="article-left">
+            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
+                    <a href="" class="post-user">
+                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                        <p class="post-user-name">ユーザー名</p>
+                    </a>
+                </div>
+            </div>
+            <div class="article-right">
+                <p class="product-element">テスター募集</p>
+                <h3 class="product-title">オリプロのタイトル</h3>
+                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
+                <p class="product-date">2025/1/8</p>
+                <div class="product-tag">
+                    <a href="#">タグ</a>
+                    <a href="#">タグ</a>
+                </div>
+            </div>        
+        </article>
+        <article class="product">
+            <div class="article-left">
+            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
+                    <a href="" class="post-user">
+                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                        <p class="post-user-name">ユーザー名</p>
+                    </a>
+                </div>
+            </div>
+            <div class="article-right">
+                <p class="product-element">テスター募集</p>
+                <h3 class="product-title">オリプロのタイトル</h3>
+                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
+                <p class="product-date">2025/1/8</p>
+                <div class="product-tag">
+                    <a href="#">タグ</a>
+                    <a href="#">タグ</a>
+                </div>
+            </div>        
+        </article>
+        <article class="product">
+            <div class="article-left">
+            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
+                    <a href="" class="post-user">
+                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                        <p class="post-user-name">ユーザー名</p>
+                    </a>
+                </div>
+            </div>
+            <div class="article-right">
+                <p class="product-element">テスター募集</p>
+                <h3 class="product-title">オリプロのタイトル</h3>
+                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
+                <p class="product-date">2025/1/8</p>
+                <div class="product-tag">
+                    <a href="#">タグ</a>
+                    <a href="#">タグ</a>
+                </div>
+            </div>        
+        </article>
+        <article class="product">
+            <div class="article-left">
+            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
+                    <a href="" class="post-user">
+                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                        <p class="post-user-name">ユーザー名</p>
+                    </a>
+                </div>
+            </div>
+            <div class="article-right">
+                <p class="product-element">テスター募集</p>
+                <h3 class="product-title">オリプロのタイトル</h3>
+                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
+                <p class="product-date">2025/1/8</p>
+                <div class="product-tag">
+                    <a href="#">タグ</a>
+                    <a href="#">タグ</a>
+                </div>
+            </div>        
+        </article>
+
     </div>
 </main>
 
