@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Original_product;
+
 
 class ProductController extends Controller
 {
@@ -37,7 +39,7 @@ class ProductController extends Controller
         ]);
 
         // バリデーション済みデータを使用してレコードを作成
-        OriginalProduct::create($validatedData);
+        Original_product::create($validatedData);
 
         return redirect()->back()->with('success', 'オリプロの投稿が完了しました。');
     }
@@ -46,8 +48,21 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = OriginalProduct::findOrFail($id);
+        //以下ダミーデータ
+        $product = (object)[
+        'id' => $id,
+        'title' => 'ダミープロダクトのタイトル',
+        'subtitle' => 'ダミープロダクトのサブタイトル、こんな事ができます',
+        'product_detail' => 'ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。',
+        'product_url' => 'https://example.com',
+        'github_url' => 'https://github.com/example',
+        'created_at' => '2025-01-08',
+        'tags' => ['タグ1', 'タグ2'], // ダミータグを追加
+        'element'=>'テスター募集'
+    ];
+        // $product = Original_product::findOrFail($id);
         return view('products.show', compact('product'));
+
     }
     
     /**
