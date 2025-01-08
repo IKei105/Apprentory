@@ -21,5 +21,9 @@ Route::get('/material_index', function () {
     return view('materials/top_rated_materials');
 });
 
+Route::get('/recommended_material.blade', function () {
+    return view('materials/recommended_materials');
+});
+
 Route::resource("materials",MaterialController::class);
 Route::resource("products",ProductController::class);
