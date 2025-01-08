@@ -1,4 +1,6 @@
-
+body {
+    background-color: #F2F2F2;
+}
 
 /* h1 評価の高い教材 */
 .high-rated-title {

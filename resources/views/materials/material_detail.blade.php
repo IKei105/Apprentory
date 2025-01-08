@@ -13,10 +13,10 @@
         </div>
     <div class="material-info">
         <div class="action-buttons">
-            <button><img src="" alt=""></button>
-            <button><img src="" alt=""></button>
+            <button><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
+            <button><img src="{{ asset('assets/images/edit.svg') }}" alt=""></button>
         </div>
-        <div class="date">
+        <div class="material_posted_date">
             <p>2025/1/5</p>
         </div>
         <div class="material-title">
@@ -25,10 +25,15 @@
         <div class="material_price">
             <p>¥5000</p>
         </div>
+        <div class="material_rating">
+            <p>★★★★★</p>
+        </div>
         <div class="material_detail">
-            <p>感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です</p>
+            <p class="material-detail-title">教材詳細</p>
+            <p class="material-thoughts">感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です</p>
         </div> 
         <div class="material_url">
+            <p>URL</p>
             <a href="">urlurlurlurlurlurlurlurlurlurlurlurl</a>
         </div>
     </div>

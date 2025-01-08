@@ -25,5 +25,9 @@ Route::get('/recommended_material', function () {
     return view('materials/recommended_materials');
 });
 
+Route::get('/material_detail', function () {
+    return view('materials/material_detail');
+});
+
 Route::resource("materials",MaterialController::class);
 Route::resource("products",ProductController::class);
