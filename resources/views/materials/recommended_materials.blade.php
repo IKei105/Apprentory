@@ -25,7 +25,52 @@
             <div class="material-item">
                 <a href="">
                     <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                    <h3 class="material-title" >タイトル</h3>
+                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
+                    <div class="post-likes">
+                        <p>♡ 40</p>
+                    </div>
+                </a>
+            </div>
+            <div class="material-item">
+                <a href="">
+                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
+                    <div class="post-likes">
+                        <p>♡ 40</p>
+                    </div>
+                </a>
+            </div>
+            <div class="material-item">
+                <a href="">
+                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
+                    <div class="post-likes">
+                        <p>♡ 40</p>
+                    </div>
+                </a>
+            </div>
+            <div class="material-item">
+                <a href="">
+                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
+                    <div class="post-likes">
+                        <p>♡ 40</p>
+                    </div>
+                </a>
+            </div>
+            <div class="material-item">
+                <a href="">
+                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
+                    <div class="post-likes">
+                        <p>♡ 40</p>
+                    </div>
+                </a>
+            </div>
+            <div class="material-item">
+                <a href="">
+                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
                     <div class="post-likes">
                         <p>♡ 40</p>
                     </div>

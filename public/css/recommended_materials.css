@@ -1,17 +1,17 @@
+a:hover {
+    text-decoration: none;
+}
+
 
 /* 推奨教材とタイトルが格納されているコンテナ */
 .recommended_materials {
     max-width: 960px;
-    padding: 0 40px;
+    padding: 48px 40px 64px;
     margin: 0 auto;
-    background-color: aqua;
 }
 
 /* 推奨教材一覧という文字 */
 .recommended_materials-title {
-    margin-bottom: 30px;
-    margin-top: 50px;
-    padding: 0 40px;
     margin-bottom: 32px;
     font-size: 32px;
     font-weight: 700;
@@ -19,30 +19,37 @@
 
 /* 教材情報が入っているコンテナ */
 .materials-list {
-    background-color: blanchedalmond;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 35px;
 }
 
 /* 教材情報 */
 .material-item {
     width: 148px;
-    background-color: rgb(193, 193, 193);
 }
+
 
 /* 教材の写真 */
 .material-book-image {
     width: 148px;
     height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
 }
 
 /* 教材名 */
 .material-title {
     font-size: 13.5px;
     color: black;
+    margin-bottom: 5px;
+    line-height: 1.5;
 }
 
-/* 教材をホバーした時 */
 .material-title:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 /* 推奨教材いいね数 */
