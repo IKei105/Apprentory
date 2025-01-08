@@ -1,3 +1,19 @@
-.product-menu h1{
-    color: aqua;
+.products{
+    
+}
+
+.products h1{
+    font-size: 20px;
+}
+
+.product-menu{
+    display: flex;
+    justify-content: space-between;
+}
+.popular-tag{
+    display: flex;
+    justify-content:space-around;
+}
+.title{
+    font-size: 32px;
 }
