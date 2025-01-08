@@ -50,3 +50,14 @@
 .title{
     font-size: 32px;
 }
+article{
+    width: 100%;
+}
+.post-user{
+    display: flex;
+    justify-content: space-between;
+
+}
+.product-image{
+    width: 30%;
+}
