@@ -27,10 +27,9 @@
 
         <article class="product">
             <div class="article-left">
-                <img class="product-image" src="" alt="" >
-                <div class="post-user-info">
+            <img src="{{ asset('assets/images/Group 226.png') }}" alt="" class="product-image">                <div class="post-user-info">
                     <a href="">
-                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
                         <p class="post-user-name">ユーザー名</p>
                     </a>
                 </div>
