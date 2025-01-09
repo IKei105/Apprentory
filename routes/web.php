@@ -33,5 +33,9 @@ Route::get('/material_index', function () {
     return view('materials/material_index');
 });
 
+Route::get('/post_material', function () {
+    return view('materials/post_material');
+});
+
 Route::resource("materials",MaterialController::class);
 Route::resource("products",ProductController::class);
