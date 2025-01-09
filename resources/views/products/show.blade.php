@@ -39,10 +39,6 @@
         </div>
     </div>
     <div class="layout-bottom">
-        <div class="selecter">
-            <p>概要</p>
-            <p>コメント</p>
-        </div>
         <div class="select-summary"> 
             <p class="product-detail">{{ $product->product_detail }}</p>
             <h3>プロダクトURL</h3>
