@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="select-comment">
-            <p class="count-comments">〇〇件のコメント</p>
+            <p class="comment-count">〇〇件のコメント</p>
             <div class="comment">
                 <div class="comment-left">
                     <a href="#" class="comment-user-image">
