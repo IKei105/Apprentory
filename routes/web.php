@@ -17,7 +17,7 @@ Route::get('/register', function () {
 });
 
 
-Route::get('/material_index', function () {
+Route::get('/top_rated_materials', function () {
     return view('materials/top_rated_materials');
 });
 

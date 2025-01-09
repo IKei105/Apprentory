@@ -33,7 +33,7 @@ body {
     display: flex;
     justify-content: flex-start;
     gap: 18px;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #EFF9FA;
 }
 
@@ -46,6 +46,7 @@ body {
     width: 120px;
     height: 168px;
     box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
+    border-radius: 8px;
 }
 
 
