@@ -59,7 +59,7 @@ class ProductController extends Controller
         'created_at' => '2025-01-08',
         'tags' => ['タグ1', 'タグ2'], // ダミータグを追加
         'element'=>'テスター募集'
-    ];
+        ];
         // $product = Original_product::findOrFail($id);
         return view('products.show', compact('product'));
 

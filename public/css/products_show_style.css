@@ -3,6 +3,7 @@
 }
 .layout-main{
     display: flex;
+    margin-bottom: 90px;
 }
 .main-left{
     width: 30%;
@@ -18,6 +19,12 @@
 }
 .product-image{
     width: 100%;
+}
+.product-controler{
+    display: flex;
+}
+.product-controler img{
+margin-right: 16px;
 }
 .product-tag{
     display: flex;
@@ -58,6 +65,7 @@
     display: flex;
 }
 .post-user{
+    white-space: nowrap; /* 折り返し防止 */
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -81,4 +89,75 @@
     margin-left: 36px;
     white-space: nowrap;
     border-radius: 12px;
+}
+
+.selecter{
+    display: flex;
+    font-size: 16px;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 32px;
+
+}
+.selecter p{
+    white-space: nowrap; /* 折り返し防止 */
+    width: 135px;
+    height: 57px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 ;
+    border: 1px solid #d9d9d9;
+
+    background-color:#D1E0E1 ;
+}
+.product-detail{
+    margin-top: 0px;
+}
+.products-images{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 32px;
+}
+
+.count-comments{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 64px;
+}
+.comment{
+    display: flex;
+    width: 100%;
+    margin-bottom: 48px;
+}
+.comment-left{
+    width: 72px;
+    height: 72px;
+}
+.comment-user-image{
+    height: 100%;
+    border-radius: 50%;
+}
+.comment-right{
+    padding-left: 26px;
+}
+.comment-user-info{
+    display: flex;
+    margin-bottom: 16px;
+}
+.comment-user-name{
+    white-space: nowrap; /* 折り返し防止 */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 16px;
+}
+.comment-date{
+    font-size: 12px;
+    color: #6d6d6d;
 }
