@@ -17,6 +17,10 @@
     <div class="layout-main">
         <div class="main-left">
             <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">
+            <div class="product-controler">
+                <img src="{{ asset('assets/images/edit.svg') }}" alt="" class="edit-button">
+                <img src="{{ asset('assets/images/trash.svg') }}" alt="" class="trash-button">
+            </div>
         </div>
         <div class="main-right">
             <div class="main-right-top">
@@ -35,7 +39,111 @@
         </div>
     </div>
     <div class="layout-bottom">
-        <img src="{{ asset('assets/images/edit.svg') }}" alt="" class="edit-button">
-        <img src="{{ asset('assets/images/trash.svg') }}" alt="" class="trash-button">
+        <div class="selecter">
+            <p>概要</p>
+            <p>コメント</p>
+        </div>
+        <div class="select-summary"> 
+            <p class="product-detail">{{ $product->product_detail }}</p>
+            <h3>プロダクトURL</h3>
+            <a href="{{ $product->product_url }}" class="product-url">{{ $product->product_url }}</a>
+            <h3>GithubURL</h3>
+            <a href="{{ $product->github_url }}" class="github-url">{{ $product->github_url }}</a>
+            <h3>紹介画像</h3>
+            <div class="products-images">
+                <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image1">
+                <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image2">
+                <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image3">
+            </div>
+        </div>
+        <div class="select-comment">
+            <p class="count-comments">〇〇件のコメント</p>
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="#" class="comment-user-image">
+                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-user-info">
+                        <a href="#" class="comment-user-name">ユーザー名</a>
+                        <p class="comment-date">2025/12/22</p>
+                    </div>
+                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="#" class="comment-user-image">
+                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-user-info">
+                        <a href="#" class="comment-user-name">ユーザー名</a>
+                        <p class="comment-date">2025/12/22</p>
+                    </div>
+                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="#" class="comment-user-image">
+                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-user-info">
+                        <a href="#" class="comment-user-name">ユーザー名</a>
+                        <p class="comment-date">2025/12/22</p>
+                    </div>
+                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="#" class="comment-user-image">
+                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-user-info">
+                        <a href="#" class="comment-user-name">ユーザー名</a>
+                        <p class="comment-date">2025/12/22</p>
+                    </div>
+                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="#" class="comment-user-image">
+                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-user-info">
+                        <a href="#" class="comment-user-name">ユーザー名</a>
+                        <p class="comment-date">2025/12/22</p>
+                    </div>
+                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="#" class="comment-user-image">
+                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-user-info">
+                        <a href="#" class="comment-user-name">ユーザー名</a>
+                        <p class="comment-date">2025/12/22</p>
+                    </div>
+                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 @endsection
