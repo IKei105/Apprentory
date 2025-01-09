@@ -48,7 +48,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
@@ -73,7 +73,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
@@ -98,7 +98,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
@@ -123,7 +123,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
@@ -148,7 +148,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
@@ -173,7 +173,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
@@ -198,7 +198,7 @@
                 </div>    
             </div>
             <div class="article">
-                <img class="book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
+                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">
                     <div class="post-user-info">
                         <a href="">
