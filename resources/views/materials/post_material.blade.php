@@ -75,7 +75,7 @@
                 <label for="url">URL</label>
                 <input type="url" id="url">
             </div>
-            <div class="post-material-tags" id="container">
+            <div class="post-material-tags" id="post-material-tags">
                 <p>タグ</p>
                 <select name="" id="select1" class="dynamic-select">
                     <option value="">選択してください</option>
@@ -93,5 +93,5 @@
                 <h1 id="h1"></h1>
             </div>
         </form>
-        <script src="{{ asset('/js/main.js') }}"></script>
+        <script src="{{ asset('/js/post_material.js') }}"></script>
     </div>
