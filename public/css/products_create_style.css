@@ -1,0 +1,33 @@
+.layout-top{
+    height: 75px;
+    margin-left: -80px;
+    margin-right: -80px;
+    margin-top: -29px;
+    padding-left: 80px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d9d9d9;
+
+}
+.back{
+    font-size: 24px;
+    padding-top: 4px;
+    text-decoration: none;
+    color: #6d6d6d;
+}
+.submit{
+    width: 90px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #62d8d8;
+    border-radius: 30px;
+    border: none;
+    padding-top: 4px;
+}
