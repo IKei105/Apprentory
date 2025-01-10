@@ -1,4 +1,5 @@
 .layout-top{
+    width: 100%;
     height: 75px;
     margin-left: -80px;
     margin-right: -80px;
@@ -8,7 +9,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #f2f2f2;
     border-bottom: 1px solid #d9d9d9;
+    position: fixed;
+    z-index: 100;
 
 }
 .back{
@@ -30,4 +34,74 @@
     border-radius: 30px;
     border: none;
     padding-top: 4px;
+}
+.layout-main{
+    padding-top: 75px;
+}
+.post-title{
+    width: 100%;
+    border-bottom: 2px solid #d9d9d9;
+    padding-bottom: 4px;
+    margin-bottom: 32px;
+}
+.post-title input{
+    /*デフォルトの枠線などを消去*/
+    background: none;
+    border: none;
+    outline: none;
+    
+    width: 100%;
+    color: #6d6d6d;
+    font-size: 24px;
+}
+.post-images{
+    margin-bottom: 64px;
+    display: flex;
+}
+.post-images-left{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.post-images-left p{
+    text-align: center;
+    font-size: 16px;
+    color: #6d6d6d;
+    margin-top: 4px;
+
+}
+.post-images-left input{
+    display: none;
+}
+.post-images-left img{
+    box-shadow: -4px 4px 4px #00000040;
+}
+.post-subtitle,.post-detail,.post-product-url,.post-github-url{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+.post-subtitle label,.post-detail label,.post-product-url label,.post-github-url label{
+    font-size: 24px;
+    color: #6d6d6d;
+    padding-bottom: 16px;
+}
+.post-subtitle input,.post-detail textarea,.post-product-url input,.post-github-url input{
+    border: none;
+    outline: none;
+}
+.post-subtitle input,.post-product-url input,.post-github-url input{
+    height: 24px;
+}
+.post-detail textarea{
+    height: auto;
+    min-height: 256px;
+    resize: vertical;
+    overflow: auto;
+    /* スクロールバーを非表示にする */
+    scrollbar-width: none; /* Firefox */
+}
+.post-detail textarea::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
 }
