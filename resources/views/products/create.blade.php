@@ -53,8 +53,14 @@
         </div>
         <div class="post-element">
             <p>投稿のカテゴリ</p>
-            <input type="radio" name="radio" id="radio"><label for="need-tester">テスター募集中</label>
-            <input type="radio" name="radio" id="radio"><label for="need-review">レビュー募集中</label>
+            <div class="custom-radio">
+                <input type="radio" name="radio" id="need-tester">
+                <label for="need-tester">テスター募集中</label>
+            </div>
+            <div class="custom-radio">
+                <input type="radio" name="radio" id="need-review">
+                <label for="need-review">レビュー募集中</label>
+            </div>
         </div>
         <div class="post-tag">
             <label for="tags">タグ設定 (5つまで)</label>
