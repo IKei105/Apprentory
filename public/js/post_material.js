@@ -24,8 +24,8 @@ function createNewSelect() {
         <option value="10">AWS</option>
     `;
 
-    // 作成したselectタグをコンテナに追加
-    document.getElementById('container').appendChild(newSelect);
+    // 作成したselectタグをdivに追加
+    document.getElementById('post-material-tags').appendChild(newSelect);
 
     // 新しいselectタグにもイベントリスナーを追加
     newSelect.addEventListener('change', handleSelectChange);
@@ -36,9 +36,6 @@ function handleSelectChange(event) {
     const selectedId = event.target.id;
     const recentId = `select${selectCount}`
 
-    console.log(selectedId);
-    console.log(recentId);
-    
     if (event.target.value !== "" && recentId == selectedId && selectCount < 5) { // 値が選択された場合のみ
         createNewSelect();
     }
