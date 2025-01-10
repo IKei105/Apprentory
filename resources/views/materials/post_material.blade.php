@@ -5,69 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="css/material_index.css">
+    <link rel="stylesheet" href="css/post_material.css">
     <link rel="stylesheet" href="css/menu-select.css">
-    <title>教材一覧ページ</title>
+    <title>教材投稿ページ</title>
 </head>
 <body>
-    <div class="menu-button">
-        <button>←</button>
-        <button>投稿</button>
-    </div>
     <div class="post-material-item">
-    <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="menu-button">
+                <button>←</button>
+                <button>投稿</button>
+            </div>
             <div class="material-flex-container">
                 <div class="post-material-img">
-                    <label for="image" class="custom-file-label"><img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt=""></label>
+                    <label for="image" class="post-material-image-label">
+                        <img class="material-book-sample-image" src="{{ asset('assets/images/sample_material_image.jpg') }}" alt="">
+                        <p>カバー画像を変更</p>
+                    </label>
                     <input class="post-material-img-upload custom-file-input" type="file" id="image" name="image" accept="image/*">
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <h3>タイトルですねぇ</h3>
+                        <input class="post-material-title-text" type="text" class="" placeholder="教材タイトル" />
                     </div>
-                    <div class="post-material-review">
-                        <p>感想だすえ</p>
+                    <div class="post-material-thoughts">
+                    <textarea
+                        name="article" 
+                        class="post-material-thoughts-text"
+                        rows="8"
+                        placeholder="教材の感想を入力"
+                    ></textarea>
                     </div>
                 </div>
             </div>
-            <div class="post-material-rating">
-                <p>★★★★★</p>
+            <div class="post-material-rate-text">
+                <label for="post-material-rate-text">評価</label>
+                <div class="post-material-rate rate-form">
+                    <input id="star5" type="radio" name="rating_id" value="5">
+                    <label for="star5 star">★</label>
+
+                    <input id="star4" type="radio" name="rating_id" value="4">
+                    <label for="star4 star">★</label>
+
+                    <input id="star3" type="radio" name="rating_id" value="3">
+                    <label for="star3 star">★</label>
+
+                    <input id="star2" type="radio" name="rating_id" value="2">
+                    <label for="star2 star">★</label>
+
+                    <input id="star1" type="radio" name="rating_id" value="1">
+                    <label for="star1 star">★</label>
+                </div>
             </div>
             <div class="post-material-price">
-                <p>¥ 3000</p>
+                <label for="material_price">価格</label>
+                <input 
+                    id = "material_price"
+                    class="post-material-price-text"
+                    type="number" 
+                    name="price" 
+                    placeholder="金額を入力" 
+                    min="0" 
+                    step="1" 
+                    oninput="this.value = this.value.replace(/^0+/, '');"
+                />
             </div>
             <div class="post-material-url">
-                <a href="">それのリンク</a>
+                <label for="url">URL</label>
+                <input type="url" id="url">
             </div>
-            <div class="post-material-tags">
-                <select name="" id="">タグ</select>
+            <div class="post-material-tags" id="container">
+                <p>タグ</p>
+                <select name="" id="select1" class="dynamic-select">
+                    <option value="">選択してください</option>
+                    <option value="1">Ruby</option>
+                    <option value="2">PHP</option>
+                    <option value="3">SQL</option>
+                    <option value="4">HTML</option>
+                    <option value="5">CSS</option>
+                    <option value="6">JavaScript</option>
+                    <option value="7">GitHub</option>
+                    <option value="8">Linux</option>
+                    <option value="9">docker</option>
+                    <option value="10">AWS</option>
+                </select>
+                <h1 id="h1"></h1>
             </div>
         </form>
+        <script src="{{ asset('/js/main.js') }}"></script>
     </div>
-
-    <div class="post-material-item">
-        <div class="material-flex-container">
-            <div class="post-material-img"><img src="" alt=""></div>
-            <div class="post-material-title-review-container">
-                <div class="post-material-title">
-                    <h3>タイトルですねぇ</h3>
-                </div>
-                <div class="post-material-review">
-                    <p>感想だすえ</p>
-                </div>
-            </div>
-        </div>
-        <div class="post-material-rating">
-            <p>★★★★★</p>
-        </div>
-        <div class="post-material-price">
-            <p>¥ 3000</p>
-        </div>
-        <div class="post-material-url">
-            <a href="">それのリンク</a>
-        </div>
-        <div class="post-material-tags">
-            <select name="" id="">タグ</select>
-        </div>
-    </div>
-</body>

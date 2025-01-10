@@ -1,33 +1,193 @@
+label {
+    margin: 0 ;
+    padding: 0;
+}
+
+body {
+    margin-top: 100px;
+    padding-bottom: 500px;
+}
 
 /* 戻る、投稿ボタンと教材投稿フォームのやつ */
 .menu-button, .post-material-item {
     max-width: 960px;
+    padding: 0 40px;
     margin: 0 auto;
 }
 
 /* 戻る、投稿ボタン */
-.menu-button {
-    background-color: blue;
+/* .menu-button {
+} */
+
+/* 画像、タイトル、感想が入っているコンテナ */
+.material-flex-container {
+    max-width: 960px;
+    display: flex;
 }
 
 /* ファイル選択ボタンを隠す */
-.custom-file-input {
+.post-material-img-upload {
     display: none;
 }
 
-/* カスタムラベルを装飾 */
-.custom-file-label {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50; /* ボタンの背景色 */
-    color: white; /* テキストの色 */
-    border-radius: 5px; /* 角を丸くする */
-    cursor: pointer; /* ポインタ表示 */
-    font-size: 16px;
+/* 投稿画像を格納するコンテナ */
+.post-material-img {
+    width: 27%;
+    flex-shrink: 0;
+}
+
+/* 画像を選択 img */
+.post-material-image-label img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 画像を選択 p */
+.post-material-image-label p { 
     text-align: center;
+    font-size: 16px;
+    color: #6D6D6D;
 }
 
 /* ラベルをホバーしたときの効果 */
-.custom-file-label:hover {
-    background-color: #45a049; /* ホバー時の色 */
+.post-material-image-label:hover {
+    cursor: pointer;
 }
+
+/* 教材タイトルと感想が入ってるコンテナ */
+.post-material-title-review-container {
+    width: 73%; /* 必要に応じてレスポンシブ対応 */
+    margin-left: 2.5%;
+}
+
+/* 教材名を入力のコンテナ */
+.post-material-title {
+    position: relative;
+     margin-bottom: 3px;  /* 下線とtextareaとの幅を調整 */
+}
+
+/* 教材名を入力のコンテナの下に下線を表示 */
+.post-material-title::after {
+    content: ''; /* 疑似要素に空のコンテンツを挿入。これが下線の見た目を形成する。 */
+    position: absolute; /* 親要素(.underline)を基準に配置を絶対位置で設定する。 */
+    height: 2px; /* 下線の高さを1ピクセルに設定。 */
+    width: 100%; /* 下線を親要素の幅いっぱいに設定。 */
+    left: 0; /* 下線の左端を親要素の左端に揃える。 */
+    bottom: 0px; /* 下線の下端を親要素の下端に揃える。 */
+    background: #D9D9D9; /* 下線の色をダークグレー(#333)に設定。 */
+}
+
+/* 教材名を入力 */
+.post-material-title-text {
+    border: none; 
+    outline: none; /* フォーカス時の青い枠線も消す */
+    background-color: transparent; /* 背景を透明にする */
+    font-size: 24px;
+    color: black;
+    position: relative;
+}
+
+/* 教材の感想を入力 */
+.post-material-thoughts textarea{
+    width: 100%;
+    height: 357px;
+    border: none; /* 枠線を消す */
+    outline: none; /* フォーカス時の青枠線を消す */
+    resize: none; /* サイズ変更可能なハンドルを非表示にする（オプション） */
+}
+
+
+/* 星 */
+
+/* 評価という文字 */
+.post-material-rate-text {
+    font-size: 24px;
+}
+
+.post-material-rate{
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.post-material-rate input[type=radio] {
+    display: none;
+}
+
+.post-material-rate label{
+    font-size: 40px;
+    color: rgb(135, 135, 135);
+    cursor: pointer;
+}
+
+.post-material-rate label:hover {
+    color: #ffcc00;
+}
+
+.post-material-rate label:hover~label {
+    color: #ffcc00;
+}
+
+.post-material-rate input[type=radio]:checked~label {
+    color: #ffcc00;
+}
+
+
+
+/* 金額を入力 */
+.post-material-price {
+    margin-bottom: 16px;
+}
+
+.post-material-price label{
+    display: block;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.post-material-price input { 
+    border: none; /* 枠線を完全に消す */
+    outline: none; /* フォーカス時の青枠線を消す */
+    width: 167px;
+    height: 24px;
+}
+
+
+/* URLを入力する欄 */
+.post-material-url {
+    margin-bottom: 16px;
+}
+
+.post-material-url label {
+    display: block;
+    font-size: 24px;
+}
+
+.post-material-url input {
+    width: 800px;
+    border: none; /* 枠線を完全に消す */
+    outline: none; /* フォーカス時の青枠線を消す */
+}
+
+.post-material-tags p {
+    font-size: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
