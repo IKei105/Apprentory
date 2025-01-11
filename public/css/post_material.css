@@ -170,24 +170,53 @@ body {
     outline: none; /* フォーカス時の青枠線を消す */
 }
 
+/* タグ設定 */
+.post-material-tags-select-wrapper {
+    display: inline;
+}
+
+.post-material-tags {
+    background-color: aqua;
+}
+
 .post-material-tags p {
     font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.post-material-tags select{
+    border: none; /* 枠線を完全に消す */
+    outline: none;
+    margin-right: 16px;
+    padding: 0;
+}
+
+#select1 {
+    margin-right: 11px;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.rate-form{
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.rate-form input[type=radio] {
+    display: none;
+}
+.rate-form label{
+    font-size: 40px;
+    color: rgb(135, 135, 135);
+    cursor: pointer;
+}
+.rate-form label:hover {
+    color: #ffcc00;
+  }
+.rate-form label:hover~label {
+    color: #ffcc00;
+  }
+.rate-form input[type=radio]:checked~label {
+    color: #ffcc00;
+}
