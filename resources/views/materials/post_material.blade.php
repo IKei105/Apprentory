@@ -10,13 +10,13 @@
     <title>教材投稿ページ</title>
 </head>
 <body>
+    <div class="layout-top">
+        <a href="" class="back">←</a>
+        <button class=submit type="submit">投稿</button>
+    </div>
     <div class="post-material-item">
         <form action="" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="menu-button">
-                <button>←</button>
-                <button>投稿</button>
-            </div>
             <div class="material-flex-container">
                 <div class="post-material-img">
                     <label for="image" class="post-material-image-label">
@@ -92,12 +92,12 @@
                     </select>
             </div>
             <div class="rate-form">
-            <input id="star5" type="radio" name="rating_id" value="5"><label for="star5">★</label>
-            <input id="star4" type="radio" name="rating_id" value="4"><label for="star4">★</label>
-            <input id="star3" type="radio" name="rating_id" value="3"><label for="star3">★</label>
-            <input id="star2" type="radio" name="rating_id" value="2"><label for="star2">★</label>
-            <input id="star1" type="radio" name="rating_id" value="1"><label for="star1">★</label>
-          </div>
+                <input id="star5" type="radio" name="rating_id" value="5"><label for="star5">★</label>
+                <input id="star4" type="radio" name="rating_id" value="4"><label for="star4">★</label>
+                <input id="star3" type="radio" name="rating_id" value="3"><label for="star3">★</label>
+                <input id="star2" type="radio" name="rating_id" value="2"><label for="star2">★</label>
+                <input id="star1" type="radio" name="rating_id" value="1"><label for="star1">★</label>
+            </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>
     </div>

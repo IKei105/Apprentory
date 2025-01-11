@@ -8,11 +8,53 @@ body {
     padding-bottom: 500px;
 }
 
+.layout-top {
+    position: fixed; /* 画面に固定 */
+    top: 0; /* 画面の上部に配置 */
+    left: 50%; /* 横方向の中心に配置 */
+    transform: translateX(-50%); /* 自分の幅の半分だけ左にずらす */
+    width: 100%; /* 必要に応じて幅を調整 */
+    max-width: 960px; /* 最大幅を設定 */
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #d9d9d9;
+    z-index: 10; /* 他の要素より前面に表示 */
+}
+
+
+.back{
+    font-size: 24px;
+    padding-top: 4px;
+    text-decoration: none;
+    color: #6d6d6d;
+}
+.submit{
+    width: 90px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #62d8d8;
+    border-radius: 30px;
+    border: none;
+    padding-top: 4px;
+}
+
 /* 戻る、投稿ボタンと教材投稿フォームのやつ */
 .menu-button, .post-material-item {
     max-width: 960px;
     padding: 0 40px;
     margin: 0 auto;
+}
+
+.post-material-item {
+    margin-top: 100px;
 }
 
 /* 戻る、投稿ボタン */
@@ -176,7 +218,6 @@ body {
 }
 
 .post-material-tags {
-    background-color: aqua;
 }
 
 .post-material-tags p {
