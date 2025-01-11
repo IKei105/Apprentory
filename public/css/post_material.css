@@ -8,11 +8,53 @@ body {
     padding-bottom: 500px;
 }
 
+.layout-top {
+    position: fixed; /* 画面に固定 */
+    top: 0; /* 画面の上部に配置 */
+    left: 50%; /* 横方向の中心に配置 */
+    transform: translateX(-50%); /* 自分の幅の半分だけ左にずらす */
+    width: 100%; /* 必要に応じて幅を調整 */
+    max-width: 960px; /* 最大幅を設定 */
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #d9d9d9;
+    z-index: 10; /* 他の要素より前面に表示 */
+}
+
+
+.back{
+    font-size: 24px;
+    padding-top: 4px;
+    text-decoration: none;
+    color: #6d6d6d;
+}
+.submit{
+    width: 90px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #62d8d8;
+    border-radius: 30px;
+    border: none;
+    padding-top: 4px;
+}
+
 /* 戻る、投稿ボタンと教材投稿フォームのやつ */
 .menu-button, .post-material-item {
     max-width: 960px;
     padding: 0 40px;
     margin: 0 auto;
+}
+
+.post-material-item {
+    margin-top: 100px;
 }
 
 /* 戻る、投稿ボタン */
@@ -170,24 +212,52 @@ body {
     outline: none; /* フォーカス時の青枠線を消す */
 }
 
+/* タグ設定 */
+.post-material-tags-select-wrapper {
+    display: inline;
+}
+
+.post-material-tags {
+}
+
 .post-material-tags p {
     font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.post-material-tags select{
+    border: none; /* 枠線を完全に消す */
+    outline: none;
+    margin-right: 16px;
+    padding: 0;
+}
+
+#select1 {
+    margin-right: 11px;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.rate-form{
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.rate-form input[type=radio] {
+    display: none;
+}
+.rate-form label{
+    font-size: 40px;
+    color: rgb(135, 135, 135);
+    cursor: pointer;
+}
+.rate-form label:hover {
+    color: #ffcc00;
+  }
+.rate-form label:hover~label {
+    color: #ffcc00;
+  }
+.rate-form input[type=radio]:checked~label {
+    color: #ffcc00;
+}

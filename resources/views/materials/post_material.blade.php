@@ -10,13 +10,13 @@
     <title>教材投稿ページ</title>
 </head>
 <body>
+    <div class="layout-top">
+        <a href="" class="back">←</a>
+        <button class=submit type="submit">投稿</button>
+    </div>
     <div class="post-material-item">
         <form action="" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="menu-button">
-                <button>←</button>
-                <button>投稿</button>
-            </div>
             <div class="material-flex-container">
                 <div class="post-material-img">
                     <label for="image" class="post-material-image-label">
@@ -76,21 +76,27 @@
                 <input type="url" id="url">
             </div>
             <div class="post-material-tags" id="post-material-tags">
-                <p>タグ</p>
-                <select name="" id="select1" class="dynamic-select">
-                    <option value="">選択してください</option>
-                    <option value="1">Ruby</option>
-                    <option value="2">PHP</option>
-                    <option value="3">SQL</option>
-                    <option value="4">HTML</option>
-                    <option value="5">CSS</option>
-                    <option value="6">JavaScript</option>
-                    <option value="7">GitHub</option>
-                    <option value="8">Linux</option>
-                    <option value="9">docker</option>
-                    <option value="10">AWS</option>
-                </select>
-                <h1 id="h1"></h1>
+                <p>タグ設定(5つまで)</p>
+                    <select name="" id="select1" class="post-material-tags-select">
+                        <option value="">選択してください</option>
+                        <option value="1">Ruby</option>
+                        <option value="2">PHP</option>
+                        <option value="3">SQL</option>
+                        <option value="4">HTML</option>
+                        <option value="5">CSS</option>
+                        <option value="6">JavaScript</option>
+                        <option value="7">GitHub</option>
+                        <option value="8">Linux</option>
+                        <option value="9">docker</option>
+                        <option value="10">AWS</option>
+                    </select>
+            </div>
+            <div class="rate-form">
+                <input id="star5" type="radio" name="rating_id" value="5"><label for="star5">★</label>
+                <input id="star4" type="radio" name="rating_id" value="4"><label for="star4">★</label>
+                <input id="star3" type="radio" name="rating_id" value="3"><label for="star3">★</label>
+                <input id="star2" type="radio" name="rating_id" value="2"><label for="star2">★</label>
+                <input id="star1" type="radio" name="rating_id" value="1"><label for="star1">★</label>
             </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>

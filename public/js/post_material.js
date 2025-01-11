@@ -3,7 +3,7 @@ let selectCount = 1;
 function createNewSelect() {
     // 新しいselectタグを作成
     const newSelect = document.createElement('select');
-    newSelect.className = 'dynamic-select'; // クラスを付与
+    newSelect.className = 'post-material-tags-select'; // クラスを付与
 
     selectCount++;
     const id = `select${selectCount}`; //付与するidを作成
@@ -42,5 +42,5 @@ function handleSelectChange(event) {
 }
 
 // 最初のselectタグにイベントリスナーを追加
-const initialSelect = document.querySelector('.dynamic-select');
+const initialSelect = document.querySelector('.post-material-tags-select');
 initialSelect.addEventListener('change', handleSelectChange);
