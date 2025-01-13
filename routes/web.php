@@ -51,3 +51,6 @@ Route::get('/post_product', function () {
 
 Route::resource("materials",MaterialController::class);
 Route::resource("products",ProductController::class);
+
+//新規登録確認用
+Route::get('/register/confirmation', [UserController::class, 'showConfirmation'])->name('register.confirmation');

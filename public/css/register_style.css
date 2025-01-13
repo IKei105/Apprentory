@@ -91,7 +91,7 @@ input {
 }
 
 /* メールアドレス入力欄の親クラス */
-.email {
+.userid {
     /* line-height: 75px; */
     border: none ; 
     outline: none ;
@@ -106,13 +106,13 @@ input {
 }
 
 /* メールアドレス入力欄 */
-.email-input {
+.userid-input {
     padding: 0 16px;
     width: 315px;
 }
 
 /* メールアドレス入力欄のプレースホルダー */
-.email-input::placeholder {
+.userid-input::placeholder {
     font-size: 12px; /* プレースホルダーの文字サイズ */
     color: #979797; /* プレースホルダーの文字色 */
 }

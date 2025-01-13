@@ -18,23 +18,42 @@ class UserController extends Controller
     {
         // バリデーション
         $request->validate([
-            'email' => 'required|email|unique:users',
-            'term' => 'required',
+            'userid' => 'required|unique:users', // ユーザーIDが必須かつユニーク
+            'term' => 'required|exists:terms,id',
             'password' => 'required|min:8|confirmed', // 'confirmed' はパスワード確認用フィールドと一致するかチェック
         ]);
     
         // ユーザーの作成
         $user = \App\Models\User::create([
-            'email' => $request->email,
-            'term' => $request->term,
+            'userid' => $request->userid,
+            'term_id' => $request->term,
             'password' => bcrypt($request->password),
         ]);
-    
-        // 登録後にログインさせる
-        auth()->login($user);    
-        // 登録後のリダイレクト
-        return redirect('/')->with('success', 'ユーザー登録が完了しました！');
+
+
+        // 確認用ページへリダイレクト(後から消す)
+        return redirect()->route('register.confirmation')->with([
+            'userid' => $request->userid,
+            'password' => $request->password,
+        ]);
+        // // 登録後にログインさせる
+        // auth()->login($user);    
+        // // 登録後のリダイレクト
+        // return redirect('/')->with('success', 'ユーザー登録が完了しました！');
     }
+
+    public function showConfirmation()
+    {
+        $userid = session('userid');
+        $password = session('password');
+
+        if (!$userid || !$password) {
+            return redirect('/register')->with('error', '登録情報が見つかりません。');
+        }
+
+        return view('users.confirmation', compact('userid', 'password'));
+    }
+
     //ログイン機能
     public function showLoginForm()
     {
@@ -44,19 +63,19 @@ class UserController extends Controller
     {
         // バリデーション
         $request->validate([
-            'email' => 'required|email',
+            'userid' => 'required',
             'password' => 'required',
         ]);
 
         // 認証を試みる
-        if (auth()->attempt($request->only('email', 'password'))) {
+        if (auth()->attempt($request->only('userid', 'password'))) {
             // 認証成功時のリダイレクト
             return redirect('/')->with('success', 'ログインに成功しました！');
         }
 
         // 認証失敗時のリダイレクト
         return back()->withErrors([
-            'email' => 'メールアドレスまたはパスワードが間違っています。',
+            'userid' => 'メールアドレスまたはパスワードが間違っています。',
         ])->withInput();
     }
     public function logout()
