@@ -51,7 +51,7 @@ class UserController extends Controller
             return redirect('/register')->with('error', '登録情報が見つかりません。');
         }
 
-        return view('users.confirmation', compact('userid', 'password'));
+        return view('tests.confirmation', compact('userid', 'password'));
     }
 
     //ログイン機能

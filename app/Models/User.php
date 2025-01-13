@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class User extends Authenticatable
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = ['userid', 'term_id', 'password'];
 
     public function profile()
