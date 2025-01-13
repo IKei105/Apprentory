@@ -6,8 +6,9 @@ function createNewSelect() {
     newSelect.className = 'post-material-tags-select'; // クラスを付与
 
     selectCount++;
-    const id = `select${selectCount}`; //付与するidを作成
-    newSelect.id = id;
+    const idName = `select${selectCount}`; //付与するidを作成
+    newSelect.id = idName;
+    newSelect.name = idName;
 
     // 選択肢を追加
     newSelect.innerHTML = `
