@@ -19,7 +19,7 @@
               @csrf
             <div class=input-info>
                 <fieldset class="email">
-                    <input class="email-input" name="email" type="text" placeholder="ユーザーID" />
+                    <input class="userid-input" name="userid" type="text" placeholder="ユーザーID" />
                 </fieldset>
                 <fieldset class="password">
                     <input class="password-input" name="password" type="password" placeholder="パスワード" />

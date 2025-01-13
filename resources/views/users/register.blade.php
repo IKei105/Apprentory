@@ -18,8 +18,8 @@
         <form action="{{ route('register') }}" method="POST">
               @csrf
             <div class=input-info>
-                <div class="email">
-                    <input name="email" class="email-input" type="text" placeholder="ユーザーID" />
+                <div class="userid">
+                    <input name="userid" class="userid-input" type="text" placeholder="ユーザーID" />
                 </div>
                 <div class="term">
                     <select id="term" class="term-input" name="term">
