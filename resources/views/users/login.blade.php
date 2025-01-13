@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> -->
-    <link rel="stylesheet" href="login_style.css">
+    <link rel="stylesheet" href="{{ asset('css/login_style.css') }}">
     <title>ログイン</title>
 </head>
 <body>
     <header>
         <a id="logo" href="">アプレントリィ</a>
-        <a class="header-register-link" id="header-register-link" href="register">アカウント登録</a>
+        <a class="header-register-link" id="header-register-link" href="{{ route('register') }}">アカウント登録</a>
     </header>
     <div class="login">
         <p class="login-title" >ログイン</p>
-        <form action="" method="POST">
+        <form action="{{ route('login') }}" method="POST">
               @csrf
             <div class=input-info>
-                <fieldset class="email">
+                <fieldset class="userid">
                     <input class="userid-input" name="userid" type="text" placeholder="ユーザーID" />
                 </fieldset>
                 <fieldset class="password">

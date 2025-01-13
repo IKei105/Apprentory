@@ -68,7 +68,7 @@ class UserController extends Controller
         ]);
 
         // 認証を試みる
-        if (auth()->attempt($request->only('userid', 'password'))) {
+        if (auth()->attempt(['userid'=>$request->userid, 'password'=>$request->password])) {
             // 認証成功時のリダイレクト
             return redirect('/')->with('success', 'ログインに成功しました！');
         }
@@ -83,7 +83,15 @@ class UserController extends Controller
         auth()->logout(); // ログアウト処理
         return redirect('/')->with('success', 'ログアウトしました！');
     }
-
+    public function logindashboard()
+    {
+        // ログインユーザー情報を取得
+        $user = auth()->user();  // 現在ログインしているユーザー情報を取得
+    
+        // logindashboard ページを返す（ユーザーIDをビューに渡す）
+        return view('tests.logindashboard', ['user' => $user]);
+    }
+    
 
 
 }

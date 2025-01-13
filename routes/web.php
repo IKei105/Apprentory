@@ -5,9 +5,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//ルートディレクトリ設定,自動生成の除外設定
+Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
+Route::resource('materials', MaterialController::class)->except(['index']);
 
 //以下ユーザー情報関連
 
@@ -54,3 +54,5 @@ Route::resource("products",ProductController::class);
 
 //新規登録確認用
 Route::get('/register/confirmation', [UserController::class, 'showConfirmation'])->name('register.confirmation');
+//ログイン確認用
+Route::get('/logindashboard', [UserController::class, 'logindashboard'])->middleware('auth')->name('logindashboard');
