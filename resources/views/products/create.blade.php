@@ -62,15 +62,26 @@
                 <label for="need-review">レビュー募集中</label>
             </div>
         </div>
-        <div class="post-tag">
-            <label for="tags">タグ設定 (5つまで)</label>
-            <select id="tag" name="tag">
-                <option value="PHP">PHP</option>
-                <option value="Laravel">Laravel</option>
-            </select>
-        </div>
+        <div class="post-material-tags" id="post-material-tags">
+                <p>タグ設定(5つまで)</p>
+                    <select name="" id="select1" class="post-material-tags-select">
+                        <option value="">選択してください</option>
+                        <option value="1">Ruby</option>
+                        <option value="2">PHP</option>
+                        <option value="3">SQL</option>
+                        <option value="4">HTML</option>
+                        <option value="5">CSS</option>
+                        <option value="6">JavaScript</option>
+                        <option value="7">GitHub</option>
+                        <option value="8">Linux</option>
+                        <option value="9">docker</option>
+                        <option value="10">AWS</option>
+                    </select>
+            </div>
     </div>
 </form>
+<script src="{{ asset('/js/post_material.js') }}"></script>
+
 
 
 @endsection

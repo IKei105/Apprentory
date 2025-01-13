@@ -149,3 +149,21 @@
     border-radius: 50%;
     background-color: #49b3c3;
 }
+
+/* タグ設定 */
+.post-material-tags-select-wrapper {
+    display: inline;
+}
+
+
+.post-material-tags p {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.post-material-tags select{
+    border: none; 
+    outline: none;
+    margin-right: 16px;
+    padding: 0;
+}
