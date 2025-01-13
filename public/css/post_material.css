@@ -217,8 +217,6 @@ body {
     display: inline;
 }
 
-.post-material-tags {
-}
 
 .post-material-tags p {
     font-size: 24px;
@@ -226,7 +224,7 @@ body {
 }
 
 .post-material-tags select{
-    border: none; /* 枠線を完全に消す */
+    border: none; 
     outline: none;
     margin-right: 16px;
     padding: 0;
@@ -237,8 +235,8 @@ body {
 }
 
 
-
-.rate-form{
+/* 星 */
+/* .rate-form{
     width: 50%;
     display: flex;
     flex-direction: row-reverse;
@@ -254,10 +252,22 @@ body {
 }
 .rate-form label:hover {
     color: #ffcc00;
-  }
+}
 .rate-form label:hover~label {
     color: #ffcc00;
-  }
+}
 .rate-form input[type=radio]:checked~label {
     color: #ffcc00;
+} */
+
+.star {
+    font-size: 40px;
+    color: gray;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
+
+.star.highlight {
+    color: gold;
+}
+

@@ -44,3 +44,28 @@ function handleSelectChange(event) {
 // 最初のselectタグにイベントリスナーを追加
 const initialSelect = document.querySelector('.post-material-tags-select');
 initialSelect.addEventListener('change', handleSelectChange);
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const stars = document.querySelectorAll(".star");
+
+    stars.forEach(star => {
+        star.addEventListener("click", (event) => {
+            // 選択された星のIDを取得
+            const selectedRating = parseInt(event.target.getAttribute("for").replace("star", ""));
+
+            // 星のハイライトをリセット
+            stars.forEach(star => star.classList.remove("highlight"));
+
+            // 選択された星とそれ以下をハイライト
+            for (let i = 1; i <= selectedRating; i++) {
+                document.querySelector(`label[for="star${i}"]`).classList.add("highlight");
+            }
+        });
+    });
+});

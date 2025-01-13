@@ -10,4 +10,14 @@ class MaterialController extends Controller
     {
         return view('materials.index');
     }
+
+    public function create()
+    {
+        //ここに投稿ページを返すコードを書きます
+    }
+
+    public function store(Request $request)
+    {
+        //ここに教材データを保存するコードを書きます
+    }
 }

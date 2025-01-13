@@ -10,12 +10,13 @@
     <title>教材投稿ページ</title>
 </head>
 <body>
-    <div class="layout-top">
-        <a href="" class="back">←</a>
-        <button class=submit type="submit">投稿</button>
-    </div>
+    
     <div class="post-material-item">
         <form action="" method="POST" enctype="multipart/form-data">
+        <div class="layout-top">
+            <a href="" class="back">←</a>
+            <button class=submit type="submit">投稿</button>
+        </div>
             @csrf
             <div class="material-flex-container">
                 <div class="post-material-img">
@@ -43,20 +44,21 @@
                 <label for="post-material-rate-text">評価</label>
                 <div class="post-material-rate rate-form">
                     <input id="star5" type="radio" name="rating_id" value="5">
-                    <label for="star5 star">★</label>
+                    <label for="star5" class="star">★</label>
 
                     <input id="star4" type="radio" name="rating_id" value="4">
-                    <label for="star4 star">★</label>
+                    <label for="star4" class="star">★</label>
 
                     <input id="star3" type="radio" name="rating_id" value="3">
-                    <label for="star3 star">★</label>
+                    <label for="star3" class="star">★</label>
 
                     <input id="star2" type="radio" name="rating_id" value="2">
-                    <label for="star2 star">★</label>
+                    <label for="star2" class="star">★</label>
 
                     <input id="star1" type="radio" name="rating_id" value="1">
-                    <label for="star1 star">★</label>
+                    <label for="star1" class="star">★</label>
                 </div>
+
             </div>
             <div class="post-material-price">
                 <label for="material_price">価格</label>
@@ -90,13 +92,6 @@
                         <option value="9">docker</option>
                         <option value="10">AWS</option>
                     </select>
-            </div>
-            <div class="rate-form">
-                <input id="star5" type="radio" name="rating_id" value="5"><label for="star5">★</label>
-                <input id="star4" type="radio" name="rating_id" value="4"><label for="star4">★</label>
-                <input id="star3" type="radio" name="rating_id" value="3"><label for="star3">★</label>
-                <input id="star2" type="radio" name="rating_id" value="2"><label for="star2">★</label>
-                <input id="star1" type="radio" name="rating_id" value="1"><label for="star1">★</label>
             </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>

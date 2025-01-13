@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="css/top_rated_materials.css">
     <link rel="stylesheet" href="css/menu-select.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
     <title>教材一覧ページ</title>
 </head>
 <body>
