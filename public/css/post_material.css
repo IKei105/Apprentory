@@ -261,7 +261,7 @@ body {
 } */
 
 .star {
-    font-size: 40px;
+    font-size: 24px;
     color: gray;
     cursor: pointer;
     transition: color 0.3s ease;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MaterialRequest;
 
 class MaterialController extends Controller
 {
@@ -16,8 +17,10 @@ class MaterialController extends Controller
         //ここに投稿ページを返すコードを書きます
     }
 
-    public function store(Request $request)
+    public function store(MaterialRequest $request)
     {
         //ここに教材データを保存するコードを書きます
+
+
     }
 }

@@ -12,7 +12,7 @@
 <body>
     
     <div class="post-material-item">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
         <div class="layout-top">
             <a href="" class="back">←</a>
             <button class=submit type="submit">投稿</button>
@@ -21,14 +21,14 @@
             <div class="material-flex-container">
                 <div class="post-material-img">
                     <label for="image" class="post-material-image-label">
-                        <img class="material-book-sample-image" src="{{ asset('assets/images/sample_material_image.jpg') }}" alt="">
+                        <img class="material-book-sample-image" src="{{ asset('assets/images/sample_material_image.jpg') }}" alt="" >
                         <p>カバー画像を変更</p>
                     </label>
-                    <input class="post-material-img-upload custom-file-input" type="file" id="image" name="image" accept="image/*">
+                    <input class="post-material-img-upload custom-file-input" type="file" id="image" name="image" accept="image/*" required>
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <input class="post-material-title-text" type="text" class="" placeholder="教材タイトル" />
+                        <input class="post-material-title-text" type="text" class="" placeholder="教材タイトル" required />
                     </div>
                     <div class="post-material-thoughts">
                     <textarea
@@ -36,6 +36,7 @@
                         class="post-material-thoughts-text"
                         rows="8"
                         placeholder="教材の感想を入力"
+                        required
                     ></textarea>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
             <div class="post-material-rate-text">
                 <label for="post-material-rate-text">評価</label>
                 <div class="post-material-rate rate-form">
-                    <input id="star5" type="radio" name="rating_id" value="5">
+                    <input id="star5" type="radio" name="rating_id" value="5" required>
                     <label for="star5" class="star">★</label>
 
                     <input id="star4" type="radio" name="rating_id" value="4">
@@ -71,6 +72,7 @@
                     min="0" 
                     step="1" 
                     oninput="this.value = this.value.replace(/^0+/, '');"
+                    required
                 />
             </div>
             <div class="post-material-url">
@@ -79,7 +81,7 @@
             </div>
             <div class="post-material-tags" id="post-material-tags">
                 <p>タグ設定(5つまで)</p>
-                    <select name="" id="select1" class="post-material-tags-select">
+                    <select name="" id="select1" class="post-material-tags-select" required>
                         <option value="">選択してください</option>
                         <option value="1">Ruby</option>
                         <option value="2">PHP</option>
