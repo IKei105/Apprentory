@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 
@@ -8,13 +9,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('users/login');
-});
+//以下ユーザー情報関連
 
-Route::get('/register', function () {
-    return view('users/register');
-});
+// ユーザー登録
+Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [UserController::class, 'register']);
+
+// ログイン
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UserController::class, 'login']);
+
+// ログアウト
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+//ユーザー情報関連ここまで
 
 
 Route::get('/top_rated_materials', function () {

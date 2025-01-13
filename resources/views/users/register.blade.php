@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> -->
-    <link rel="stylesheet" href="register_style.css">
-    <title>新規登録</title>
+    <link rel="stylesheet" href="{{ asset('css/register_style.css') }}">
+    <title>新規登録 | Apprentory</title>
 </head>
 <body>
     <header>
         <a id="logo" href="">アプレントリィ</a>
-        <a class="header-login-link" id="header-register-link" href="">ログイン</a>
+        <a class="header-login-link" id="header-register-link" href="{{ route('login') }}">ログイン</a>
     </header>
     <div class="login">
         <p class="login-title" >新規登録</p>
-        <form action="" method="POST">
+        <form action="{{ route('register') }}" method="POST">
               @csrf
             <div class=input-info>
                 <div class="email">
@@ -23,14 +23,9 @@
                 </div>
                 <div class="term">
                     <select id="term" class="term-input" name="term">
-                        <option value="">期生を選択</option>
-                        <option value="1">1期生</option>
-                        <option value="2">2期生</option>
-                        <option value="3">3期生</option>
-                        <option value="4">4期生</option>
-                        <option value="5">5期生</option>
-                        <option value="6">6期生</option>
-                        <option value="7">7期生</option>
+                        @foreach($terms as $term)
+                            <option value="{{ $term->id }}">{{ $term->term }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -39,7 +34,7 @@
                     <input class="password-input " name="password" type="password" placeholder="パスワード" />
                 </div>
                 <div class="password">
-                    <input class="password-input" name="confirm-password" type="password" placeholder="もう一度パスワードを入力" />
+                    <input class="password-input" name="password_confirmation" type="password" placeholder="もう一度パスワードを入力" />
                 </div>
             </div>
             

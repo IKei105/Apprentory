@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model
+class User extends Authenticatable
 {
-    public function likedMaterials()
+    use HasFactory;
+
+    protected $fillable = ['name', 'email', 'password'];
+
+    public function profile()
     {
-        return $this->belongsToMany(Material::class, 'user_likes', 'user_id', 'material_id');
+        return $this->hasOne(Profile::class);
     }
 }
