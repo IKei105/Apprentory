@@ -129,16 +129,20 @@ header{
 /* 投稿ボタン押下時ポップアップ*/
 /* ポップアップのスタイル */
 .post-popup {
-    /*display: none; 初期状態では非表示*/
+    display: none; /*初期状態では非表示*/
     position: fixed;
-    top: 72px;
-    right: 50px;
+    top:0;
+    width: 100%; /* 横幅を画面全体に  これがないと別の所押してもポップアップ消えない*/
+    height: 100%; /* 縦幅を画面全体に */
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
 .post-popup-content {
+    position: absolute;
+    top: 72px;
+    right: 50px;
     border-radius: 8px;
     width: 160px;
     height: 80px;

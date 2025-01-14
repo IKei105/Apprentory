@@ -24,7 +24,10 @@
 
     <!-- 共通フッター（必要なら作成） -->
     {{-- @include('layouts.footer') --}}
-    
+
+    <!-- 共通スクリプト -->
+    <script src="{{ asset('js/post_popup.js') }}"></script>
+
     @stack('scripts')
 </body>
 </html>
