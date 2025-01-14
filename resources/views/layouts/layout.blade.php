@@ -17,8 +17,12 @@
     <!--投稿ボタン押下時ポップアップ-->
     <div class="post-popup" id="post-popup">
         <div class="post-popup-content">
-            <button class="popup-option" id="教材共有">教材共有</button>
-            <button class="popup-option" id="オリプロ共有">オリプロ共有</button>
+            <button class="popup-option" id="post-material" data-url="{{ route('materials.create') }}">
+                教材を投稿
+            </button>
+            <button class="popup-option" id="post-product" data-url="{{ route('products.create') }}">
+                オリプロを投稿
+            </button>
         </div>
     </div>
 
