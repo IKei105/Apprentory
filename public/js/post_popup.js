@@ -18,15 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
         event.stopPropagation();
     });
 
+
     // 各オプションボタンをクリックしたら遷移
     document.querySelectorAll('.popup-option').forEach(option => {
         option.addEventListener('click', function () {
-            const optionId = this.id;
-            if (optionId === '教材共有') {
-                window.location.href = "/posts/create?type=教材共有";
-            } else if (optionId === 'オリプロ共有') {
-                window.location.href = "/posts/create?type=オリプロ共有";
-            }
+            const url = this.getAttribute('data-url'); // data-url属性から遷移先を取得
+            window.location.href = url;
         });
     });
 });
