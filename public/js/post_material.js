@@ -6,8 +6,9 @@ function createNewSelect() {
     newSelect.className = 'post-material-tags-select'; // クラスを付与
 
     selectCount++;
-    const id = `select${selectCount}`; //付与するidを作成
-    newSelect.id = id;
+    const idName = `select${selectCount}`; //付与するidを作成
+    newSelect.id = idName;
+    newSelect.name = idName;
 
     // 選択肢を追加
     newSelect.innerHTML = `
@@ -68,4 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+});
+
+
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    const imageInput = document.getElementById('image');
+    const errorMessage = document.getElementById('image-error');
+
+    // 画像が選択されていない場合
+    if (!imageInput.files.length) {
+        event.preventDefault(); // フォームの送信をキャンセル
+        errorMessage.style.display = 'block'; // エラーメッセージを表示
+    } else {
+        errorMessage.style.display = 'none'; // エラーメッセージを非表示
+    }
 });
