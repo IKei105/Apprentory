@@ -48,9 +48,13 @@ class MaterialController extends Controller
         //教材テーブルに保管する
         $material->save();
 
+        // 保存した時の主キーを取得
+        $materialId = $material->id;
 
         // 教材ポストテーブルに保存します！
         $materialPost = new Material_post();
+
+        $materialPost->material_id = $materialId;
 
 
     }
