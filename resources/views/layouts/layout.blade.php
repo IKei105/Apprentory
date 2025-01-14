@@ -14,9 +14,18 @@
         @yield('content')
     </div>
 
+    <!--投稿ボタン押下時ポップアップ-->
+    <div class="post-popup" id="post-popup">
+        <div class="post-popup-content">
+            <button class="popup-option" id="教材共有">教材共有</button>
+            <button class="popup-option" id="オリプロ共有">オリプロ共有</button>
+        </div>
+    </div>
+
     <!-- 共通フッター（必要なら作成） -->
     {{-- @include('layouts.footer') --}}
     
+    @stack('scripts')
 </body>
 </html>
 
