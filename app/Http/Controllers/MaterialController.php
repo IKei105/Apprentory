@@ -18,35 +18,21 @@ class MaterialController extends Controller
     public function create()
     {
         //ここに投稿ページを返すコードを書きます
+        return view('materials.post_material');
     }
 
     public function store(MaterialRequest $request)
-{
-    return redirect()->route('materials.index')->with('success', '投稿が完了しました！');
-    // バリデーション
-    $validated = $request->validated();
+    {
+        //やることとしてはバリデーションを行う
+        // バリデーション済みのデータを取得
+        $validated = $request->validated();
+        //画像をstorageに保存する
 
-    // 新しい Material を保存
-    $material = new Material();
+        //教材データベースにデータを保存する
 
-    if ($request->hasFile('material_image')) {
-        $path = $request->file('material_image')->store('material_images', 'public');
-        dd($path);
-        $material->image_dir = '/storage/' . $path;
-    } else {
-        $path = 'お前の負け';
-        dd($path);
+        //教材ポストテーブルに保管する
+
+
     }
-
-    $material->title = $validated['material-title'];
-    $material->price = $validated['material-price'];
-    $material->material_detail = $validated['material-thoughts'];
-    $material->material_url = $validated['material-url'];
-    $material->rating_id = $validated['material-rate'];
-    $material->save();
-
-    // 成功後にリダイレクト
-    return redirect()->route('materials.index')->with('success', '投稿が完了しました！');
-}
 
 }

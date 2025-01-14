@@ -96,6 +96,22 @@ body {
     cursor: pointer;
 }
 
+/* エラーメッセージコンテナ */
+.input-error {
+    display: flex;
+}
+
+/* エラーメッセージ */
+.error-img-message {
+    color: red;
+    display: none;
+    margin: 0 auto;
+}
+
+
+
+
+
 /* 教材タイトルと感想が入ってるコンテナ */
 .post-material-title-review-container {
     width: 73%; /* 必要に応じてレスポンシブ対応 */

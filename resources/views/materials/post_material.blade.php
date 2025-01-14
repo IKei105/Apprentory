@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
+    <link rel="stylesheet" href="{{ asset('css/material_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/post_material.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu-select.css') }}">
+    
     <link rel="stylesheet" href="css/material_index.css">
     <link rel="stylesheet" href="css/post_material.css">
     <link rel="stylesheet" href="css/menu-select.css">
@@ -13,22 +17,30 @@
     
     <div class="post-material-item">
         <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="layout-top">
             <a href="" class="back">←</a>
-            <button class=submit type="submit">投稿</button>
+            <button class="submit">投稿</button>
         </div>
-            @csrf
+            
             <div class="material-flex-container">
                 <div class="post-material-img">
                     <label for="image" class="post-material-image-label">
                         <img class="material-book-sample-image" src="{{ asset('assets/images/sample_material_image.jpg') }}" alt="" >
                         <p>カバー画像を変更</p>
                     </label>
-                    <input class="post-material-img-upload custom-file-input" type="file" id="image" name="material-image" accept="" required>
+                    <input class="post-material-img-upload custom-file-input" type="file" id="image" name="material-image" accept="" >
+                    <div class="input-error">
+                        <p class="error-img-message" id="image-error"  >画像を選択してください。</p>
+                    </div>
+                    
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" required />
+                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" required/>
+                        @error('material-title')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="post-material-thoughts">
                     <textarea
