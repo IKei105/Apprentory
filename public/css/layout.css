@@ -76,6 +76,14 @@ header{
     color: #FFFFFF;
     display: flex;
     font-weight: bold;
+    cursor: pointer;
+    transition: filter 0.3s ease, background-color 0.3s ease;
+}
+.new-post:hover{
+    filter: brightness(1.1);
+}
+.new-post:active {
+    filter: brightness(1);
 }
 .new-post img{
     margin-left: 8px;
@@ -116,4 +124,49 @@ header{
     background-color: #f2f2f2;
     height: 100%;
     padding: 150px 80px 0px 80px;
+}
+
+/* 投稿ボタン押下時ポップアップ*/
+/* ポップアップのスタイル */
+.post-popup {
+    /*display: none; 初期状態では非表示*/
+    position: fixed;
+    top: 72px;
+    right: 50px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.post-popup-content {
+    border-radius: 8px;
+    width: 160px;
+    height: 80px;
+    text-align: center;
+}
+
+.popup-option {
+    margin-bottom: 0px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    transition: filter 0.3s ease, background-color 0.3s ease;
+}
+.popup-option:hover {
+    background-color: #E8F7F8;
+}
+.popup-option:active {
+    background-color: #D0EBEB;
+}
+.post-popup-content .popup-option:first-child {
+    border-radius: 8px 8px 0 0; /* 左上と右上を丸くする */
+    border-bottom: 1px solid #d1e0e1;
+    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.5),
+                0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+.post-popup-content .popup-option:last-child {
+    border-radius: 0 0 8px 8px; /* 左下と右下を丸くする */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 }
