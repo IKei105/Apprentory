@@ -23,14 +23,34 @@ class MaterialController extends Controller
 
     public function store(MaterialRequest $request)
     {
-        //やることとしてはバリデーションを行う
-        // バリデーション済みのデータを取得
+        // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
+
+        // 教材を保存するためインスタンスを作成
+        $material = new Material();
+
         //画像をstorageに保存する
+        if ($request->hasFile('material-image')) { //画像が投稿されていたら
+            //storage/app/public/material_images に保存
+            $path = $request->file('material-image')->store('material_images', 'public');
+    
+            // パスをimage_dirにくれてやる
+            $material->image_dir = '/storage/' . $path;
+        }
 
-        //教材データベースにデータを保存する
+        //インスタンスに値をセット
+        $material->title = $validated['material-title'];
+        $material->material_detail = $validated['material-thoughts'];
+        $material->rating_id = $validated['material-rate'];
+        $material->price = $validated['material-price'];
+        $material->material_url = $validated['material-url'];
 
-        //教材ポストテーブルに保管する
+        //教材テーブルに保管する
+        $material->save();
+
+
+        // 教材ポストテーブルに保存します！
+        $materialPost = new Material_post();
 
 
     }
