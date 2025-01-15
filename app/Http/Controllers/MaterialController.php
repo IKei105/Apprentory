@@ -17,7 +17,6 @@ class MaterialController extends Controller
 
     public function create()
     {
-        //ここに投稿ページを返すコードを書きます
         return view('materials.post_material');
     }
 
@@ -55,7 +54,9 @@ class MaterialController extends Controller
         $materialPost = new Material_post();
 
         $materialPost->material_id = $materialId;
+        $materialPost->posted_user_id = Auth::user()->userid;
 
+        $materialPost->save();
 
     }
 
