@@ -45,26 +45,26 @@
         </div>
         <div class="post-product-url">
             <label for="product-url">サイトURL</label>
-            <input type="url" id="product-url" name="product-url" placeholder="オリプロのURL" >
+            <input type="url" id="product_url" name="product_url" placeholder="オリプロのURL" >
         </div>
         <div class="post-github-url">
             <label for="github-url">GithubURL</label>
-            <input type="url" id="github-url" name="github-url" placeholder="GithubURL" >
+            <input type="url" id="github_url" name="github_url" placeholder="GithubURL" >
         </div>
         <div class="post-element">
             <p>投稿のカテゴリ</p>
             <div class="custom-radio">
-                <input type="radio" name="radio" id="need-tester">
+                <input type="radio" name="radio" id="need-tester" value="need-tester">
                 <label for="need-tester">テスター募集中</label>
             </div>
             <div class="custom-radio">
-                <input type="radio" name="radio" id="need-review">
+                <input type="radio" name="radio" id="need-review" value="need-review">
                 <label for="need-review">レビュー募集中</label>
             </div>
         </div>
-        <div class="post-material-tags" id="post-material-tags">
+        <div class="post-tags" id="tag-container">
                 <p>タグ設定(5つまで)</p>
-                    <select name="" id="select1" class="post-material-tags-select">
+                    <select name="tags[]" id="tag_select1" class="tag-select">
                         <option value="">選択してください</option>
                         <option value="1">Ruby</option>
                         <option value="2">PHP</option>
@@ -80,8 +80,7 @@
             </div>
     </div>
 </form>
-<script src="{{ asset('/js/post_material.js') }}"></script>
-
+<script src="{{ asset('/js/tag_selector.js') }}"></script>
 
 
 @endsection

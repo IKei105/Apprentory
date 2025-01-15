@@ -23,4 +23,9 @@ class Original_product extends Model
     ];
 
     // 必要に応じてリレーションシップを定義
+    public function technologies()
+    {
+        return $this->belongsToMany(Technologie::class, 'original_product_technologie_tag');
+    }
+
 }

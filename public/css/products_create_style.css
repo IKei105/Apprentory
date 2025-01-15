@@ -82,7 +82,7 @@
     flex-direction: column;
     margin-bottom: 32px;
 }
-.post-subtitle label,.post-detail label,.post-product-url label,.post-github-url label,.post-element,.post-material-tags{
+.post-subtitle label,.post-detail label,.post-product-url label,.post-github-url label,.post-element,.post-tags{
     font-size: 24px;
     color: #6d6d6d;
     padding-bottom: 16px;
@@ -151,17 +151,17 @@
 }
 
 /* タグ設定 */
-.post-material-tags-select-wrapper {
+.post-tags {
     display: inline;
 }
 
 
-.post-material-tags p {
+.post-tags p {
     font-size: 24px;
     margin-bottom: 16px;
 }
 
-.post-material-tags select{
+.post-tags select{
     border: none; 
     outline: none;
     margin-right: 16px;

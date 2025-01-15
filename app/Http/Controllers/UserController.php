@@ -82,6 +82,16 @@ class UserController extends Controller
             'userid' => 'メールアドレスまたはパスワードが間違っています。',
         ])->withInput();
     }
+
+    public function boot()
+    {
+        view()->composer('*', function ($view) {
+            if (auth()->check()) {
+                $view->with('profile', auth()->user()->profile);
+            }
+        });
+    }
+
     public function logout()
     {
         auth()->logout(); // ログアウト処理
@@ -95,7 +105,11 @@ class UserController extends Controller
         // logindashboard ページを返す（ユーザーIDをビューに渡す）
         return view('tests.logindashboard', ['user' => $user]);
     }
-    
-
-
+    //マイページ関連
+    //マイページへの遷移
+    public function showMyPage()
+    {
+        $profile = auth()->user()->profile;  // ログイン中のユーザーのプロフィールを取得
+        return view('users.mypage', compact('profile'));
+    }    
 }

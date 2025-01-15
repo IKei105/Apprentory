@@ -29,19 +29,45 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // バリデーションの定義
+        // バリデーション
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'required|string|max:255',
             'product_detail' => 'required|string|max:5000',
             'product_url' => 'required|url|max:2048',
             'github_url' => 'nullable|url|max:2048',
+            'radio' => 'required|in:need-tester,need-review',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tags' => 'required|array|max:5',
+            'tags.*' => 'exists:technologies,id', // タグは存在するIDのみ許可
         ]);
-
-        // バリデーション済みデータを使用してレコードを作成
-        Original_product::create($validatedData);
-
-        return redirect()->back()->with('success', 'オリプロの投稿が完了しました。');
+    
+        // 1. Original_product にデータを保存
+        $product = Original_product::create([
+            'element' => $validatedData['radio'],
+            'title' => $validatedData['title'],
+            'subtitle' => $validatedData['subtitle'],
+            'product_detail' => $validatedData['product_detail'],
+            'product_url' => $validatedData['product_url'],
+            'github_url' => $validatedData['github_url'],
+        ]);
+    
+        // 2. 画像を保存
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('public/products_image'); // 画像を保存してパスを取得
+                Original_product_image::create([
+                    'original_product_id' => $product->id,
+                    'image_dir' => $path,
+                ]);
+            }
+        }
+    
+        // 3. タグを紐づけ
+        $product->technologies()->attach($validatedData['tags']);
+    
+        // 成功メッセージを付けてリダイレクト
+        return redirect()->route('products.index')->with('success', 'オリプロの投稿が完了しました。');
     }
     /**
      * Display the specified resource.
