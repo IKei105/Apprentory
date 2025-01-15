@@ -59,3 +59,4 @@ Route::resource("products",ProductController::class);
 Route::get('/register/confirmation', [UserController::class, 'showConfirmation'])->name('register.confirmation');
 //ログイン確認用
 Route::get('/logindashboard', [UserController::class, 'logindashboard'])->middleware('auth')->name('logindashboard');
+//オリプロ投稿確認用
