@@ -85,3 +85,22 @@ document.querySelector('form').addEventListener('submit', function(event) {
         errorMessage.style.display = 'none'; // エラーメッセージを非表示
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('image');
+    const previewImage = document.querySelector('.material-book-sample-image');
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            // ファイルの読み込みが完了したときの処理
+            reader.onload = (e) => {
+                previewImage.src = e.target.result; // imgタグのsrc属性を変更
+            };
+
+            reader.readAsDataURL(file); // ファイルをData URLとして読み込む
+        }
+    });
+});
