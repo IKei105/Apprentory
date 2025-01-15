@@ -34,17 +34,19 @@ class ProductController extends Controller
             'title' => 'required|string|max:255',
             'subtitle' => 'required|string|max:255',
             'product_detail' => 'required|string|max:5000',
-            'product_url' => 'required|url|max:2048',
+            'product_url' => 'nullable|url|max:2048',
             'github_url' => 'nullable|url|max:2048',
-            'radio' => 'required|in:need-tester,need-review',
+            'element' => 'required|in:need-tester,need-review',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tags' => 'required|array|max:5',
             'tags.*' => 'exists:technologies,id', // タグは存在するIDのみ許可
         ]);
+
+        dd($validatedData); // ここで送信されたデータを確認
     
         // 1. Original_product にデータを保存
         $product = Original_product::create([
-            'element' => $validatedData['radio'],
+            'element' => $validatedData['element'],
             'title' => $validatedData['title'],
             'subtitle' => $validatedData['subtitle'],
             'product_detail' => $validatedData['product_detail'],
@@ -66,8 +68,13 @@ class ProductController extends Controller
         // 3. タグを紐づけ
         $product->technologies()->attach($validatedData['tags']);
     
+        // 4. 保存したデータをリレーション込みで再取得
+        $product = Original_product::with('technologies')->findOrFail($product->id);
+
+        // 5. 成功メッセージを付けて確認ビューへリダイレクト
+        return view('tests.product_confirmation', compact('product'));       
         // 成功メッセージを付けてリダイレクト
-        return redirect()->route('products.index')->with('success', 'オリプロの投稿が完了しました。');
+        // return redirect()->route('products.index')->with('success', 'オリプロの投稿が完了しました。');
     }
     /**
      * Display the specified resource.
