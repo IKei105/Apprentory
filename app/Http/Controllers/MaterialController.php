@@ -54,10 +54,23 @@ class MaterialController extends Controller
         $materialPost = new Material_post();
 
         $materialPost->material_id = $materialId;
-        $materialPost->posted_user_id = Auth::user()->userid;
+        $materialPost->posted_user_id = Auth::user()->id;
 
         $materialPost->save();
+    }
 
+    public function show(Material $material)
+    {
+        // Materialモデルのpostsとlikesリレーションをロード
+        $material->load(['posts', 'likes']);
+
+        // 必要に応じてリレーションデータを加工
+        $likeCount = $material->likes->count(); // likesの数をカウント
+        $posts = $material->posts;             // postsリレーションを取得
+        $post = $posts[0];
+
+        // compactを使用してデータをビューに渡す
+        return view('materials.material_detail', compact('material', 'likeCount', 'posts'));
     }
 
 }

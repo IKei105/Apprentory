@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <link rel="stylesheet" href="css/material_detail.css">
+    <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
     <title>推奨教材ページ</title>
 </head>
 <body>
@@ -17,13 +17,13 @@
             <button><img src="{{ asset('assets/images/edit.svg') }}" alt=""></button>
         </div>
         <div class="material_posted_date">
-            <p>2025/1/5</p>
+        <p>{{ $posts[0]->created_at->isoFormat('YYYY/MM/DD') }}</p>
         </div>
         <div class="material-title">
-            <p>教材のタイトル</p>
+            <p>{{ $material->title; }}</p>
         </div>
         <div class="material_price">
-            <p>¥5000</p>
+            <p>{{ $material->price }}</p>
         </div>
         <div class="material_rating">
             <p>★★★★★</p>

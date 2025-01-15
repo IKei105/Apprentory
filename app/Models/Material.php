@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User_like;
+use App\Models\Material_post;
 
 class Material extends Model
 {
@@ -23,5 +25,16 @@ class Material extends Model
     public function likes()
     {
         return $this->belongsToMany(User::class, 'user_likes', 'material_id', 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Material_post::class, 'material_id');
+    }
+
+    // user_likes テーブルとのリレーション
+    public function posted_likes()
+    {
+        return $this->hasMany(User_like::class, 'material_id');
     }
 }
