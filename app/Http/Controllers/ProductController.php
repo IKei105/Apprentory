@@ -74,21 +74,10 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //以下ダミーデータ
-        $product = (object)[
-        'id' => $id,
-        'title' => 'ダミープロダクトのタイトル',
-        'subtitle' => 'ダミープロダクトのサブタイトル、こんな事ができます',
-        'product_detail' => 'ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。ここにはダミーのプロダクト詳細が表示されます。',
-        'product_url' => 'https://example.com',
-        'github_url' => 'https://github.com/example',
-        'created_at' => '2025-01-08',
-        'tags' => ['タグ1', 'タグ2'], // ダミータグを追加
-        'element'=>'テスター募集'
-        ];
-        // $product = Original_product::findOrFail($id);
+       // プロダクトをIDで取得し、関連するタグと画像も一緒に取得
+        $product = Original_product::with(['technologies', 'images'])->findOrFail($id);    
+        
         return view('products.show', compact('product'));
-
     }
     
     /**
