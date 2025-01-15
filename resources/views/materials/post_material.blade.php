@@ -26,12 +26,12 @@
             <div class="material-flex-container">
                 <div class="post-material-img">
                     <label for="image" class="post-material-image-label">
-                        <img class="material-book-sample-image" src="{{ asset('assets/images/sample_material_image.jpg') }}" alt="" >
+                        <img class="material-book-sample-image" id="material-book-sample-image" src="{{ asset('assets/images/sample_material_image.jpg') }}" alt="" >
                         <p>カバー画像を変更</p>
                     </label>
                     <input class="post-material-img-upload custom-file-input" type="file" id="image" name="material-image" accept="" >
                     <div class="input-error">
-                        <p class="error-img-message" id="image-error"  >画像を選択してください。</p>
+                        <p class="error-img-message" id="image-error">画像を選択してください。</p>
                     </div>
                     
                 </div>
