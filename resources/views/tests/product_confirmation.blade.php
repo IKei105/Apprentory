@@ -33,7 +33,7 @@
         @foreach($product->technologies as $tag)
             <span>{{ htmlspecialchars($tag->name, ENT_QUOTES, 'UTF-8') }}</span>@if(!$loop->last), @endif
         @endforeach
-    </p>
+    </p>    
     <div class="image-gallery">
         @foreach($product->images as $image)
             <img src="{{ asset('storage/' . str_replace('public/', '', $image->image_dir)) }}" alt="投稿画像">

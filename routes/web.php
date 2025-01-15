@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Http\Request; 
 
 //ルートディレクトリ設定,自動生成の除外設定
 Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
@@ -60,3 +61,7 @@ Route::get('/register/confirmation', [UserController::class, 'showConfirmation']
 //ログイン確認用
 Route::get('/logindashboard', [UserController::class, 'logindashboard'])->middleware('auth')->name('logindashboard');
 //オリプロ投稿確認用
+Route::post('products/test-confirmation', function (Request $request) {
+    // テスト用に投稿データをそのまま表示
+    return view('tests.product_confirmation', ['product' => (object) $request->all()]);
+})->name('products.test-confirmation');

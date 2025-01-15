@@ -108,7 +108,11 @@
 
 /* 標準のラジオボタンを隠す */
 .custom-radio input[type="radio"] {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    z-index: 1;
 }
 
 /* カスタムラジオボタン */

@@ -6,19 +6,26 @@
 <link rel="stylesheet" href="{{ asset('css/products_create_style.css') }}">
 @endpush
 @section('content')
-<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+<!-- 本番用のルート（コメントアウト） -->
+<!-- <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"> -->
+
+<!-- テスト用のルート -->
+<form action="{{ route('products.test-confirmation') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <!-- レイアウト上部 -->
     <div class="layout-top">
-        <a href="" class="back">←</a>
+        <a href="{{ url()->previous() }}" class="back">←</a>
         <button class=submit type="submit">投稿</button>
     </div>
 
     <!-- レイアウトメイン部分 -->
     <div class="layout-main">
         <div class="post-title"><!-- タイトル -->
-            <input type="text" id="title" name="title" placeholder="オリプロのタイトルを入力">
+            <input type="text" id="title" name="title" placeholder="オリプロのタイトルを入力" value="{{old('title')}}" required>
+            @error('title')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="post-images">
@@ -37,11 +44,17 @@
         </div>
         <div class="post-subtitle">
             <label for="subtitle">オリプロ概要</label>
-            <input type="text" id="subtitle" name="subtitle" placeholder="オリプロの概要を一言で紹介" >
+            <input type="text" id="subtitle" name="subtitle" placeholder="オリプロの概要を一言で紹介" value="{{old('subtitle')}}" required>
+            @error('subtitle')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         <div class="post-detail">
             <label for="detail">オリプロ詳細</label>
-            <textarea type="text" id="detail" name="detail" placeholder="オリプロのサービス詳細を記載" ></textarea>
+            <textarea id="detail" name="product_detail" placeholder="オリプロのサービス詳細を記載"  required>{{ old('product_detail') }}</textarea>
+            @error('product_detail')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         <div class="post-product-url">
             <label for="product-url">サイトURL</label>
@@ -54,30 +67,35 @@
         <div class="post-element">
             <p>投稿のカテゴリ</p>
             <div class="custom-radio">
-                <input type="radio" name="radio" id="need-tester" value="need-tester">
+                <input type="radio" name="element" id="need-tester" value="need-tester" {{ old('radio') == 'need-tester' ? 'checked' : '' }}required>
                 <label for="need-tester">テスター募集中</label>
             </div>
             <div class="custom-radio">
-                <input type="radio" name="radio" id="need-review" value="need-review">
+                <input type="radio" name="element" id="need-review" value="need-review" {{ old('radio') == 'need-review' ? 'checked' : '' }}>
                 <label for="need-review">レビュー募集中</label>
             </div>
+            @error('radio')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         <div class="post-tags" id="tag-container">
-                <p>タグ設定(5つまで)</p>
-                    <select name="tags[]" id="tag_select1" class="tag-select">
-                        <option value="">選択してください</option>
-                        <option value="1">Ruby</option>
-                        <option value="2">PHP</option>
-                        <option value="3">SQL</option>
-                        <option value="4">HTML</option>
-                        <option value="5">CSS</option>
-                        <option value="6">JavaScript</option>
-                        <option value="7">GitHub</option>
-                        <option value="8">Linux</option>
-                        <option value="9">docker</option>
-                        <option value="10">AWS</option>
-                    </select>
-            </div>
+            <p>タグ設定(5つまで)</p>
+            <select name="tags[]" id="tag_select1" class="tag-select" required>
+                <option value="">選択してください</option>
+                <option value="1">Ruby</option>
+                <option value="2">PHP</option>
+                <option value="3">SQL</option>
+                <option value="4">HTML</option>
+                <option value="5">CSS</option>
+                <option value="6">JavaScript</option>
+                <option value="7">GitHub</option>
+                <option value="8">Linux</option>                        <option value="9">docker</option>
+                <option value="10">AWS</option>
+            </select>
+            @error('tags')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
+        </div>
     </div>
 </form>
 <script src="{{ asset('/js/tag_selector.js') }}"></script>

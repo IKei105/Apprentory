@@ -23,9 +23,14 @@ class Original_product extends Model
     ];
 
     // 必要に応じてリレーションシップを定義
+    // 技術タグとの多対多リレーション
     public function technologies()
     {
-        return $this->belongsToMany(Technologie::class, 'original_product_technologie_tag');
+        return $this->belongsToMany(
+            Technologie::class,                     // 関連先モデル
+            'original_product_technologie_tags',    // 中間テーブル名
+            'original_product_id',                  // このモデルの外部キー
+            'technologie_id'                        // 関連先モデルの外部キー
+        );
     }
-
 }
