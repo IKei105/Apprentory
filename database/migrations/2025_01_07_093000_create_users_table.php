@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('userid')->unique();
             $table->string('password');
+
+            $table->foreignId('term_id')
+            ->constrained('terms')   // ← 'terms'テーブルを参照
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
         });
     }
 
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('users');
     }
 };

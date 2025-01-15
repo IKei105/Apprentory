@@ -29,12 +29,16 @@ class UserController extends Controller
             'term_id' => $request->term,
             'password' => bcrypt($request->password),
         ]);
-
+    
+        // ユーザーに紐づくプロフィールを取得
+        $profile = $user->profile;
 
         // 確認用ページへリダイレクト(後から消す)
         return redirect()->route('register.confirmation')->with([
             'userid' => $request->userid,
             'password' => $request->password,
+            'username' => $profile->username,
+            'profile_image' => $profile->profile_image,
         ]);
         // // 登録後にログインさせる
         // auth()->login($user);    
