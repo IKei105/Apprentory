@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
 use App\Models\Material_post;
+use App\Models\Material_technologie_tag;
 use Illuminate\Support\Facades\Auth;
 
 class MaterialController extends Controller
 {
+    private const FIRST_POST_INDEX = 0;
+    private const FIRST_SELECT_INDEX = 1;
+    private const LAST_SELECT_INDEX = 5;
+    
+
     public function index()
     {
         return view('materials.index');
@@ -22,12 +28,14 @@ class MaterialController extends Controller
 
     public function store(MaterialRequest $request)
     {
+        
         // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
 
         // 教材を保存するためインスタンスを作成
         $material = new Material();
 
+    
         //画像をstorageに保存する
         if ($request->hasFile('material-image')) { //画像が投稿されていたら
             //storage/app/public/material_images に保存
@@ -50,14 +58,59 @@ class MaterialController extends Controller
         // 保存した時の主キーを取得
         $materialId = $material->id;
 
+        //ここでテクノロジータグテーブルにデータを保存します
+        $materialTechnologieTag = new Material_technologie_tag();
+        $materialTechnologieTag->material_id = $materialId;
+
+        $selectedTechnologieTags = [];
+        for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
+            $selectName = "select$i";
+            if ($request->$selectName) {
+                $selectedTechnologieTags[] = $request->$selectName;
+                
+            }
+        }
+
+        $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
+        foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
+            $materialTechnologieTag = new Material_technologie_tag();
+            $materialTechnologieTag->material_id = $materialId;
+            $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
+            $materialTechnologieTag->save();
+        }
+        
+
         // 教材ポストテーブルに保存します！
         $materialPost = new Material_post();
 
         $materialPost->material_id = $materialId;
-        $materialPost->posted_user_id = Auth::user()->userid;
+        $materialPost->posted_user_id = Auth::user()->id;
 
         $materialPost->save();
+    }
 
+    public function show(Material $material)
+    {
+        // Materialモデルのpostsとlikesリレーションをロード
+        $material->load(['posts', 'likes']);
+
+        // 必要に応じてリレーションデータを加工
+        $likeCount = $material->likes->count(); // likesの数をカウント
+        $posts = $material->posts;             // postsリレーションを取得
+        $post = $posts[self::FIRST_POST_INDEX];
+
+        // compactを使用してデータをビューに渡す
+        return view('materials.material_detail', compact('material', 'likeCount', 'post'));
+    }
+
+    public function edit(Material $material)
+    {
+        $technologieIds = $material->technologies->pluck('id'); // technologie_idのリストを取得
+        $title = "title";
+
+        dd($material->$title);
+
+        return view('materials.material_edit', compact('material'));
     }
 
 }

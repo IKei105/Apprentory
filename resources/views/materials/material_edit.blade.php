@@ -17,16 +17,17 @@
     
     <div class="post-material-item">
         <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
+        @method('PATCH')
         @csrf
         <div class="layout-top">
             <a href="" class="back">←</a>
-            <button class="submit">投稿</button>
+            <button class="submit">編集</button>
         </div>
             
             <div class="material-flex-container">
                 <div class="post-material-img">
                     <label for="image" class="post-material-image-label">
-                        <img class="material-book-sample-image" id="material-book-sample-image" src="{{ session('material_image', asset('assets/images/sample_material_image.jpg')) }}" alt="" >
+                        <img class="material-book-sample-image" id="material-book-sample-image" src="{{ asset($material->image_dir) }}" alt="" >
                         <p>カバー画像を変更</p>
                     </label>
                     <input class="post-material-img-upload custom-file-input" type="file" id="image" name="material-image" accept="" >
@@ -37,7 +38,7 @@
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{{ old('material-title') }}" />
+                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{!! nl2br(e($material->title)) !!}" />
                         @error('material-title')
                             <p class="error-message">{{ $message }}</p>
                         @enderror
@@ -47,31 +48,29 @@
                         name="material-thoughts" 
                         class="post-material-thoughts-text"
                         rows="8"
-                        placeholder="教材の感想を入力"
-                        
-                    ></textarea>
+                        placeholder="教材の感想を入力"  
+                    >{!! nl2br(e($material-> material_detail)) !!}</textarea>
                     </div>
                 </div>
             </div>
             <div class="post-material-rate-text">
                 <label for="post-material-rate-text">評価</label>
                 <div class="post-material-rate rate-form">
-                    <input id="star5" type="radio" name="material-rate" value="5" >
+                    <input id="star5" type="radio" name="material-rate" value="5" <?= $material->rating_id == 5 ? 'checked' : '' ?> >
                     <label for="star5" class="star">★</label>
 
-                    <input id="star4" type="radio" name="material-rate" value="4">
+                    <input id="star4" type="radio" name="material-rate" value="4" <?= $material->rating_id == 4 ? 'checked' : '' ?>>
                     <label for="star4" class="star">★</label>
 
-                    <input id="star3" type="radio" name="material-rate" value="3">
+                    <input id="star3" type="radio" name="material-rate" value="3" <?= $material->rating_id == 3 ? 'checked' : '' ?>>
                     <label for="star3" class="star">★</label>
 
-                    <input id="star2" type="radio" name="material-rate" value="2">
+                    <input id="star2" type="radio" name="material-rate" value="2" <?= $material->rating_id == 2 ? 'checked' : '' ?>>
                     <label for="star2" class="star">★</label>
 
-                    <input id="star1" type="radio" name="material-rate" value="1">
+                    <input id="star1" type="radio" name="material-rate" value="1" <?= $material->rating_id == 1 ? 'checked' : '' ?>>
                     <label for="star1" class="star">★</label>
                 </div>
-
             </div>
             <div class="post-material-price">
                 <label for="material_price">価格</label>
@@ -84,16 +83,17 @@
                     min="0" 
                     step="1" 
                     oninput="this.value = this.value.replace(/^0+/, '');"
-                    
+                    value="{!! nl2br(e($material->price)) !!}"
                 />
             </div>
             <div class="post-material-url">
                 <label for="url">URL</label>
-                <input type="url" id="url" name="material-url">
+                <input type="url" id="url" name="material-url" value="{!! nl2br(e($material->material_url)) !!}">
             </div>
+            <!-- これから下はタグ数に依存するので変更する必要あり -->
             <div class="post-material-tags" id="post-material-tags">
                 <p>タグ設定(5つまで)</p>
-                    <select name="select1" id="select1" class="post-material-tags-select" required>
+                    <select name="select1" id="select1" class="post-material-tags-select" >
                         <option value="">選択してください</option>
                         <option value="1">Ruby</option>
                         <option value="2">PHP</option>
@@ -105,7 +105,6 @@
                         <option value="8">Linux</option>
                         <option value="9">docker</option>
                         <option value="10">AWS</option>
-                        <option value="11">その他</option>
                     </select>
             </div>
         </form>
