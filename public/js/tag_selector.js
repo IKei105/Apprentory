@@ -7,7 +7,7 @@ function createNewSelect() {
     selectCount++;
     const idName = `tag_select${selectCount}`; //付与するidを作成
     newSelect.id = idName;
-    newSelect.name = 'tags[]';
+    newSelect.name = idName;
 
     // 選択肢を追加
     newSelect.innerHTML = `
