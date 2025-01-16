@@ -21,7 +21,11 @@ class Original_product extends Model
         'product_url',
         'github_url',
     ];
-
+    // images() メソッドを追加
+    public function images()
+    {
+        return $this->hasMany(Original_product_image::class, 'original_product_id'); // 'original_product_id' は画像テーブルの外部キー
+    }
     // 必要に応じてリレーションシップを定義
     // 技術タグとの多対多リレーション
     public function technologies()
