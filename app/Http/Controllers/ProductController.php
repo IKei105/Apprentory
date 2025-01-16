@@ -29,7 +29,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'tags' => array_filter($request->input('tags'))
+        ]);
         // バリデーション
+        dd($request->input('tags'));
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'required|string|max:255',
@@ -39,12 +43,11 @@ class ProductController extends Controller
             'element' => 'required|in:need-tester,need-review',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tags' => 'required|array|max:5',
-            'tags.*' => 'exists:technologies,id', // タグは存在するIDのみ許可
+            'tags*' => 'nullable|exists:technologies,id', // タグは存在するIDのみ許可
         ]);
-
-        dd($validatedData); // ここで送信されたデータを確認
     
         // 1. Original_product にデータを保存
+        
         $product = Original_product::create([
             'element' => $validatedData['element'],
             'title' => $validatedData['title'],
@@ -71,11 +74,39 @@ class ProductController extends Controller
         // 4. 保存したデータをリレーション込みで再取得
         $product = Original_product::with('technologies')->findOrFail($product->id);
 
-        // 5. 成功メッセージを付けて確認ビューへリダイレクト
-        return view('tests.product_confirmation', compact('product'));       
+        // 5. 確認ビューへリダイレクト
+        return redirect()->route('products.confirmation', $product->id);
         // 成功メッセージを付けてリダイレクト
         // return redirect()->route('products.index')->with('success', 'オリプロの投稿が完了しました。');
     }
+
+    public function confirmation($id)
+    {
+        $product = Original_product::with('technologies', 'images')
+                    ->findOrFail($id);
+        
+        return view('tests.product_confirmation', compact('product'));
+    }
+    public function testConfirmation(Request $request)
+    {
+        // バリデーション済みデータを取得（テスト用にそのまま取得して確認）
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'product_detail' => 'required|string|max:5000',
+            'product_url' => 'nullable|url|max:2048',
+            'github_url' => 'nullable|url|max:2048',
+            'element' => 'required|in:need-tester,need-review',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tags' => 'required|array|max:5',
+            'tags.*' => 'exists:technologies,id',
+        ]);
+
+        // テスト用にデバッグ表示する
+        return view('tests.product_confirmation', ['product' => (object) $validatedData]);
+    }
+
+
     /**
      * Display the specified resource.
      */

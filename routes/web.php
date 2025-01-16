@@ -61,7 +61,8 @@ Route::get('/register/confirmation', [UserController::class, 'showConfirmation']
 //ログイン確認用
 Route::get('/logindashboard', [UserController::class, 'logindashboard'])->middleware('auth')->name('logindashboard');
 //オリプロ投稿確認用
-Route::post('products/test-confirmation', function (Request $request) {
-    // テスト用に投稿データをそのまま表示
-    return view('tests.product_confirmation', ['product' => (object) $request->all()]);
-})->name('products.test-confirmation');
+Route::post('products/test-confirmation', [ProductController::class, 'testConfirmation'])
+    ->name('products.test-confirmation');
+Route::get('products/{id}/confirmation', [ProductController::class, 'confirmation'])
+    ->name('products.confirmation');
+

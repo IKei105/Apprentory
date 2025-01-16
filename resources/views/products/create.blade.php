@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/products_create_style.css') }}">
 @endpush
 @section('content')
+
 <!-- 本番用のルート（コメントアウト） -->
 <!-- <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"> -->
 
@@ -80,7 +81,7 @@
         </div>
         <div class="post-tags" id="tag-container">
             <p>タグ設定(5つまで)</p>
-            <select name="tags[]" id="tag_select1" class="tag-select" required>
+            <select name="tag-select" id="tag_select1" class="tag-select" required>
                 <option value="">選択してください</option>
                 <option value="1">Ruby</option>
                 <option value="2">PHP</option>
@@ -89,7 +90,8 @@
                 <option value="5">CSS</option>
                 <option value="6">JavaScript</option>
                 <option value="7">GitHub</option>
-                <option value="8">Linux</option>                        <option value="9">docker</option>
+                <option value="8">Linux</option>
+                <option value="9">docker</option>
                 <option value="10">AWS</option>
             </select>
             @error('tags')
@@ -98,6 +100,15 @@
         </div>
     </div>
 </form>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
 
 
