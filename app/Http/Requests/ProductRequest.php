@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'github_url' => 'nullable|url',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'element' => 'required|in:need-tester,need-review',
-            'tag-select' => 'required|integer|exists:technologies,id',
+            'tag-select1' => 'required|integer|exists:technologies,id',
         ];
     }
 
