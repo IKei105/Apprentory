@@ -12,6 +12,6 @@ class Technologie extends Model
     // プロダクトとの多対多リレーション
     public function products()
     {
-        return $this->belongsToMany(Original_product::class, 'original_product_technologie_tag');
+        return $this->belongsToMany(Original_product::class, 'original_product_technologie_tags');
     }
 }

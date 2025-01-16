@@ -27,55 +27,61 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        // バリデーション
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'subtitle' => 'required|string|max:255',
-            'product_detail' => 'required|string|max:5000',
-            'product_url' => 'nullable|url|max:2048',
-            'github_url' => 'nullable|url|max:2048',
-            'element' => 'required|in:need-tester,need-review',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'tags' => 'required|array|max:5',
-            'tags.*' => 'exists:technologies,id', // タグは存在するIDのみ許可
-        ]);
-
-        dd($validatedData); // ここで送信されたデータを確認
+        $validated = $request->validated();
     
-        // 1. Original_product にデータを保存
-        $product = Original_product::create([
-            'element' => $validatedData['element'],
-            'title' => $validatedData['title'],
-            'subtitle' => $validatedData['subtitle'],
-            'product_detail' => $validatedData['product_detail'],
-            'product_url' => $validatedData['product_url'],
-            'github_url' => $validatedData['github_url'],
-        ]);
+        DB::beginTransaction();
     
-        // 2. 画像を保存
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('public/products_image'); // 画像を保存してパスを取得
-                Original_product_image::create([
-                    'original_product_id' => $product->id,
-                    'image_dir' => $path,
-                ]);
+        try {
+            // 1. original_products テーブルに保存
+            $product = new Original_product();
+            $product->fill([
+                'element' => $validated['element'],
+                'title' => $validated['title'],
+                'subtitle' => $validated['subtitle'],
+                'product_detail' => $validated['product_detail'],
+                'product_url' => $validated['product_url'],
+                'github_url' => $validated['github_url'],
+            ]);
+            $product->save();
+    
+            // 2. original_product_images に画像を保存
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    if (!$image->isValid()) {
+                        throw new \Exception('無効な画像がアップロードされました。');
+                    }
+                    $path = $image->store('product_images', 'public');
+                    $productImage = new Original_product_image([
+                        'image_dir' => '/storage/' . $path,
+                    ]);
+                    $product->images()->save($productImage);
+                }
             }
+    
+            // 3. タグ情報を保存
+            if (!empty($validated['tag-select'])) {
+                $product->technologies()->sync($validated['tag-select']);
+            }
+    
+            // 4. original_product_posts に投稿情報を保存
+            \App\Models\Original_product_post::create([
+                'original_product_id' => $product->id,
+                'posted_user_id' => \Auth::id(),
+            ]);
+    
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return back()->withErrors([
+                'error' => '投稿中に問題が発生しました: ' . $e->getMessage()
+            ]);
         }
     
-        // 3. タグを紐づけ
-        $product->technologies()->attach($validatedData['tags']);
-    
-        // 4. 保存したデータをリレーション込みで再取得
-        $product = Original_product::with('technologies')->findOrFail($product->id);
-
-        // 5. 成功メッセージを付けて確認ビューへリダイレクト
-        return view('tests.product_confirmation', compact('product'));       
-        // 成功メッセージを付けてリダイレクト
-        // return redirect()->route('products.index')->with('success', 'オリプロの投稿が完了しました。');
+        return redirect()->route('products.test-confirmation', ['id' => $product->id]);
     }
+
     /**
      * Display the specified resource.
      */
