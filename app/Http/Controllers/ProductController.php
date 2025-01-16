@@ -129,4 +129,3 @@ class ProductController extends Controller
         return view('tests.product_confirmation', ['product' => $product]);
     }
 }
-
