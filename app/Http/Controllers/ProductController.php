@@ -78,7 +78,7 @@ class ProductController extends Controller
 
             $selectedTechnologieTags = [];
             for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
-                $selectName = "tag-select$i";
+                $selectName = "tag_select$i";
                 if ($request->$selectName) {
                     $selectedTechnologieTags[] = $request->$selectName;
                     
@@ -92,7 +92,6 @@ class ProductController extends Controller
                 $productTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
                 $productTechnologieTag->save();
             }
-    
             // 4. original_product_posts に投稿情報を保存
             \App\Models\Original_product_post::create([
                 'original_product_id' => $product->id,

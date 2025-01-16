@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'github_url' => 'nullable|url',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'element' => 'required|in:need-tester,need-review',
-            'tag-select1' => 'required|integer|exists:technologies,id',
+            'tag_select1' => 'required|integer|exists:technologies,id',
         ];
     }
 
@@ -46,8 +46,8 @@ class ProductRequest extends FormRequest
             'images.*.max' => '画像は2MB以下にしてください。',
             'element.required' => 'カテゴリを選択してください。',
             'element.in' => '有効なカテゴリを選択してください。',
-            'tag-select.required' => 'タグを選択してください。',
-            'tag-select.exists' => '選択されたタグは無効です。',
+            'tag_select.required' => 'タグを選択してください。',
+            'tag_select.exists' => '選択されたタグは無効です。',
         ];
     }
 }
