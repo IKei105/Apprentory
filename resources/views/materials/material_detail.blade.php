@@ -4,37 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <link rel="stylesheet" href="css/material_detail.css">
+    <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
     <title>推奨教材ページ</title>
 </head>
 <body>
     <div class="material-book-image">
-            <img src="{{ asset('assets/material_images/sample2.png') }}" alt="">
+        <img src="{{ asset($material->image_dir) }}" alt="Material Image">
         </div>
     <div class="material-info">
         <div class="action-buttons">
             <button><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
-            <button><img src="{{ asset('assets/images/edit.svg') }}" alt=""></button>
+            <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
         </div>
         <div class="material_posted_date">
-            <p>2025/1/5</p>
+        <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
         </div>
         <div class="material-title">
-            <p>教材のタイトル</p>
+            <p> {!! nl2br(e($material->title)) !!}</p>
         </div>
         <div class="material_price">
-            <p>¥5000</p>
+            <p>¥ {!! nl2br(e($material->price)) !!}</p>
         </div>
         <div class="material_rating">
-            <p>★★★★★</p>
+            @for ($i = 0; $i < $material->rating_id; $i++)
+                <p class="material_rating-bright-star">★</p>
+            @endfor
         </div>
         <div class="material_detail">
             <p class="material-detail-title">教材詳細</p>
-            <p class="material-thoughts">感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です感想です</p>
+            <p class="material-thoughts">{!! nl2br(e($material->material_detail)) !!}</p>
         </div> 
         <div class="material_url">
             <p>URL</p>
-            <a href="">urlurlurlurlurlurlurlurlurlurlurlurl</a>
+            <a href="">{!! nl2br(e($material->material_url)) !!}</a>
         </div>
     </div>
 </body>

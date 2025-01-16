@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Material_post extends Model
 {
     protected $fillable = [
@@ -21,4 +22,7 @@ class Material_post extends Model
     {
         return $this->belongsTo(User::class, 'posted_user_id');
     }
+
+    // material_posts テーブルとのリレーション
+    
 }

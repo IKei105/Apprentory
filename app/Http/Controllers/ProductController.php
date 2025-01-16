@@ -122,7 +122,6 @@ class ProductController extends Controller
     {
         //
     }
-
     public function testConfirmation($id)
     {
         $product = Original_product::with('images', 'technologies')->findOrFail($id);
@@ -130,3 +129,4 @@ class ProductController extends Controller
         return view('tests.product_confirmation', ['product' => $product]);
     }
 }
+
