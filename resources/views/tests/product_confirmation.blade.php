@@ -36,7 +36,8 @@
     </p>    
     <div class="image-gallery">
         @foreach($product->images as $image)
-            <img src="{{ asset('storage/' . str_replace('public/', '', $image->image_dir)) }}" alt="投稿画像">
+            <img src="{{ asset($image->image_dir) }}" alt="投稿画像">
+
         @endforeach
     </div>
 </body>

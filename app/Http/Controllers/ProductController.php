@@ -14,6 +14,9 @@ use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
+    private const FIRST_POST_INDEX = 0;
+    private const FIRST_SELECT_INDEX = 1;
+    private const LAST_SELECT_INDEX = 5;    
     /**
      * Display a listing of the resource.
      */
@@ -65,10 +68,29 @@ class ProductController extends Controller
                     $product->images()->save($productImage);
                 }
             }
-    
             // 3. タグ情報を保存
-            if (!empty($validated['tag-select'])) {
-                $product->technologies()->sync($validated['tag-select']);
+            // 保存した時の主キーを取得
+            $productId = $product->id;
+
+            //ここでテクノロジータグテーブルにデータを保存します
+            $productTechnologieTag = new Original_product_technologie_tag();
+            $productTechnologieTag->product_id = $productId;
+
+            $selectedTechnologieTags = [];
+            for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
+                $selectName = "tag-select$i";
+                if ($request->$selectName) {
+                    $selectedTechnologieTags[] = $request->$selectName;
+                    
+                }
+            }
+
+            $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
+            foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
+                $productTechnologieTag = new Original_product_technologie_tag();
+                $productTechnologieTag->original_product_id = $productId;
+                $productTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
+                $productTechnologieTag->save();
             }
     
             // 4. original_product_posts に投稿情報を保存

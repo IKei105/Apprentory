@@ -78,7 +78,7 @@
         </div>
         <div class="post-tags" id="tag-container">
             <p>タグ設定(5つまで)</p>
-            <select name="tag-select" id="tag_select1" class="tag-select" required>
+            <select name="tag-select1" id="tag_select1" class="tag-select" required>
                 <option value="">選択してください</option>
                 <option value="1">Ruby</option>
                 <option value="2">PHP</option>
