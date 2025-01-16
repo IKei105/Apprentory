@@ -67,7 +67,15 @@ body {
 
 /* 教材の星 */
 .material_rating {
+    padding: 0;
     margin-bottom: 32px;
+    
+    font-size: 20px;
+}
+
+.material_rating-bright-star
+{
+    display: inline-block;
     color: #FCB41A;
 }
 

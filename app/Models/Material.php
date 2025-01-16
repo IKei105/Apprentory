@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User_like;
 use App\Models\Material_post;
+use App\Models\Technologie;
 
 class Material extends Model
 {
@@ -37,4 +38,16 @@ class Material extends Model
     {
         return $this->hasMany(User_like::class, 'material_id');
     }
+
+    //ここでテクノロジータグと結合する
+    public function technologies()
+    {
+        return $this->belongsToMany( //多対多ねこれ
+            Technologie::class, // 関連先モデル
+            'material_technologie_tags', // 中間テーブル名
+            'material_id', // このモデルの外部キー
+            'technologie_id' // 関連先モデルの外部キー
+        );
+    }
+    
 }
