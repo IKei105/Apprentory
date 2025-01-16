@@ -7,11 +7,8 @@
 @endpush
 @section('content')
 
-<!-- 本番用のルート（コメントアウト） -->
-<!-- <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"> -->
 
-<!-- テスト用のルート -->
-<form action="{{ route('products.test-confirmation') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <!-- レイアウト上部 -->

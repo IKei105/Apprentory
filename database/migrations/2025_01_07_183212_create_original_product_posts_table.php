@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('original_products_posts', function (Blueprint $table) {
+        Schema::create('original_product_posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('original_product_id');   // オリプロID(外部キー)
             $table->unsignedBigInteger('posted_user_id');               // ユーザーID（外部キー）
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('original_products_posts');
+        Schema::dropIfExists('original_product_posts');
     }
 };

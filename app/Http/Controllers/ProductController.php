@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Original_product;
+use App\Models\Original_product_image;
+use App\Models\Original_product_technologie_tag;
+use App\Models\Original_product_post;
+use App\Http\Requests\ProductRequest;
+
 
 
 class ProductController extends Controller
@@ -116,4 +122,11 @@ class ProductController extends Controller
     {
         //
     }
+    public function testConfirmation($id)
+    {
+        $product = Original_product::with('images', 'technologies')->findOrFail($id);
+    
+        return view('tests.product_confirmation', ['product' => $product]);
+    }
 }
+

@@ -60,9 +60,8 @@ Route::resource("products",ProductController::class);
 Route::get('/register/confirmation', [UserController::class, 'showConfirmation'])->name('register.confirmation');
 //ログイン確認用
 Route::get('/logindashboard', [UserController::class, 'logindashboard'])->middleware('auth')->name('logindashboard');
-//オリプロ投稿確認用
-Route::post('products/test-confirmation', [ProductController::class, 'testConfirmation'])
+// 投稿後の確認ページ（GETリクエストでアクセス）
+Route::get('products/{id}/test-confirmation', [ProductController::class, 'testConfirmation'])
     ->name('products.test-confirmation');
-Route::get('products/{id}/confirmation', [ProductController::class, 'confirmation'])
-    ->name('products.confirmation');
+
 
