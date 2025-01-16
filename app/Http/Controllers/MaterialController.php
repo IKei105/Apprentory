@@ -106,11 +106,14 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         $technologieIds = $material->technologies->pluck('id'); // technologie_idのリストを取得
-        $title = "title";
 
-        dd($material->$title);
-
-        return view('materials.material_edit', compact('material'));
+        return view('materials.material_edit', compact('material', 'technologieIds'));
     }
+
+    public function update()
+    {
+        
+    }
+
 
 }

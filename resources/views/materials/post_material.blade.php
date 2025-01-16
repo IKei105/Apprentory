@@ -37,7 +37,7 @@
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{{ old('material-title') }}" />
+                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{{ old('material-title') }}" required />
                         @error('material-title')
                             <p class="error-message">{{ $message }}</p>
                         @enderror
@@ -48,7 +48,7 @@
                         class="post-material-thoughts-text"
                         rows="8"
                         placeholder="教材の感想を入力"
-                        
+                        required
                     ></textarea>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <div class="post-material-rate-text">
                 <label for="post-material-rate-text">評価</label>
                 <div class="post-material-rate rate-form">
-                    <input id="star5" type="radio" name="material-rate" value="5" >
+                    <input id="star5" type="radio" name="material-rate" value="5" required>
                     <label for="star5" class="star">★</label>
 
                     <input id="star4" type="radio" name="material-rate" value="4">
