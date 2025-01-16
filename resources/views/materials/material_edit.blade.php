@@ -14,7 +14,6 @@
     <title>教材投稿ページ</title>
 </head>
 <body>
-    
     <div class="post-material-item">
         <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
@@ -39,9 +38,6 @@
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
                         <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{!! nl2br(e($material->title)) !!}" />
-                        @error('material-title')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="post-material-thoughts">
                     <textarea
@@ -93,7 +89,28 @@
             <!-- これから下はタグ数に依存するので変更する必要あり -->
             <div class="post-material-tags" id="post-material-tags">
                 <p>タグ設定(5つまで)</p>
-                    <select name="select1" id="select1" class="post-material-tags-select" >
+                <?php $foreachCount = 1 ?>
+                @foreach ($technologieIds as $technologieId)
+                    <select name="select<?= $foreachCount ?>" id="select<?= $foreachCount ?>" class="post-material-tags-select" <?= $foreachCount == 1 ? 'required' : '' ?>  >
+                        <option value="">選択してください</option>
+                        <option value="1" <?= $technologieId == 1 ? 'selected' : '' ?> >Ruby</option>
+                        <option value="2" <?= $technologieId == 2 ? 'selected' : '' ?> >PHP</option>
+                        <option value="3" <?= $technologieId == 3 ? 'selected' : '' ?> >SQL</option>
+                        <option value="4" <?= $technologieId == 4 ? 'selected' : '' ?> >HTML</option>
+                        <option value="5" <?= $technologieId == 5 ? 'selected' : '' ?> >CSS</option>
+                        <option value="6" <?= $technologieId == 6 ? 'selected' : '' ?> >JavaScript</option>
+                        <option value="7" <?= $technologieId == 7 ? 'selected' : '' ?> >GitHub</option>
+                        <option value="8" <?= $technologieId == 8 ? 'selected' : '' ?> >Linux</option>
+                        <option value="9" <?= $technologieId == 9 ? 'selected' : '' ?> >docker</option>
+                        <option value="10" <?= $technologieId == 10 ? 'selected' : '' ?> >AWS</option>
+                        <option value="11" <?= $technologieId == 11 ? 'selected' : '' ?> >その他</option>
+                    </select>
+                    <?php $foreachCount++ ?>
+                @endforeach
+                <?php $countTechnologieIds = count($technologieIds) ?>
+                @if($countTechnologieIds < 5)
+                <?php $countTechnologieIds++ ?>
+                    <select name="select<?= $countTechnologieIds ?>" id="select<?= $countTechnologieIds ?>" class="post-material-tags-select latest">
                         <option value="">選択してください</option>
                         <option value="1">Ruby</option>
                         <option value="2">PHP</option>
@@ -105,7 +122,9 @@
                         <option value="8">Linux</option>
                         <option value="9">docker</option>
                         <option value="10">AWS</option>
+                        <option value="11">その他</option>
                     </select>
+                @endif
             </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>
