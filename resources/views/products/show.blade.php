@@ -9,14 +9,17 @@
 @section('content')
 <div class="product">
     <div class="layout-top">
-        <a class="product-tag" href="#">タグ</a>
-        <a class="product-tag" href="#">タグ</a>
-        <a class="product-tag" href="#">タグ</a>
-        <a class="product-tag" href="#">タグ</a>
+        @foreach($product->technologies as $tag)
+            <a class="product-tag" href="#">{{ htmlspecialchars($tag->name, ENT_QUOTES, 'UTF-8') }}</a>
+        @endforeach
     </div>
     <div class="layout-main">
         <div class="main-left">
-            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">
+            @if($product->images->isNotEmpty())
+                <img src="{{ asset($product->images->first()->image_dir) }}" alt="投稿画像" class="product-image">
+            @else
+                <img src="{{ asset('assets/images/default_image.png') }}" alt="デフォルト画像" class="product-image">
+            @endif            
             <div class="product-controler">
                 <img src="{{ asset('assets/images/edit.svg') }}" alt="" class="edit-button">
                 <img src="{{ asset('assets/images/trash.svg') }}" alt="" class="trash-button">
@@ -25,14 +28,14 @@
         <div class="main-right">
             <div class="main-right-top">
                 <p class="product-date">{{ $product->created_at }}</p>
-                <p class="product-element">{{ $product->element }}</p>
+                <p class="product-element">{{ $product->element === 'need-tester' ? 'テスター募集' : 'レビュー募集' }}</p>
             </div>
             <h3 class="product-title">{{ $product->title }}</h3>
             <p class="product-subtitle">{{ $product->subtitle }}</p>
             <div class="post-user-layout">
                 <a href="" class="post-user">
-                    <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    <p class="post-user-name">ユーザー名</p>
+                    <img class="post-user-image" src="{{ asset($product->profile->profile_image) }}" alt="{{ $product->profile->username }}">
+                    <p class="post-user-name">{{ $product->profile->username }}</p>
                 </a>
                 <p class="follow">フォロー</p>                
             </div>
@@ -47,9 +50,9 @@
             <a href="{{ $product->github_url }}" class="github-url">{{ $product->github_url }}</a>
             <h3>紹介画像</h3>
             <div class="products-images">
-                <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image1">
-                <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image2">
-                <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image3">
+                @foreach($product->images as $image)
+                    <img src="{{ asset($image->image_dir) }}" alt="投稿画像">
+                @endforeach            
             </div>
         </div>
         <div class="select-comment">

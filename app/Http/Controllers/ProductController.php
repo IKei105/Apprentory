@@ -95,7 +95,7 @@ class ProductController extends Controller
             // 4. original_product_posts に投稿情報を保存
             \App\Models\Original_product_post::create([
                 'original_product_id' => $product->id,
-                'posted_user_id' => \Auth::id(),
+                'posted_user_profile_id' => \Auth::id(),
             ]);
     
             DB::commit();
@@ -115,7 +115,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
        // プロダクトをIDで取得し、関連するタグと画像も一緒に取得
-        $product = Original_product::with(['technologies', 'images'])->findOrFail($id);    
+        $product = Original_product::with(['technologies', 'images','profile'])->findOrFail($id);    
         
         return view('products.show', compact('product'));
     }

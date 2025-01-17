@@ -37,4 +37,15 @@ class Original_product extends Model
             'technologie_id'                        // 関連先モデルの外部キー
         );
     }
+    public function profile()
+    {
+        return $this->hasOneThrough(
+            Profile::class,              // 最終的に関連付けたいモデル
+            Original_product_post::class, // 中間テーブルのモデル
+            'original_product_id',        // 中間テーブルの外部キー
+            'id',                         // Profileモデルの外部キー
+            'id',                         // Original_productモデルのローカルキー
+            'posted_user_profile_id'      // 中間テーブルのローカルキー
+        );
+    }
 }
