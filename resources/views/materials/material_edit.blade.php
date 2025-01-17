@@ -110,7 +110,7 @@
                 <?php $countTechnologieIds = count($technologieIds) ?>
                 @if($countTechnologieIds < 5)
                 <?php $countTechnologieIds++ ?>
-                    <select name="select<?= $countTechnologieIds ?>" id="select<?= $countTechnologieIds ?>" class="post-material-tags-select latest">
+                    <select name="select<?= $countTechnologieIds ?>" id="<?= $countTechnologieIds ?>" class="post-material-tags-select latest">
                         <option value="">選択してください</option>
                         <option value="1">Ruby</option>
                         <option value="2">PHP</option>
@@ -127,5 +127,5 @@
                 @endif
             </div>
         </form>
-        <script src="{{ asset('/js/post_material.js') }}"></script>
+        <script src="{{ asset('/js/edit_material.js') }}"></script>
     </div>
