@@ -47,9 +47,12 @@ margin-right: 16px;
     font-size: 12px;
     color: #45bbc3;
     width: 84px;
+    height: 24px;
     border: 1px solid #45bbc3;
     border-radius: 12px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 .product-title{
@@ -59,6 +62,7 @@ margin-right: 16px;
 .product-subtitle{
     font-size: 16px;
     margin-top: 16px;
+    overflow-wrap: break-word;
 }
 
 .post-user-layout{
@@ -125,6 +129,10 @@ margin-right: 16px;
     flex-wrap: wrap;
     padding: 0;
     gap: 32px;
+}
+.products-images img{
+    width: 100%;
+    object-fit: cover;
 }
 
 .comment-count{
