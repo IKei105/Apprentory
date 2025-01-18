@@ -7,6 +7,7 @@ use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
 use App\Models\Material_post;
 use App\Models\Material_technologie_tag;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class MaterialController extends Controller
@@ -139,13 +140,45 @@ class MaterialController extends Controller
             }
         }
 
-        $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
-        foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
+        $currentTags = $material->technologies->pluck('id')->toArray();
+        $tagsToAdd = array_diff($selectedTechnologieTags, $currentTags); // 追加が必要なタグ
+        $tagsToRemove = array_diff($currentTags, $selectedTechnologieTags); // 削除が必要なタグ
+
+        if (!empty($tagsToAdd)) {
+            foreach ($tagsToAdd as $tagToAdd){
             $materialTechnologieTag = new Material_technologie_tag();
             $materialTechnologieTag->material_id = $materialId;
-            $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
+            $materialTechnologieTag->technologie_id = $tagToAdd;
+
             $materialTechnologieTag->save();
+            }
         }
+
+        if (!empty($tagsToRemove)) {
+            foreach ($tagsToRemove as $tagToRemove) {
+                // 中間テーブルから該当するタグを削除
+                Material_technologie_tag::where('material_id', $materialId)
+                    ->where('technologie_id', $tagToRemove)
+                    ->delete();
+            }
+        }
+
+        // $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
+        // foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
+        //     $results = DB::table('material_technologie_tags')
+        //         ->where('technologie_id', $uniqueSelectedTechnologieTag) // technologie_idの条件
+        //         ->where('material_id', $materialId) // material_idの条件を追加
+        //         ->get();
+
+        //     if (!($results->isNotEmpty())) {
+        //         // 結果がない場合の処理
+        //         $materialTechnologieTag = new Material_technologie_tag();
+        //         $materialTechnologieTag->material_id = $materialId;
+        //         $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
+        //         $materialTechnologieTag->save();
+        //     }
+            
+        // }
 
     }
 
