@@ -12,6 +12,7 @@
         <img src="{{ asset($material->image_dir) }}" alt="Material Image">
         </div>
     <div class="material-info">
+        <!-- 投稿ユーザーの記事だったら -->
         <div class="action-buttons">
             <button><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
             <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
