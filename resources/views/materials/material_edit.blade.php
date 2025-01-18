@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="post-material-item">
-        <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('materials.update', $material->id) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         <div class="layout-top">
@@ -29,7 +29,7 @@
                         <img class="material-book-sample-image" id="material-book-sample-image" src="{{ asset($material->image_dir) }}" alt="" >
                         <p>カバー画像を変更</p>
                     </label>
-                    <input class="post-material-img-upload custom-file-input" type="file" id="image" name="material-image" accept="" >
+                    <input class="post-material-img-upload custom-file-input" type="file" id="image" name="material_image" accept="" >
                     <div class="input-error">
                         <p class="error-img-message" id="image-error">画像を選択してください。</p>
                     </div>
@@ -37,11 +37,11 @@
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{!! nl2br(e($material->title)) !!}" />
+                        <input class="post-material-title-text"  name="material_title" type="text" class="" placeholder="教材タイトル" value="{!! nl2br(e($material->title)) !!}" />
                     </div>
                     <div class="post-material-thoughts">
                     <textarea
-                        name="material-thoughts" 
+                        name="material_thoughts" 
                         class="post-material-thoughts-text"
                         rows="8"
                         placeholder="教材の感想を入力"  
@@ -52,7 +52,7 @@
             <div class="post-material-rate-text">
                 <label for="post-material-rate-text">評価</label>
                 <div class="post-material-rate rate-form">
-                    <input id="star5" type="radio" name="material-rate" value="5" <?= $material->rating_id == 5 ? 'checked' : '' ?> >
+                    <input id="star5" type="radio" name="material_rate" value="5" <?= $material->rating_id == 5 ? 'checked' : '' ?> >
                     <label for="star5" class="star">★</label>
 
                     <input id="star4" type="radio" name="material-rate" value="4" <?= $material->rating_id == 4 ? 'checked' : '' ?>>
@@ -74,7 +74,7 @@
                     id = "material_price"
                     class="post-material-price-text"
                     type="number" 
-                    name="material-price" 
+                    name="material_price" 
                     placeholder="金額を入力" 
                     min="0" 
                     step="1" 
@@ -84,7 +84,7 @@
             </div>
             <div class="post-material-url">
                 <label for="url">URL</label>
-                <input type="url" id="url" name="material-url" value="{!! nl2br(e($material->material_url)) !!}">
+                <input type="url" id="url" name="material_url" value="{!! nl2br(e($material->material_url)) !!}">
             </div>
             <!-- これから下はタグ数に依存するので変更する必要あり -->
             <div class="post-material-tags" id="post-material-tags">
@@ -110,7 +110,7 @@
                 <?php $countTechnologieIds = count($technologieIds) ?>
                 @if($countTechnologieIds < 5)
                 <?php $countTechnologieIds++ ?>
-                    <select name="select<?= $countTechnologieIds ?>" id="<?= $countTechnologieIds ?>" class="post-material-tags-select latest">
+                    <select name="select<?= $countTechnologieIds ?>" id="select<?= $countTechnologieIds ?>" class="post-material-tags-select latest">
                         <option value="">選択してください</option>
                         <option value="1">Ruby</option>
                         <option value="2">PHP</option>

@@ -110,9 +110,43 @@ class MaterialController extends Controller
         return view('materials.material_edit', compact('material', 'technologieIds'));
     }
 
-    public function update()
+    public function update(Material $material, Request $request)
     {
-        
+
+        if ($request->hasFile('material-image')) { //画像が投稿されていたら
+            $path = $request->file('material_image')->store('material_images', 'public');
+    
+            $material->image_dir = '/storage/' . $path;
+        }
+
+        // ここでデータの更新を行なっていきます
+        $material->title = $request->material_title;
+        $material->material_detail = $request->material_thoughts;
+        $material->rating_id = $request->material_rate;
+        $material->price = $request->material_price;
+        $material->material_url = $request->material_url;
+
+        $material->save();
+
+        $materialId = $material->id;
+
+        // ここでタグが存在しないのならば保存する
+        $selectedTechnologieTags = [];
+        for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
+            $selectName = "select$i";
+            if ($request->$selectName) {
+                $selectedTechnologieTags[] = $request->$selectName;
+            }
+        }
+
+        $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
+        foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
+            $materialTechnologieTag = new Material_technologie_tag();
+            $materialTechnologieTag->material_id = $materialId;
+            $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
+            $materialTechnologieTag->save();
+        }
+
     }
 
 
