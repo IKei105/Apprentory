@@ -19,7 +19,16 @@ class MaterialController extends Controller
 
     public function index()
     {
-        return view('materials.index');
+        // ここで各情報を出力します
+        $recommendedMaterials = Material::whereBetween('id', [1, 5])
+            ->withCount('likes') // リレーション名を指定
+            ->get();
+        $topRatedMaterials = Material::withCount('likes') // likes の数をカウント
+            ->orderBy('likes_count', 'desc')
+            ->get();
+        $latestMaterials = Material::latest('created_at')->take(5)->get();
+
+        return view('materials.index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
     }
 
     public function create()
