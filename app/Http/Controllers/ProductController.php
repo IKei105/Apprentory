@@ -136,8 +136,7 @@ class ProductController extends Controller
         }
     
         return view('products.edit', compact('product'));
-
-    }
+        }
 
     /**
      * Update the specified resource in storage.

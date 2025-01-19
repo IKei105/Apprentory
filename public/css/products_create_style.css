@@ -92,13 +92,39 @@
     gap: 16px; /* 各画像間のスペース */
     flex-wrap: wrap; /* 横幅が足りない場合は折り返し */
 }
-
+/* プレビュー画像の親要素 */
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
 .preview-image {
     max-width: 200px; /* 画像の最大横幅 */
     max-height: 150px; /* 画像の最大縦幅 */
     object-fit: cover; /* アスペクト比を維持して中央にトリミング */
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+/* 削除ボタン */
+.delete-btn {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background-color: #6d6d6d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.delete-btn:hover {
+    background-color: #e03c6a;
 }
 
 .post-subtitle,.post-detail,.post-product-url,.post-github-url,.post-element{

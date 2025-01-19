@@ -35,8 +35,8 @@
         @endforeach
     </p>    
     <div class="image-gallery">
-        @foreach($product->images as $image)
-            <img src="{{ asset($image->image_dir) }}" alt="投稿画像">
+        @foreach($product->images as $productImage)
+        <img src="{{ Storage::url($productImage->image_dir) }}" alt="Uploaded Image">
 
         @endforeach
     </div>
