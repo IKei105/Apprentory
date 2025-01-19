@@ -32,6 +32,7 @@ class UserController extends Controller
     
         // ユーザーに紐づくプロフィールを取得
         $profile = $user->profile;
+        dd($profile);
 
         // 確認用ページへリダイレクト(後から消す)
         return redirect()->route('register.confirmation')->with([
