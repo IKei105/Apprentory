@@ -50,4 +50,15 @@ class Material extends Model
         );
     }
     
+    public function postedUser()
+    {
+        return $this->hasManyThrough(
+            User::class,        // 結合先のモデル
+            Material_post::class, // 中間テーブルのモデル
+            'material_id',      // 中間テーブルの外部キー
+            'id',               // ユーザーテーブルの主キー
+            'id',               // 紐づけ元テーブルの主キー (materials)
+            'posted_user_id'    // 中間テーブルのユーザーID
+        );
+    }
 }
