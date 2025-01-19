@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 
-@section('title', '作品詳細 | Apprentory')
+@section('title')
+    {!! $product->title !!} | Apprentory
+@endsection
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/products_show_style.css') }}">

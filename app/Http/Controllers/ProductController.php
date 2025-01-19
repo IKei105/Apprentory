@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Technologie;
 use App\Models\Original_product;
 use App\Models\Original_product_image;
 use App\Models\Original_product_technologie_tag;
@@ -106,7 +107,7 @@ class ProductController extends Controller
             ]);
         }
     
-        return redirect()->route('products.test-confirmation', ['id' => $product->id]);
+        return redirect()->route('products.show', ['product' => $product->id]);
     }
 
     /**
@@ -128,22 +129,49 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Original_product::findOrFail($id);
-
+        $product = Original_product::with('images', 'technologies')->findOrFail($id);
+        $technologies = Technologie::all(); // 全タグを取得
+        
         // 投稿者以外がアクセスした場合は403エラー
         if (auth()->id() !== $product->profile->user_id) {
             abort(403, '許可されていない操作です。');
         }
     
-        return view('products.edit', compact('product'));
-        }
+        return view('products.edit', compact('product','technologies'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Original_product::findOrFail($id);
+
+        // バリデーション
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'product_detail' => 'required|string',
+            'product_url' => 'nullable|url',
+            'github_url' => 'nullable|url',
+            'tag_ids' => 'nullable|array', // タグ用
+            'tag_ids.*' => 'exists:technologies,id', // タグIDがtechnologiesテーブルに存在することを確認
+        ]);
+    
+        // プロダクト情報を更新
+        $product->update([
+            'title' => $validated['title'],
+            'subtitle' => $validated['subtitle'],
+            'product_detail' => $validated['product_detail'],
+            'product_url' => $validated['product_url'],
+            'github_url' => $validated['github_url'],
+        ]);
+    
+        // タグの同期
+        $product->technologies()->sync($validated['tag_ids'] ?? []);
+    
+        // 更新完了後、詳細ページなどにリダイレクト
+        return redirect()->route('products.show', $product->id)->with('success', '更新が完了しました！');
     }
 
     /**
