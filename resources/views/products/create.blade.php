@@ -28,12 +28,12 @@
 
         <div class="post-images">
             <div class="post-images-left">
-                <label for="images">
+                <label for="image-input" id="image-label">
                     <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
                     <p>ファイルを選択</p>
                 </label>
-                <input type="file" id="images" name="images[]" multiple>
-            </div>
+                <input type="file" id="image-input" name="images[]" style="display: none;" multiple>
+            </div>    
             <div class="post-images-right">
                 <!-- 投稿した画像のプレビュー表示(javascriptで実装)　-->
                 <div class="post-images-preview"></div>
