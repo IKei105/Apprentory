@@ -58,15 +58,20 @@ margin-right: 16px;
 .product-element{  /*投稿の属性 */
     margin: 0 0 0 8px;
     font-size: 12px;
-    color: #45bbc3;
     width: 84px;
     height: 24px;
-    border: 1px solid #45bbc3;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-
+}
+.tester{
+    color: #45bbc3;
+    border: 1px solid #45bbc3;
+}
+.reviewer{
+    color: #bd49c3;
+    border: 1px solid #bd49c3;
 }
 .product-title{
     font-size: 32px;
