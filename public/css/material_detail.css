@@ -46,6 +46,11 @@ body {
     margin-right: 16px;
 }
 
+/* 削除フォーム */
+.delete-form {
+    display: inline-block;
+}
+
 /* 教材投稿日 */
 .material_posted_date {
     font-size: 12px;
