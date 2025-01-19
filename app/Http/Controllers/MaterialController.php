@@ -79,7 +79,6 @@ class MaterialController extends Controller
             $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
             $materialTechnologieTag->save();
         }
-        
 
         // 教材ポストテーブルに保存します！
         $materialPost = new Material_post();
@@ -92,6 +91,10 @@ class MaterialController extends Controller
 
     public function show(Material $material)
     {
+
+        // ログイン中のユーザーidを取得
+        $loggedInUserId = Auth::id();
+        $isOwner = $material->posts->contains('posted_user_id', $loggedInUserId);
         // Materialモデルのpostsとlikesリレーションをロード
         $material->load(['posts', 'likes']);
 
@@ -100,8 +103,10 @@ class MaterialController extends Controller
         $posts = $material->posts;             // postsリレーションを取得
         $post = $posts[self::FIRST_POST_INDEX];
 
+        
+
         // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post'));
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner'));
     }
 
     public function edit(Material $material)
@@ -114,7 +119,7 @@ class MaterialController extends Controller
     public function update(Material $material, Request $request)
     {
 
-        if ($request->hasFile('material-image')) { //画像が投稿されていたら
+        if ($request->hasFile('material_image')) { //画像が投稿されていたら
             $path = $request->file('material_image')->store('material_images', 'public');
     
             $material->image_dir = '/storage/' . $path;
@@ -163,23 +168,10 @@ class MaterialController extends Controller
             }
         }
 
-        // $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
-        // foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
-        //     $results = DB::table('material_technologie_tags')
-        //         ->where('technologie_id', $uniqueSelectedTechnologieTag) // technologie_idの条件
-        //         ->where('material_id', $materialId) // material_idの条件を追加
-        //         ->get();
+    }
 
-        //     if (!($results->isNotEmpty())) {
-        //         // 結果がない場合の処理
-        //         $materialTechnologieTag = new Material_technologie_tag();
-        //         $materialTechnologieTag->material_id = $materialId;
-        //         $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
-        //         $materialTechnologieTag->save();
-        //     }
-            
-        // }
-
+    public function destroy(Material $material) {
+        $material->delete();
     }
 
 

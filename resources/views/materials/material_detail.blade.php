@@ -13,10 +13,17 @@
         </div>
     <div class="material-info">
         <!-- 投稿ユーザーの記事だったら -->
-        <div class="action-buttons">
-            <button><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
-            <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
-        </div>
+        @if($isOwner)
+            <div class="action-buttons">
+                <form method="POST" action="{{ route('materials.destroy', $material) }}" class="delete-form">
+                    @method('DELETE')
+                    @csrf
+                    <button><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
+                </form>
+                
+                <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
+            </div>
+        @endif
         <div class="material_posted_date">
         <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
         </div>
