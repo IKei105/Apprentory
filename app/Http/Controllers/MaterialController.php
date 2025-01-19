@@ -21,12 +21,25 @@ class MaterialController extends Controller
     {
         // ここで各情報を出力します
         $recommendedMaterials = Material::whereBetween('id', [1, 5])
-            ->withCount('likes') // リレーション名を指定
+            ->with(['posts.user']) // posts を介して user をロード
+            ->withCount('likes')   // likes の数をカウント
             ->get();
-        $topRatedMaterials = Material::withCount('likes') // likes の数をカウント
-            ->orderBy('likes_count', 'desc')
+
+        $topRatedMaterials = Material::with(['posts.user.profile']) // posts を介して user と profile をロード
+            ->withCount('likes')   // likes の数を取得
+            ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
             ->get();
-        $latestMaterials = Material::latest('created_at')->take(5)->get();
+
+        $latestMaterials = Material::with(['posts.user.profile']) // posts を介して user と profile をロード
+            ->withCount('likes')   // likes の数を取得
+            ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
+            ->get();
+        
+        $material = Material::with(['posts.user.profile'])->findOrFail(5);
+
+        // データ確認用
+        //dd($topRatedMaterials);
+
 
         return view('materials.material_index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
     }
@@ -112,8 +125,6 @@ class MaterialController extends Controller
         $posts = $material->posts;             // postsリレーションを取得
         $post = $posts[self::FIRST_POST_INDEX];
 
-        
-
         // compactを使用してデータをビューに渡す
         return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner'));
     }
@@ -181,7 +192,6 @@ class MaterialController extends Controller
                     ->delete();
             }
         }
-
     }
 
     public function destroy(Material $material) {
