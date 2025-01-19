@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const imageInput = document.getElementById("images");
+    const imageInput = document.getElementById("image-input");
     const previewContainer = document.querySelector(".post-images-preview");
 
+    // ファイル選択時にプレビューを追加
     imageInput.addEventListener("change", (event) => {
-        // プレビューエリアをクリア
-        previewContainer.innerHTML = "";
-
-        // 選択されたファイルを取得
         const files = event.target.files;
 
-        // ファイルごとに処理
         Array.from(files).forEach((file) => {
             if (!file.type.startsWith("image/")) {
                 return; // 画像以外は無視
@@ -17,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const reader = new FileReader();
 
-            // ファイルが読み込まれたらプレビュー表示
             reader.onload = (e) => {
                 const img = document.createElement("img");
                 img.src = e.target.result;
@@ -27,5 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             reader.readAsDataURL(file);
         });
+
+        // ファイル選択後にinputの値をリセット
+        imageInput.value = "";
     });
 });
