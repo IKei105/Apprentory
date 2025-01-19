@@ -6,7 +6,11 @@
     margin-bottom: 64px;
 }
 .main-left{
-    width: 30%;
+    max-width: 30%;
+}
+.main-left img{
+    max-width: 360px;
+    max-height: 240px;
 }
 .main-right{
     padding-left: 24px;
@@ -23,6 +27,7 @@
 
 .product-controler{
     display: flex;
+    margin: 0px;
 }
 .product-controler button {
     background: none;
@@ -149,7 +154,8 @@ margin-right: 16px;
     gap: 32px;
 }
 .products-images img{
-    width: 100%;
+    max-width: 240px;
+    max-height: 180px;
     object-fit: cover;
 }
 
