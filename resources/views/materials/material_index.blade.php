@@ -26,94 +26,61 @@
         @foreach ($recommendedMaterials as $recommendedMaterial)
             <div class="material-item">
                 <a href="">
-                    <img class="material-book-image" src="{{ asset($material->image_dir) }}" alt="教材画像">
-                    <h3 class="material-title">{!! nl2br(e($material->title)) !!}</h3>
+                    <img class="material-book-image" src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
+                    <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
                     <div class="post-likes">
-                        <p>♡ {{ $material->likes_count }}</p>
+                        <p>♡ {{ $recommendedMaterial->likes_count }}</p>
                     </div>
                 </a>
             </div>
-            @if ($recommendedMaterial >= 5)
+            @if ($recommendedMaterialCount >= 5)
                 @break
             @else
-                $recommendedMaterialCount++;
+                <?php $recommendedMaterialCount++; ?>
             @endif
         @endforeach
-            <div class="material-item">
-                <a href="">
-                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
-                    <div class="post-likes">
-                        <p>♡ 40</p>
-                    </div>
-                </a>
-            </div>
-            <div class="material-item">
-                <a href="">
-                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
-                    <div class="post-likes">
-                        <p>♡ 40</p>
-                    </div>
-                </a>
-            </div>
-            <div class="material-item">
-                <a href="">
-                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
-                    <div class="post-likes">
-                        <p>♡ 40</p>
-                    </div>
-                </a>
-            </div>
-            <div class="material-item">
-                <a href="">
-                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
-                    <div class="post-likes">
-                        <p>♡ 40</p>
-                    </div>
-                </a>
-            </div>
-            <div class="material-item">
-                <a href="">
-                    <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                    <h3 class="material-title" >【作って学ぼう】Flask Webアプリ開発入門 ~課題メモアプリ~</h3>
-                    <div class="post-likes">
-                        <p>♡ 40</p>
-                    </div>
-                </a>
-            </div>
         </div>
     </div>
     <div class="high-rated-materials">
         <h1 class="high-rated-title">評価の高い教材</h1>
         <div class="articles">
-            <div class="article">
-                <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
-                <div class="article-text-info">
-                    <div class="post-user-info">
+            <?php $topRatedMaterialCount = 1; ?>
+            @foreach ($topRatedMaterials as $topRatedMaterial)
+                <div class="article">
+                    <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
+                    <div class="article-text-info">
+                        <div class="post-user-info">
+                            <a href="">
+                                <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                                <p class="post-user-name">ポストユーザー名</p>
+                            </a>
+                        </div>
                         <a href="">
-                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
-                            <p class="post-user-name">ポストユーザー名</p>
+                            <h3 class="material-title">{!! nl2br(e($topRatedMaterial->title)) !!}</h3>
+                            <div class="book-rating">
+                            @for ($i = 1; $i <= $topRatedMaterial->rating_id; $i++)
+                                <p>★</p>
+                            @endfor
+                            </div>
+                            <div class="material-price">
+                                <p>¥</p>
+                                <p>{{ $topRatedMaterial->price }}</p>
+                            </div>
+                            <div class="post-likes">
+                                <p>♡ {{ $topRatedMaterial->likeCount }}人がいいね</p>
+                            </div>
                         </a>
-                    </div>
-                    <a href="">
-                        <h3 class="material-title">ITエンジニアのためのプロンプトエンジニアリング</h3>
-                        <div class="book-rating">
-                            <p>★★★★★</p>
-                        </div>
-                        <div class="material-price">
-                            <p>¥</p>
-                            <p>114,514</p>
-                        </div>
-                        <div class="post-likes">
-                            <p>♡</p>
-                            <p>810人がいいね</p>
-                        </div>
-                    </a>
-                </div>    
-            </div>
+                    </div>    
+                </div>
+                @if ($topRatedMaterialCount >= 4)
+                    @break
+                @else
+                    <?php $topRatedMaterialCount++; ?>
+                @endif
+            @endforeach
+
+            
+            
             <div class="article">
                 <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
                 <div class="article-text-info">

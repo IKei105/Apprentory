@@ -28,7 +28,7 @@ class MaterialController extends Controller
             ->get();
         $latestMaterials = Material::latest('created_at')->take(5)->get();
 
-        return view('materials.index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
+        return view('materials.material_index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
     }
 
     public function create()

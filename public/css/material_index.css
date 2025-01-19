@@ -79,7 +79,7 @@ a:hover {
 
 
 /**************************************************
- * 評価の高い教材一覧ね
+ * 評価の高い教材一覧
  **************************************************/
 
 body {
@@ -122,7 +122,7 @@ body {
 
 /* 単一の教材情報が入ってる */
 .article {
-    max-width: 425px;
+    width: 48%;
     height: 216px;
     padding: 24px;
     display: flex;
@@ -177,8 +177,10 @@ body {
 
 /* 本の評価 */
 .book-rating p {
+    display: inline;
     font-size: 20px;
-
+    margin: 0;
+    padding: 0;
 }
 
 /* 教材の価格 */
