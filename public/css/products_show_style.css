@@ -20,8 +20,21 @@
 .product-image{
     width: 100%;
 }
+
 .product-controler{
     display: flex;
+}
+.product-controler button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.product-controler button:hover{
+    filter: brightness(1.1);
+}
+.product-controler button:active {
+    filter: brightness(1);
 }
 .product-controler img{
 margin-right: 16px;

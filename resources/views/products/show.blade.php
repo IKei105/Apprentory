@@ -21,14 +21,26 @@
                 <img src="{{ asset('assets/images/default_image.png') }}" alt="デフォルト画像" class="product-image">
             @endif            
             <div class="product-controler">
-                <img src="{{ asset('assets/images/edit.svg') }}" alt="" class="edit-button">
-                <img src="{{ asset('assets/images/trash.svg') }}" alt="" class="trash-button">
+                @if (auth()->check() && auth()->id() === $product->profile->user_id)
+                <button class="edit-button" onclick="location.href='{{ route('products.edit', $product->id) }}'">
+                    <img src="{{ asset('assets/images/edit.svg') }}" alt="編集">
+                </button>
+                <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="delete-button">
+                        <img src="{{ asset('assets/images/trash.svg') }}" alt="削除">
+                    </button>
+                </form>
+                @endif
             </div>
         </div>
         <div class="main-right">
             <div class="main-right-top">
                 <p class="product-date">{{ $product->created_at }}</p>
-                <p class="product-element">{{ $product->element === 'need-tester' ? 'テスター募集' : 'レビュー募集' }}</p>
+                <p class="product-element {{ $product->element === 'need-tester' ? 'tester' : 'reviewer' }}">
+                    {{ $product->element === 'need-tester' ? 'テスター募集' : 'レビュー募集' }}
+                </p>
             </div>
             <h3 class="product-title">{{ $product->title }}</h3>
             <p class="product-subtitle">{{ $product->subtitle }}</p>
