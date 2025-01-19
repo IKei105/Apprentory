@@ -111,7 +111,12 @@ class MaterialController extends Controller
 
     public function edit(Material $material)
     {
+        $loggedInUserId = Auth::id();
         $technologieIds = $material->technologies->pluck('id'); // technologie_idのリストを取得
+
+        if (!$material->posts->contains('posted_user_id', $loggedInUserId)) {
+            return view('materials.index');
+        }
 
         return view('materials.material_edit', compact('material', 'technologieIds'));
     }
