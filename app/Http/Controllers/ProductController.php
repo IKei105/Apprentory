@@ -114,10 +114,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-       // プロダクトをIDで取得し、関連するタグと画像も一緒に取得
+        // プロダクトをIDで取得し、関連するタグと画像も一緒に取得
         $product = Original_product::with(['technologies', 'images','profile'])->findOrFail($id);    
         
-        return view('products.show', compact('product'));
+        // 現在のログインユーザーのプロフィールを取得
+        $profile = auth()->user()->profile;
+        
+        return view('products.show', compact('product','profile'));
     }
     
     /**
@@ -125,7 +128,15 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Original_product::findOrFail($id);
+
+        // 投稿者以外がアクセスした場合は403エラー
+        if (auth()->id() !== $product->profile->user_id) {
+            abort(403, '許可されていない操作です。');
+        }
+    
+        return view('products.edit', compact('product'));
+
     }
 
     /**
@@ -141,7 +152,16 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Original_product::findOrFail($id);
+
+        // 投稿者以外が削除しようとした場合は403エラー
+        if (auth()->id() !== $product->profile->user_id) {
+            abort(403, '許可されていない操作です。');
+        }
+    
+        $product->delete();
+    
+        return redirect()->route('products.index')->with('success', '投稿が削除されました。');
     }
     public function testConfirmation($id)
     {
