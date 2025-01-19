@@ -22,6 +22,23 @@
     <div class="recommended_materials">
     <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
+        <?php $recommendedMaterialCount = 1?>
+        @foreach ($recommendedMaterials as $recommendedMaterial)
+            <div class="material-item">
+                <a href="">
+                    <img class="material-book-image" src="{{ asset($material->image_dir) }}" alt="教材画像">
+                    <h3 class="material-title">{!! nl2br(e($material->title)) !!}</h3>
+                    <div class="post-likes">
+                        <p>♡ {{ $material->likes_count }}</p>
+                    </div>
+                </a>
+            </div>
+            @if ($recommendedMaterial >= 5)
+                @break
+            @else
+                $recommendedMaterialCount++;
+            @endif
+        @endforeach
             <div class="material-item">
                 <a href="">
                     <img class="material-book-image" src="{{ asset('assets/material_images/sample.png') }}" alt="">
