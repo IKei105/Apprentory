@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/material_index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/post_material.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu-select.css') }}">
-    
-    <link rel="stylesheet" href="css/material_index.css">
-    <link rel="stylesheet" href="css/post_material.css">
-    <link rel="stylesheet" href="css/menu-select.css">
     <title>教材投稿ページ</title>
 </head>
 <body>

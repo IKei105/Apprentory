@@ -12,7 +12,7 @@ a:hover {
  **************************************************/
 
 /* 推奨教材とタイトルが格納されているコンテナ */
-.recommended_materials {
+.recommended_materials, .recommended_materials_all {
     max-width: 960px;
     padding: 48px 40px 20px;
     margin: 0 auto;
@@ -86,16 +86,8 @@ body {
     background-color: #F2F2F2;
 }
 
-/* h1 評価の高い教材 */
-.high-rated-title {
-    padding: 0 40px;
-    margin-bottom: 32px;
-    font-size: 32px;
-    font-weight: 700;
-}
-
 /* 教材情報全体のコンテナ */
-.high-rated-materials {
+.high-rated-materials, .high-rated-materials-all{
     max-width: 960px;
     margin: 0 auto;
     padding: 30px 0 45px;
@@ -111,6 +103,16 @@ body {
     bottom: 0; /* 下線の下端を親要素の下端に揃える。 */
     background: #D9D9D9; /* 下線の色をダークグレー(#333)に設定。 */
 }
+
+/* h1 評価の高い教材 */
+.high-rated-title {
+    padding: 0 40px;
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
 
 /* 複数の教材情報が入っているコンテナ、これにflexを適用する */
 .articles {
@@ -194,4 +196,19 @@ body {
     margin-top: 4px;
     font-size:11px;
     
+}
+
+
+/**************************************************
+ * もっと見る
+ **************************************************/
+
+
+
+/**************************************************
+ * 見えなくするクラス
+ **************************************************/
+
+.hidden {
+    display: none;
 }
