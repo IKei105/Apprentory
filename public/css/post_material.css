@@ -251,30 +251,6 @@ body {
 }
 
 
-/* 星 */
-/* .rate-form{
-    width: 50%;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-}
-.rate-form input[type=radio] {
-    display: none;
-}
-.rate-form label{
-    font-size: 40px;
-    color: rgb(135, 135, 135);
-    cursor: pointer;
-}
-.rate-form label:hover {
-    color: #ffcc00;
-}
-.rate-form label:hover~label {
-    color: #ffcc00;
-}
-.rate-form input[type=radio]:checked~label {
-    color: #ffcc00;
-} */
 
 .star {
     font-size: 24px;

@@ -15,10 +15,10 @@
         <!-- 投稿ユーザーの記事だったら -->
         @if($isOwner)
             <div class="action-buttons">
-                <form method="POST" action="{{ route('materials.destroy', $material) }}" class="delete-form">
+                <form method="POST" action="{{ route('materials.destroy', $material) }}" class="delete-form" id="delete-form">
                     @method('DELETE')
                     @csrf
-                    <button><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
+                    <button class="delete-button"><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
                 </form>
                 
                 <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
@@ -44,8 +44,8 @@
         </div> 
         <div class="material_url">
             <p>URL</p>
-            <a href="">{!! nl2br(e($material->material_url)) !!}</a>
+            <a href="{!! nl2br(e($material->material_url)) !!}">{!! nl2br(e($material->material_url)) !!}</a>
         </div>
     </div>
-    <script src="{{ asset('/js/materials_index.js') }}"></script>
+    <script src="{{ asset('/js/material_detail.js') }}"></script>
 </body>

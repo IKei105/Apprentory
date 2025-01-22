@@ -1,4 +1,8 @@
 
+
+/**************************************************
+ * タグを増やす
+ **************************************************/
 let selectCount = 1;
 function createNewSelect() {
     // 新しいselectタグを作成
@@ -48,11 +52,12 @@ initialSelect.addEventListener('change', handleSelectChange);
 
 
 
-
-
-
-
+/**************************************************
+ * クリックしたら星を光らせる
+ **************************************************/
 document.addEventListener("DOMContentLoaded", () => {
+
+
     const stars = document.querySelectorAll(".star");
 
     stars.forEach(star => {
@@ -72,7 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
+/**************************************************
+ * 画像が選択されたいなければ送信できないようにする
+ **************************************************/
 document.querySelector('form').addEventListener('submit', function(event) {
     const imageInput = document.getElementById('image');
     const errorMessage = document.getElementById('image-error');
@@ -86,6 +93,9 @@ document.querySelector('form').addEventListener('submit', function(event) {
     }
 });
 
+/**************************************************
+ * 選択した画像を表示される
+ **************************************************/
 document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('image');
     const previewImage = document.querySelector('.material-book-sample-image');
@@ -104,3 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+/**************************************************
+ * 送信時に確認をするコード
+ **************************************************/
+{
+    const form = document.querySelector('#post-material');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); //formのbuttonは押すとactionで指定したページに飛んでしまうのでとりあえず防ぐ
+
+        if (confirm('この内容で投稿していいですか？') === false) {
+            return;
+        }
+
+        form.submit();
+    });
+
+}
