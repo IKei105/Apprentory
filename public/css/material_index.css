@@ -90,7 +90,7 @@ body {
 .high-rated-materials, .high-rated-materials-all{
     max-width: 960px;
     margin: 0 auto;
-    padding: 30px 0 45px;
+    padding: 48px 0 45px;
     position: relative;
 }
 
@@ -114,7 +114,9 @@ body {
 
 
 
-/* 複数の教材情報が入っているコンテナ、これにflexを適用する */
+/**************************************************
+ * 複数の教材情報が入っているコンテナ、これにflexを適用する
+ **************************************************/
 .articles {
     display: flex;
     flex-wrap: wrap;
