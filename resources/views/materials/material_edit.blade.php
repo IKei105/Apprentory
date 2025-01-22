@@ -19,7 +19,7 @@
         @method('PATCH')
         @csrf
         <div class="layout-top">
-            <a href="" class="back">←</a>
+            <a href="{{ route('materials.index') }}" class="back">←</a>
             <button class="submit">編集</button>
         </div>
             

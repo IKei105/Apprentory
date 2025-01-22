@@ -51,6 +51,10 @@ body {
     display: inline-block;
 }
 
+.delete-button:hover {
+    cursor: pointer;
+}
+
 /* 教材投稿日 */
 .material_posted_date {
     font-size: 12px;

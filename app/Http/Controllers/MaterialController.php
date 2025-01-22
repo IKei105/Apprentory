@@ -107,6 +107,8 @@ class MaterialController extends Controller
         $materialPost->posted_user_id = Auth::user()->id;
 
         $materialPost->save();
+
+        return view('materials.index');
     }
 
     public function show(Material $material)
@@ -190,11 +192,12 @@ class MaterialController extends Controller
                     ->delete();
             }
         }
+
+        return view('materials.index');
     }
 
     public function destroy(Material $material) {
         $material->delete();
     }
-
 
 }

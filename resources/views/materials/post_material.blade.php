@@ -12,11 +12,11 @@
 <body>
     
     <div class="post-material-item">
-        <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data" id="post-material">
         @csrf
         <div class="layout-top">
-            <a href="" class="back">←</a>
-            <button class="submit">投稿</button>
+            <a href="{{ route('materials.index') }}" class="back">←</a>
+            <button class="submit" id="form-submit">投稿</button>
         </div>
             
             <div class="material-flex-container">
@@ -80,7 +80,6 @@
                     min="0" 
                     step="1" 
                     oninput="this.value = this.value.replace(/^0+/, '');"
-                    
                 />
             </div>
             <div class="post-material-url">
