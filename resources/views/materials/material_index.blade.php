@@ -26,7 +26,7 @@
         <?php $recommendedMaterialCount = 1?>
         @foreach ($recommendedMaterials as $recommendedMaterial)
             <div class="material-item">
-                <a href="">
+            <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像" loading="lazy">
                     <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
                     <div class="post-likes">
@@ -52,7 +52,7 @@
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <div class="article">
-                    <a href="">
+                    <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
                     <div class="article-text-info">
@@ -97,7 +97,7 @@
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <div class="article">
-                    <a href="">
+                    <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
                     <div class="article-text-info">
@@ -134,12 +134,12 @@
     </div>
 
     <!-- 以下はもっと見る、または推奨教材を押した時に表示するようのhtmlです -->
-    <div class="recommended_materials_all" id="recommended_materials_all">
+    <div class="recommended_materials_all hidden" id="recommended_materials_all">
         <h2 class="recommended_materials-title">もっと見る推奨教材一覧</h2>
         <div class="materials-list">
         @foreach ($recommendedMaterials as $recommendedMaterial)
             <div class="material-item">
-                <a href="">
+            <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
                     <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
                     <div class="post-likes">
@@ -152,7 +152,7 @@
     </div>
 
     <!-- もっと見るを押した評価の高い教材 -->
-    <div class="high-rated-materials-all" id="high-rated-materials-all">
+    <div class="high-rated-materials-all hidden" id="high-rated-materials-all">
         <h1 class="high-rated-title">もっと見る評価の高い教材</h1>
         <div class="articles">
             @foreach ($latestMaterials as $latestMaterial)
@@ -160,7 +160,7 @@
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <div class="article">
-                    <a href="">
+                    <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="">
                     </a>
                     <div class="article-text-info">
@@ -192,7 +192,7 @@
     </div>
 
     <!-- もっと見るを押した新着の教材 -->
-    <div class="high-rated-materials" id="latest-materials-all">
+    <div class="high-rated-materials hidden" id="latest-materials-all">
         <h1 class="high-rated-title">もっと見る新着の教材</h1>
         <div class="articles">
             @foreach ($topRatedMaterials as $topRatedMaterial)
@@ -200,7 +200,7 @@
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <div class="article">
-                    <a href="">
+                    <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
                     </a>
                     <div class="article-text-info">

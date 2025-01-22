@@ -47,4 +47,5 @@
             <a href="">{!! nl2br(e($material->material_url)) !!}</a>
         </div>
     </div>
+    <script src="{{ asset('/js/materials_index.js') }}"></script>
 </body>
