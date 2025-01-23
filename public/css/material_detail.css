@@ -11,6 +11,11 @@ body {
     padding-bottom: 500px;
 }
 
+
+.heart:hover {
+    cursor: pointer;
+}
+
 .material-book-image {
     max-width: 100%;
     height: 330px;
@@ -53,6 +58,11 @@ body {
 
 .delete-button:hover {
     cursor: pointer;
+}
+
+/* ハート */
+.liked {
+    color:red;
 }
 
 /* 教材投稿日 */

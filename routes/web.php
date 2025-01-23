@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Http\Request; 
 
 //ルートディレクトリ設定,自動生成の除外設定
@@ -65,3 +66,5 @@ Route::get('products/{id}/test-confirmation', [ProductController::class, 'testCo
     ->name('products.test-confirmation');
 
 
+
+Route::post('/like/{table}', [LikeController::class, 'toggleLike'])->name('like.toggle');
