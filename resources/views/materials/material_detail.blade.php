@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>推奨教材ページ</title>
 </head>
 <body>
@@ -24,6 +25,7 @@
                 <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
             </div>
         @endif
+        <button class="heart {{ $isLikedByCurrentUser ? 'liked' : '' }}" id="user_likes">♡</button>
         <div class="material_posted_date">
         <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
         </div>

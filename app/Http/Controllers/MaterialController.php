@@ -120,13 +120,13 @@ class MaterialController extends Controller
         // Materialモデルのpostsとlikesリレーションをロード
         $material->load(['posts', 'likes']);
 
-        // 必要に応じてリレーションデータを加工
+        $isLikedByCurrentUser = $material->likes->contains($loggedInUserId); //ろぐ
         $likeCount = $material->likes->count(); // likesの数をカウント
         $posts = $material->posts;             // postsリレーションを取得
         $post = $posts[self::FIRST_POST_INDEX];
 
         // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner'));
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser'));
     }
 
     public function edit(Material $material)
