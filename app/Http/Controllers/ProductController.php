@@ -58,6 +58,7 @@ class ProductController extends Controller
     
             // 2. original_product_images に画像を保存
             if ($request->hasFile('images')) {
+                dd($request->allFiles());
                 foreach ($request->file('images') as $image) {
                     if (!$image->isValid()) {
                         throw new \Exception('無効な画像がアップロードされました。');
@@ -154,6 +155,7 @@ class ProductController extends Controller
             'product_detail' => 'required|string',
             'product_url' => 'nullable|url',
             'github_url' => 'nullable|url',
+            'element' => 'required|string|in:need-tester,need-review',
             'tag_ids' => 'nullable|array', // タグ用
             'tag_ids.*' => 'exists:technologies,id', // タグIDがtechnologiesテーブルに存在することを確認
         ]);
@@ -165,6 +167,7 @@ class ProductController extends Controller
             'product_detail' => $validated['product_detail'],
             'product_url' => $validated['product_url'],
             'github_url' => $validated['github_url'],
+            'element' => $validated['element'],
         ]);
     
         // タグの同期
