@@ -40,6 +40,8 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $validated = $request->validated();
+        dd($request->file('images'));
+
     
         DB::beginTransaction();
     
@@ -58,13 +60,13 @@ class ProductController extends Controller
     
             // 2. original_product_images に画像を保存
             if ($request->hasFile('images')) {
-                dd($request->allFiles());
                 foreach ($request->file('images') as $image) {
                     if (!$image->isValid()) {
                         throw new \Exception('無効な画像がアップロードされました。');
                     }
                     $path = $image->store('product_images', 'public');
                     $productImage = new Original_product_image([
+                        'original_product_id' => $product->id,
                         'image_dir' => '/storage/' . $path,
                     ]);
                     $product->images()->save($productImage);
