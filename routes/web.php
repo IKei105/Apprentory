@@ -37,3 +37,5 @@ Route::get('/logindashboard', [UserController::class, 'logindashboard'])->name('
 
 // 投稿後の確認ページ
 Route::get('products/{id}/test-confirmation', [ProductController::class, 'testConfirmation'])->name('products.test-confirmation');
+
+Route::get('/con',  [MaterialController::class, 'returnCon']);

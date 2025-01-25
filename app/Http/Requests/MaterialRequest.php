@@ -22,7 +22,7 @@ class MaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'material-image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'material-image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'material-title' => 'required',
             'material-thoughts' => 'required',
             'material-rate' => 'required',

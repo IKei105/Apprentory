@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.materials_layout')
+
+@section('title', '教材詳細 | Apprentory')
+
+@push('styles')
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>推奨教材ページ</title>
-</head>
-<body>
+@endpush
+@section('content')
     <div class="material-book-image">
         <img src="{{ asset($material->image_dir) }}" alt="Material Image">
         </div>
@@ -50,4 +49,5 @@
         </div>
     </div>
     <script src="{{ asset('/js/material_detail.js') }}"></script>
-</body>
+@endsection
+

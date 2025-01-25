@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <link rel="stylesheet" href="{{ asset('css/material_index.css') }}">
+@extends('layouts.materials_layout')
+
+@section('title', '教材一覧 | Apprentory')
+
+@push('styles')
     <link rel="stylesheet" href="{{ asset('css/post_material.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu-select.css') }}">
-    <title>教材投稿ページ</title>
-</head>
-<body>
-    
-    <div class="post-material-item">
+@endpush
+@section('content')
+
+<div class="post-material-item">
         <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data" id="post-material">
         @csrf
         <div class="layout-top">
@@ -105,4 +102,6 @@
             </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>
-    </div>
+
+
+@endsection

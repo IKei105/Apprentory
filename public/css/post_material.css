@@ -4,13 +4,14 @@ label {
 }
 
 body {
-    margin-top: 100px;
+    margin-top: 300px;
     padding-bottom: 500px;
+    background-color: #f2f2f2;
 }
 
 .layout-top {
     position: fixed; /* 画面に固定 */
-    top: 0; /* 画面の上部に配置 */
+    top: 120px; /* 画面の上部に配置 */
     left: 50%; /* 横方向の中心に配置 */
     transform: translateX(-50%); /* 自分の幅の半分だけ左にずらす */
     width: 100%; /* 必要に応じて幅を調整 */
