@@ -32,7 +32,8 @@
                     <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
                     <p>ファイルを選択</p>
                 </label>
-                <input type="file" id="image-input" name="images[]" style="display: none;" multiple>
+                <!-- <input type="file" id="image-input" name="images[]" style="display: none;" multiple> -->
+                <input type="file" name="images[]" id="image-input" style="display: none;" multiple>
             </div>    
             <div class="post-images-right">
                 <!-- 投稿した画像のプレビュー表示(javascriptで実装)　-->
@@ -107,6 +108,6 @@
     </div>
 @endif
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
-<script src="{{ asset('/js/image_preview.js') }}"></script>
+<!-- <script src="{{ asset('/js/image_preview.js') }}"></script> -->
 
 @endsection

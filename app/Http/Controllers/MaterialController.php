@@ -49,7 +49,6 @@ class MaterialController extends Controller
 
     public function store(MaterialRequest $request)
     {
-        
         // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
 
@@ -108,7 +107,7 @@ class MaterialController extends Controller
 
         $materialPost->save();
 
-        return view('materials.index');
+        return view('materials.material_index');
     }
 
     public function show(Material $material)
@@ -200,4 +199,16 @@ class MaterialController extends Controller
         $material->delete();
     }
 
+    // public function returnCon()
+    // {
+    //     return view('materials.con');
+    // }
+
+    // public function con(request $request)
+    // {
+    //     dd($request);
+    // }
+
 }
+
+

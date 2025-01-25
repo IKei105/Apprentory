@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.materials_layout')
+
+@section('title', '教材一覧 | Apprentory')
+
+@push('styles')
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="css/material_index.css">
     <link rel="stylesheet" href="css/menu-select.css">
-    <title>教材一覧ページ</title>
-</head>
-<body>
-    <div class="menu-select">
+@endpush
+@section('content')
+<div class="menu-select">
         <div class="content-switch">
             <button class="recommended-button" id="recommended-button">推奨教材</button>
             <button class="new-button" id="new-button">新着</button>
@@ -107,7 +106,7 @@
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
                         </div>
-                        <a href="">
+                        <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                             <h3 class="material-title">{!! nl2br(e($topRatedMaterial->title)) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $topRatedMaterial->rating_id; $i++)
@@ -135,7 +134,7 @@
 
     <!-- 以下はもっと見る、または推奨教材を押した時に表示するようのhtmlです -->
     <div class="recommended_materials_all hidden" id="recommended_materials_all">
-        <h2 class="recommended_materials-title">もっと見る推奨教材一覧</h2>
+        <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
         @foreach ($recommendedMaterials as $recommendedMaterial)
             <div class="material-item">
@@ -153,7 +152,7 @@
 
     <!-- もっと見るを押した評価の高い教材 -->
     <div class="high-rated-materials-all hidden" id="high-rated-materials-all">
-        <h1 class="high-rated-title">もっと見る評価の高い教材</h1>
+        <h1 class="high-rated-title">評価の高い教材</h1>
         <div class="articles">
             @foreach ($latestMaterials as $latestMaterial)
             @php
@@ -193,7 +192,7 @@
 
     <!-- もっと見るを押した新着の教材 -->
     <div class="high-rated-materials hidden" id="latest-materials-all">
-        <h1 class="high-rated-title">もっと見る新着の教材</h1>
+        <h1 class="high-rated-title">新着の教材</h1>
         <div class="articles">
             @foreach ($topRatedMaterials as $topRatedMaterial)
             @php
@@ -231,4 +230,4 @@
         </div>
     </div>
     <script src="{{ asset('/js/materials_index.js') }}"></script>
-</body>
+@endsection
