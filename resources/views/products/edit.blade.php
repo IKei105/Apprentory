@@ -38,14 +38,15 @@
             <div class="post-images-right">
                 <!-- 投稿した画像のプレビュー表示(javascriptで実装)　-->
                 <div class="post-images-preview">
+
                 @foreach ($product->images as $image)
                     <div class="image-wrapper">
-                        <img src="{{ Storage::url($image->image_dir) }}" alt="Uploaded Image">
+                        <img src="{{ $image->image_dir }}" class="preview-image" alt="Uploaded Image">
+                        <!-- 消去ボタン -->
                         <button type="button" class="delete-btn" data-image-id="{{ $image->id }}">×</button>
                     </div>
                 @endforeach
                 </div>
-                <!-- 消去ボタンをどこかに作る -->
             </div>
         </div>
         <div class="post-subtitle">
@@ -86,7 +87,7 @@
         </div>
         <div class="post-tags" id="tag-container">
             <p>タグ設定(5つまで)</p>
-            <select name="tag_select1" id="tag_select1" class="tag-select" required>
+            <!-- <select name="tag_select1" id="tag_select1" class="tag-select" required>
                 <option value="">選択してください</option>
                 @foreach ($technologies as $technologie)
                     <option value="{{ $technologie->id }}"
@@ -94,7 +95,18 @@
                         {{ $technologie->name }}
                     </option>
                 @endforeach
-            </select>
+            </select> -->
+            @foreach ($product->technologies as $index => $technology)
+                <select name="tag_select{{ $index + 1 }}" id="tag_select{{ $index + 1 }}" class="tag-select">
+                    <option value="">選択してください</option>
+                    @foreach ($technologies as $tech)
+                        <option value="{{ $tech->id }}"
+                            {{ $tech->id == $technology->id ? 'selected' : '' }}>
+                            {{ $tech->name }}
+                        </option>
+                    @endforeach
+                </select>
+            @endforeach            
             @error('tag_select1')
                 <p class="error-message">{{ $message }}</p>
             @enderror
