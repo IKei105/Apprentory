@@ -46,6 +46,20 @@ header {
     opacity: 0.8;
 }
 
+/* Apprentoryロゴ */
+.header-logo {
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
+    position: relative; /* 相対位置を設定 */
+    top: -5px; /* 5px上に移動 */
+}
+
+.header-logo:hover {
+    color:white;
+    opacity: 0.8;
+}
+
 
 /* ログイン */
 .login {

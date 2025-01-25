@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <a id="logo" href="">アプレントリィ</a>
+        <a href="" class="header-logo">Apprentory</a>
         <a class="header-register-link" id="header-register-link" href="{{ route('register') }}">アカウント登録</a>
     </header>
     <div class="login">

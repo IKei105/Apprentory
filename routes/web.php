@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/like/{table}', [LikeController::class, 'toggleLike'])->name('like.toggle');
 });
 
+Route::resource("materials",MaterialController::class);
+Route::resource("products",ProductController::class);
+
 // ログイン不要のルート
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [UserController::class, 'register']);

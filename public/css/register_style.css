@@ -15,6 +15,20 @@ header {
     background-color: #00D1D1;
 }
 
+/* Apprentoryロゴ */
+.header-logo {
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
+    position: relative; /* 相対位置を設定 */
+    top: -5px; /* 5px上に移動 */
+}
+
+.header-logo:hover {
+    color:white;
+    opacity: 0.8;
+}
+
 .header-login-link {
     display: flex;
     justify-content: center;
@@ -45,7 +59,6 @@ header {
     border-radius: 30px;
     padding: 24px 52px 32px 52px;
 }
-
 
 /*  新規登録って文字*/
 .login-title {
