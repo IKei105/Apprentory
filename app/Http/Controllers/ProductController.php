@@ -10,6 +10,8 @@ use App\Models\Original_product_image;
 use App\Models\Original_product_technologie_tag;
 use App\Models\Original_product_post;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User;
 
 
 
@@ -23,7 +25,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Original_product::with(['images', 'post'])->get();
+        $products = Original_product::with([
+            'images',             // 商品画像
+            'post.user.profile',  // 投稿者のプロフィール情報
+        ])->get();
 
         dd($products);
 

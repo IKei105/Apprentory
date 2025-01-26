@@ -24,7 +24,11 @@
                 <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
             </div>
         @endif
-        <button class="heart {{ $isLikedByCurrentUser ? 'liked' : '' }}" id="user_likes">♡</button>
+        @if ($isLikedByCurrentUser) <!-- いいねをしていたら -->
+            <button class="heart">♥</button>
+        @else
+            <button class="heart">♡</button>
+        @endif
         <div class="material_posted_date">
         <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
         </div>
