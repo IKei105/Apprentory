@@ -40,16 +40,111 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create2');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-        // リクエストデータをログに出力
-        \Log::info('リクエスト全体:', $request->all());
+        //dd($request);
+        
+        $product = new Original_product();
+
+        $product->element = $request->element;
+        $product->title = $request->title;
+        $product->subtitle = $request->subtitle;
+        $product->product_detail = $request->product_detail;
+        if ($request->filled('product_url')) {
+            $product->product_url = $request->product_url;
+        }
+        if ($request->filled('github_url')) {
+            $product->github_url = $request->github_url;
+        }
+
+        $product->save();
+        // 保存した時の主キーを取得
+        $productlId = $product->id;
+
+        // タグの保存を行うコード
+        $originalProductTechnologieTag = new Original_product_technologie_tag();
+        
+        $originalProductTechnologieTag->original_product_id = $productlId;
+
+        $selectedTechnologieTags = [];
+        for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
+            $tagNum = "tag_select$i";
+            if ($request->$tagNum) {
+                $selectedTechnologieTags[] = $request->$tagNum;
+                
+            }
+        }
+
+
+        $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
+        foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
+            $originalProductTechnologieTag = new Original_product_technologie_tag();
+            $originalProductTechnologieTag->original_product_id = $productlId;
+            $originalProductTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
+            $originalProductTechnologieTag->save();
+        }
+
+        // 画像の保存
+        $originalProductImage = new Original_product_image();
+        
+
+        $images = $request->file('images');
+
+        if ($images && is_array($images)) {
+            foreach ($images as $image) {
+                // ファイルがアップロードされたか確認
+                if ($image instanceof \Illuminate\Http\UploadedFile) {
+                    // ファイルを保存してパスを取得
+                    $path = $image->store('material_images', 'public');                         //ここ修正してね(他力本願)
+
+                    $originalProductImage = new Original_product_image();
+                    $originalProductImage->original_product_id = $productlId;
+                    $originalProductImage->image_dir = '/storage/' . $path;
+
+                    $originalProductImage->save();
+                }
+            }
+        }
+
+
+        // 投稿者と日時の保存
+        $originalProductPost = new Original_product_post();
+
+        $originalProductPost->original_product_id = $productlId;
+        $originalProductPost->posted_user_profile_id = Auth::user()->id;
+
+        $originalProductPost->save();
+
+        return redirect()->route('products.show', ['product' => $product->id]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
         // アップロードされたファイルを確認
         if ($request->hasFile('images')) {
@@ -156,10 +251,12 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Original_product $product)
     {
-        $product = Original_product::with('images', 'technologies')->findOrFail($id);
-        $technologies = Technologie::all(); // 全タグを取得
+        $loggedInUserId = Auth::id();
+        $technologieIds = $product->technologies->pluck('id'); // technologie_idのリストを取得
+
+
         
         // 投稿者以外がアクセスした場合は403エラー
         if (auth()->id() !== $product->profile->user_id) {

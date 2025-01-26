@@ -60,10 +60,10 @@
 }
 .post-images-left{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 32px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* flex-direction: ; */
+    align-items: flex-end;
 }
 .post-images-left p{
     text-align: center;
@@ -72,6 +72,21 @@
     margin-top: 4px;
 
 }
+
+.main-image img {
+    max-width: 240px;
+    height: auto;
+}
+
+.sub-image img {
+    max-width: 180px;
+    height: auto;
+}
+
+.post-images-left label {
+    margin-right: 20px;
+}
+
 .post-images-left input{
     display: none;
 }
