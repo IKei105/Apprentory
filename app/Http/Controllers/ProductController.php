@@ -40,7 +40,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $validated = $request->validated();
-        dd($request->file('images'));
+        // dd($request->file('images'));
 
     
         DB::beginTransaction();
@@ -60,10 +60,16 @@ class ProductController extends Controller
     
             // 2. original_product_images に画像を保存
             if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
+                foreach ($request->file('images') as $index=>$image) {
+
+                    //デバッグ用
+                    \Log::info("リクエストのimagesキー:", $request->file('images'));
+
+
                     if (!$image->isValid()) {
                         throw new \Exception('無効な画像がアップロードされました。');
                     }
+
                     $path = $image->store('product_images', 'public');
                     $productImage = new Original_product_image([
                         'original_product_id' => $product->id,
@@ -71,6 +77,8 @@ class ProductController extends Controller
                     ]);
                     $product->images()->save($productImage);
                 }
+            } else {  //デバッグ用
+                \Log::info("画像がアップロードされていません");
             }
             // 3. タグ情報を保存
             // 保存した時の主キーを取得
@@ -110,7 +118,7 @@ class ProductController extends Controller
             ]);
         }
     
-        return redirect()->route('products.show', ['product' => $product->id]);
+        // return redirect()->route('products.show', ['product' => $product->id]);
     }
 
     /**
