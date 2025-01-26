@@ -8,7 +8,7 @@
 @section('content')
 
 
-<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+<form id="productform" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <!-- レイアウト上部 -->
@@ -37,6 +37,17 @@
             </div>    
             <div class="post-images-right">
                 <!-- 投稿した画像のプレビュー表示(javascriptで実装)　-->
+                <!-- 入力データの復元 -->
+                @if (old('images'))
+                    @foreach (old('images') as $image)
+                        <div class="image-wrapper">
+                            <img src="{{ asset('storage/temp/' . $image) }}" alt="プレビュー画像" class="preview-image">
+                            <input type="hidden" name="images[]" value="{{ $image }}">
+                            <button type="button" class="delete-btn" data-image="{{ $image }}">×</button>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
                 <div class="post-images-preview"></div>
                 <!-- 消去ボタンをどこかに作る -->
             </div>
@@ -107,7 +118,9 @@
         </ul>
     </div>
 @endif
+@push('scripts')
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
-<!-- <script src="{{ asset('/js/image_preview.js') }}"></script> -->
-
+<script src="{{ asset('/js/image_preview.js') }}"></script>
+<script src="{{ asset('/js/form_submit.js') }}"></script>
+@endpush
 @endsection
