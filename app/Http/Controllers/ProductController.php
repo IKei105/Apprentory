@@ -43,10 +43,18 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $validated = $request->validated();
-        // dd($request->file('images'));
+        // リクエストデータをログに出力
+        \Log::info('リクエスト全体:', $request->all());
 
-    
+        // アップロードされたファイルを確認
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $file) {
+                \Log::info("ファイル {$index}: " . $file->getClientOriginalName());
+            }
+        } else {
+            \Log::info('imagesキーにファイルが存在しません。');
+        }        
+        $validated = $request->validated();    
         DB::beginTransaction();
     
         try {
@@ -65,11 +73,6 @@ class ProductController extends Controller
             // 2. original_product_images に画像を保存
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $index=>$image) {
-
-                    //デバッグ用
-                    \Log::info("リクエストのimagesキー:", $request->file('images'));
-
-
                     if (!$image->isValid()) {
                         throw new \Exception('無効な画像がアップロードされました。');
                     }
@@ -115,6 +118,12 @@ class ProductController extends Controller
             ]);
     
             DB::commit();
+            // 正常なレスポンスをJSONで返す
+            return response()->json([
+            'status' => 'success',
+            'id' => $product->id,
+            'message' => '投稿が成功しました。',
+        ]);
         } catch (\Throwable $e) {
             DB::rollBack();
             return back()->withErrors([
@@ -122,7 +131,7 @@ class ProductController extends Controller
             ]);
         }
     
-        // return redirect()->route('products.show', ['product' => $product->id]);
+        return redirect()->route('products.show', ['product' => $product->id]);
     }
 
     /**
