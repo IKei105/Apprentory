@@ -12,6 +12,6 @@ class Original_product_image extends Model
     
     public function product()
     {
-        return $this->belongsTo(Original_product::class);
+        return $this->belongsTo(Original_product::class, 'original_product_id');
     }
 }
