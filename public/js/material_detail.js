@@ -14,22 +14,29 @@
 }
 
 
-document.querySelector('#user_likes').addEventListener('click', () => {
+document.querySelectorAll('.heart').forEach(heart => {
+    heart.addEventListener('click', () => {
+        heart.textContent = heart.textContent === '♡' ? '♥' : '♡';
 
-    const table = 'user_like'; // または 'original_project_likes'
+        const table = 'user_like'; // または 'original_project_likes'
 
-    const path = location.pathname; // URLを取得
-    const segments = path.split('/'); // パスを "/" で分割
-    const materialId = segments[segments.length - 1]; // 最後の要素を取得 (教材ID)
+        const path = location.pathname; // URLを取得
+        const segments = path.split('/'); // パスを "/" で分割
+        const materialId = segments[segments.length - 1]; // 最後の要素を取得 (教材ID)
 
-    fetch(`/like/${table}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-        },
-        body: JSON.stringify({ material_id: materialId }),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data));
+        console.log(materialId);
+
+        fetch(`/like/${table}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify({ material_id: materialId }),
+        })
+        
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+    });
 });

@@ -61,8 +61,8 @@ body {
 }
 
 /* ハート */
-.liked {
-    color:red;
+.heart {
+    color:rgb(255, 0, 242);
 }
 
 /* 教材投稿日 */

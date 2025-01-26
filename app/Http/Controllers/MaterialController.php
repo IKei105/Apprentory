@@ -130,6 +130,7 @@ class MaterialController extends Controller
 
     public function edit(Material $material)
     {
+        
         $loggedInUserId = Auth::id();
         $technologieIds = $material->technologies->pluck('id'); // technologie_idのリストを取得
 

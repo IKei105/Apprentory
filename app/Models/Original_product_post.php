@@ -12,4 +12,9 @@ class Original_product_post extends Model
     {
         return $this->belongsTo(Original_product::class, 'original_product_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'posted_user_profile_id');
+    }
 }
