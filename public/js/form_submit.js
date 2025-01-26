@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("form_submit.jsファイルが正常に読み込まれました！");
+    // 初期化
+    if (!window.selectedFiles) {
+        window.selectedFiles = [];
+    }
+    console.log("初期化された selectedFiles:", window.selectedFiles);
 
-    const form = document.querySelector("productform");
+    const form = document.querySelector("#productform");
     console.log("取得したフォーム要素:", form); // フォーム要素が正しく取得できているか確認
     // デバッグ: form が見つかったか確認
     if (!form) {
@@ -45,16 +50,23 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             body: formData,
         })
+            // .then((response) => {
+            //     if (!response.ok) {
+            //         throw new Error("サーバーエラーが発生しました。");
+            //     }
+            //     return response.json();
+            // })
             .then((response) => {
-                if (!response.ok) {
-                    throw new Error("サーバーエラーが発生しました。");
-                }
-                return response.json();
+                console.log("サーバーレスポンス:", response);
+                return response.text(); // 一時的に JSON ではなくテキストとして取得
             })
+            // .then((data) => {
+            //     // デバッグ: サーバーからの成功レスポンスを確認
+            //     console.log("送信成功:", data);
+            //     window.location.href = `/products/${data.id}`;
+            // })
             .then((data) => {
-                // デバッグ: サーバーからの成功レスポンスを確認
-                console.log("送信成功:", data);
-                window.location.href = `/products/${data.id}`;
+                console.log("レスポンスデータ:", data);
             })
             .catch((error) => {
                 // デバッグ: エラーの詳細を表示

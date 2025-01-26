@@ -2,18 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const imageInput = document.getElementById("image-input");
     const previewContainer = document.querySelector(".post-images-preview");
-    let selectedFiles = []; // 選択されたファイルを保持する配列
 
+    // グローバル変数として window.selectedFiles を初期化
+    if (!window.selectedFiles) {
+        window.selectedFiles = [];
+    }
     // ファイル選択時の処理
     imageInput.addEventListener("change", (event) => {
         console.log("changeイベントが発火しました"); // イベントが発火したか確認
         const files = Array.from(event.target.files);
-        console.log("選択されたファイル:", files); // 現在選択されたファイルを確認
-        console.log("変更前の保持ファイル:", selectedFiles); // 配列の状態を確認
+        // console.log("選択されたファイル:", files); // 現在選択されたファイルを確認
+        // console.log("変更前の保持ファイル:", selectedFiles); // 配列の状態を確認
             files.forEach((file) => {
             if (!file.type.startsWith("image/")) return;
 
-            selectedFiles.push(file);
+            window.selectedFiles.push(file);
 
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 deleteBtn.classList.add("delete-btn");
                 deleteBtn.addEventListener("click", () => {
                     previewContainer.removeChild(imageWrapper);
-                    selectedFiles = selectedFiles.filter((f) => f !== file);
+                    window.selectedFiles = window.selectedFiles.filter((f) => f !== file);
                 });
 
                 imageWrapper.appendChild(img);
