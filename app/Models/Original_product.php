@@ -47,4 +47,9 @@ class Original_product extends Model
             'posted_user_profile_id'      // 中間テーブルのローカルキー
         );
     }
+
+    public function post()
+    {
+        return $this->hasOne(Original_product_post::class, 'original_product_id', 'id');
+    }
 }

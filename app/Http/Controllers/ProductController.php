@@ -23,6 +23,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Original_product::with(['images', 'post'])->get();
+
+        dd($products);
+
         return view('products.index');
     }
 
