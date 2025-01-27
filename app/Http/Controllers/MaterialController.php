@@ -108,7 +108,7 @@ class MaterialController extends Controller
 
         $materialPost->save();
 
-        return view('materials.index');
+        return $this->index();
     }
 
     public function show(Material $material)
