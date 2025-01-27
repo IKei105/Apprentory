@@ -74,11 +74,23 @@
         <div class="post-element">
             <p>投稿のカテゴリ</p>
             <div class="custom-radio">
-                <input type="radio" name="element" id="need-tester" value="need-tester" {{ old('element', $product->element) === 'need-tester' ? 'checked' : '' }}required>
-                <label for="need-tester">テスター募集中</label>
+                <input 
+                    type="radio" 
+                    name="element" 
+                    id="need-tester" 
+                    value="need-tester" 
+                    {{ old('element', $product->element) == 'need-tester' ? 'checked' : '' }}
+                >
             </div>
+            <label for="need-tester">テスター募集中</label>            
             <div class="custom-radio">
-                <input type="radio" name="element" id="need-review" value="need-review" {{ old('element', $product->element) === 'need-review' ? 'checked' : '' }}>
+                <input 
+                    type="radio" 
+                    name="element" 
+                    id="need-review" 
+                    value="need-review" 
+                    {{ old('element', $product->element) == 'need-review' ? 'checked' : '' }}
+                >
                 <label for="need-review">レビュー募集中</label>
             </div>
             @error('radio')
