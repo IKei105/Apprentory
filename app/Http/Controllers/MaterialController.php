@@ -164,7 +164,12 @@ class MaterialController extends Controller
 
         $materialId = $material->id;
 
-        // ここでタグが存在しないのならば保存する
+        /****************************************************
+        ***************************************************** 
+        *               ここをリファクタリングする              *
+        *****************************************************
+        *****************************************************/
+        
         $selectedTechnologieTags = [];
         for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
             $selectName = "select$i";
