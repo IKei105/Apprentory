@@ -293,6 +293,8 @@ class ProductController extends Controller
             $product->image_dir = '/storage/' . $path;
         }    
 
+
+        dd($request->all()); // 送信データを確認
         // プロダクト情報を更新
         $product->update([
             'title' => $validated['title'],

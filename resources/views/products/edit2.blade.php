@@ -87,42 +87,43 @@
         </div>
         <div class="post-tags" id="tag-container">
             <p>タグ設定(5つまで)</p>
-            <?php $maxTags = 5; ?>
-                <!-- 既存タグの表示 -->
-                @foreach ($technologieIds as $index=> $technologieId)
-                    <select name="tag_select{{$index + 1}}" id="tag_select{{index + 1}}" class="tag-select" {{ $index == 0 ? 'required' : '' }} >
-                        <option value="">選択してください</option>
-                        <option value="1" <?= $technologieId == 1 ? 'selected' : '' ?> >Ruby</option>
-                        <option value="2" <?= $technologieId == 2 ? 'selected' : '' ?> >PHP</option>
-                        <option value="3" <?= $technologieId == 3 ? 'selected' : '' ?> >SQL</option>
-                        <option value="4" <?= $technologieId == 4 ? 'selected' : '' ?> >HTML</option>
-                        <option value="5" <?= $technologieId == 5 ? 'selected' : '' ?> >CSS</option>
-                        <option value="6" <?= $technologieId == 6 ? 'selected' : '' ?> >JavaScript</option>
-                        <option value="7" <?= $technologieId == 7 ? 'selected' : '' ?> >GitHub</option>
-                        <option value="8" <?= $technologieId == 8 ? 'selected' : '' ?> >Linux</option>
-                        <option value="9" <?= $technologieId == 9 ? 'selected' : '' ?> >docker</option>
-                        <option value="10" <?= $technologieId == 10 ? 'selected' : '' ?> >AWS</option>
-                        <option value="11" <?= $technologieId == 11 ? 'selected' : '' ?> >その他</option>
-                    </select>
-                    <?php $foreachCount++ ?>
-                @endforeach
+            @php
+                $maxTags = 5;
+            @endphp                
+            <!-- 既存タグの表示 -->
+            @foreach ($technologieIds as $index=> $technologieId)
+                <select name="tag_select{{$index + 1}}" id="tag_select{{$index + 1}}" class="tag-select" {{ $index == 0 ? 'required' : '' }} >
+                    <option value="">選択してください</option>
+                    <option value="1" <?= $technologieId == 1 ? 'selected' : '' ?> >Ruby</option>
+                    <option value="2" <?= $technologieId == 2 ? 'selected' : '' ?> >PHP</option>
+                    <option value="3" <?= $technologieId == 3 ? 'selected' : '' ?> >SQL</option>
+                    <option value="4" <?= $technologieId == 4 ? 'selected' : '' ?> >HTML</option>
+                    <option value="5" <?= $technologieId == 5 ? 'selected' : '' ?> >CSS</option>
+                    <option value="6" <?= $technologieId == 6 ? 'selected' : '' ?> >JavaScript</option>
+                    <option value="7" <?= $technologieId == 7 ? 'selected' : '' ?> >GitHub</option>
+                    <option value="8" <?= $technologieId == 8 ? 'selected' : '' ?> >Linux</option>
+                    <option value="9" <?= $technologieId == 9 ? 'selected' : '' ?> >docker</option>
+                    <option value="10" <?= $technologieId == 10 ? 'selected' : '' ?> >AWS</option>
+                    <option value="11" <?= $technologieId == 11 ? 'selected' : '' ?> >その他</option>
+                </select>
+            @endforeach
 
-                <!-- タグが5個以下の場合タグを追加 -->
-                @for ($i = count($technologieIds) + 1; $i <= $maxTags; $i++)
-                    <select name="tag_select{{ $i }}" id="tag_select{{ $i }}" class="tag-select">
-                        <option value="">選択してください</option>
-                        <option value="1">Ruby</option>
-                        <option value="2">PHP</option>
-                        <option value="3">SQL</option>
-                        <option value="4">HTML</option>
-                        <option value="5">CSS</option>
-                        <option value="6">JavaScript</option>
-                        <option value="7">GitHub</option>
-                        <option value="8">Linux</option>
-                        <option value="9">docker</option>
-                        <option value="10">AWS</option>
-                    </select>
-                @endfor
+            <!-- タグが5個以下の場合タグを追加 -->
+            @for ($i = count($technologieIds) + 1; $i <= $maxTags; $i++)
+                <select name="tag_select{{ $i }}" id="tag_select{{ $i }}" class="tag-select">
+                    <option value="">選択してください</option>
+                    <option value="1">Ruby</option>
+                    <option value="2">PHP</option>
+                    <option value="3">SQL</option>
+                    <option value="4">HTML</option>
+                    <option value="5">CSS</option>
+                    <option value="6">JavaScript</option>
+                    <option value="7">GitHub</option>
+                    <option value="8">Linux</option>
+                    <option value="9">docker</option>
+                    <option value="10">AWS</option>
+                </select>
+            @endfor    
             @error('tag_select1')
                 <p class="error-message">{{ $message }}</p>
             @enderror
