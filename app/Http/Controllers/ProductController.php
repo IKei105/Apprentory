@@ -25,14 +25,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Original_product::with([
-            'images',             // 商品画像
-            'post.user.profile',  // 投稿者のプロフィール情報
-        ])->get();
+        
+        $products = Original_product::with(['technologies', 'images', 'post.user.profile'])->get();
 
-        dd($products);
+        //dd($products);
 
-        return view('products.index');
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -101,7 +99,7 @@ class ProductController extends Controller
                 // ファイルがアップロードされたか確認
                 if ($image instanceof \Illuminate\Http\UploadedFile) {
                     // ファイルを保存してパスを取得
-                    $path = $image->store('material_images', 'public');                         //ここ修正してね(他力本願)
+                    $path = $image->store('original_product_images', 'public');                         //ここ修正してね(他力本願)
 
                     $originalProductImage = new Original_product_image();
                     $originalProductImage->original_product_id = $productlId;
@@ -251,19 +249,20 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Original_product $product)
+    public function edit(string $id)
     {
         $loggedInUserId = Auth::id();
-        $technologieIds = $product->technologies->pluck('id'); // technologie_idのリストを取得
 
+        $product = Original_product::with(['technologies', 'images'])->findOrFail($id);
 
+        //dd($product->technologies[0]);
         
         // 投稿者以外がアクセスした場合は403エラー
         if (auth()->id() !== $product->profile->user_id) {
             abort(403, '許可されていない操作です。');
         }
     
-        return view('products.edit', compact('product','technologies'));
+        return view('products.edit2', compact('product'));
     }
 
     /**

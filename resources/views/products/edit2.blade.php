@@ -91,12 +91,7 @@
             @foreach ($product->technologies as $index => $technology)
                 <select name="tag_select{{ $index + 1 }}" id="tag_select{{ $index + 1 }}" class="tag-select">
                     <option value="">選択してください</option>
-                    @foreach ($technologies as $tech)
-                        <option value="{{ $tech->id }}"
-                            {{ $tech->id == $technology->id ? 'selected' : '' }}>
-                            {{ $tech->name }}
-                        </option>
-                    @endforeach
+
                 </select>
             @endforeach            
             @error('tag_select1')

@@ -52,4 +52,10 @@ class Original_product extends Model
     {
         return $this->hasOne(Original_product_post::class, 'original_product_id', 'id');
     }
+
+    // 利便性を高めるためのテクノロジータグ名取得メソッド
+    public function getTechnologyNames()
+    {
+        return $this->technologies->pluck('name')->all(); // タグ名を取得する例
+    }
 }
