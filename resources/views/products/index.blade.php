@@ -49,12 +49,12 @@
             <article class="product">
                 <div class="article-left">
                 <a href="{{ route('products.show', $product->id) }}">
-                    <img src="{{ asset($product->images[0]->image_dir) }}" alt="" class="product-image">  
+                    <img src="{{ asset($product->images[0]->image_dir ?? '') }}" alt="" class="product-image">  
                 </a>              
                 <div class="post-user-info">
                         <a href="" class="post-user">
                             <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                            <p class="post-user-name">{!! nl2br(e($product->post->user->profile->username ?? '未設定')) !!}
+                            <p class="post-user-name">{!! nl2br(e($product->posts->first()->user->profile->username ?? '未設定')) !!}
                             </p>
                         </a>
                     </div>
@@ -72,7 +72,7 @@
                     <a href="{{ route('products.show', $product->id) }}">
                         <h3 class="product-title">{!! nl2br(e($product->title ?? '未設定')) !!}</h3>
                         <p class="product-subtitle">{!! nl2br(e($product->subtitle ?? '未設定')) !!}</p>
-                        <p class="product-date">{{ $product->created_at->isoFormat('YYYY/MM/DD') }}</p>
+                        {{-- <p class="product-date">{{ $product->created_at->isoFormat('YYYY/MM/DD') }}</p> --}}
                     </a>   
                     <div class="product-tag">
                         @foreach ($product->technologies as $technology)

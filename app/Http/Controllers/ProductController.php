@@ -253,16 +253,19 @@ class ProductController extends Controller
     {
         $loggedInUserId = Auth::id();
 
-        $product = Original_product::with(['technologies', 'images'])->findOrFail($id);
-
-        //dd($product->technologies[0]);
-        
+        // 必要なリレーションを一度にロード
+        $product = Original_product::with(['technologies', 'images', 'posts'])->findOrFail($id);
+    
+        // 投稿者でない場合は一覧ページにリダイレクト
+        if (!$product->posts->contains('posted_user_profile_id', $loggedInUserId)) {
+            return redirect()->route('products.index');
+        }
         // 投稿者以外がアクセスした場合は403エラー
         if (auth()->id() !== $product->profile->user_id) {
             abort(403, '許可されていない操作です。');
         }
-    
-        return view('products.edit2', compact('product'));
+        $technologieIds = $product->technologies->pluck('id');
+        return view('products.edit2', compact('product','technologieIds'));
     }
 
     /**
@@ -283,7 +286,13 @@ class ProductController extends Controller
             'tag_ids' => 'nullable|array', // タグ用
             'tag_ids.*' => 'exists:technologies,id', // タグIDがtechnologiesテーブルに存在することを確認
         ]);
-    
+
+        // 画像が投稿されている場合の処理
+        if ($request->hasFile('product_image')) {
+            $path = $request->file('product_image')->store('product_images', 'public');
+            $product->image_dir = '/storage/' . $path;
+        }    
+
         // プロダクト情報を更新
         $product->update([
             'title' => $validated['title'],
@@ -298,7 +307,8 @@ class ProductController extends Controller
         $product->technologies()->sync($validated['tag_ids'] ?? []);
     
         // 更新完了後、詳細ページなどにリダイレクト
-        return redirect()->route('products.show', $product->id)->with('success', '更新が完了しました！');
+        return redirect()->route('products.show', $product->id)
+            ->with('success', '更新が完了しました！');
     }
 
     /**

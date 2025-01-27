@@ -48,9 +48,9 @@ class Original_product extends Model
         );
     }
 
-    public function post()
+    public function posts()
     {
-        return $this->hasOne(Original_product_post::class, 'original_product_id', 'id');
+        return $this->hasMany(Original_product_post::class, 'original_product_id', 'id');
     }
 
     // 利便性を高めるためのテクノロジータグ名取得メソッド
