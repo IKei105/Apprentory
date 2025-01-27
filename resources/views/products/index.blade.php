@@ -45,87 +45,44 @@
                 </div>
             </div>        
         </article>
-        <article class="product">
-            <div class="article-left">
-            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
-                    <a href="" class="post-user">
-                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                        <p class="post-user-name">ユーザー名</p>
-                    </a>
+        @foreach ($products as $product)
+            <article class="product">
+                <div class="article-left">
+                <a href="{{ route('products.show', $product->id) }}">
+                    <img src="{{ asset($product->images[0]->image_dir) }}" alt="" class="product-image">  
+                </a>              
+                <div class="post-user-info">
+                        <a href="" class="post-user">
+                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                            <p class="post-user-name">{!! nl2br(e($product->post->user->profile->username ?? '未設定')) !!}
+                            </p>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="article-right">
-                <p class="product-element">テスター募集</p>
-                <h3 class="product-title">オリプロのタイトル</h3>
-                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
-                <p class="product-date">2025/1/8</p>
-                <div class="product-tag">
-                    <a href="#">タグ</a>
-                    <a href="#">タグ</a>
-                </div>
-            </div>        
-        </article>
-        <article class="product">
-            <div class="article-left">
-            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
-                    <a href="" class="post-user">
-                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                        <p class="post-user-name">ユーザー名</p>
-                    </a>
-                </div>
-            </div>
-            <div class="article-right">
-                <p class="product-element">テスター募集</p>
-                <h3 class="product-title">オリプロのタイトル</h3>
-                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
-                <p class="product-date">2025/1/8</p>
-                <div class="product-tag">
-                    <a href="#">タグ</a>
-                    <a href="#">タグ</a>
-                </div>
-            </div>        
-        </article>
-        <article class="product">
-            <div class="article-left">
-            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
-                    <a href="" class="post-user">
-                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                        <p class="post-user-name">ユーザー名</p>
-                    </a>
-                </div>
-            </div>
-            <div class="article-right">
-                <p class="product-element">テスター募集</p>
-                <h3 class="product-title">オリプロのタイトル</h3>
-                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
-                <p class="product-date">2025/1/8</p>
-                <div class="product-tag">
-                    <a href="#">タグ</a>
-                    <a href="#">タグ</a>
-                </div>
-            </div>        
-        </article>
-        <article class="product">
-            <div class="article-left">
-            <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="product-image">                <div class="post-user-info">
-                    <a href="" class="post-user">
-                        <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                        <p class="post-user-name">ユーザー名</p>
-                    </a>
-                </div>
-            </div>
-            <div class="article-right">
-                <p class="product-element">テスター募集</p>
-                <h3 class="product-title">オリプロのタイトル</h3>
-                <p class="product-subtitle">オリプロの内容を一言で紹介</p>
-                <p class="product-date">2025/1/8</p>
-                <div class="product-tag">
-                    <a href="#">タグ</a>
-                    <a href="#">タグ</a>
-                </div>
-            </div>        
-        </article>
-
+                <div class="article-right">
+                    <p class="product-element">
+                        @if ($product->element === 'need-tester')
+                            テスター募集
+                        @elseif ($product->element === 'need-review')
+                            レビュー募集
+                        @else
+                            未定義
+                        @endif
+                    </p>
+                    <a href="{{ route('products.show', $product->id) }}">
+                        <h3 class="product-title">{!! nl2br(e($product->title ?? '未設定')) !!}</h3>
+                        <p class="product-subtitle">{!! nl2br(e($product->subtitle ?? '未設定')) !!}</p>
+                        <p class="product-date">{{ $product->created_at->isoFormat('YYYY/MM/DD') }}</p>
+                    </a>   
+                    <div class="product-tag">
+                        @foreach ($product->technologies as $technology)
+                            <a href="">{{ $technology->name }}</a>
+                        @endforeach
+                    </div>
+                </div>        
+            </article>
+        @endforeach
+        
     </div>
 </main>
 

@@ -51,16 +51,16 @@
                     <input id="star5" type="radio" name="material_rate" value="5" <?= $material->rating_id == 5 ? 'checked' : '' ?> >
                     <label for="star5" class="star">★</label>
 
-                    <input id="star4" type="radio" name="material-rate" value="4" <?= $material->rating_id == 4 ? 'checked' : '' ?>>
+                    <input id="star4" type="radio" name="material_rate" value="4" <?= $material->rating_id == 4 ? 'checked' : '' ?>>
                     <label for="star4" class="star">★</label>
 
-                    <input id="star3" type="radio" name="material-rate" value="3" <?= $material->rating_id == 3 ? 'checked' : '' ?>>
+                    <input id="star3" type="radio" name="material_rate" value="3" <?= $material->rating_id == 3 ? 'checked' : '' ?>>
                     <label for="star3" class="star">★</label>
 
-                    <input id="star2" type="radio" name="material-rate" value="2" <?= $material->rating_id == 2 ? 'checked' : '' ?>>
+                    <input id="star2" type="radio" name="material_rate" value="2" <?= $material->rating_id == 2 ? 'checked' : '' ?>>
                     <label for="star2" class="star">★</label>
 
-                    <input id="star1" type="radio" name="material-rate" value="1" <?= $material->rating_id == 1 ? 'checked' : '' ?>>
+                    <input id="star1" type="radio" name="material_rate" value="1" <?= $material->rating_id == 1 ? 'checked' : '' ?>>
                     <label for="star1" class="star">★</label>
                 </div>
             </div>

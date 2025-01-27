@@ -131,6 +131,7 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         
+        
         $loggedInUserId = Auth::id();
         $technologieIds = $material->technologies->pluck('id'); // technologie_idのリストを取得
 
@@ -143,6 +144,7 @@ class MaterialController extends Controller
 
     public function update(Material $material, Request $request)
     {
+        //dd($request);
 
         if ($request->hasFile('material_image')) { //画像が投稿されていたら
             $path = $request->file('material_image')->store('material_images', 'public');
