@@ -91,7 +91,27 @@
             @foreach ($product->technologies as $index => $technology)
                 <select name="tag_select{{ $index + 1 }}" id="tag_select{{ $index + 1 }}" class="tag-select">
                     <option value="">選択してください</option>
-
+                    <option value="1" {{ old("tag_select$index", $technology->id) == 1 ? 'selected' : '' }}>Ruby</option>
+                    <option value="2" {{ old("tag_select$index", $technology->id) == 2 ? 'selected' : '' }}>PHP</option>
+                    <option value="3" {{ old("tag_select$index", $technology->id) == 3 ? 'selected' : '' }}>SQL</option>
+                    <option value="4" {{ old("tag_select$index", $technology->id) == 4 ? 'selected' : '' }}>HTML</option>
+                    <option value="5" {{ old("tag_select$index", $technology->id) == 5 ? 'selected' : '' }}>CSS</option>
+                    <option value="6" {{ old("tag_select$index", $technology->id) == 6 ? 'selected' : '' }}>JavaScript</option>
+                    <option value="7" {{ old("tag_select$index", $technology->id) == 7 ? 'selected' : '' }}>GitHub</option>
+                    <option value="8" {{ old("tag_select$index", $technology->id) == 8 ? 'selected' : '' }}>Linux</option>
+                    <option value="9" {{ old("tag_select$index", $technology->id) == 9 ? 'selected' : '' }}>docker</option>
+                    <option value="10" {{ old("tag_select$index", $technology->id) == 10 ? 'selected' : '' }}>AWS</option>
+                    <!-- <option value="">選択してください</option>
+                    <option value="1">Ruby</option>
+                    <option value="2">PHP</option>
+                    <option value="3">SQL</option>
+                    <option value="4">HTML</option>
+                    <option value="5">CSS</option>
+                    <option value="6">JavaScript</option>
+                    <option value="7">GitHub</option>
+                    <option value="8">Linux</option>
+                    <option value="9">docker</option>
+                    <option value="10">AWS</option> -->
                 </select>
             @endforeach            
             @error('tag_select1')
