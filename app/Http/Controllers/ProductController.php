@@ -26,7 +26,7 @@ class ProductController extends Controller
     public function index()
     {
         
-        $products = Original_product::with(['technologies', 'images', 'post.user.profile'])->get();
+        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])->get();
 
         //dd($products);
 
@@ -294,7 +294,7 @@ class ProductController extends Controller
         }    
 
 
-        dd($request->all()); // 送信データを確認
+        //dd($request->all()); // 送信データを確認
         // プロダクト情報を更新
         $product->update([
             'title' => $validated['title'],
@@ -304,9 +304,21 @@ class ProductController extends Controller
             'github_url' => $validated['github_url'],
             'element' => $validated['element'],
         ]);
-    
-        // タグの同期
-        $product->technologies()->sync($validated['tag_ids'] ?? []);
+
+        $selectedTechnologieTags = [];
+        for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
+            $selectName = "tag_select$i";
+            if ($request->$selectName) {
+                $selectedTechnologieTags[] = $request->$selectName;
+            }
+        }
+
+        $uniqueSelectedTechnologieTags = array_unique($selectedTechnologieTags);
+
+
+
+        // タグの変更
+        $product->technologies()->sync($uniqueSelectedTechnologieTags ?? []);
     
         // 更新完了後、詳細ページなどにリダイレクト
         return redirect()->route('products.show', $product->id)
