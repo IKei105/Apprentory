@@ -29,6 +29,12 @@ class UserController extends Controller
             'term_id' => $request->term,
             'password' => bcrypt($request->password),
         ]);
+
+        \App\Models\Profile::create([
+            'user_id' => $user->id, // Userの主キーを取得して関連付け
+            'username' => $request->userid,
+            'profile_image' => $request->profile_image,
+        ]);
     
         // ユーザーに紐づくプロフィールを取得
         $profile = $user->profile;
