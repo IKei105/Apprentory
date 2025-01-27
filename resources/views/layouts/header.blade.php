@@ -12,7 +12,7 @@
                 <img src="{{ asset('assets/images/Search 02.svg') }}" class="search-button" id="search-button" alt="検索">
                 <img src="{{ asset('assets/images/Icon.svg') }}" alt="通知">
                 <a href="{{ route('mypage') }}" class="mypage">
-                    <img src="{{ asset($profile->profile_image) }}" alt="M" class="profile-img">
+                    <img src="{{ asset($profile->profile_image ?? '') }}" alt="M" class="profile-img">
                 </a>
                 <button class="new-post">新規投稿<img src="{{ asset('assets/images/Pencil 01.svg') }}"></button>
             </div>

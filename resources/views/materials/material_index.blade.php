@@ -43,7 +43,7 @@
     </div>
 
     <div class="high-rated-materials" id="high-rated-materials">
-        <h1 class="high-rated-title">評価の高い教材</h1>
+        <h1 class="high-rated-title">新着の教材</h1>
         <div class="articles">
             <?php $topRatedMaterialCount = 1; ?>
             @foreach ($latestMaterials as $latestMaterial)
@@ -88,7 +88,7 @@
     </div>
 
     <div class="high-rated-materials latest-materials" id="latest-materials">
-        <h1 class="high-rated-title">新着の教材</h1>
+        <h1 class="high-rated-title">評価の高いの教材</h1>
         <div class="articles">
             <?php $topRatedMaterialCount = 1; ?>
             @foreach ($topRatedMaterials as $topRatedMaterial)
