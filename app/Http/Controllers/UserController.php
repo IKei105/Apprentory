@@ -45,7 +45,7 @@ class UserController extends Controller
             'userid' => $request->userid,
             'password' => $request->password,
             'username' => $profile->username,
-            'profile_image' => $profile->profile_image,
+            'profile_image' => $request->profile_image ?? 'public/assets/images/sample_image.png',
         ]);
         // // 登録後にログインさせる
         // auth()->login($user);    

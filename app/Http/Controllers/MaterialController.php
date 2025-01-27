@@ -20,15 +20,16 @@ class MaterialController extends Controller
     public function index()
     {
         // ここで各情報を出力します
-        $recommendedMaterials = Material::whereBetween('id', [3, 8])
+        $recommendedMaterials = Material::whereBetween('id', [1, 5])
             ->with(['posts.user']) // posts を介して user をロード
             ->withCount('likes')   // likes の数をカウント
             ->get();
 
         $topRatedMaterials = Material::with(['posts.user.profile']) // posts を介して user と profile をロード
-            ->withCount('likes')   // likes の数を取得
-            ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
+            ->withCount('likes') // likes の数を取得
+            ->orderBy('likes_count', 'desc') // likes_count の降順で並べ替え
             ->get();
+        
 
         $latestMaterials = Material::with(['posts.user.profile']) // posts を介して user と profile をロード
             ->withCount('likes')   // likes の数を取得
@@ -107,7 +108,7 @@ class MaterialController extends Controller
 
         $materialPost->save();
 
-        return view('materials.material_index');
+        return view('materials.index');
     }
 
     public function show(Material $material)
