@@ -113,6 +113,34 @@ class MaterialController extends Controller
 
     public function show(Material $material)
     {
+        // ログイン中のユーザーidを取得
+        $loggedInUserId = Auth::id();
+        
+        // Materialモデルのリレーションをロード
+        $material->load(['posts', 'likes', 'technologies']);
+
+        //dd($material->technologies);
+
+        // 投稿者が現在のユーザーかどうかを判定
+        $isOwner = $material->posts->contains('posted_user_id', $loggedInUserId);
+
+        // 現在のユーザーが「いいね」したかを確認
+        $isLikedByCurrentUser = $material->likes->contains($loggedInUserId);
+
+        // likesの数をカウント
+        $likeCount = $material->likes->count();
+
+        // postsリレーションを取得し、最初の投稿を選択
+        $posts = $material->posts;
+        $post = $posts[self::FIRST_POST_INDEX] ?? null; // 投稿がない場合の安全策
+
+        // compactを使用してデータをビューに渡す
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser'));
+    }
+
+
+    public function show2(Material $material)
+    {
 
         // ログイン中のユーザーidを取得
         $loggedInUserId = Auth::id();
@@ -201,11 +229,14 @@ class MaterialController extends Controller
             }
         }
 
-        return view('materials.index');
+        return $this->index();
     }
 
     public function destroy(Material $material) {
+
         $material->delete();
+
+        return $this->index();
     }
 
     // public function returnCon()

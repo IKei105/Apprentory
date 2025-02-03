@@ -8,6 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 @section('content')
+    <div class="material-actions">
+        <div class="product-technology-tags">
+            @foreach ($material->technologies as $technology)
+                <a href="" class="product-tag">{{ $technology->name }}</a>
+            @endforeach
+        </div>
+    </div>
     <div class="material-book-image">
         <img src="{{ asset($material->image_dir) }}" alt="Material Image">
         </div>
