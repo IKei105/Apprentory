@@ -17,7 +17,64 @@ class MaterialController extends Controller
     private const LAST_SELECT_INDEX = 5;
     
 
+    public function getImageWithRetry($imagePath, $maxRetries = 3, $waitTime = 1)
+    {
+        $attempt = 0;
+        while ($attempt < $maxRetries) {
+            try {
+                // ファイルの物理パスを正しく取得する（`public_path()` は不要）
+                $filePath = base_path('storage/app/public' . str_replace('/storage', '', $imagePath));
+
+                if (file_exists($filePath)) {
+                    return asset($imagePath);
+                }
+
+                throw new \Exception("画像が見つかりません: " . $filePath);
+            } catch (\Exception $e) {
+                $attempt++;
+                sleep($waitTime);
+            }
+        }
+        return asset('assets/material_images/no-image.png');
+    }
+
+
     public function index()
+    {
+        $recommendedMaterials = Material::whereBetween('id', [1, 5])
+            ->with(['posts.user']) // posts を介して user をロード
+            ->withCount('likes')   // likes の数をカウント
+            ->get()
+            ->map(function ($material) {
+                $material->image_dir = $this->getImageWithRetry($material->image_dir);
+                return $material;
+            });
+
+        $topRatedMaterials = Material::with(['posts.user.profile'])
+            ->withCount('likes')
+            ->orderBy('likes_count', 'desc')
+            ->get()
+            ->map(function ($material) {
+                $material->image_dir = $this->getImageWithRetry($material->image_dir);
+                return $material;
+            });
+
+        $latestMaterials = Material::with(['posts.user.profile'])
+            ->withCount('likes')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($material) {
+                $material->image_dir = $this->getImageWithRetry($material->image_dir);
+                return $material;
+            });
+
+        return view('materials.material_index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
+    }
+
+
+
+
+    public function index2()
     {
         // ここで各情報を出力します
         $recommendedMaterials = Material::whereBetween('id', [1, 5])
@@ -113,6 +170,34 @@ class MaterialController extends Controller
 
     public function show(Material $material)
     {
+        // ログイン中のユーザーidを取得
+        $loggedInUserId = Auth::id();
+        
+        // Materialモデルのリレーションをロード
+        $material->load(['posts', 'likes', 'technologies']);
+
+        //dd($material->technologies);
+
+        // 投稿者が現在のユーザーかどうかを判定
+        $isOwner = $material->posts->contains('posted_user_id', $loggedInUserId);
+
+        // 現在のユーザーが「いいね」したかを確認
+        $isLikedByCurrentUser = $material->likes->contains($loggedInUserId);
+
+        // likesの数をカウント
+        $likeCount = $material->likes->count();
+
+        // postsリレーションを取得し、最初の投稿を選択
+        $posts = $material->posts;
+        $post = $posts[self::FIRST_POST_INDEX] ?? null; // 投稿がない場合の安全策
+
+        // compactを使用してデータをビューに渡す
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser'));
+    }
+
+
+    public function show2(Material $material)
+    {
 
         // ログイン中のユーザーidを取得
         $loggedInUserId = Auth::id();
@@ -201,12 +286,18 @@ class MaterialController extends Controller
             }
         }
 
-        return view('materials.index');
+        return $this->index();
     }
 
     public function destroy(Material $material) {
+
         $material->delete();
+
+        return $this->index();
     }
+
+    
+
 
     // public function returnCon()
     // {

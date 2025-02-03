@@ -3,11 +3,19 @@
 @section('title', '教材詳細 | Apprentory')
 
 @push('styles')
-    <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 @section('content')
+    <div class="material-actions">
+        <div class="product-technology-tags">
+            @foreach ($material->technologies as $technology)
+                <a href="" class="product-tag">{{ $technology->name }}</a>
+            @endforeach
+        </div>
+    </div>
     <div class="material-book-image">
         <img src="{{ asset($material->image_dir) }}" alt="Material Image">
         </div>

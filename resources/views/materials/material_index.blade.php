@@ -3,9 +3,10 @@
 @section('title', '教材一覧 | Apprentory')
 
 @push('styles')
-    <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="css/material_index.css">
     <link rel="stylesheet" href="css/menu-select.css">
+    <link rel="stylesheet" href="{{ asset('css/font.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 @endpush
 @section('content')
 <div class="menu-select">
@@ -24,6 +25,7 @@
         <div class="materials-list">
         <?php $recommendedMaterialCount = 1?>
         @foreach ($recommendedMaterials as $recommendedMaterial)
+
             <div class="material-item">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像" loading="lazy">
@@ -52,6 +54,7 @@
             @endphp
                 <div class="article">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
+                        
                         <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
                     <div class="article-text-info">
