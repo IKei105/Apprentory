@@ -17,7 +17,64 @@ class MaterialController extends Controller
     private const LAST_SELECT_INDEX = 5;
     
 
+    public function getImageWithRetry($imagePath, $maxRetries = 3, $waitTime = 1)
+    {
+        $attempt = 0;
+        while ($attempt < $maxRetries) {
+            try {
+                // ファイルの物理パスを正しく取得する（`public_path()` は不要）
+                $filePath = base_path('storage/app/public' . str_replace('/storage', '', $imagePath));
+
+                if (file_exists($filePath)) {
+                    return asset($imagePath);
+                }
+
+                throw new \Exception("画像が見つかりません: " . $filePath);
+            } catch (\Exception $e) {
+                $attempt++;
+                sleep($waitTime);
+            }
+        }
+        return asset('assets/material_images/no-image.png');
+    }
+
+
     public function index()
+    {
+        $recommendedMaterials = Material::whereBetween('id', [1, 5])
+            ->with(['posts.user']) // posts を介して user をロード
+            ->withCount('likes')   // likes の数をカウント
+            ->get()
+            ->map(function ($material) {
+                $material->image_dir = $this->getImageWithRetry($material->image_dir);
+                return $material;
+            });
+
+        $topRatedMaterials = Material::with(['posts.user.profile'])
+            ->withCount('likes')
+            ->orderBy('likes_count', 'desc')
+            ->get()
+            ->map(function ($material) {
+                $material->image_dir = $this->getImageWithRetry($material->image_dir);
+                return $material;
+            });
+
+        $latestMaterials = Material::with(['posts.user.profile'])
+            ->withCount('likes')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($material) {
+                $material->image_dir = $this->getImageWithRetry($material->image_dir);
+                return $material;
+            });
+
+        return view('materials.material_index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
+    }
+
+
+
+
+    public function index2()
     {
         // ここで各情報を出力します
         $recommendedMaterials = Material::whereBetween('id', [1, 5])
@@ -238,6 +295,9 @@ class MaterialController extends Controller
 
         return $this->index();
     }
+
+    
+
 
     // public function returnCon()
     // {

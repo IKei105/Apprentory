@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//demo.productionready.io/main.css" />
     <link rel="stylesheet" href="css/top_rated_materials.css">
     <link rel="stylesheet" href="css/menu-select.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">

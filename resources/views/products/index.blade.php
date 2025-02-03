@@ -4,6 +4,8 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/products_style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/font.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 @endpush
 
 @section('content')
