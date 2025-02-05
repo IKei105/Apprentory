@@ -143,6 +143,8 @@ header{
     height: 100%;
     width: 100%;
     padding-top: 150px;
+    display: flex;
+    justify-content: center;
 }
 .content-wrapper{
     max-width: 800px;
