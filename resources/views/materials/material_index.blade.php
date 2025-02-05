@@ -3,9 +3,9 @@
 @section('title', '教材一覧 | Apprentory')
 
 @push('styles')
-    <link rel="stylesheet" href="css/material_index.css">
     <link rel="stylesheet" href="css/menu-select.css">
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
+    <link rel="stylesheet" href="css/material_index.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 @endpush
 @section('content')
@@ -64,7 +64,7 @@
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
                         </div>
-                        <a href="">
+                        <a href="{{ route('materials.show', $latestMaterial->id) }}">
                             <h3 class="material-title">{!! nl2br(e($latestMaterial->title)) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $latestMaterial->rating_id; $i++)

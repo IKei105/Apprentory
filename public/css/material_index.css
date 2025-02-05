@@ -3,9 +3,15 @@ body {
     margin-bottom: 300px;
 }
 
-a:hover {
+a:hover, p:hover {
     text-decoration: none;
 }
+
+.new-post {
+    padding: 1px 6px;
+}
+
+
 
 
 /**************************************************
@@ -167,6 +173,12 @@ body {
     margin-top: 8px;
     font-size: 16px;
     color: black;
+}
+
+.post-user-info a {
+    display: flex; /* フレックスボックスを適用 */
+    align-items: center; /* 垂直方向の中央揃え */
+    gap: 8px; /* ユーザープロフィール画像と名前の間隔を調整 */
 }
 
 /* ポストユーザー名 */
