@@ -39,7 +39,7 @@ class MaterialController extends Controller
     }
 
 
-    public function index()
+    public function index3()
     {
         $recommendedMaterials = Material::whereBetween('id', [1, 5])
             ->with(['posts.user']) // posts を介して user をロード
@@ -74,7 +74,7 @@ class MaterialController extends Controller
 
 
 
-    public function index2()
+    public function index()
     {
         // ここで各情報を出力します
         $recommendedMaterials = Material::whereBetween('id', [1, 5])

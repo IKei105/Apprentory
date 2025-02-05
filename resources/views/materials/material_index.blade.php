@@ -28,7 +28,7 @@
 
             <div class="material-item">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
-                    <img class="material-book-image" src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像" loading="lazy">
+                    <img class="material-book-image" src="{{ $recommendedMaterial->image_dir }}" alt="教材画像"  >
                     <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
                     <div class="post-likes">
                         <p>♡ {{ $recommendedMaterial->likes_count }}</p>
@@ -55,7 +55,7 @@
                 <div class="article">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         
-                        <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
+                        <img class="material-book-image" data-src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
                     <div class="article-text-info">
                         <div class="post-user-info">
@@ -100,7 +100,7 @@
             @endphp
                 <div class="article">
                     <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
-                        <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
+                        <img class="material-book-image" data-src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
                     <div class="article-text-info">
                         <div class="post-user-info">
@@ -142,7 +142,7 @@
         @foreach ($recommendedMaterials as $recommendedMaterial)
             <div class="material-item">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
-                    <img class="material-book-image" src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
+                    <img class="material-book-image" data-src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
                     <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
                     <div class="post-likes">
                         <p>♡ {{ $recommendedMaterial->likes_count }}</p>
@@ -233,4 +233,5 @@
         </div>
     </div>
     <script src="{{ asset('/js/materials_index.js') }}"></script>
+    <script src="{{ asset('/js/image_load.js') }}"></script>
 @endsection
