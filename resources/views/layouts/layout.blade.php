@@ -14,7 +14,9 @@
     @include('layouts.header')
 
     <div class="main-content">
-        @yield('content')
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
     </div>
 
     <!--投稿ボタン押下時ポップアップ-->
