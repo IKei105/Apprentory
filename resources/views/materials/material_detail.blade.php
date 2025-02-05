@@ -3,14 +3,15 @@
 @section('title', '教材詳細 | Apprentory')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 @section('content')
     <div class="material-actions">
         <div class="product-technology-tags">
+            <p>ユーザーネーム</p>
             @foreach ($material->technologies as $technology)
                 <a href="" class="product-tag">{{ $technology->name }}</a>
             @endforeach
