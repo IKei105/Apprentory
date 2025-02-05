@@ -15,8 +15,10 @@
 
     <!-- レイアウト上部 -->
     <div class="layout-top">
-        <a href="{{ url()->previous() }}" class="back">←</a>
-        <button class=submit type="submit">投稿</button>
+        <div class="top-content">
+            <a href="{{ url()->previous() }}" class="back">←</a>
+            <button class=submit type="submit">投稿</button>
+        </div>
     </div>
 
     <!-- レイアウトメイン部分 -->
