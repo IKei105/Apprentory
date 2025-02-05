@@ -117,11 +117,6 @@ margin-right: 16px;
     white-space: nowrap;
     border-radius: 12px;
 }
-@media(min-width:1024px){
-    .layout-bottom{
-        width: 75%;
-    }
-}
 .selecter{
     display: flex;
     font-size: 16px;
