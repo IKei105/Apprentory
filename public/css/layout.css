@@ -148,6 +148,7 @@ header{
 }
 .content-wrapper{
     max-width: 800px;
+    position: relative;
 }
 
 /* 投稿ボタン押下時ポップアップ*/

@@ -3,18 +3,21 @@
     height: 75px;
     margin: 0;
     margin-top: -29px;
-    padding-left: 80px;
-    padding-right: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #f2f2f2;
     border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    justify-content: center;
     position: fixed;
     top: 151px;
     left: 0;
     z-index: 100;
-
+}
+.top-content{
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .back{
@@ -74,19 +77,21 @@
     margin-top: 4px;
 
 }
-
+.main-image{
+    margin-right: 20px;
+}
 .main-image img {
     max-width: 240px;
     height: auto;
 }
 
 .sub-image img {
-    max-width: 180px;
+    max-width: 120px;
     height: auto;
 }
 
 .post-images-left label {
-    margin-right: 20px;
+    margin-right: 16px;
 }
 
 .post-images-left input{
