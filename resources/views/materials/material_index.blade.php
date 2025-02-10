@@ -12,8 +12,8 @@
 <div class="menu-select">
         <div class="content-switch">
             <button class="recommended-button" id="recommended-button">推奨教材</button>
-            <button class="new-button" id="new-button">新着</button>
-            <button class="high-rated-button" id="high-rated-button">高評価</button>
+            <button class="new-button" id="new-button">高評価</button>
+            <button class="high-rated-button" id="high-rated-button">新着</button>
         </div>
         <div class="filter">
             <p>絞り込み</p>
@@ -28,14 +28,16 @@
 
             <div class="material-item">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
+                <?php sleep(0.3); ?>
                     <img class="material-book-image" src="{{ $recommendedMaterial->image_dir }}" alt="教材画像"  >
+                    <?php sleep(0.3); ?>
                     <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
                     <div class="post-likes">
                         <p>♡ {{ $recommendedMaterial->likes_count }}</p>
                     </div>
                 </a>
             </div>
-            @if ($recommendedMaterialCount >= 10)
+            @if ($recommendedMaterialCount >= 5)
                 @break
             @else
                 <?php $recommendedMaterialCount++; ?>
@@ -157,7 +159,7 @@
 
     <!-- もっと見るを押した評価の高い教材 -->
     <div class="high-rated-materials-all hidden" id="high-rated-materials-all">
-        <h1 class="high-rated-title">評価の高い教材</h1>
+        <h1 class="high-rated-title">新着の教材</h1>
         <div class="articles">
             @foreach ($latestMaterials as $latestMaterial)
             @php
@@ -197,7 +199,7 @@
 
     <!-- もっと見るを押した新着の教材 -->
     <div class="high-rated-materials hidden" id="latest-materials-all">
-        <h1 class="high-rated-title">新着の教材</h1>
+        <h1 class="high-rated-title">評価の高い教材</h1>
         <div class="articles">
             @foreach ($topRatedMaterials as $topRatedMaterial)
             @php
