@@ -172,3 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+{
+    const form = document.querySelector('#edit-form');
+    if (form) { // delete-form が存在する場合のみ処理を実行
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // formのbuttonは押すとactionで指定したページに飛んでしまうのでとりあえず防ぐ
+
+            if (confirm('投稿記事を削除していいでしょうか？') === false) {
+                return;
+            }
+
+            form.submit();
+        });
+    }
+}

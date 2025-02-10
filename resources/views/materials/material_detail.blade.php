@@ -37,13 +37,12 @@
         <!-- 投稿ユーザーの記事だったら -->
         @if($isOwner)
             <div class="action-buttons">
+                <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
                 <form method="POST" action="{{ route('materials.destroy', $material) }}" class="delete-form" id="delete-form">
                     @method('DELETE')
                     @csrf
                     <button class="delete-button"><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
                 </form>
-                
-                <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
             </div>
         @endif
         <div class="material_posted_date">

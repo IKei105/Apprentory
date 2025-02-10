@@ -131,7 +131,7 @@ body {
 /* 教材名を入力のコンテナ */
 .post-material-title {
     position: relative;
-     margin-bottom: 3px;  /* 下線とtextareaとの幅を調整 */
+    margin-bottom: 3px;  /* 下線とtextareaとの幅を調整 */
 }
 
 /* 教材名を入力のコンテナの下に下線を表示 */
@@ -153,6 +153,7 @@ body {
     font-size: 24px;
     color: black;
     position: relative;
+    width:100%;
 }
 
 /* 教材の感想を入力 */
