@@ -222,14 +222,14 @@ class MaterialController extends Controller
             }
         }
 
-        return $this->index();
+        return redirect()->route('materials.show', ['material' => $material->id]);
     }
 
     public function destroy(Material $material) {
 
         $material->delete();
 
-        return $this->index();
+        return redirect()->route('materials.index');
     }
 
     

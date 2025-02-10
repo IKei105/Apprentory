@@ -140,6 +140,11 @@ body {
     display: inline-block;
 }
 
+.delete-button {
+    border: none;
+    outline: none;
+}
+
 .delete-button:hover {
     cursor: pointer;
 }

@@ -10,4 +10,5 @@
         <img src="{{ asset($profile->profile_image) }}" alt="プロフィール画像" width="50">
 
         <a href="/">トップページへ戻る</a>
+        <a href="{{ route('logout') }}">ログアウト</a>
     </main>@endsection

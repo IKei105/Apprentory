@@ -12,12 +12,12 @@
 @endpush
 @section('content')
     <div class="post-material-item">
-        <form action="{{ route('materials.update', $material->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('materials.update', $material->id) }}" method="POST" id="edit-form" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         <div class="layout-top">
             <a href="{{ route('materials.index') }}" class="back">←</a>
-            <button class="submit">編集</button>
+            <button class="submit" >編集</button>
         </div>
             
             <div class="material-flex-container">
