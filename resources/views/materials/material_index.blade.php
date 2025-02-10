@@ -48,10 +48,12 @@
         <h1 class="high-rated-title">新着の教材</h1>
         <div class="articles">
             <?php $topRatedMaterialCount = 1; ?>
+            
             @foreach ($latestMaterials as $latestMaterial)
             @php
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
+                <?php sleep(0.3); ?>
                 <div class="article">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         

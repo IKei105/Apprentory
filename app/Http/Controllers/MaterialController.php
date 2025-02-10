@@ -126,6 +126,7 @@ class MaterialController extends Controller
         $posts = $material->posts;
         $post = $posts[self::FIRST_POST_INDEX] ?? null; // 投稿がない場合の安全策
 
+
         // compactを使用してデータをビューに渡す
         return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser'));
     }

@@ -19,14 +19,15 @@
         </div>
         <div>
             <form  class="search-form hidden" action="" method="POST">
-                <input class="search-input" type="text" name="search" placeholder="タグとか言語とかさぁ、入れろよお前">
+                <input class="search-input" type="text" name="search" placeholder="検索したいタグ、言語を入力">
                 <!-- <button type="submit">検索</button> -->
             </form>
         </div>
         <div class="header-bottom">
             <a href="{{ route('materials.index') }}" class="tab active">教材共有</a>
             <a href="{{ route('products.index') }}" class="tab">オリプロ共有</a>
-            <div class="indicator"></div>
+            <div class="material-indicator hidden"></div>
+            <div class="product-indicator hidden"></div>
         </div>
     </header>
     <script src="{{ asset('/js/header.js') }}"></script>

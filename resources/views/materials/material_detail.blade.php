@@ -10,11 +10,16 @@
 @endpush
 @section('content')
     <div class="material-actions">
-        <div class="product-technology-tags">
-            <p>ユーザーネーム</p>
-            @foreach ($material->technologies as $technology)
-                <a href="" class="product-tag">{{ $technology->name }}</a>
-            @endforeach
+        <div class="material-actions-left">
+            <p class="username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
+            <div class="product-technology-tags">
+                @foreach ($material->technologies as $technology)
+                    <a href="" class="product-tag">{{ $technology->name }}</a>
+                @endforeach
+            </div>
+        </div>
+        <div class="material-actions-right">
+
         </div>
     </div>
     <div class="material-book-image">
