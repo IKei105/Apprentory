@@ -127,12 +127,24 @@ header{
     color: #6d6d6d;
     text-decoration: none;
 }
-.header-bottom .indicator{
+.header-bottom .material-indicator{
     position: absolute;
     bottom: 0;
     left: 26px;
     height: 10px;
     width: 70px; 
+    background-color: #49b3c3;
+    transition: left 0.3s ease, width 0.3s ease;
+    border-radius: 90px 90px 0 0;
+}
+
+/* オリプロ共有の下線 */
+.product-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 145px;
+    height: 10px;
+    width: 111px; 
     background-color: #49b3c3;
     transition: left 0.3s ease, width 0.3s ease;
     border-radius: 90px 90px 0 0;

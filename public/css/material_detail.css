@@ -9,12 +9,19 @@ body {
 }
 
 .material-actions {
-    background-color: aqua;
-}
-
-.product-technology-tags {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
     height: 220px;
     padding-top: 120px;
+}
+
+.username {
+    padding-right: 36px;
+}
+
+/* タグが入っているdiv */
+.product-technology-tags {
     display: flex;
     align-items: center;
 }
@@ -42,7 +49,7 @@ body {
     width: 50px;
 }
 
-
+/* ヘッダーの技術ダグ */
 .product-tag{
     display: flex;
     align-items: center;
@@ -57,7 +64,7 @@ body {
     color: #6d6d6d;
     border-radius: 12px;
     padding-top: 3px;
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
 /* 教材の画像 */
