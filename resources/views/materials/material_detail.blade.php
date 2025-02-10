@@ -11,7 +11,10 @@
 @section('content')
     <div class="material-actions">
         <div class="material-actions-left">
-            <p class="username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
+            <a class="posted-profile" href="">
+                <img class="posted-userimage" src="" alt="">
+                <p class="posted-username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
+            </a>
             <div class="product-technology-tags">
                 @foreach ($material->technologies as $technology)
                     <a href="" class="product-tag">{{ $technology->name }}</a>
@@ -19,7 +22,12 @@
             </div>
         </div>
         <div class="material-actions-right">
-
+            <a class="purchase-button" href="">購入する</a>
+            @if ($isLikedByCurrentUser) <!-- いいねをしていたら -->
+                <button class="heart liked">♥</button>
+            @else
+                <button class="heart non-liked">♡</button>
+            @endif
         </div>
     </div>
     <div class="material-book-image">
@@ -37,11 +45,6 @@
                 
                 <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
             </div>
-        @endif
-        @if ($isLikedByCurrentUser) <!-- いいねをしていたら -->
-            <button class="heart">♥</button>
-        @else
-            <button class="heart">♡</button>
         @endif
         <div class="material_posted_date">
         <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>

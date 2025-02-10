@@ -16,7 +16,16 @@
 
 document.querySelectorAll('.heart').forEach(heart => {
     heart.addEventListener('click', () => {
-        heart.textContent = heart.textContent === '♡' ? '♥' : '♡';
+        // クラスの切り替え
+        if (heart.classList.contains('liked')) {
+            heart.classList.remove('liked');
+            heart.classList.add('non-liked');
+            heart.textContent = '♡';
+        } else {
+            heart.classList.remove('non-liked');
+            heart.classList.add('liked');
+            heart.textContent = '♥';
+        }
 
         const table = 'user_like'; // または 'original_project_likes'
 
@@ -34,9 +43,7 @@ document.querySelectorAll('.heart').forEach(heart => {
             },
             body: JSON.stringify({ material_id: materialId }),
         })
-        
         .then(response => response.json())
         .then(data => console.log(data));
-
     });
 });

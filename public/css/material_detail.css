@@ -8,22 +8,65 @@ body {
     padding-bottom: 500px;
 }
 
+/* タグとかユーザーネームが入ってるdiv */
 .material-actions {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 30px;
     height: 220px;
     padding-top: 120px;
 }
 
-.username {
-    padding-right: 36px;
+/* それの左側 */
+.material-actions-left {
+    display: flex;
+    align-items: center;
+}
+
+/* それの右側 */
+.material-actions-right {
+    display: flex;
+    align-items: center;
+}
+
+/* 投稿者情報 */
+.posted-profile {
+    display: flex;
+    color: black;
+    margin-right: 30px;
+}
+
+/* 投稿者の名前 */
+.posted-username {
+    margin-right: 6px;
+}
+
+/* 投稿者のアイコン */
+.posted-userimage {
+    width: 100%;
+    height: 100%;
+    margin-right: 8px;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 /* タグが入っているdiv */
 .product-technology-tags {
     display: flex;
     align-items: center;
+}
+
+.purchase-button {
+    width: 151px;
+    height: 36px;
+    margin-right: 24px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #00D1D1;
+    border-radius: 25px;
 }
 
 .heart:hover {
@@ -103,7 +146,19 @@ body {
 
 /* ハート */
 .heart {
+    border: none;
+    outline: none;
+    font-size: 36px;
+    background-color: #F2F2F2;
+}
+
+/* いいねしている */
+.liked {
     color:rgb(255, 0, 242);
+}
+
+.non-liked {
+    color: #6D6D6D;
 }
 
 /* 教材投稿日 */
