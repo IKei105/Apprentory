@@ -140,20 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-// document.querySelector('form').addEventListener('submit', function(event) {
-//     const imageInput = document.getElementById('image');
-//     const errorMessage = document.getElementById('image-error');
-
-//     // 画像が選択されていない場合
-//     if (!imageInput.files.length) {
-//         event.preventDefault(); // フォームの送信をキャンセル
-//         errorMessage.style.display = 'block'; // エラーメッセージを表示
-//     } else {
-//         errorMessage.style.display = 'none'; // エラーメッセージを非表示
-//     }
-// });
-
 document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('image');
     const previewImage = document.querySelector('.material-book-sample-image');
@@ -179,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault(); // formのbuttonは押すとactionで指定したページに飛んでしまうのでとりあえず防ぐ
 
-            if (confirm('投稿記事を削除していいでしょうか？') === false) {
+            if (confirm('編集投稿してよろしいでしょうか？') === false) {
                 return;
             }
 

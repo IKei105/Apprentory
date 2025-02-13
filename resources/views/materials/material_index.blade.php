@@ -16,49 +16,60 @@
             <button class="high-rated-button" id="high-rated-button">新着</button>
         </div>
         <div class="filter">
-            <p>絞り込み</p>
+            <select name="tag" id="tag" class="filter-tag"  >
+                <option value="">絞り込み</option>
+                <option value="1">Ruby</option>
+                <option value="2">PHP</option>
+                <option value="3">SQL</option>
+                <option value="4">HTML</option>
+                <option value="5">CSS</option>
+                <option value="6">JavaScript</option>
+                <option value="7">GitHub</option>
+                <option value="8">Linux</option>
+                <option value="9">docker</option>
+                <option value="10">AWS</option>
+                <option value="11">その他</option>
+            </select>
         </div>
     </div>
-    
     <div class="recommended_materials" id="recommended_materials">
         <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
         <?php $recommendedMaterialCount = 1?>
         @foreach ($recommendedMaterials as $recommendedMaterial)
-
-            <div class="material-item">
-            <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
-                <?php sleep(0.3); ?>
-                    <img class="material-book-image" src="{{ $recommendedMaterial->image_dir }}" alt="教材画像"  >
+            <div class="material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
+                <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <?php sleep(0.3); ?>
-                    <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
-                    <div class="post-likes">
-                        <p>♡ {{ $recommendedMaterial->likes_count }}</p>
-                    </div>
-                </a>
-            </div>
-            @if ($recommendedMaterialCount >= 5)
-                @break
-            @else
-                <?php $recommendedMaterialCount++; ?>
-            @endif
+                        <img class="material-book-image" src="{{ $recommendedMaterial->image_dir }}" alt="教材画像"  >
+                        <?php sleep(0.3); ?>
+                        <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
+                        <div class="post-likes">
+                            <p>♡ {{ $recommendedMaterial->likes_count }}</p>
+                        </div>
+                        @foreach ($recommendedMaterial->technologies as $tech)
+                            <a href="" class="technology-tag">{{ $tech->name }}</a>
+                        @endforeach
+                    </a>
+                </div>
+                @if ($recommendedMaterialCount >= 5)
+                    @break
+                @else
+                    <?php $recommendedMaterialCount++; ?>
+                @endif
         @endforeach
         </div>
     </div>
-
     <div class="high-rated-materials" id="high-rated-materials">
         <h1 class="high-rated-title">新着の教材</h1>
         <div class="articles">
             <?php $topRatedMaterialCount = 1; ?>
-            
             @foreach ($latestMaterials as $latestMaterial)
             @php
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <?php sleep(0.3); ?>
-                <div class="article">
+                <div class="article material" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
-                        
                         <img class="material-book-image" data-src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
                     <div class="article-text-info">
@@ -83,6 +94,9 @@
                                 <p>♡ {{ $latestMaterial->likes_count }}人がいいね</p>
                             </div>
                         </a>
+                        @foreach ($latestMaterial->technologies as $tech)
+                            <a href="" class="technology-tag">{{ $tech->name }}</a>
+                        @endforeach
                     </div>    
                 </div>
                 @if ($topRatedMaterialCount >= 4)
@@ -93,7 +107,6 @@
             @endforeach    
         </div>
     </div>
-
     <div class="high-rated-materials latest-materials" id="latest-materials">
         <h1 class="high-rated-title">評価の高いの教材</h1>
         <div class="articles">
@@ -102,7 +115,8 @@
             @php
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article">
+                <div class="article material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}">
+                    
                     <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                         <img class="material-book-image" data-src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
@@ -128,6 +142,9 @@
                                 <p>♡ {{ $topRatedMaterial->likes_count }}人がいいね</p>
                             </div>
                         </a>
+                        @foreach ($topRatedMaterial->technologies as $tech)
+                            <a href="" class="technology-tag">{{ $tech->name }}</a>
+                        @endforeach
                     </div>    
                 </div>
                 @if ($topRatedMaterialCount >= 4)
@@ -138,13 +155,12 @@
             @endforeach    
         </div>
     </div>
-
     <!-- 以下はもっと見る、または推奨教材を押した時に表示するようのhtmlです -->
     <div class="recommended_materials_all hidden" id="recommended_materials_all">
         <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
         @foreach ($recommendedMaterials as $recommendedMaterial)
-            <div class="material-item">
+            <div class="material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" data-src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
                     <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
@@ -152,11 +168,13 @@
                         <p>♡ {{ $recommendedMaterial->likes_count }}</p>
                     </div>
                 </a>
+                @foreach ($recommendedMaterial->technologies as $tech)
+                    <a href="" class="technology-tag">{{ $tech->name }}</a>
+                @endforeach
             </div>
         @endforeach
         </div>
     </div>
-
     <!-- もっと見るを押した評価の高い教材 -->
     <div class="high-rated-materials-all hidden" id="high-rated-materials-all">
         <h1 class="high-rated-title">新着の教材</h1>
@@ -165,7 +183,7 @@
             @php
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article">
+                <div class="article material" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="">
                     </a>
@@ -191,12 +209,14 @@
                                 <p>♡ {{ $latestMaterial->likes_count }}人がいいね</p>
                             </div>
                         </a>
+                        @foreach ($latestMaterial->technologies as $tech)
+                            <a href="" class="technology-tag">{{ $tech->name }}</a>
+                        @endforeach
                     </div>    
                 </div>
             @endforeach    
         </div>
     </div>
-
     <!-- もっと見るを押した新着の教材 -->
     <div class="high-rated-materials hidden" id="latest-materials-all">
         <h1 class="high-rated-title">評価の高い教材</h1>
@@ -205,7 +225,7 @@
             @php
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article">
+                <div class="article material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}">
                     <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
                     </a>
@@ -231,6 +251,9 @@
                                 <p>♡ {{ $topRatedMaterial->likes_count }}人がいいね</p>
                             </div>
                         </a>
+                        @foreach ($topRatedMaterial->technologies as $tech)
+                            <a href="" class="technology-tag">{{ $tech->name }}</a>
+                        @endforeach
                     </div>    
                 </div>
             @endforeach    

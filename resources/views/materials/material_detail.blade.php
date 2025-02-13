@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="material-actions-right">
-            <a class="purchase-button" href="">購入する</a>
+            <a class="purchase-button" href="{!! nl2br(e($material->material_url)) !!}" target="_blank" rel="noopener noreferrer">購入する</a>
             @if ($isLikedByCurrentUser) <!-- いいねをしていたら -->
                 <button class="heart liked">♥</button>
             @else
@@ -65,7 +65,7 @@
         </div> 
         <div class="material_url">
             <p>URL</p>
-            <a href="{!! nl2br(e($material->material_url)) !!}">{!! nl2br(e($material->material_url)) !!}</a>
+            <a href="{!! nl2br(e($material->material_url)) !!}" target="_blank" rel="noopener noreferrer">{!! nl2br(e($material->material_url)) !!}</a>
         </div>
     </div>
     <script src="{{ asset('/js/material_detail.js') }}"></script>
