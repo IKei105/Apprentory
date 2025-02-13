@@ -11,6 +11,66 @@ a:hover, p:hover {
     padding: 1px 6px;
 }
 
+/* 絞り込み */
+.filter-tag {
+    appearance: none; /* デフォルトのスタイルを無効化（全ブラウザ対応） */
+    -webkit-appearance: none; /* Safari, Chrome */
+    -moz-appearance: none; /* Firefox */
+    -ms-appearance: none; /* Internet Explorer */
+
+    background-color: #F2F2F2; /* 背景色 */
+    border: none; /* 枠線を削除 */
+    font-size: 16px; /* 文字サイズ */
+    border-radius: 5px; /* 角を丸める（不要なら削除） */
+    cursor: pointer; /* マウスポインターを変更 */
+    width: 100%; /* 必要に応じて幅を調整 */
+    outline: none;
+}
+
+/* フォーカス時に青枠をなくす */
+.filter-tag:focus {
+    outline: none; /* 青枠を消す */
+    box-shadow: none; /* フォーカス時の影も消す */
+}
+
+/* IEのデフォルトの矢印を削除 */
+.filter-tag::-ms-expand {
+    display: none;
+}
+
+/* Firefox の背景色のリセット */
+@-moz-document url-prefix() {
+    .filter-tag {
+        background-color: #D9D9D9 !important;
+    }
+}
+
+/* カスタム矢印を追加（すべてのブラウザ対応） */
+.filter-tag {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+/* iOS（iPhone, iPad）でのデフォルトスタイルを削除 */
+@supports (-webkit-touch-callout: none) {
+    .filter-tag {
+        background-color: #D9D9D9 !important;
+    }
+}
+
+
+/* タグ名 */
+.technology-tag {
+    color: black;
+    background-color: #D9D9D9;
+    font-size: 12px;
+    border-radius: 12px;
+    padding: 0 8px;
+    margin-right: 5px;
+}
+
 
 
 

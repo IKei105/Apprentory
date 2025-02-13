@@ -20,19 +20,20 @@ class MaterialController extends Controller
     {
         // ここで各情報を出力します
         $recommendedMaterials = Material::whereBetween('id', [16, 26])
-            ->with(['posts.user']) // posts を介して user をロード
+            ->with(['posts.user', 'technologies:id,name']) // posts を介して user をロード
             ->withCount('likes')   // likes の数をカウント
             ->get();
             
-        $topRatedMaterials = Material::with(['posts.user.profile']) // posts を介して user と profile をロード
+        $topRatedMaterials = Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
             ->withCount('likes') // likes の数を取得
             ->orderBy('likes_count', 'desc') // likes_count の降順で並べ替え
             ->get();
 
-        $latestMaterials = Material::with(['posts.user.profile']) // posts を介して user と profile をロード
+        $latestMaterials = Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
             ->withCount('likes')   // likes の数を取得
             ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
             ->get();
+        
 
         return view('materials.material_index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
     }
@@ -198,6 +199,7 @@ class MaterialController extends Controller
                 $selectedTechnologieTags[] = $request->$selectName;
             }
         }
+        $selectedTechnologieTags =  array_unique($selectedTechnologieTags);
 
         $currentTags = $material->technologies->pluck('id')->toArray();
         $tagsToAdd = array_diff($selectedTechnologieTags, $currentTags); // 追加が必要なタグ
@@ -232,19 +234,4 @@ class MaterialController extends Controller
         return redirect()->route('materials.index');
     }
 
-    
-
-
-    // public function returnCon()
-    // {
-    //     return view('materials.con');
-    // }
-
-    // public function con(request $request)
-    // {
-    //     dd($request);
-    // }
-
 }
-
-
