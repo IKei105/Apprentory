@@ -140,6 +140,7 @@ a:hover, p:hover {
 
 /* 推奨教材いいね数 */
 .post-likes {
+    margin-bottom: 4px;
     font-size: 10px;
     color: #8F9FAA;
 }
@@ -155,7 +156,7 @@ body {
 
 /* 教材情報全体のコンテナ */
 .high-rated-materials, .high-rated-materials-all{
-    max-width: 960px;
+    max-width: 1160px;
     margin: 0 auto;
     padding: 48px 0 45px;
     position: relative;

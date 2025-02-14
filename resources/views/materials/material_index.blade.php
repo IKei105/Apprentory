@@ -80,7 +80,7 @@
                             </a>
                         </div>
                         <a href="{{ route('materials.show', $latestMaterial->id) }}">
-                            <h3 class="material-title">{!! nl2br(e($latestMaterial->title)) !!}</h3>
+                            <h3 class="material-title">{!! nl2br(e(mb_strimwidth($latestMaterial->title, 0, 40, '...'))) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $latestMaterial->rating_id; $i++)
                                 <p>★</p>
@@ -128,7 +128,7 @@
                             </a>
                         </div>
                         <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
-                            <h3 class="material-title">{!! nl2br(e($topRatedMaterial->title)) !!}</h3>
+                            <h3 class="material-title">{!! nl2br(e(mb_strimwidth($topRatedMaterial->title, 0, 40, '...'))) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $topRatedMaterial->rating_id; $i++)
                                 <p>★</p>
@@ -163,7 +163,7 @@
             <div class="material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" data-src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
-                    <h3 class="material-title">{!! nl2br(e($recommendedMaterial->title)) !!}</h3>
+                    <h3 class="material-title">{!! nl2br(e(mb_strimwidth($recommendedMaterial->title, 0, 40, '...'))) !!}</h3>
                     <div class="post-likes">
                         <p>♡ {{ $recommendedMaterial->likes_count }}</p>
                     </div>
@@ -195,7 +195,7 @@
                             </a>
                         </div>
                         <a href="">
-                            <h3 class="material-title">{!! nl2br(e($latestMaterial->title)) !!}</h3>
+                            <h3 class="material-title">{!! nl2br(e(mb_strimwidth($latestMaterial->title, 0, 40, '...'))) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $latestMaterial->rating_id; $i++)
                                 <p>★</p>
@@ -237,7 +237,7 @@
                             </a>
                         </div>
                         <a href="">
-                            <h3 class="material-title">{!! nl2br(e($topRatedMaterial->title)) !!}</h3>
+                            <h3 class="material-title">{!! nl2br(e(mb_strimwidth($topRatedMaterial->title, 0, 40, '...'))) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $topRatedMaterial->rating_id; $i++)
                                 <p>★</p>
@@ -259,6 +259,7 @@
             @endforeach    
         </div>
     </div>
-    <script src="{{ asset('/js/materials_index.js') }}"></script>
+    <script src="{{ asset('/js/materials_index.js') }}">
+    </script>
     <script src="{{ asset('/js/image_load.js') }}"></script>
 @endsection
