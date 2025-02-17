@@ -16,6 +16,7 @@ body {
     padding: 0 30px;
     height: 220px;
     padding-top: 120px;
+    background-color: #EFF9FA;
 }
 
 /* それの左側 */
@@ -57,6 +58,7 @@ body {
     align-items: center;
 }
 
+/* 購入ボタン */
 .purchase-button {
     width: 151px;
     height: 36px;
@@ -77,15 +79,7 @@ body {
     padding: 1px 6px;
 }
 
-.material-book-image {
-    max-width: 100%;
-    height: 330px;
-    background-color: #EFF9FA;
-    display: flex; /* 子要素をFlexboxで配置 */
-    justify-content: center; /* 横方向の中央揃え */
-    align-items: center; /* 縦方向の中央揃え */
-    /* margin-top: 120px; */
-}
+
 
 .technology-tags {
     display: inline-block;
@@ -110,21 +104,53 @@ body {
     margin-right: 10px;
 }
 
+/* 教材の情報 */
+.material-info {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 66px 40px 66px;
+    background-color: #EFF9FA;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 教材情報左側 */
+.material-info-left {
+    width: 75%;
+}
+
+/* 教材情報右側 */
+.material-info-right {
+    width: 20%;
+}
+
+/* 教材画像 */
+.material-book-image {
+    max-width: 100%;
+    height: 330px;
+    background-color: #EFF9FA;
+    display: flex; /* 子要素をFlexboxで配置 */
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    margin-bottom: 41px; /* 教材情報コンテナ下限との位置調整のため */
+    /* margin-top: 120px; */
+}
+
 /* 教材の画像 */
 .material-book-image img {
     display: block;
     max-width: 180px;
     max-height: 240px;
-    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
     margin: auto;
 }
 
 /* 教材のテキスト情報と削除編集ボタンを囲むdiv */
-.material-info {
+/* .material-info {
     max-width: 960px;
     margin: 0 auto;
     margin-top: 16px;
-}
+} */
 
 /* 削除編集ボタン */
 .action-buttons {

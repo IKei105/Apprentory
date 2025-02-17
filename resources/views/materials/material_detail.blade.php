@@ -30,11 +30,45 @@
             @endif
         </div>
     </div>
-    <div class="material-book-image">
-        <img src="{{ asset($material->image_dir) }}" alt="Material Image">
-        </div>
     <div class="material-info">
-        <!-- 投稿ユーザーの記事だったら -->
+        <div class="material-info-left">
+            <div class="material_posted_date">
+                <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
+            </div>
+            <div class="material-title">
+                <p> {!! nl2br(e($material->title)) !!}</p>
+            </div>
+            <div class="material_price">
+                <p>¥ {!! nl2br(e($material->price)) !!}</p>
+            </div>
+            <div class="material_rating">
+                @for ($i = 0; $i < $material->rating_id; $i++)
+                    <p class="material_rating-bright-star">★</p>
+                @endfor
+            </div>
+            <div class="material_detail">
+                <p class="material-detail-title">教材詳細</p>
+                <p class="material-thoughts">{!! nl2br(e($material->material_detail)) !!}</p>
+            </div> 
+            <div class="actions-container">
+                @if($isOwner)
+                    <div class="action-buttons">
+                        <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
+                        <form method="POST" action="{{ route('materials.destroy', $material) }}" class="delete-form" id="delete-form">
+                            @method('DELETE')
+                            @csrf
+                            <button class="delete-button"><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
+                        </form>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="material-info-right">
+            <img class="material-book-image" src="{{ asset($material->image_dir) }}" alt="Material Image">
+        </div>
+        
+    </div>
+    <div class="actions-container">
         @if($isOwner)
             <div class="action-buttons">
                 <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
@@ -45,8 +79,11 @@
                 </form>
             </div>
         @endif
+    </div>
+<!--         
+    <div class="material-info">
         <div class="material_posted_date">
-        <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
+            <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
         </div>
         <div class="material-title">
             <p> {!! nl2br(e($material->title)) !!}</p>
@@ -67,7 +104,7 @@
             <p>URL</p>
             <a href="{!! nl2br(e($material->material_url)) !!}" target="_blank" rel="noopener noreferrer">{!! nl2br(e($material->material_url)) !!}</a>
         </div>
-    </div>
+    </div> -->
     <script src="{{ asset('/js/material_detail.js') }}"></script>
 @endsection
 
