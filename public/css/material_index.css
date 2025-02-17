@@ -80,7 +80,7 @@ a:hover, p:hover {
 
 /* 推奨教材とタイトルが格納されているコンテナ */
 .recommended_materials, .recommended_materials_all {
-    max-width: 960px;
+    max-width: 1160px;
     padding: 48px 40px 20px;
     margin: 0 auto;
     position: relative;
