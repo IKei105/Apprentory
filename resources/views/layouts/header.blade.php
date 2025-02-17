@@ -18,7 +18,7 @@
             </div>
         </div>
         <div>
-            <form  class="search-form hidden" action="" method="POST">
+            <form  class="search-form hidden" action="{{ route('search.index') }}" method="GET">
                 <input class="search-input" type="text" name="search" placeholder="検索したいタグ、言語を入力">
                 <!-- <button type="submit">検索</button> -->
             </form>

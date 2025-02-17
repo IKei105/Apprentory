@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\SearchController;
 
 // ログインが必要なルート
 Route::middleware(['auth'])->group(function () {
@@ -37,3 +38,6 @@ Route::get('/logindashboard', [UserController::class, 'logindashboard'])->name('
 
 // 投稿後の確認ページ
 Route::get('products/{id}/test-confirmation', [ProductController::class, 'testConfirmation'])->name('products.test-confirmation');
+
+//検索用のやつねこれ
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');

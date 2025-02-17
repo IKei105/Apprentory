@@ -51,7 +51,7 @@
                         @endforeach
                     </a>
                 </div>
-                @if ($recommendedMaterialCount >= 5)
+                @if ($recommendedMaterialCount >= 6)
                     @break
                 @else
                     <?php $recommendedMaterialCount++; ?>
