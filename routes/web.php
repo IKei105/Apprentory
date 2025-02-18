@@ -6,6 +6,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CommentController;
 
 // ログインが必要なルート
 Route::middleware(['auth'])->group(function () {
@@ -41,3 +42,7 @@ Route::get('products/{id}/test-confirmation', [ProductController::class, 'testCo
 
 //検索用のやつねこれ
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+
+//コメントのやつねこれ
+Route::resource('comments', CommentController::class);
+Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('comments.store');

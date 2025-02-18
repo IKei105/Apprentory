@@ -26,9 +26,9 @@
             @endif            
             <div class="product-controler">
                 @if (auth()->check() && auth()->id() === $product->profile->user_id)
-                <button class="edit-button" onclick="location.href='{{ route('products.edit', $product->id) }}'">
+                <a href="{{ route('products.edit', $product->id) }}" class="edit-button">
                     <img src="{{ asset('assets/images/edit.svg') }}" alt="編集">
-                </button>
+                </a>
                 <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
@@ -71,94 +71,38 @@
                 @endforeach            
             </div>
         </div>
-        <div class="select-comment">
-            <p class="comment-count">〇〇件のコメント</p>
-            <div class="comment">
-                <div class="comment-left">
-                    <a href="#" class="comment-user-image">
-                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    </a>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-user-info">
-                        <a href="#" class="comment-user-name">ユーザー名</a>
-                        <p class="comment-date">2025/12/22</p>
-                    </div>
-                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-left">
-                    <a href="#" class="comment-user-image">
-                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    </a>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-user-info">
-                        <a href="#" class="comment-user-name">ユーザー名</a>
-                        <p class="comment-date">2025/12/22</p>
-                    </div>
-                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-left">
-                    <a href="#" class="comment-user-image">
-                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    </a>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-user-info">
-                        <a href="#" class="comment-user-name">ユーザー名</a>
-                        <p class="comment-date">2025/12/22</p>
-                    </div>
-                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-left">
-                    <a href="#" class="comment-user-image">
-                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    </a>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-user-info">
-                        <a href="#" class="comment-user-name">ユーザー名</a>
-                        <p class="comment-date">2025/12/22</p>
-                    </div>
-                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-left">
-                    <a href="#" class="comment-user-image">
-                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    </a>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-user-info">
-                        <a href="#" class="comment-user-name">ユーザー名</a>
-                        <p class="comment-date">2025/12/22</p>
-                    </div>
-                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-left">
-                    <a href="#" class="comment-user-image">
-                        <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
-                    </a>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-user-info">
-                        <a href="#" class="comment-user-name">ユーザー名</a>
-                        <p class="comment-date">2025/12/22</p>
-                    </div>
-                    <p class="comment-detail">コメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
-                </div>
-            </div>
 
+
+
+        <!-- これがコメントを管理するコンテナだお（ ＾ω＾） -->
+        <div class="comment-container">
+            <div class="select-comment original-product-view">
+                <p class="comment-count">{{ $product->comments->count() }}件のコメント</p>
+                @foreach ($product->comments as $comment)
+                    <div class="comment">
+                        <div class="comment-left">
+                            <a href="#" class="comment-user-image">
+                                <!-- リファクタリングしてくださいね -->
+                                <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                            </a>
+                        </div>
+                        <div class="comment-right">
+                            <div class="comment-user-info">
+                                <a href="#" class="comment-user-name">{!! nl2br(e($comment->user->profile->username)) !!}</a>
+                                <p class="comment-date">{{ $comment->created_at }}</p>
+                            </div>
+                            <p class="comment-detail">{!! nl2br(e($comment->comment)) !!}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="comment-form-container">
+                <form class="comment-form" action="{{ route('comments.store', $product->id) }}" method="POST">
+                    @csrf
+                    <textarea name="original-product-comment" id="original-product-comment" placeholder="コメントを入力"></textarea>
+                    <button class="original-product-comment-button" type="submit">コメントを送信</button>
+                </form>
+            </div>
         </div>
-
     </div>
 @endsection
