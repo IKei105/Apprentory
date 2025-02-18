@@ -12,6 +12,7 @@ use App\Models\Original_product_post;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User;
+use App\Models\Original_product_comment;
 
 
 
@@ -238,10 +239,21 @@ class ProductController extends Controller
     public function show(string $id)
     {
         // プロダクトをIDで取得し、関連するタグと画像も一緒に取得
-        $product = Original_product::with(['technologies', 'images','profile'])->findOrFail($id);    
+        $product = Original_product::with([
+            'technologies', 
+            'images', 
+            'profile', 
+            'comments' => function ($query) {
+                $query->orderBy('created_at', 'desc'); // 新しい順に並べ替え
+            }, 
+            'comments.user.profile'
+        ])->findOrFail($id);
+        
         
         // 現在のログインユーザーのプロフィールを取得
         $profile = auth()->user()->profile;
+
+        //dd($product);
         
         return view('products.show', compact('product','profile'));
     }

@@ -58,4 +58,10 @@ class Original_product extends Model
     {
         return $this->technologies->pluck('name')->all(); // タグ名を取得する例
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Original_product_comment::class, 'original_product_id');
+    }
+
 }

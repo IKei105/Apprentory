@@ -8,6 +8,11 @@ body {
     padding-bottom: 500px;
 }
 
+/* ヘッダーの新規投稿ボタンの位置合わせ */
+.new-post {
+    padding: 1px 6px;
+}
+
 /* タグとかユーザーネームが入ってるdiv */
 .material-actions {
     display: flex;
@@ -74,11 +79,6 @@ body {
 .heart:hover {
     cursor: pointer;
 }
-
-.new-post {
-    padding: 1px 6px;
-}
-
 
 
 .technology-tags {
