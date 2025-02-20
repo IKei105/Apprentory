@@ -17,7 +17,7 @@
     <div class="layout-top">
         <div class="top-content">
             <a href="{{ url()->previous() }}" class="back">←</a>
-            <button class=submit type="submit">投稿</button>
+            <button class=submit type="submit" id="post-product">投稿</button>
         </div>
     </div>
 
@@ -145,6 +145,7 @@
 @push('scripts')
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
 <script src="{{ asset('/js/image_preview2.js') }}"></script>
+<script src="{{ asset('/js/create_product.js') }}"></script>
 <!-- <script src="{{ asset('/js/form_submit.js') }}"></script> -->
 @endpush
 @endsection

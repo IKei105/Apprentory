@@ -124,5 +124,6 @@
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
 <script src="{{ asset('/js/image_preview.js') }}"></script>
 <script src="{{ asset('/js/form_submit.js') }}"></script>
+<script src="{{ asset('/js/create_product.js') }}"></script>
 @endpush
 @endsection
