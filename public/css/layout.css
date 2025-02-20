@@ -165,7 +165,7 @@ header{
 
 /* 投稿ボタン押下時ポップアップ*/
 /* ポップアップのスタイル */
-.post-popup {
+.post-popup, .user-menu {
     display: none; /*初期状態では非表示*/
     position: fixed;
     top:0;
@@ -176,7 +176,7 @@ header{
     z-index: 1000;
 }
 
-.post-popup-content {
+.post-popup-content, .user-menu-content {
     position: absolute;
     top: 72px;
     right: 50px;
@@ -186,7 +186,7 @@ header{
     text-align: center;
 }
 
-.popup-option {
+.popup-option, .user-menu-option {
     margin-bottom: 0px;
     padding: 10px;
     width: 100%;
@@ -195,22 +195,24 @@ header{
     cursor: pointer;
     transition: filter 0.3s ease, background-color 0.3s ease;
 }
-.popup-option:hover {
+.popup-option:hover, .user-menu-option:hover {
     background-color: #E8F7F8;
 }
-.popup-option:active {
+.popup-option:active,  .user-menu-option:active {
     background-color: #D0EBEB;
 }
-.post-popup-content .popup-option:first-child {
+.post-popup-content .popup-option:first-child, .user-menu-content, .user-menu-option:first-child {
     border-radius: 8px 8px 0 0; /* 左上と右上を丸くする */
     border-bottom: 1px solid #d1e0e1;
     box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.5),
                 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
-.post-popup-content .popup-option:last-child {
+.post-popup-content .popup-option:last-child, .user-menu-content, .user-menu-option:last-child {
     border-radius: 0 0 8px 8px; /* 左下と右下を丸くする */
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 }
+
+/* ここまでが新規作成ボタン */
 
 .search-form {
     text-align: center;
@@ -245,4 +247,29 @@ input[type="text"]:focus {
 
 .hidden {
     display: none;
+}
+
+
+
+
+/**************************** 
+user-menu
+*****************************/
+
+/* マイページボタンです */
+.mypage-button {
+    border: none;     
+    background: none;  
+    padding: 0;        
+    cursor: pointer;   
+}
+
+.user-menu-content {
+    position: absolute;
+    top: 72px;
+    right: 80px;
+    border-radius: 8px;
+    width: 160px;
+    height: 80px;
+    text-align: center;
 }
