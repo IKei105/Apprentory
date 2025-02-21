@@ -27,7 +27,9 @@ class ProductController extends Controller
     public function index()
     {
         
-        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])->get();
+        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])
+                                ->orderBy('created_at', 'desc') // 作成日時で降順
+                                ->get();
 
         //dd($products);
 
