@@ -34,11 +34,17 @@ class SearchController extends Controller
         return Material::when(!empty($keywords), function ($query) use ($keywords) {
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $keyword) {
-                    $q->orWhere('title', 'LIKE', "%{$keyword}%");
+                    $q->orWhere('title', 'LIKE', "%{$keyword}%"); // タイトル検索
+                }
+            })
+            ->orWhereHas('technologies', function ($techQuery) use ($keywords) {
+                foreach ($keywords as $keyword) {
+                    $techQuery->where('name', 'LIKE', "%{$keyword}%"); // タグ検索
                 }
             });
         })->get();
     }
+    
 
     /**
      * オリジナルプロダクトを検索するメソッド
@@ -48,9 +54,18 @@ class SearchController extends Controller
         return Original_product::when(!empty($keywords), function ($query) use ($keywords) {
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $keyword) {
-                    $q->orWhere('title', 'LIKE', "%{$keyword}%");
+                    $q->orWhere('title', 'LIKE', "%{$keyword}%")
+                      ->orWhere('subtitle', 'LIKE', "%{$keyword}%")
+                      ->orWhere('product_detail', 'LIKE', "%{$keyword}%");
+                }
+            })
+            ->orWhereHas('technologies', function ($techQuery) use ($keywords) {
+                foreach ($keywords as $keyword) {
+                    $techQuery->where('name', 'LIKE', "%{$keyword}%");
                 }
             });
         })->get();
     }
+    
+    
 }

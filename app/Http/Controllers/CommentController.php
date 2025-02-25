@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Original_product_comment;
 use App\Models\Original_product;
-use App\Services\OriginalProductCommentService;
+use App\Services\CommentService;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\OriginalProductCommentRequest;
 
 class CommentController extends Controller
 {
 
     protected $commentService;
 
-    public function __construct(OriginalProductCommentService $commentService)
+    public function __construct(CommentService $commentService)
     {
         $this->commentService = $commentService;
     }
@@ -37,12 +38,10 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Original_product $product)
+    public function store(OriginalProductCommentRequest $request, Original_product $product)
     {
         // バリデーション
-        $validatedData = $request->validate([
-            'original-product-comment' => 'required|string|max:1000',
-        ]);
+        $validatedData = $request->validated();
 
         // dd([$validatedData, $product->id]);
 
