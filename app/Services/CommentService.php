@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Original_product_comment;
 use Illuminate\Support\Facades\Auth;
 
-class OriginalProductCommentService
+class CommentService
 {
     public function createComment(array $data, int $productId)
     {

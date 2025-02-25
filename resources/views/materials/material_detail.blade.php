@@ -80,6 +80,21 @@
             </div>
         @endif
     </div>
+    <div class="recommended-section">
+        <div class="recommended-section-title-wrapper">
+            <p class="recommended-section-title">あなたにおすすめ</p>
+        </div>
+        <div class="recommended-item-list">
+        @foreach ($recommendedMaterials as $material)
+            <div class="recommended-item">
+                <a class="recommended-item-link" href="{{ route('materials.show', $material->id) }}">
+                        <img class="recommended-item-img" src="{{ $material->image_dir }}" alt="">
+                        <p class="recommended-item-title">{!! nl2br(e($material->title)) !!}</p>
+                </a>
+            </div>
+        @endforeach
+        </div>
+    </div>
     <!-- ここにおすすめの教材を貼る -->
     <script src="{{ asset('/js/material_detail.js') }}"></script>
 @endsection

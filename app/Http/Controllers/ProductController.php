@@ -13,6 +13,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User;
 use App\Models\Original_product_comment;
+use App\Http\Requests\OriginalProductCommentRequest;
 
 
 

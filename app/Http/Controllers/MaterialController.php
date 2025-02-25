@@ -9,12 +9,20 @@ use App\Models\Material_post;
 use App\Models\Material_technologie_tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Services\MaterialService;
 
 class MaterialController extends Controller
 {
     private const FIRST_POST_INDEX = 0;
     private const FIRST_SELECT_INDEX = 1;
     private const LAST_SELECT_INDEX = 5;
+
+    protected $materialService;
+
+    public function __construct(MaterialService $materialService)
+    {
+        $this->materialService = $materialService;
+    }
     
     public function index()
     {
@@ -127,12 +135,17 @@ class MaterialController extends Controller
         $posts = $material->posts;
         $post = $posts[self::FIRST_POST_INDEX] ?? null; // 投稿がない場合の安全策
 
+        $tagIds = $this->materialService->getTagIdsForMaterial($material);
+
+        $recommendedMaterials = $this->materialService->getRecommendedMaterialsBasedOnTags($tagIds);
+
+        //dd($recommendedMaterials[0]);
 
         // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser'));
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'recommendedMaterials'));
     }
 
-
+    // 使ってません
     public function show2(Material $material)
     {
 

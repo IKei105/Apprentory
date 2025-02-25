@@ -250,3 +250,60 @@ body {
     color: #0F93FE;
     font-weight: 700;
 }
+
+/*************************
+***** あなたにおすすめ ******
+**************************/
+.recommended-section {
+    max-width: 792px;
+    margin: 0 auto;
+}
+
+.recommended-section-title-wrapper {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    height: 120px;
+}
+
+.recommended-section-title-wrapper::before,
+.recommended-section-title-wrapper::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000; /* 線の色と太さ */
+}
+
+.recommended-section-title-wrapper::before {
+    margin-right: 10px;
+}
+
+.recommended-section-title-wrapper::after {
+    margin-left: 10px;
+}
+
+.recommended-section-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+}
+
+
+.recommended-item-list {
+    display: flex;
+    gap: 24px;
+}
+
+.recommended-item {
+    max-width: 180px;
+}
+
+.recommended-item-img {
+    max-width: 180px;
+}
+
+.recommended-item-title {
+    color: black;
+    text-align: center;
+}
+
