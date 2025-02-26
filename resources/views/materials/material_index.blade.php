@@ -37,7 +37,7 @@
         <div class="materials-list">
         <?php $recommendedMaterialCount = 1?>
         @foreach ($recommendedMaterials as $recommendedMaterial)
-            <div class="material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
+            <div class="material-item recommended-material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
                 <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <?php sleep(0.3); ?>
                         <img class="material-book-image" src="{{ $recommendedMaterial->image_dir }}" alt="教材画像"  >
@@ -59,6 +59,9 @@
         @endforeach
         </div>
     </div>
+    <!--------------------
+            新着の教材
+    ---------------------->
     <div class="high-rated-materials" id="high-rated-materials">
         <h1 class="high-rated-title">新着の教材</h1>
         <div class="articles">
@@ -68,7 +71,7 @@
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <?php sleep(0.3); ?>
-                <div class="article material" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}">
+                <div class="article latest-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         <img class="material-book-image" data-src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
                     </a>
@@ -99,23 +102,22 @@
                         @endforeach
                     </div>    
                 </div>
-                @if ($topRatedMaterialCount >= 4)
-                    @break
-                @else
-                    <?php $topRatedMaterialCount++; ?>
-                @endif
+                <?php $topRatedMaterialCount++; ?> 
             @endforeach    
         </div>
     </div>
-    <div class="high-rated-materials latest-materials" id="latest-materials">
-        <h1 class="high-rated-title">評価の高いの教材</h1>
+    <!-------------------
+        評価の高い教材
+    -------------------->
+    <div class="high-rated-materials " id="latest-materials">
+        <h1 class="high-rated-title">評価の高い教材</h1>
         <div class="articles">
             <?php $topRatedMaterialCount = 1; ?>
             @foreach ($topRatedMaterials as $topRatedMaterial)
             @php
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}">
+                <div class="article high-rate-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}">
                     
                     <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                         <img class="material-book-image" data-src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
@@ -147,20 +149,23 @@
                         @endforeach
                     </div>    
                 </div>
-                @if ($topRatedMaterialCount >= 4)
-                    @break
-                @else
                     <?php $topRatedMaterialCount++; ?>
-                @endif
             @endforeach    
         </div>
     </div>
+
+
+
+
+
+
+
     <!-- 以下はもっと見る、または推奨教材を押した時に表示するようのhtmlです -->
     <div class="recommended_materials_all hidden" id="recommended_materials_all">
         <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
         @foreach ($recommendedMaterials as $recommendedMaterial)
-            <div class="material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
+            <div class="recommended-material-all material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" data-src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
                     <h3 class="material-title">{!! nl2br(e(mb_strimwidth($recommendedMaterial->title, 0, 40, '...'))) !!}</h3>
@@ -183,7 +188,7 @@
             @php
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article material" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}">
+                <div class="article latest-materials" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}">
                     <a href="{{ route('materials.show', $latestMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="">
                     </a>
@@ -225,7 +230,7 @@
             @php
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}">
+                <div class="article high-rate-materials material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}">
                     <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                         <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
                     </a>

@@ -362,4 +362,16 @@ class ProductController extends Controller
     
         return view('tests.product_confirmation', ['product' => $product]);
     }
+
+    public function indexTag(string $id)
+    {
+        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])
+        ->whereHas('technologies', function ($query) use ($id) {
+            $query->where('id', $id); // technologiesのidが一致するものを取得
+        })
+        ->orderBy('created_at', 'desc') // 作成日時で降順
+        ->get();
+        
+        return view('products.index', compact('products'));
+    }
 }
