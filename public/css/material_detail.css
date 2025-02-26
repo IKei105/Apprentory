@@ -262,6 +262,7 @@ body {
 .recommended-section-title-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center; /* 中央揃え */
     text-align: center;
     margin: 20px 0;
     height: 120px;
@@ -270,8 +271,9 @@ body {
 .recommended-section-title-wrapper::before,
 .recommended-section-title-wrapper::after {
     content: '';
-    flex: 1;
-    border-bottom: 1px solid #000; /* 線の色と太さ */
+    width: 140px; /* 線の長さを固定 */
+    height: 1px; /* 線の太さ */
+    background-color: #000; /* 線の色 */
 }
 
 .recommended-section-title-wrapper::before {
@@ -300,6 +302,7 @@ body {
 
 .recommended-item-img {
     max-width: 180px;
+    box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.3); /* 左に4px, 下に4px, ぼかし8px */
 }
 
 .recommended-item-title {

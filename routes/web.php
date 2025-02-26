@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/post_product', fn() => view('products/create'));
     Route::resource('products', ProductController::class);
     Route::post('/like/{table}', [LikeController::class, 'toggleLike'])->name('like.toggle');
+    Route::get('/products/tag/{id}', [ProductController::class, 'indexTag'])
+    ->name('products.indexTag');
 });
 
 Route::resource("materials",MaterialController::class);

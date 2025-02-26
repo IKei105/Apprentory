@@ -59,7 +59,7 @@
                     </a>   
                     <div class="product-tag">
                         @foreach ($product->technologies as $technology)
-                            <a href="">{{ $technology->name }}</a>
+                            <a href="{{ route('products.indexTag', $technology->id) }}">{{ $technology->name }}</a>
                         @endforeach
                     </div>
                 </div>        
