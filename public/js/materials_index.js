@@ -119,8 +119,6 @@ document.getElementById('recommended-button').addEventListener('click', function
     document.getElementById('recommended_materials_all').classList.add('hidden');
     document.getElementById('latest-materials-all').classList.add('hidden');
     document.getElementById('high-rated-materials-all').classList.add('hidden');
-
-    // 推奨教材のみ表示
     document.getElementById('recommended_materials_all').classList.remove('hidden');
 });
 
