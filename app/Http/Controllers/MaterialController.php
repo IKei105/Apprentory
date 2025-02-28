@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MaterialRequest;
+use App\Http\Requests\StoreMaterialRequest;
+use App\Http\Requests\UpdateMaterialRequest;
 use App\Models\Material;
 use App\Models\Material_post;
 use App\Models\Material_technologie_tag;
@@ -51,65 +53,19 @@ class MaterialController extends Controller
         return view('materials.post_material');
     }
 
-    public function store(MaterialRequest $request)
+    public function store(StoreMaterialRequest $request)
     {
         // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
 
-        // 教材を保存するためインスタンスを作成
-        $material = new Material();
+        //教材情報を保存する
+        $materialId = $this->materialService->storeMaterial($validated);
 
-    
-        //画像をstorageに保存する
-        if ($request->hasFile('material-image')) { //画像が投稿されていたら
-            //storage/app/public/material_images に保存
-            $path = $request->file('material-image')->store('material_images', 'public');
-    
-            // パスをimage_dirにくれてやる
-            $material->image_dir = '/storage/' . $path;
-        }
+        //タグを保存する
+        $this->materialService->storeMaterialTechnologiesTags($request, $materialId);
 
-        //インスタンスに値をセット
-        $material->title = $validated['material-title'];
-        $material->material_detail = $validated['material-thoughts'];
-        $material->rating_id = $validated['material-rate'];
-        $material->price = $validated['material-price'];
-        $material->material_url = $validated['material-url'];
-
-        //教材テーブルに保管する
-        $material->save();
-
-        // 保存した時の主キーを取得
-        $materialId = $material->id;
-
-        //ここでテクノロジータグテーブルにデータを保存します
-        $materialTechnologieTag = new Material_technologie_tag();
-        $materialTechnologieTag->material_id = $materialId;
-
-        $selectedTechnologieTags = [];
-        for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
-            $selectName = "select$i";
-            if ($request->$selectName) {
-                $selectedTechnologieTags[] = $request->$selectName;
-                
-            }
-        }
-
-        $uniqueSelectedTechnologieTags =  array_unique($selectedTechnologieTags);
-        foreach ($uniqueSelectedTechnologieTags as $uniqueSelectedTechnologieTag) {
-            $materialTechnologieTag = new Material_technologie_tag();
-            $materialTechnologieTag->material_id = $materialId;
-            $materialTechnologieTag->technologie_id = $uniqueSelectedTechnologieTag;
-            $materialTechnologieTag->save();
-        }
-
-        // 教材ポストテーブルに保存します！
-        $materialPost = new Material_post();
-
-        $materialPost->material_id = $materialId;
-        $materialPost->posted_user_id = Auth::user()->id;
-
-        $materialPost->save();
+        //投稿日時を保存する
+        $this->materialService->storeMaterialPostDateTime($materialId);
 
         return $this->index();
     }
@@ -139,29 +95,8 @@ class MaterialController extends Controller
 
         $recommendedMaterials = $this->materialService->getRecommendedMaterialsBasedOnTags($tagIds);
 
-        //dd($recommendedMaterials[0]);
-
         // compactを使用してデータをビューに渡す
         return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'recommendedMaterials'));
-    }
-
-    // 使ってません
-    public function show2(Material $material)
-    {
-
-        // ログイン中のユーザーidを取得
-        $loggedInUserId = Auth::id();
-        $isOwner = $material->posts->contains('posted_user_id', $loggedInUserId);
-        // Materialモデルのpostsとlikesリレーションをロード
-        $material->load(['posts', 'likes']);
-
-        $isLikedByCurrentUser = $material->likes->contains($loggedInUserId); //ろぐ
-        $likeCount = $material->likes->count(); // likesの数をカウント
-        $posts = $material->posts;             // postsリレーションを取得
-        $post = $posts[self::FIRST_POST_INDEX];
-
-        // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser'));
     }
 
     public function edit(Material $material)
@@ -178,64 +113,16 @@ class MaterialController extends Controller
         return view('materials.material_edit', compact('material', 'technologieIds'));
     }
 
-    public function update(Material $material, Request $request)
+    public function update(Material $material, UpdateMaterialRequest $request)
     {
-        //dd($request);
+        // バリデーション済みデータを取得
+        $validated = $request->validated();
 
-        if ($request->hasFile('material_image')) { //画像が投稿されていたら
-            $path = $request->file('material_image')->store('material_images', 'public');
-    
-            $material->image_dir = '/storage/' . $path;
-        }
+        // 教材情報を更新
+        $this->materialService->updateMaterial($material, $validated);
 
-        // ここでデータの更新を行なっていきます
-        $material->title = $request->material_title;
-        $material->material_detail = $request->material_thoughts;
-        $material->rating_id = $request->material_rate;
-        $material->price = $request->material_price;
-        $material->material_url = $request->material_url;
-
-        $material->save();
-
-        $materialId = $material->id;
-
-        /****************************************************
-        ***************************************************** 
-        *               ここをリファクタリングする              *
-        *****************************************************
-        *****************************************************/
-        
-        $selectedTechnologieTags = [];
-        for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
-            $selectName = "select$i";
-            if ($request->$selectName) {
-                $selectedTechnologieTags[] = $request->$selectName;
-            }
-        }
-        $selectedTechnologieTags =  array_unique($selectedTechnologieTags);
-
-        $currentTags = $material->technologies->pluck('id')->toArray();
-        $tagsToAdd = array_diff($selectedTechnologieTags, $currentTags); // 追加が必要なタグ
-        $tagsToRemove = array_diff($currentTags, $selectedTechnologieTags); // 削除が必要なタグ
-
-        if (!empty($tagsToAdd)) {
-            foreach ($tagsToAdd as $tagToAdd){
-            $materialTechnologieTag = new Material_technologie_tag();
-            $materialTechnologieTag->material_id = $materialId;
-            $materialTechnologieTag->technologie_id = $tagToAdd;
-
-            $materialTechnologieTag->save();
-            }
-        }
-
-        if (!empty($tagsToRemove)) {
-            foreach ($tagsToRemove as $tagToRemove) {
-                // 中間テーブルから該当するタグを削除
-                Material_technologie_tag::where('material_id', $materialId)
-                    ->where('technologie_id', $tagToRemove)
-                    ->delete();
-            }
-        }
+        // タグ情報を更新
+        $this->materialService->updateMaterialTechnologiesTags($material, $validated);
 
         return redirect()->route('materials.show', ['material' => $material->id]);
     }
