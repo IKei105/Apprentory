@@ -34,11 +34,11 @@
                 </div>
                 <div class="post-material-title-review-container">
                     <div class="post-material-title">
-                        <input class="post-material-title-text"  name="material_title" type="text" class="" placeholder="教材タイトル" value="{!! nl2br(e($material->title)) !!}" />
+                        <input class="post-material-title-text"  name="material-title" type="text" class="" placeholder="教材タイトル" value="{!! nl2br(e($material->title)) !!}" />
                     </div>
                     <div class="post-material-thoughts">
                     <textarea
-                        name="material_thoughts" 
+                        name="material-thoughts" 
                         class="post-material-thoughts-text"
                         rows="8"
                         placeholder="教材の感想を入力"  
@@ -49,19 +49,19 @@
             <div class="post-material-rate-text">
                 <label for="post-material-rate-text">評価</label>
                 <div class="post-material-rate rate-form">
-                    <input id="star5" type="radio" name="material_rate" value="5" <?= $material->rating_id == 5 ? 'checked' : '' ?> >
+                    <input id="star5" type="radio" name="material-rate" value="5" <?= $material->rating_id == 5 ? 'checked' : '' ?> >
                     <label for="star5" class="star">★</label>
 
-                    <input id="star4" type="radio" name="material_rate" value="4" <?= $material->rating_id == 4 ? 'checked' : '' ?>>
+                    <input id="star4" type="radio" name="material-rate" value="4" <?= $material->rating_id == 4 ? 'checked' : '' ?>>
                     <label for="star4" class="star">★</label>
 
-                    <input id="star3" type="radio" name="material_rate" value="3" <?= $material->rating_id == 3 ? 'checked' : '' ?>>
+                    <input id="star3" type="radio" name="material-rate" value="3" <?= $material->rating_id == 3 ? 'checked' : '' ?>>
                     <label for="star3" class="star">★</label>
 
-                    <input id="star2" type="radio" name="material_rate" value="2" <?= $material->rating_id == 2 ? 'checked' : '' ?>>
+                    <input id="star2" type="radio" name="material-rate" value="2" <?= $material->rating_id == 2 ? 'checked' : '' ?>>
                     <label for="star2" class="star">★</label>
 
-                    <input id="star1" type="radio" name="material_rate" value="1" <?= $material->rating_id == 1 ? 'checked' : '' ?>>
+                    <input id="star1" type="radio" name="material-rate" value="1" <?= $material->rating_id == 1 ? 'checked' : '' ?>>
                     <label for="star1" class="star">★</label>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     id = "material_price"
                     class="post-material-price-text"
                     type="number" 
-                    name="material_price" 
+                    name="material-price" 
                     placeholder="金額を入力" 
                     min="0" 
                     step="1" 
@@ -81,7 +81,7 @@
             </div>
             <div class="post-material-url">
                 <label for="url">URL</label>
-                <input type="url" id="url" name="material_url" value="{!! nl2br(e($material->material_url)) !!}">
+                <input type="url" id="url" name="material-url" value="{!! nl2br(e($material->material_url)) !!}">
             </div>
             <!-- これから下はタグ数に依存するので変更する必要あり -->
             <div class="post-material-tags" id="post-material-tags">
