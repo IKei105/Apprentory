@@ -38,19 +38,19 @@ class UserController extends Controller
     
         // ユーザーに紐づくプロフィールを取得
         $profile = $user->profile;
-        dd($profile);
+        // dd($profile);
 
-        // 確認用ページへリダイレクト(後から消す)
-        return redirect()->route('register.confirmation')->with([
-            'userid' => $request->userid,
-            'password' => $request->password,
-            'username' => $profile->username,
-            'profile_image' => $request->profile_image ?? 'public/assets/images/sample_image.png',
-        ]);
-        // // 登録後にログインさせる
-        // auth()->login($user);    
-        // // 登録後のリダイレクト
-        // return redirect('/')->with('success', 'ユーザー登録が完了しました！');
+        // // 確認用ページへリダイレクト(後から消す)
+        // return redirect()->route('register.confirmation')->with([
+        //     'userid' => $request->userid,
+        //     'password' => $request->password,
+        //     'username' => $profile->username,
+        //     'profile_image' => $request->profile_image ?? 'public/assets/images/sample_image.png',
+        // ]);
+        // 登録後にログインさせる
+        auth()->login($user);    
+        // 登録後のリダイレクト
+        return redirect('/')->with('success', 'ユーザー登録が完了しました！');
     }
 
     public function showConfirmation()
