@@ -48,3 +48,12 @@ Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 //コメントのやつねこれ
 Route::resource('comments', CommentController::class);
 Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+//テストルートでござる
+Route::get('/test', function () {
+    return 'Hello World';
+});
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});
+
