@@ -9,15 +9,15 @@ use App\Http\Requests\UpdateMaterialRequest;
 use App\Models\Material;
 use App\Models\Material_post;
 use App\Models\Material_technologie_tag;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Services\MaterialService;
+use App\Enums\FollowStatus;
 
 class MaterialController extends Controller
 {
     private const FIRST_POST_INDEX = 0;
-    private const FIRST_SELECT_INDEX = 1;
-    private const LAST_SELECT_INDEX = 5;
 
     protected $materialService;
 
@@ -95,14 +95,18 @@ class MaterialController extends Controller
 
         $recommendedMaterials = $this->materialService->getRecommendedMaterialsBasedOnTags($tagIds);
 
+        $isFollow = match (true) {
+            $isOwner => FollowStatus::SELF,
+            Auth::user()?->isFollowing($material->posts->first()->posted_user_id) => FollowStatus::FOLLOWING,
+            default => FollowStatus::NOT_FOLLOWING,
+        };
+
         // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'recommendedMaterials'));
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'recommendedMaterials', 'isFollow'));
     }
 
     public function edit(Material $material)
     {
-        
-        
         $loggedInUserId = Auth::id();
         $technologieIds = $material->technologies->pluck('id'); // technologie_idのリストを取得
 

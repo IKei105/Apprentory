@@ -40,7 +40,7 @@ body {
 .posted-profile {
     display: flex;
     color: black;
-    margin-right: 30px;
+    margin-right: 24px;
 }
 
 /* 投稿者の名前 */
@@ -310,3 +310,45 @@ body {
     text-align: center;
 }
 
+.follow-action {
+    margin-right: 24px;
+}
+
+.follow-button {
+    width: 100px;
+    height: 36px;
+    background-color: #00D1D1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.follow-button:active {
+    transform: scale(0.95); /* 少し縮小 */
+    opacity: 0.7; /* 透明度を下げる */
+}
+
+.unfollow-button {
+    width: 100px;
+    height: 36px;
+    background-color: #00D1D1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.unfollow-button:active {
+    transform: scale(0.95); /* 少し縮小 */
+    opacity: 0.7; /* 透明度を下げる */
+}
+
+.follow-button:hover,
+.unfollow-button:hover {
+    opacity: 0.7;
+}
+
+.hidden {
+    display: none;
+}
