@@ -15,6 +15,10 @@
                 <img class="posted-userimage" src="" alt="">
                 <p class="posted-username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
             </a>
+            <div class="follow-action">
+                <button class="follow-button">フォロー</button>
+                <button class="unfollow-button">フォロー中</button>
+            </div>
             <div class="product-technology-tags">
                 @foreach ($material->technologies as $technology)
                     <a href="" class="product-tag">{{ $technology->name }}</a>
