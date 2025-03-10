@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [ // APIガードを追加
+        'driver' => 'session', // Laravel 11では session を使う
+        'provider' => 'users',
+        ],
     ],
 
     /*

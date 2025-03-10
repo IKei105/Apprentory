@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\FollowController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FollowController;
+use Illuminate\Support\Facades\Auth;
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/follow/{user}', [FollowController::class, 'follow'])->name('api.follow');
-    Route::post('/unfollow/{user}', [FollowController::class, 'unfollow'])->name('api.unfollow');
-});
+Route::post('/follow/{loggedInUserId}/{followUser}', [FollowController::class, 'follow'])->name('api.follow');
+Route::post('/unfollow/{loggedInUserId}/{followUser}', [FollowController::class, 'unfollow'])->name('api.unfollow');

@@ -12,6 +12,7 @@ class LikeController extends Controller
     public function toggleLike(Request $request, $table) 
     {
         $userId = Auth::user()->id; // ログイン中のユーザーID
+                
         $articleId = $request->input('material_id'); // リクエストから対象IDを取得
 
         $modelClass = $this->resolveModel($table);

@@ -9,6 +9,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 @section('content')
+    <div id="auth-data" data-auth-user-id="{{ auth()->id() }}">@if(auth()->check())
+    <p>ログイン中のユーザーID: {{ auth()->id() }}</p>
+@else
+    <p>ログインしていません</p>
+@endif
+</div>
     <div class="material-actions">
         <div class="material-actions-left">
             <a class="posted-profile" href="">
@@ -16,8 +22,12 @@
                 <p class="posted-username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
             </a>
             <div class="follow-action">
-                <button class="follow-button">フォロー</button>
-                <button class="unfollow-button">フォロー中</button>
+                <button id="follow" class="follow-button {{ $isFollow->value == 'following' ? 'hidden' : '' }}" >
+                    フォロー
+                </button>
+                <button id="unfollow" class="unfollow-button {{ $isFollow->value == 'not_following' ? 'hidden' : '' }}">
+                    フォロー中
+                </button>
             </div>
             <div class="product-technology-tags">
                 @foreach ($material->technologies as $technology)
@@ -89,7 +99,7 @@
             <p class="recommended-section-title">あなたにおすすめ</p>
         </div>
         <div class="recommended-item-list">
-        @foreach ($recommendedMaterials as $material)
+        @foreach ($getPersonalizedRecommendations as $material)
             <div class="recommended-item">
                 <a class="recommended-item-link" href="{{ route('materials.show', $material->id) }}">
                         <img class="recommended-item-img" src="{{ $material->image_dir }}" alt="">
@@ -101,5 +111,12 @@
     </div>
     <!-- ここにおすすめの教材を貼る -->
     <script src="{{ asset('/js/material_detail.js') }}"></script>
+    <script>
+        const loggedInUserId = @json(auth()->id());
+        const followTargetUserId = @json($material->posts[0]->user->id);
+        const isFollow = @json($isFollow);
+    </script>
+    <script src="{{ asset('/js/follow.js') }}"></script>
+
 @endsection
 

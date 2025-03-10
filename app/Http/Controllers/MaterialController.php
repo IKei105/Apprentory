@@ -29,7 +29,7 @@ class MaterialController extends Controller
     public function index()
     {
         // ここで各情報を出力します
-        $recommendedMaterials = Material::whereBetween('id', [16, 27])
+        $officialRecommendedMaterials = Material::whereBetween('id', [16, 27])
             ->with(['posts.user', 'technologies:id,name']) // posts を介して user をロード
             ->withCount('likes')   // likes の数をカウント
             ->get();
@@ -45,7 +45,7 @@ class MaterialController extends Controller
             ->get();
         
 
-        return view('materials.material_index', compact('recommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
+        return view('materials.material_index', compact('officialRecommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
     }
 
     public function create()
@@ -76,33 +76,29 @@ class MaterialController extends Controller
         $loggedInUserId = Auth::id();
         
         // Materialモデルのリレーションをロード
-        $material->load(['posts.user.profile', 'likes', 'technologies']); //posts.user.profileはposts → user → profileの順に取得しています
+        $this->materialService->loadMaterialRelations($material);
 
         // 投稿者が現在のユーザーかどうかを判定
-        $isOwner = $material->posts->contains('posted_user_id', $loggedInUserId);
+        $isOwner = $this->materialService->isOwner($material, $loggedInUserId);
 
-        // 現在のユーザーが「いいね」したかを確認
-        $isLikedByCurrentUser = $material->likes->contains($loggedInUserId);
+        // ログイン中のユーザーがいいねをしたか取得
+        $isLikedByCurrentUser = $this->materialService->isLikedByUser($material, $loggedInUserId);
 
-        // likesの数をカウント
-        $likeCount = $material->likes->count();
+        //教材についていいね数の取得
+        $likeCount = $this->materialService->getLikeCount($material);
 
-        // postsリレーションを取得し、最初の投稿を選択
-        $posts = $material->posts;
-        $post = $posts[self::FIRST_POST_INDEX] ?? null; // 投稿がない場合の安全策
+        //投稿記事の取得
+        $post = $this->materialService->getFirstPost($material);
 
+        //教材タグの取得
         $tagIds = $this->materialService->getTagIdsForMaterial($material);
 
-        $recommendedMaterials = $this->materialService->getRecommendedMaterialsBasedOnTags($tagIds);
-
-        $isFollow = match (true) {
-            $isOwner => FollowStatus::SELF,
-            Auth::user()?->isFollowing($material->posts->first()->posted_user_id) => FollowStatus::FOLLOWING,
-            default => FollowStatus::NOT_FOLLOWING,
-        };
+        //おすすめ教材の取得
+        $getPersonalizedRecommendations = $this->materialService->getPersonalizedRecommendations($material);
+        $isFollow = $this->materialService->getFollowStatus($material, $loggedInUserId);
 
         // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'recommendedMaterials', 'isFollow'));
+        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'getPersonalizedRecommendations', 'isFollow'));
     }
 
     public function edit(Material $material)

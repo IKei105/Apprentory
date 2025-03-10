@@ -9,18 +9,47 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MaterialRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User_follow;
+use App\Enums\FollowStatus;
 
 class MaterialService
 {
     private const FIRST_SELECT_INDEX = 1;
     private const LAST_SELECT_INDEX = 5;
 
+    //アプレンティスおすすめ推奨教材を取得するメソッド
+    public function getOfficialRecommendedMaterials(): \Illuminate\Database\Eloquent\Collection
+    {
+        return Material::whereBetween('id', [16, 27])
+            ->with(['posts.user', 'technologies:id,name']) // posts を介して user をロード
+            ->withCount('likes')   // likes の数をカウント
+            ->get();
+    }
+
+    //評価の高い教材を取得するメソッド
+    public function getTopRatedMaterials(): \Illuminate\Database\Eloquent\Collection
+    {
+        return Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
+            ->withCount('likes') // likes の数を取得
+            ->orderBy('likes_count', 'desc') // likes_count の降順で並べ替え
+            ->get();
+    }
+
+    //直近の投稿を取得するメソッド
+    public function getLatestMaterials(): \Illuminate\Database\Eloquent\Collection
+    {
+        return Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
+            ->withCount('likes')   // likes の数を取得
+            ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
+            ->get();
+    }
+
     public function getTagIdsForMaterial(Material $material): array
     {
         return $material->technologies->pluck('id')->toArray();
     }
 
-    public function getRecommendedMaterialsBasedOnTags(array $tags)
+    public function getPersonalizedRecommendationsBasedOnTags(array $tags)
     {
         $recommendedMaterials = collect(); // 最終的に表示するおすすめ教材
         $maxRecommendations = 4;           //  最大表示数
@@ -157,7 +186,7 @@ class MaterialService
     {
         try {
             $path = request()->file('material-image')->store('material_images', 'public');
-    
+            
             $material = Material::create([
                 'title' => $validatedRequest['material-title'],
                 'material_detail' => $validatedRequest['material-thoughts'],
@@ -167,9 +196,9 @@ class MaterialService
                 'image_dir' => '/storage/' . $path, // 画像パスをセット
             ]);
     
-            //dd($material->id);
             return $material->id;
         } catch (\Exception $e) {
+            dd($e->getMessage());
             Log::error('Material creation failed: ' . $e->getMessage());
             return null; // エラー時はnullを返す（呼び出し元で対処）
         }
@@ -195,9 +224,7 @@ class MaterialService
             ];
         }
 
-        //dd($insertData);
-    
-        // まとめてDBに保存
+        //まとめてDBに保存
         Material_technologie_tag::insert($insertData);
     }
     
@@ -293,6 +320,54 @@ class MaterialService
         } catch (\Exception $e) {
             Log::error('MaterialTechnologiesTags update failed: ' . $e->getMessage());
         }
+    }
+
+    //教材のリレーションをロード
+    public function loadMaterialRelations(Material $material): void
+    {
+        $material->load(['posts.user.profile', 'likes', 'technologies']);
+    }
+
+    //教材投稿者がログインユーザーか判定
+    public function isOwner(Material $material, int $loggedInUserId): bool
+    {
+        return $material->posts->contains('posted_user_id', $loggedInUserId);
+    }
+
+    //ログインユーザが教材をいいねしているか取得
+    public function isLikedByUser(Material $material, int $loggedInUserId): bool
+    {
+        return $material->likes->contains($loggedInUserId);
+    }
+
+    //教材のいいね数を取得
+    public function getLikeCount(Material $material): int
+    {
+        return $material->likes->count();
+    }
+
+    //教材の投稿日時や投稿者の情報を取得
+    public function getFirstPost(Material $material)
+    {
+        return $material->posts->first();
+    }
+
+    //おすすめ教材を取得
+    public function getPersonalizedRecommendations(Material $material)
+    {
+        $tagIds = $this->getTagIdsForMaterial($material);
+        return $this->getPersonalizedRecommendationsBasedOnTags($tagIds);
+    }
+
+    public function getFollowStatus(Material $material, int $loggedInUserId)
+    {
+        $isOwner = $this->isOwner($material, $loggedInUserId);
+
+        return match (true) {
+            $isOwner => FollowStatus::SELF,
+            Auth::user()?->isFollowing($material->posts->first()->posted_user_id) => FollowStatus::FOLLOWING,
+            default => FollowStatus::NOT_FOLLOWING,
+        };
     }
 
 }

@@ -36,7 +36,7 @@
         <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
         <?php $recommendedMaterialCount = 1?>
-        @foreach ($recommendedMaterials as $recommendedMaterial)
+        @foreach ($officialRecommendedMaterials as $recommendedMaterial)
             <div class="material-item recommended-material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
                 <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <?php sleep(0.3); ?>
@@ -153,18 +153,11 @@
             @endforeach    
         </div>
     </div>
-
-
-
-
-
-
-
     <!-- 以下はもっと見る、または推奨教材を押した時に表示するようのhtmlです -->
     <div class="recommended_materials_all hidden" id="recommended_materials_all">
         <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
-        @foreach ($recommendedMaterials as $recommendedMaterial)
+        @foreach ($officialRecommendedMaterials as $recommendedMaterial)
             <div class="recommended-material-all material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" data-src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
