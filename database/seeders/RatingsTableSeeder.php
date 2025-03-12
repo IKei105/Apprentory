@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class RatingsTableSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class RatingsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('technologies')->insert([
+        DB::table('ratings')->insert([
             ['level' => 1],
             ['level' => 2],
             ['level' => 3],
