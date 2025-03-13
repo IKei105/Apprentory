@@ -29,20 +29,11 @@ class MaterialController extends Controller
     public function index()
     {
         // ここで各情報を出力します
-        $officialRecommendedMaterials = Material::whereBetween('id', [16, 27])
-            ->with(['posts.user', 'technologies:id,name']) // posts を介して user をロード
-            ->withCount('likes')   // likes の数をカウント
-            ->get();
+        $officialRecommendedMaterials = $this->materialService->getOfficialRecommendedMaterials();
             
-        $topRatedMaterials = Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
-            ->withCount('likes') // likes の数を取得
-            ->orderBy('likes_count', 'desc') // likes_count の降順で並べ替え
-            ->get();
+        $topRatedMaterials = $this->materialService->getTopRatedMaterials();
 
-        $latestMaterials = Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
-            ->withCount('likes')   // likes の数を取得
-            ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
-            ->get();
+        $latestMaterials = $this->materialService->getLatestMaterials();
         
 
         return view('materials.material_index', compact('officialRecommendedMaterials', 'topRatedMaterials', 'latestMaterials'));

@@ -29,6 +29,9 @@
                     フォロー中
                 </button>
             </div>
+            <div>
+                <button id="discord" class="follow-button">ディスコード</button>
+            </div>
             <div class="product-technology-tags">
                 @foreach ($material->technologies as $technology)
                     <a href="" class="product-tag">{{ $technology->name }}</a>
@@ -80,19 +83,6 @@
         <div class="material-info-right">
             <img class="material-book-image" src="{{ asset($material->image_dir) }}" alt="Material Image">
         </div>
-        
-    </div>
-    <div class="actions-container">
-        @if($isOwner)
-            <div class="action-buttons">
-                <a href="{{ route('materials.edit', $material->id) }}"><img src="{{ asset('assets/images/edit.svg') }}" alt=""></a>
-                <form method="POST" action="{{ route('materials.destroy', $material) }}" class="delete-form" id="delete-form">
-                    @method('DELETE')
-                    @csrf
-                    <button class="delete-button"><img src="{{ asset('assets/images/trash.svg') }}" alt=""></button>
-                </form>
-            </div>
-        @endif
     </div>
     <div class="recommended-section">
         <div class="recommended-section-title-wrapper">
@@ -109,7 +99,6 @@
         @endforeach
         </div>
     </div>
-    <!-- ここにおすすめの教材を貼る -->
     <script src="{{ asset('/js/material_detail.js') }}"></script>
     <script>
         const loggedInUserId = @json(auth()->id());
@@ -117,6 +106,6 @@
         const isFollow = @json($isFollow);
     </script>
     <script src="{{ asset('/js/follow.js') }}"></script>
-
+    <script src="{{ asset('/js/discord.js') }}"></script>
 @endsection
 

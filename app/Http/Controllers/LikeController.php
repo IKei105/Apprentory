@@ -22,8 +22,8 @@ class LikeController extends Controller
         }
     
         $userArticleLike = $modelClass::where('user_id', $userId)
-                            ->where('material_id', $articleId)
-                            ->first();
+            ->where('material_id', $articleId)
+            ->first();
 
         if ($userArticleLike) {
             $userArticleLike->delete();
