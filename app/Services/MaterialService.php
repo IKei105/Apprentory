@@ -369,5 +369,4 @@ class MaterialService
             default => FollowStatus::NOT_FOLLOWING,
         };
     }
-
 }

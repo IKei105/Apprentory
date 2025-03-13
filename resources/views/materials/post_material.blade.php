@@ -1,6 +1,6 @@
 @extends('layouts.materials_layout')
 
-@section('title', '教材一覧 | Apprentory')
+@section('title', '教材投稿 | Apprentory')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/menu-select.css') }}">
