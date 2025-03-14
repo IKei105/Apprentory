@@ -11,6 +11,14 @@ use Exception;
 
 class FollowService
 {
+
+    protected $discordService;
+
+    public function __construct(DiscordService $discordService)
+    {
+        $this->discordService = $discordService;
+    }
+
     public function follow($loggedInUserId, $followUserId)
     {
         if ($loggedInUserId == $followUserId) {
@@ -26,6 +34,8 @@ class FollowService
                 'follower_id' => $loggedInUserId,
                 'following_id' => $followUserId
             ]);
+
+            $this->discordService->sendFollowMessage($followUserId, $loggedInUserId);
 
             return [
                 'success' => true, // 追加

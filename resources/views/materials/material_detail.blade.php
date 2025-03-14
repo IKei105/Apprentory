@@ -22,10 +22,10 @@
                 <p class="posted-username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
             </a>
             <div class="follow-action">
-                <button id="follow" class="follow-button {{ $isFollow->value == 'following' ? 'hidden' : '' }}" >
+                <button id="follow" class="follow-button {{ $isFollow->value == 'not_following' ? '' : 'hidden' }}" >
                     フォロー
                 </button>
-                <button id="unfollow" class="unfollow-button {{ $isFollow->value == 'not_following' ? 'hidden' : '' }}">
+                <button id="unfollow" class="unfollow-button {{ $isFollow->value == 'following' ? '' : 'hidden' }}">
                     フォロー中
                 </button>
             </div>
@@ -104,6 +104,7 @@
         const loggedInUserId = @json(auth()->id());
         const followTargetUserId = @json($material->posts[0]->user->id);
         const isFollow = @json($isFollow);
+        const discordId = @json($material->posts[0]->user->profile->discord_id);
     </script>
     <script src="{{ asset('/js/follow.js') }}"></script>
     <script src="{{ asset('/js/discord.js') }}"></script>

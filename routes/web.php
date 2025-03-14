@@ -42,14 +42,14 @@ Route::get('/logindashboard', [UserController::class, 'logindashboard'])->name('
 // 投稿後の確認ページ
 Route::get('products/{id}/test-confirmation', [ProductController::class, 'testConfirmation'])->name('products.test-confirmation');
 
-//検索用のやつねこれ
+//検索用
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 
-//コメントのやつねこれ
+//コメント
 Route::resource('comments', CommentController::class);
 Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('comments.store');
 
-//テストルートでござる
+//テストルート
 Route::get('/test', function () {
     return 'Hello World';
 });
