@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class DiscordService
 {
@@ -54,6 +55,36 @@ class DiscordService
                 'message' => 'Discord へのメッセージ送信に失敗しました'
             ];
         }
+    }
+
+    public function sendFollowMessage($loggedInUserId, $followUserId)
+    {
+        //DMでメッセージを送る
+        $followedUser = User::with('profile')->find($followUserId);
+        if (!$followedUser || !$followedUser->profile || !$followedUser->profile->discord_id) {
+            Log::error("Discord ID が見つかりません: ユーザーID {$followUserId}");
+            return false;
+        }
+
+        $discordUserId = $followedUser->profile->discord_id;
+        $message = "あなたはユーザー {$loggedInUserId} にフォローされました！";
+
+        return $this->sendDirectMessage($discordUserId, $message);
+        //通知テーブルに登録する
+    }
+
+    public function sendLikeMessage()
+    {
+        //DMでメッセージを送る
+
+        //通知テーブルに登録する
+    }
+
+    public function sendCommentMessage()
+    {
+        //DMでメッセージを送る
+
+        //通知テーブルに登録する
     }
     
 }

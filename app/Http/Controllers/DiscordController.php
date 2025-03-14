@@ -15,11 +15,12 @@ class DiscordController extends Controller
     }
 
     //メッセージを送るメソッドです、apiのurlで教材投稿者のidを取得して、それを元にディスコードのurlを取得します
-    public function sendMessage()
+    public function sendMessage(Request $request)
     {
-
-        $discordUserId = '1292759239600767032';
-        $message = 'APIが実行されたお（ ＾ω＾ ）';
+        // フロントエンドから送信されたデータを取得
+        $discordUserId = $request->input('discord_id'); // 送る相手の Discord ID
+        $message = $request->input('message'); // 送るメッセージ
+        
         // Discord API を使って DM を送信
         $success = $this->discordService->sendDirectMessage($discordUserId, $message);
 

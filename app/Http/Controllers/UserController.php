@@ -34,6 +34,7 @@ class UserController extends Controller
             'user_id' => $user->id, // Userの主キーを取得して関連付け
             'username' => $request->userid,
             'profile_image' => $request->profile_image,
+            'discord_id' => '1292759239600767032',
         ]);
     
         // ユーザーに紐づくプロフィールを取得

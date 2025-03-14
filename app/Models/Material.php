@@ -62,4 +62,16 @@ class Material extends Model
             'posted_user_id'    // 中間テーブルのユーザーID
         );
     }
+
+    public function postedUserProfile()
+    {
+        return $this->hasOneThrough(
+            Profile::class,        // 取得したい最終的なモデル (Profile)
+            Material_post::class,  // 中間テーブル (Material_post)
+            'material_id',         // 中間テーブルの外部キー (materials への)
+            'user_id',             // profile の外部キー (users への)
+            'id',                  // materials の主キー
+            'posted_user_id'       // 中間テーブル (Material_post) の user_id
+        );
+    }
 }
