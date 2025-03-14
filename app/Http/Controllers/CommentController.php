@@ -43,8 +43,6 @@ class CommentController extends Controller
         // バリデーション
         $validatedData = $request->validated();
 
-        // dd([$validatedData, $product->id]);
-
         $this->commentService->createComment($validatedData, $product->id);
 
         // リダイレクト（リロードしてコメントを反映）
