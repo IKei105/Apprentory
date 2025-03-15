@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TermsSeeder::class);
         $this->call(TechnologieSeeder::class);
         $this->call(RatingsTableSeeder::class);
+        $this->call(MaterialCategorySeeder::class);
     }
 }

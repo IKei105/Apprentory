@@ -51,7 +51,7 @@ class LikeService
             if ($material && $material->postedUserProfile && $material->postedUserProfile->discord_id) {
                 $discordUserId = $material->postedUserProfile->discord_id; // 教材投稿者の Discord ID
                 $likedUser = Auth::user()->profile->username;
-                $message = "{$likedUser} さんがあなたの教材にいいねしました！";
+                $message = "{$likedUser} さんがあなたの教材投稿にいいねしました！";
             
                 $this->discordService->sendDirectMessage($discordUserId, $message);
             }

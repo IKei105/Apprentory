@@ -16,6 +16,7 @@ class StoreMaterialRequest extends FormRequest
             'material-price' => 'required',
             'material-url' => 'required',
             'select1' => 'required|integer', //|exists:technologies,id ←これはテクノロジーテーブルにデータのセットが完了したらやります
+            'material-category' => 'required',
         ];
     }
 

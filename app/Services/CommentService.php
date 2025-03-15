@@ -47,7 +47,7 @@ class CommentService
 
         return $comment;
     } catch (\Exception $e) {
-        \Log::error("オリプロコメント作成エラー: " . $e->getMessage());
+        Log::error("オリプロコメント作成エラー: " . $e->getMessage());
 
         return response()->json([
             'error' => 'コメントの作成に失敗しました。',

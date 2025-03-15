@@ -44,11 +44,11 @@ class MaterialController extends Controller
         return view('materials.post_material');
     }
 
-    public function store(StoreMaterialRequest $request)
+    public function store(MaterialRequest $request)
     {
         // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
-
+        
         //教材情報を保存する
         $materialId = $this->materialService->storeMaterial($validated);
 
