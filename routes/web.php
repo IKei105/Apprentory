@@ -29,8 +29,10 @@ Route::resource("materials",MaterialController::class);
 Route::resource("products",ProductController::class);
 
 // ログイン不要のルート
-Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [UserController::class, 'register']);
+Route::get('/register', [UserController::class, 'showRegisterForm1'])->name('register1');
+Route::get('/register2', [UserController::class, 'showRegisterForm2'])->name('register2');
+Route::post('/register', [UserController::class, 'sendDiscordRegisterCode'])->name('register1');
+//Route::post('/register', [UserController::class, 'register']);
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
@@ -44,6 +46,8 @@ Route::get('products/{id}/test-confirmation', [ProductController::class, 'testCo
 
 //検索用
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+
+
 
 //コメント
 Route::resource('comments', CommentController::class);
