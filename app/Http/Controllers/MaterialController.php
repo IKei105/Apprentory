@@ -48,7 +48,6 @@ class MaterialController extends Controller
     {
         // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
-        
         //教材情報を保存する
         $materialId = $this->materialService->storeMaterial($validated);
 
