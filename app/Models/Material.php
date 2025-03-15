@@ -15,7 +15,8 @@ class Material extends Model
         'material_detail',
         'material_url',
         'rating_id',
-        'image_dir'
+        'image_dir',
+        'category_id',
     ];
 
     // モデルのリレーションを定義
