@@ -4,14 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Term;
+use App\Services\DiscordService;
 
 class UserController extends Controller
 {
+
+    protected $discordService;
+
+    public function __construct(DiscordService $discordService)
+    {
+        $this->discordService = $discordService;
+    }
     //新規登録
-    public function showRegisterForm()
+    public function showRegisterForm1()
     {
         $terms = Term::all(); // 全ての期生データを取得
-        return view('users.register',compact('terms'));
+        return view('users.register_step1_discord',compact('terms'));
+    }
+
+    public function sendDiscordRegisterCode(Request $request)
+    {
+        dd($request);
+        //ここでサービスを使用してランダムなコードをディスコードのidあてに送ります
+    }
+
+    public function showRegisterForm2()
+    {
+        $terms = Term::all(); // 全ての期生データを取得
+        return view('users.register_step2_info',compact('terms'));
     }
 
     public function register(Request $request)

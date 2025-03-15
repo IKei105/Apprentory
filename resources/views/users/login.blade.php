@@ -11,7 +11,7 @@
 <body>
     <header>
         <a href="" class="header-logo">Apprentory</a>
-        <a class="header-register-link" id="header-register-link" href="{{ route('register') }}">アカウント登録</a>
+        <a class="header-register-link" id="header-register-link" href="{{ route('register1') }}">アカウント登録</a>
     </header>
     <div class="login">
         <p class="login-title" >ログイン</p>
