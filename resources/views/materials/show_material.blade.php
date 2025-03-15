@@ -4,7 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/material_detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/show_material.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush

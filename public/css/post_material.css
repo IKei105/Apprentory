@@ -222,6 +222,10 @@ body {
     height: 24px;
 }
 
+.post-material-price-text:disabled {
+    background-color: #bababa; /* 背景をグレーに */
+    cursor: not-allowed; /* 禁止カーソル */
+}
 
 /* URLを入力する欄 */
 .post-material-url {
@@ -261,8 +265,6 @@ body {
     margin-right: 11px;
 }
 
-
-
 .star {
     font-size: 24px;
     color: gray;
@@ -274,3 +276,55 @@ body {
     color: gold;
 }
 
+/* 標準のラジオボタンを隠す */
+.material-price-radio-button {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.custom-radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    z-index: 1;
+}
+
+/* カスタムラジオボタン */
+.custom-radio label {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+/* カスタムの丸いボタン */
+.custom-radio label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: 3px solid #6d6d6d;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+}
+
+/* 選択時のスタイル */
+.custom-radio input[type="radio"]:checked + label::before {
+    border-color: #49b3c3;
+}
+.custom-radio input[type="radio"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #49b3c3;
+}

@@ -26,7 +26,8 @@ class MaterialRequest extends FormRequest
             'material-title' => 'required',
             'material-thoughts' => 'required',
             'material-rate' => 'required',
-            'material-price' => 'required',
+            'material-price' => 'nullable|integer|between:0,100000',
+            'is_free' => 'nullable|in:0',
             'material-url' => 'required',
             'select1' => 'required|integer|between:1,10', // 1〜10 のみ許可
             'select2' => 'nullable|integer|between:1,10', // null または 1〜10 の整数のみ

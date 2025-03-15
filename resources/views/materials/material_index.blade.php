@@ -15,21 +15,31 @@
             <button class="new-button" id="new-button">高評価</button>
             <button class="high-rated-button" id="high-rated-button">新着</button>
         </div>
-        <div class="filter">
-            <select name="tag" id="tag" class="filter-tag"  >
-                <option value="">絞り込み</option>
-                <option value="1">Ruby</option>
-                <option value="2">PHP</option>
-                <option value="3">SQL</option>
-                <option value="4">HTML</option>
-                <option value="5">CSS</option>
-                <option value="6">JavaScript</option>
-                <option value="7">GitHub</option>
-                <option value="8">Linux</option>
-                <option value="9">docker</option>
-                <option value="10">AWS</option>
-                <option value="11">その他</option>
-            </select>
+        <div class="filter-menu">
+            <div class="filter">
+                <select name="tag" id="tag" class="filter-tag"  >
+                    <option value="">技術タグ</option>
+                    <option value="1">Ruby</option>
+                    <option value="2">PHP</option>
+                    <option value="3">SQL</option>
+                    <option value="4">HTML</option>
+                    <option value="5">CSS</option>
+                    <option value="6">JavaScript</option>
+                    <option value="7">GitHub</option>
+                    <option value="8">Linux</option>
+                    <option value="9">docker</option>
+                    <option value="10">AWS</option>
+                    <option value="11">その他</option>
+                </select>
+            </div>
+            <div class="filter">
+                <select name="tag" id="tag" class="filter-tag">
+                    <option value="">カテゴリー</option>
+                    <option value="1">書籍</option>
+                    <option value="2">オンライン記事</option>
+                    <option value="3">動画教材</option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="recommended_materials" id="recommended_materials">

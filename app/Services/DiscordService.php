@@ -15,7 +15,7 @@ class DiscordService
         $this->botToken = env('DISCORD_BOT_TOKEN'); // `.env` に Bot Token を保存
     }
 
-    // 📌 1️⃣ Discord の ID から DM チャンネルを取得
+    // Discord の ID から DM チャンネルを取得
     private function getDmChannelId($userId)
     {
         $response = Http::withHeaders([

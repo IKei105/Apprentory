@@ -11,6 +11,10 @@ a:hover, p:hover {
     padding: 1px 6px;
 }
 
+.filter {
+    display: inline-block;
+}
+
 /* 絞り込み */
 .filter-tag {
     appearance: none; /* デフォルトのスタイルを無効化（全ブラウザ対応） */
