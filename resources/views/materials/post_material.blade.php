@@ -102,6 +102,15 @@
                         <option value="11">その他</option>
                     </select>
             </div>
+            <div class="post-material-tags" id="material-category">
+                <p>カテゴリー選択</p>
+                    <select name="material-category" id="material-category" class="post-material-tags-select" required>
+                        <option value="">選択してください</option>
+                        <option value="1">書籍</option>
+                        <option value="2">webサイト・オンライン記事</option>
+                        <option value="3">動画口座・オンラインコース</option>
+                    </select>
+            </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>
 

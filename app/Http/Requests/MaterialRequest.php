@@ -28,7 +28,11 @@ class MaterialRequest extends FormRequest
             'material-rate' => 'required',
             'material-price' => 'required',
             'material-url' => 'required',
-            'select1' => 'required|integer', //|exists:technologies,id ←これはテクノロジーテーブルにデータのセットが完了したらやります
+            'select1' => 'required|integer|between:1,10', // 1〜10 のみ許可
+            'select2' => 'nullable|integer|between:1,10', // null または 1〜10 の整数のみ
+            'select3' => 'nullable|integer|between:1,10',
+            'select4' => 'nullable|integer|between:1,10',
+            'material-category' => 'required|integer|in:1,2,3', // 1,2,3 のみ許可
         ];
     }
 

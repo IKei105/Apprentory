@@ -74,4 +74,9 @@ class Material extends Model
             'posted_user_id'       // 中間テーブル (Material_post) の user_id
         );
     }
+
+    public function category()
+    {
+        return $this->belongsTo(MaterialCategory::class, 'category_id');
+    }
 }

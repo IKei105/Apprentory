@@ -186,7 +186,7 @@ class MaterialService
     {
         try {
             $path = request()->file('material-image')->store('material_images', 'public');
-            
+            dd($validatedRequest);
             $material = Material::create([
                 'title' => $validatedRequest['material-title'],
                 'material_detail' => $validatedRequest['material-thoughts'],
@@ -194,6 +194,7 @@ class MaterialService
                 'price' => $validatedRequest['material-price'],
                 'material_url' => $validatedRequest['material-url'],
                 'image_dir' => '/storage/' . $path, // 画像パスをセット
+                'category_id' => $validatedRequest['material-url'],
             ]);
     
             return $material->id;
