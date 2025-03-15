@@ -53,21 +53,16 @@
                 <div class="post-material-rate rate-form">
                     <input id="star5" type="radio" name="material-rate" value="5" required>
                     <label for="star5" class="star">★</label>
-
                     <input id="star4" type="radio" name="material-rate" value="4">
                     <label for="star4" class="star">★</label>
-
                     <input id="star3" type="radio" name="material-rate" value="3">
                     <label for="star3" class="star">★</label>
-
                     <input id="star2" type="radio" name="material-rate" value="2">
                     <label for="star2" class="star">★</label>
-
                     <input id="star1" type="radio" name="material-rate" value="1">
                     <label for="star1" class="star">★</label>
                 </div>
-
-            </div>
+            </div>            
             <div class="post-material-price">
                 <label for="material_price">価格</label>
                 <input 
@@ -80,6 +75,10 @@
                     step="1" 
                     oninput="this.value = this.value.replace(/^0+/, '');"
                 />
+                <div class="custom-radio material-price-radio-button">
+                    <input type="radio" name="is_free" id="material-price-free-button" value="0">
+                    <label class="material-price-free-button-label" for="material-price-free-button">無料</label>
+                </div>
             </div>
             <div class="post-material-url">
                 <label for="url">URL</label>
@@ -113,6 +112,4 @@
             </div>
         </form>
         <script src="{{ asset('/js/post_material.js') }}"></script>
-
-
 @endsection

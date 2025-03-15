@@ -48,6 +48,7 @@ class MaterialController extends Controller
     {
         // バリデーションを実行してダメなら投稿フォームにリダイレクト、成功したらバリデーション後のデータが配列として渡される
         $validated = $request->validated();
+        
         //教材情報を保存する
         $materialId = $this->materialService->storeMaterial($validated);
 
@@ -88,7 +89,7 @@ class MaterialController extends Controller
         $isFollow = $this->materialService->getFollowStatus($material, $loggedInUserId);
 
         // compactを使用してデータをビューに渡す
-        return view('materials.material_detail', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'getPersonalizedRecommendations', 'isFollow'));
+        return view('materials.show_material', compact('material', 'likeCount', 'post', 'isOwner', 'isLikedByCurrentUser', 'getPersonalizedRecommendations', 'isFollow'));
     }
 
     public function edit(Material $material)

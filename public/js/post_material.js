@@ -132,3 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
         form.submit();
     });
 }
+
+/**************************************************
+ * 無料ボタンを押すと教材金額の入力が不可能になるコード
+ **************************************************/
+document.addEventListener("DOMContentLoaded", function () {
+    const radioButton = document.getElementById("material-price-free-button");
+    const priceInput = document.getElementById("material_price");
+
+    let lastChecked = false; // 直前の選択状態を記録
+
+    radioButton.addEventListener("click", function () {
+        if (lastChecked) {
+            // すでに選択されていた場合は、解除する
+            this.checked = false;
+            priceInput.removeAttribute("disabled"); // 金額入力を有効化
+        } else {
+            // 選択されていなかった場合は、選択する
+            this.checked = true;
+            priceInput.setAttribute("disabled", "disabled"); // 金額入力を無効化
+        }
+        lastChecked = this.checked; // 現在の状態を記録
+    });
+});
+
+

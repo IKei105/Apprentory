@@ -185,12 +185,13 @@ class MaterialService
     public function storeMaterial($validatedRequest)
     {
         try {
+            $price = isset($validatedRequest['is_free']) ? $validatedRequest['is_free'] : $validatedRequest['material-price'];
             $path = request()->file('material-image')->store('material_images', 'public');
             $material = Material::create([
                 'title' => $validatedRequest['material-title'],
                 'material_detail' => $validatedRequest['material-thoughts'],
                 'rating_id' => $validatedRequest['material-rate'],
-                'price' => $validatedRequest['material-price'],
+                'price' => $price,
                 'material_url' => $validatedRequest['material-url'],
                 'image_dir' => '/storage/' . $path, // 画像パスをセット
                 'category_id' => $validatedRequest['material-category'],

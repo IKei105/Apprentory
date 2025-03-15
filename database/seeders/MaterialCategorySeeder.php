@@ -11,8 +11,8 @@ class MaterialCategorySeeder extends Seeder
     {
         $categories = [
             '書籍',
-            'Webサイト・オンライン記事',
-            '動画講座・オンラインコース',
+            'オンライン記事',
+            '動画教材',
         ];
 
         foreach ($categories as $category) {

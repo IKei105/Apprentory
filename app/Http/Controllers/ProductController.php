@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User;
 use App\Models\Original_product_comment;
 use App\Http\Requests\OriginalProductCommentRequest;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -151,10 +152,10 @@ class ProductController extends Controller
         // アップロードされたファイルを確認
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
-                \Log::info("ファイル {$index}: " . $file->getClientOriginalName());
+                Log::info("ファイル {$index}: " . $file->getClientOriginalName());
             }
         } else {
-            \Log::info('imagesキーにファイルが存在しません。');
+            Log::info('imagesキーにファイルが存在しません。');
         }        
         $validated = $request->validated();    
         DB::beginTransaction();
@@ -187,7 +188,7 @@ class ProductController extends Controller
                     $product->images()->save($productImage);
                 }
             } else {  //デバッグ用
-                \Log::info("画像がアップロードされていません");
+                Log::info("画像がアップロードされていません");
             }
             // 3. タグ情報を保存
             // 保存した時の主キーを取得
