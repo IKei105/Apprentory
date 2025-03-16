@@ -80,7 +80,7 @@ class LikeService
         $discordUserId = $material->posts->first()->user->profile->discord_id; // 教材投稿者の Discord ID
         $likingUser = Auth::user()->name; // いいねしたユーザーの名前
 
-        $message = "📢 {$likingUser} さんがあなたの教材にいいねしました！";
+        $message = "{$likingUser} さんがあなたの教材にいいねしました！";
 
         // Discord API で通知を送信
         $this->discordService->sendDirectMessage($discordUserId, $message);

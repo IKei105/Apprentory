@@ -87,4 +87,14 @@ class DiscordService
         //通知テーブルに登録する
     }
     
+    public function sendDiscordRegisterCode($discordUserId, $registerCode)
+    {
+        //ここでディスコードにメッセージを送る
+        $message = "Apprentory 新規登録コード \n\n"
+        . "あなたの登録コードは `{$registerCode}` です。\n\n"
+        . "会員登録画面でこのコードを入力してください。\n"
+        . "コードの有効期限: 明日まで";
+
+        return $this->sendDirectMessage($discordUserId, $message);
+    }
 }
