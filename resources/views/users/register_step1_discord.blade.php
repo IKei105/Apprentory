@@ -19,7 +19,7 @@
             @csrf
             <div class=input-info>
                 <fieldset class="userid">
-                    <input class="userid-input" name="userid" type="text" placeholder="Discord IDを入力" />
+                    <input class="userid-input" name="discord-ID" type="text" placeholder="Discord IDを入力" />
                 </fieldset>
             </div>
             <button class="login-button">Discordに送信</button>

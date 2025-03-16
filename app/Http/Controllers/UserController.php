@@ -8,6 +8,7 @@ use App\Services\DiscordService;
 
 class UserController extends Controller
 {
+    private const LENGTH = 16;
 
     protected $discordService;
 
@@ -24,8 +25,12 @@ class UserController extends Controller
 
     public function sendDiscordRegisterCode(Request $request)
     {
-        dd($request);
+        //dd($request);
+        //ランダムな16桁のコードを生成
+        $registerCode = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, self::LENGTH);
+
         //ここでサービスを使用してランダムなコードをディスコードのidあてに送ります
+        $this->discordService->sendDiscordRegisterCode($request['discord-ID'], $registerCode);
     }
 
     public function showRegisterForm2()
