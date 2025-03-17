@@ -32,6 +32,7 @@ Route::resource("products",ProductController::class);
 Route::get('/register', [UserController::class, 'showRegisterForm1'])->name('register1');
 Route::get('/register2', [UserController::class, 'showRegisterForm2'])->name('register2');
 Route::post('/register', [UserController::class, 'sendDiscordRegisterCode'])->name('register1');
+Route::post('/register2', [UserController::class, 'newRegister'])->name('register2');
 //Route::post('/register', [UserController::class, 'register']);
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
