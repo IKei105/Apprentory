@@ -31,22 +31,23 @@ class UserService
                     ->exists();
     }
 
-    public function createUser($request): User
+    public function createUser(array $request): User
     {
+        //dd($request);
         return User::create([
-            'userid' => $request->userid,
-            'term_id' => $request->term,
-            'password' => bcrypt($request->password),
+            'userid' => $request['userid'], // ✅ 配列なので `[]` でアクセス
+            'term_id' => $request['term'],
+            'password' => bcrypt($request['password']),
         ]);
     }
 
-    public function createProfile($userid, $request): void
+    public function createProfile(int $userid, array $request, string $profileImage): void
     {
         Profile::create([
-            'user_id' => $userid, // Userの主キーを取得して関連付け
-            'username' => $request->userid,
-            'profile_image' => $request->profile_image,
-            'discord_id' => $request->input('discord-ID'),
+            'user_id' => $userid, // Userの主キー
+            'username' => $request['userid'],
+            'profile_image' => $profileImage,
+            'discord_id' => $request['discord-ID'],
         ]);
     }
 

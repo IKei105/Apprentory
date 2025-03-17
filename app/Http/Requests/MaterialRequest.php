@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Material_technologie_tag;
 
 class MaterialRequest extends FormRequest
 {
@@ -29,11 +30,12 @@ class MaterialRequest extends FormRequest
             'material-price' => 'nullable|integer|between:0,100000',
             'is_free' => 'nullable|in:0',
             'material-url' => 'required',
-            'select1' => 'required|integer|between:1,10', // 1〜10 のみ許可
-            'select2' => 'nullable|integer|between:1,10', // null または 1〜10 の整数のみ
-            'select3' => 'nullable|integer|between:1,10',
-            'select4' => 'nullable|integer|between:1,10',
-            'material-category' => 'required|integer|in:1,2,3', // 1,2,3 のみ許可
+            'select1' => 'required|integer|exists:technologies,id', // 必須 & material_technologie_tag の id に存在する
+            'select2' => 'nullable|integer|exists:technologies,id', // null または存在する id
+            'select3' => 'nullable|integer|exists:technologies,id',
+            'select4' => 'nullable|integer|exists:technologies,id',
+            'select5' => 'nullable|integer|exists:technologies,id',
+            'material-category' => 'required|integer|exists:material_categories,id', // 1,2,3 のみ許可
         ];
     }
 

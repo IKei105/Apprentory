@@ -7,9 +7,10 @@ use App\Models\Term;
 use App\Services\DiscordService;
 use App\Models\TempRegisterCode;
 use Carbon\Carbon;
-use \App\Models\User;
+use App\Models\User;
 use App\Services\UserService;
 use \App\Models\Profile;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -60,13 +61,9 @@ class UserController extends Controller
         return view('users.register_step2_info',compact('terms'));
     }
 
-    public function newRegister(Request $request)
+    public function newRegister(UserRequest $request)
     {
-        $request->validate([
-            'userid' => 'required|unique:users', // ユーザーIDが必須かつユニーク
-            'term' => 'required|exists:terms,id',
-            'password' => 'required|min:8|confirmed', // 'confirmed' はパスワード確認用フィールドと一致するかチェック
-        ]);
+        $validated = $request->validated();
 
         //ここで入力されたdiscordIDと確認コードが一致するなら
         //apprenticeのグループにいるの確認できたっけ？
@@ -76,14 +73,22 @@ class UserController extends Controller
         // テーブルに該当するレコードが存在するか確認
         $exists = $this->userService->checkTempRegisterCode($discordId, $registerCode);
 
-        //userを登録
-        $user = $this->userService->createUser($request);
+        if ($exists) {
+            //userを登録
+            $user = $this->userService->createUser($validated);
 
-        //profileを登録
-        $this->userService->createProfile($user->id, $request);
+            //profileを登録
+            $profileImage = $request->profile_image ?? 'public/assets/images/sample_image.png';
 
-        // 登録後にログインさせる
-        auth()->login($user);
+            $this->userService->createProfile($user->id, $validated, $profileImage);
+
+            // 登録後にログインさせる
+            auth()->login($user);
+        } else {
+            //色々違うだお（ ＾ω＾）
+        }
+        
+        
 
         //登録完了後に教材ページに移動する
         return redirect('/materials');
@@ -99,7 +104,7 @@ class UserController extends Controller
         ]);
     
         // ユーザーの作成
-        $user = \App\Models\User::create([
+        $user = User::create([
             'userid' => $request->userid,
             'term_id' => $request->term,
             'password' => bcrypt($request->password),
