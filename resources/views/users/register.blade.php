@@ -16,7 +16,7 @@
     <div class="login">
         <p class="login-title" >新規登録</p>
         <form action="{{ route('register') }}" method="POST">
-              @csrf
+            @csrf
             <div class=input-info>
                 <div class="userid">
                     <input name="userid" class="userid-input" type="text" placeholder="ユーザーID" />

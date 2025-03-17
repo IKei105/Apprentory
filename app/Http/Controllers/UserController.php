@@ -5,17 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Term;
 use App\Services\DiscordService;
+use App\Models\TempRegisterCode;
+use Carbon\Carbon;
+use \App\Models\User;
+use App\Services\UserService;
+use \App\Models\Profile;
 
 class UserController extends Controller
 {
     private const LENGTH = 16;
 
     protected $discordService;
+    protected $userService;
 
-    public function __construct(DiscordService $discordService)
+    public function __construct(DiscordService $discordService, UserService $userService)
     {
         $this->discordService = $discordService;
+        $this->userService = $userService;
     }
+
     //新規登録
     public function showRegisterForm1()
     {
@@ -23,20 +31,62 @@ class UserController extends Controller
         return view('users.register_step1_discord',compact('terms'));
     }
 
+    //discordに確認コードを送る
     public function sendDiscordRegisterCode(Request $request)
-    {
-        //dd($request);
+    {   
+        $discordId = $request['discord-ID'];
+
         //ランダムな16桁のコードを生成
         $registerCode = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, self::LENGTH);
 
         //ここでサービスを使用してランダムなコードをディスコードのidあてに送ります
-        $this->discordService->sendDiscordRegisterCode($request['discord-ID'], $registerCode);
+        $this->discordService->sendDiscordRegisterCode($discordId, $registerCode);
+
+        //これをdbに登録します
+        // 翌日の日付を取得
+        $expiresAt = $this->userService->getTomorrowDate();
+        //dd($expiresAt);
+
+        // データを保存
+        $this->userService->createTempRegisterCode($discordId, $registerCode, $expiresAt);
+
+        //新規登録画面2を送る
+        return redirect('/register2');
     }
 
     public function showRegisterForm2()
     {
         $terms = Term::all(); // 全ての期生データを取得
         return view('users.register_step2_info',compact('terms'));
+    }
+
+    public function newRegister(Request $request)
+    {
+        $request->validate([
+            'userid' => 'required|unique:users', // ユーザーIDが必須かつユニーク
+            'term' => 'required|exists:terms,id',
+            'password' => 'required|min:8|confirmed', // 'confirmed' はパスワード確認用フィールドと一致するかチェック
+        ]);
+
+        //ここで入力されたdiscordIDと確認コードが一致するなら
+        //apprenticeのグループにいるの確認できたっけ？
+        $discordId = $request->input('discord-ID');
+        $registerCode = $request->input('register-code');
+
+        // テーブルに該当するレコードが存在するか確認
+        $exists = $this->userService->checkTempRegisterCode($discordId, $registerCode);
+
+        //userを登録
+        $user = $this->userService->createUser($request);
+
+        //profileを登録
+        $this->userService->createProfile($user->id, $request);
+
+        // 登録後にログインさせる
+        auth()->login($user);
+
+        //登録完了後に教材ページに移動する
+        return redirect('/materials');
     }
 
     public function register(Request $request)

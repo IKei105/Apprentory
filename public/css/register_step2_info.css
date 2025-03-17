@@ -89,6 +89,18 @@ input {
     box-shadow: none !important; /* 入力欄の影もリセット */
 }
 
+.input-register-code {
+    margin: 0 auto; /*　中央寄せ  */
+    border: 1px solid #D9D9D9; /* 全体の枠線 */
+    width: 316px; /* 全体の幅 */
+    height: 105px;
+    border-radius: 10px;
+    overflow: hidden; /* input入力枠と外枠が重なった時入力枠の無効化 */
+    display: flex; /* 内部要素を中央に配置する準備 */
+    flex-direction: column; /* 要素を縦に並べる */
+    justify-content: center; /* 縦方向に中央揃え */
+}
+
 /* メールアドレス欄と期生入力欄 */
 .input-info {
     margin: 0 auto; /*　中央寄せ  */
@@ -188,6 +200,7 @@ input {
     display: flex; /* 内部要素を中央に配置する準備 */
     flex-direction: column; /* 要素を縦に並べる */
     justify-content: center; /* 縦方向に中央揃え */
+    margin-bottom: 20px;
 }
 
 .password {

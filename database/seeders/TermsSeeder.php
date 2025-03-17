@@ -21,6 +21,8 @@ class TermsSeeder extends Seeder
             ['term' => '5期生'],
             ['term' => '6期生'],
             ['term' => '7期生'],
+            ['term' => '8期生'],
+            ['term' => '9期生'],
         ]);
     }
 }
