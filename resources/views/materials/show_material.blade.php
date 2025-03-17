@@ -29,9 +29,6 @@
                     フォロー中
                 </button>
             </div>
-            <div>
-                <button id="discord" class="follow-button">ディスコード</button>
-            </div>
             <div class="product-technology-tags">
                 @foreach ($material->technologies as $technology)
                     <a href="" class="product-tag">{{ $technology->name }}</a>
