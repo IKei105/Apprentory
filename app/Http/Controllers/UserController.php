@@ -71,9 +71,9 @@ class UserController extends Controller
         $registerCode = $request->input('register-code');
 
         // テーブルに該当するレコードが存在するか確認
-        $exists = $this->userService->checkTempRegisterCode($discordId, $registerCode);
+        //requestで対処してるンゴねぇ
+        //$exists = $this->userService->checkTempRegisterCode($discordId, $registerCode);
 
-        if ($exists) {
             //userを登録
             $user = $this->userService->createUser($validated);
 
@@ -84,10 +84,6 @@ class UserController extends Controller
 
             // 登録後にログインさせる
             auth()->login($user);
-        } else {
-            //色々違うだお（ ＾ω＾）
-        }
-        
         
 
         //登録完了後に教材ページに移動する
