@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ValidDiscordRegisterCode; // カスタムバリデーションをインポート
 
 class UserRequest extends FormRequest
 {
@@ -24,7 +25,12 @@ class UserRequest extends FormRequest
             'term' => 'required|exists:terms,id', // term_idが存在するかチェック
             'password' => 'required|min:8|confirmed', // 8文字以上 & 確認用と一致
             'discord-ID' => 'required|string', // Discord ID は必須の文字列
-            'register-code' => 'required|string|size:16', // 16桁の文字列
+            'register-code' => [
+                'required',
+                'string',
+                'size:16',
+                new ValidDiscordRegisterCode // カスタムバリデーションを適用
+            ],
         ];
     }
 

@@ -17,35 +17,57 @@
         <p class="login-title" >新規登録</p>
         <form action="{{ route('register2') }}" method="POST">
             @csrf
-            <div class="input-info">
+            <div class="input-info {{ $errors->has('userid') ? 'border-red' : '' }}">
                 <div class="userid">
-                    <input name="userid" class="userid-input" type="text" placeholder="ユーザーID" />
+                    <input name="userid" class="userid-input" type="text" placeholder="ユーザーID" value="{{ old('userid') }}"/>
                 </div>
                 <div class="term">
                     <select id="term" class="term-input" name="term">
                         @foreach($terms as $term)
-                            <option value="{{ $term->id }}">{{ $term->term }}</option>
+                            <option value="{{ $term->id }}" {{ old('term') == $term->id ? 'selected' : '' }}>
+                                {{ $term->term }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="password-info" >
+            @if($errors->has('userid'))
+                @if($errors->first('userid') === 'ユーザーIDを入力してください。')
+                    <p class="error-message">ユーザーIDを入力してください。</p>
+                @elseif($errors->first('userid') === 'このユーザーIDはすでに使用されています。')
+                    <p class="error-message">このユーザーIDはすでに使用されています。</p>
+                @endif
+            @endif
+            <div class="password-section">
+                <div class="password-info {{ $errors->has('password') ? 'border-red' : '' }}">
+                    <div class="password password-upper">
+                        <input class="password-input " name="password" type="password" placeholder="パスワード" />
+                    </div>
+                    <div class="password">
+                        <input class="password-input" name="password_confirmation" type="password" placeholder="もう一度パスワードを入力" />
+                    </div>
+                </div>
+                @if($errors->has('password'))
+                    @if($errors->first('password') === 'パスワードを入力してください。')
+                        <p class="error-message">パスワードを入力してください。</p>
+                    @elseif($errors->first('password') === 'パスワードは8文字以上で入力してください。')
+                        <p class="error-message">パスワードは8文字以上で入力してください。</p>
+                    @elseif($errors->first('password') === 'パスワード確認が一致しません。')
+                        <p class="error-message">パスワード確認が一致しません。</p>
+                    @endif
+                @endif
+            </div>
+            <div class="input-register-code {{ $errors->has('register-code') ? 'border-red' : '' }}" >
                 <div class="password password-upper">
-                    <input class="password-input " name="password" type="password" placeholder="パスワード" />
+                    <input class="password-input " name="discord-ID" type="text" placeholder="Discord IDを入力" value="{{ old('discord-ID') }}"  />
                 </div>
                 <div class="password">
-                    <input class="password-input" name="password_confirmation" type="password" placeholder="もう一度パスワードを入力" />
+                    <input class="password-input" name="register-code" type="text" placeholder="確認コードを入力" value="{{ old('register-code') }}" />
                 </div>
             </div>
-            <div class="input-register-code" >
-                <div class="password password-upper">
-                    <input class="password-input " name="discord-ID" type="text" placeholder="Discord IDを入力" />
-                </div>
-                <div class="password">
-                    <input class="password-input" name="register-code" type="text" placeholder="確認コードを入力" />
-                </div>
-            </div>
-            
+            @if($errors->has('register-code'))
+                <p class="error-message">{{ $errors->first('register-code') }}</p>
+            @endif
             <button class="login-button">新規登録</button>
             </form>
     </div>

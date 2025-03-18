@@ -112,7 +112,6 @@ input {
     display: flex; /* 内部要素を中央に配置する準備 */
     flex-direction: column; /* 要素を縦に並べる */
     justify-content: center; /* 縦方向に中央揃え */
-    margin-bottom: 18px;
 }
 
 /* メールアドレス入力欄の親クラス */
@@ -200,6 +199,10 @@ input {
     display: flex; /* 内部要素を中央に配置する準備 */
     flex-direction: column; /* 要素を縦に並べる */
     justify-content: center; /* 縦方向に中央揃え */
+}
+
+.password-section {
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -232,11 +235,11 @@ input {
     color: #979797; /* プレースホルダーの文字色 */
 }
 
-.password-upper {
+.password-upper, .input-register-code, .userid {
     position: relative;
 }
 
-.password-upper::after {
+.password-upper::after, .input-register-code-upper::after, .userid::after {
     content: ''; /* 疑似要素に空のコンテンツを挿入。これが下線の見た目を形成する。 */
     position: absolute; /* 親要素(.underline)を基準に配置を絶対位置で設定する。 */
     height: 1px; /* 下線の高さを1ピクセルに設定。 */
@@ -255,4 +258,15 @@ input {
     border: none; 
     border-radius: 10px;
     color: white;
+}
+
+.border-red {
+    border: solid 1px red;
+}
+
+.error-message {
+    text-align: left;
+    margin-left: 5px;
+    font-size: 12px;
+    color: red;
 }
