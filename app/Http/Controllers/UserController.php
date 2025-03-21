@@ -37,6 +37,8 @@ class UserController extends Controller
     {   
         $discordId = $request['discord-ID'];
 
+        session(['discord_ID' => $discordId]);
+
         //ランダムな16桁のコードを生成
         $registerCode = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, self::LENGTH);
 
@@ -52,7 +54,7 @@ class UserController extends Controller
         $this->userService->createTempRegisterCode($discordId, $registerCode, $expiresAt);
 
         //新規登録画面2を送る
-        return redirect('/register2');
+        return redirect()->route('register2', ['discord-ID' => $discordId]);
     }
 
     public function showRegisterForm2()

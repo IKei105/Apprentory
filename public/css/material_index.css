@@ -151,7 +151,7 @@ a:hover, p:hover {
 
 
 /**************************************************
- * 評価の高い教材一覧
+ * 評価の高い教材、新着教材一覧
  **************************************************/
 
 body {
@@ -186,6 +186,8 @@ body {
 
 
 
+
+
 /**************************************************
  * 複数の教材情報が入っているコンテナ、これにflexを適用する
  **************************************************/
@@ -199,7 +201,7 @@ body {
 /* 単一の教材情報が入ってる */
 .article {
     width: 48%;
-    height: 216px;
+    height: 250px;
     padding: 24px;
     display: flex;
     justify-content: flex-start;
@@ -218,6 +220,30 @@ body {
     height: 168px;
     box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3); /* 左と下に影を設定 */
 }
+
+/* 教材カテゴリ */
+/* .material-category-text  {
+    font-size: 12px;
+    padding: 4px 30px;
+}
+
+.material-category-book-style {
+    color: #49B3C3;
+    border: #49B3C3 1px solid;
+    border-radius: 15px;
+}
+
+.material-category-web-style {
+    color: #5022C3;
+    border: #5022C3 1px solid;
+    border-radius: 15px;
+}
+
+.material-category-movie-style {
+    color: #FF0033;
+    border: #FF0033 1px solid;
+    border-radius: 15px;
+} */
 
 
 /* ユーザープロフィール画像 */
@@ -284,7 +310,13 @@ body {
  * もっと見る
  **************************************************/
 
-
+ /* .material-category-text  {
+    font-size: 12px;
+    border: #8F9FAA 1px solid;
+    border-radius: 15px;
+    padding: 4px 30px;
+    color: #49B3C3;
+} */
 
 /**************************************************
  * 見えなくするクラス

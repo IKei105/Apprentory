@@ -59,7 +59,7 @@
             </div>
             <div class="input-register-code {{ $errors->has('register-code') ? 'border-red' : '' }}" >
                 <div class="password password-upper">
-                    <input class="password-input " name="discord-ID" type="text" placeholder="Discord IDを入力" value="{{ old('discord-ID') }}"  />
+                    <input class="password-input " name="discord-ID" type="text" placeholder="Discord IDを入力" value="{{ old('discord-ID') ?? session('discord_ID') }}"  />
                 </div>
                 <div class="password">
                     <input class="password-input" name="register-code" type="text" placeholder="確認コードを入力" value="{{ old('register-code') }}" />

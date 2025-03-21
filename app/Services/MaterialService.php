@@ -20,8 +20,8 @@ class MaterialService
     //アプレンティスおすすめ推奨教材を取得するメソッド
     public function getOfficialRecommendedMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        return Material::whereBetween('id', [16, 27])
-            ->with(['posts.user', 'technologies:id,name']) // posts を介して user をロード
+        return Material::whereBetween('id', [1, 8])
+            ->with(['posts.user', 'technologies:id,name', 'category']) // posts を介して user をロード
             ->withCount('likes')   // likes の数をカウント
             ->get();
     }
@@ -29,7 +29,7 @@ class MaterialService
     //評価の高い教材を取得するメソッド
     public function getTopRatedMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        return Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
+        return Material::with(['posts.user.profile', 'technologies:id,name', 'category']) // posts を介して user と profile をロード
             ->withCount('likes') // likes の数を取得
             ->orderBy('likes_count', 'desc') // likes_count の降順で並べ替え
             ->get();
@@ -38,7 +38,7 @@ class MaterialService
     //直近の投稿を取得するメソッド
     public function getLatestMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        return Material::with(['posts.user.profile', 'technologies:id,name']) // posts を介して user と profile をロード
+        return Material::with(['posts.user.profile', 'technologies:id,name', 'category']) // posts を介して user と profile をロード
             ->withCount('likes')   // likes の数を取得
             ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
             ->get();

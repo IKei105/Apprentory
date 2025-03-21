@@ -34,6 +34,8 @@ class MaterialController extends Controller
         $topRatedMaterials = $this->materialService->getTopRatedMaterials();
 
         $latestMaterials = $this->materialService->getLatestMaterials();
+
+        //dd($topRatedMaterials);
         
 
         return view('materials.material_index', compact('officialRecommendedMaterials', 'topRatedMaterials', 'latestMaterials'));
