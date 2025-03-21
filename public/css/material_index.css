@@ -302,15 +302,22 @@ body {
 .post-likes {
     margin-top: 4px;
     font-size:11px;
-    
 }
+
+.material-free-button {
+    accent-color: #62D8D8;
+    width: 10px;
+    text-align: left;
+}
+
+
 
 
 /**************************************************
  * もっと見る
  **************************************************/
 
- /* .material-category-text  {
+/* .material-category-text  {
     font-size: 12px;
     border: #8F9FAA 1px solid;
     border-radius: 15px;

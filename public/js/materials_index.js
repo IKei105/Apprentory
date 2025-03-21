@@ -110,6 +110,64 @@ document.getElementById('tag').addEventListener('change', function () {
     });
 });
 
+/*******************************************************************
+
+*************************    カテゴリーだ    *************************
+
+*******************************************************************/
+//あとでやれお（＾ω＾）
+document.getElementById('category-tag').addEventListener('change', function () {
+    const selectedCategoryTag = this.value;
+
+    // 表示制限のあるセクション
+    const limitedSections = [
+        { selector: '.recommended-material', maxCount: 6 },
+        { selector: '.latest-material', maxCount: 4 },
+        { selector: '.high-rate-material', maxCount: 4 },
+    ];
+
+    // 全表示のセクション
+    const allSections = ['.recommended-material-all', '.latest-materials', '.high-rate-materials'];
+
+    // 🎯 関数: 一致する要素を表示（最大表示数あり）
+    function showLimitedMaterials(selector, maxCount) {
+        const materials = Array.from(document.querySelectorAll(selector));
+
+        // 全て非表示にしてから一致するものを取得
+        materials.forEach(item => item.classList.add('hidden'));
+
+        const matched = materials.filter(item => {
+            const tag = item.dataset.category; // 直接categoryを取得
+            return tag === selectedCategoryTag;
+
+            // const tags = item.dataset.tags?.split(',') ?? [];
+            // return tags.includes(selectedCategoryTag);
+        });
+
+        matched.slice(0, maxCount).forEach(item => item.classList.remove('hidden'));
+    }
+
+    // 🎯 関数: 一致する要素をすべて表示（制限なし）
+    function showAllMatchingMaterials(selector) {
+        const materials = Array.from(document.querySelectorAll(selector));
+
+        materials.forEach(item => {
+            const tags = item.dataset.category?.split(',') ?? [];
+            item.classList.toggle('hidden', !tags.includes(selectedCategoryTag));
+        });
+    }
+
+    // ✅ 表示制限付きセクションの処理
+    limitedSections.forEach(({ selector, maxCount }) => {
+        showLimitedMaterials(selector, maxCount);
+    });
+
+    // ✅ 全表示セクションの処理
+    allSections.forEach(selector => {
+        showAllMatchingMaterials(selector);
+    });
+});
+
 // ボタンクリック時の処理
 document.getElementById('recommended-button').addEventListener('click', function() {
     // すべて非表示
@@ -140,57 +198,5 @@ document.getElementById('high-rated-button').addEventListener('click', function(
     document.getElementById('high-rated-materials-all').classList.remove('hidden');
 });
 
-/*******************************************************************
-
-*************************    カテゴリーだ    *************************
-
-*******************************************************************/
-//あとでやれお（＾ω＾）
-document.getElementById('tag').addEventListener('change', function () {
-    const selectedCategoryTag = this.value;
-
-    // 表示制限のあるセクション
-    const limitedSections = [
-        { selector: '.recommended-material', maxCount: 6 },
-        { selector: '.latest-material', maxCount: 4 },
-        { selector: '.high-rate-material', maxCount: 4 },
-    ];
-
-    // 全表示のセクション
-    const allSections = ['.recommended-material-all', '.latest-materials', '.high-rate-materials'];
-
-    // 🎯 関数: 一致する要素を表示（最大表示数あり）
-    function showLimitedMaterials(selector, maxCount) {
-        const materials = Array.from(document.querySelectorAll(selector));
-
-        // 全て非表示にしてから一致するものを取得
-        materials.forEach(item => item.classList.add('hidden'));
-
-        const matched = materials.filter(item => {
-            const tags = item.dataset.tags?.split(',') ?? [];
-            return tags.includes(selectedCategoryTag);
-        });
-
-        matched.slice(0, maxCount).forEach(item => item.classList.remove('hidden'));
-    }
-
-    // 🎯 関数: 一致する要素をすべて表示（制限なし）
-    function showAllMatchingMaterials(selector) {
-        const materials = Array.from(document.querySelectorAll(selector));
-
-        materials.forEach(item => {
-            const tags = item.dataset.tags?.split(',') ?? [];
-            item.classList.toggle('hidden', !tags.includes(selectedCategoryTag));
-        });
-    }
-
-    // ✅ 表示制限付きセクションの処理
-    limitedSections.forEach(({ selector, maxCount }) => {
-        showLimitedMaterials(selector, maxCount);
-    });
-
-    // ✅ 全表示セクションの処理
-    allSections.forEach(selector => {
-        showAllMatchingMaterials(selector);
-    });
-});
+// const tag = item.dataset.category; // 直接categoryを取得
+// return tag === selectedTag;
