@@ -192,6 +192,11 @@ body {
     color: #6D6D6D;
 }
 
+/* 教材カテゴリー */
+.material-category {
+    margin-bottom: 8px;
+}
+
 /* 教材投稿日 */
 .material_posted_date {
     font-size: 12px;

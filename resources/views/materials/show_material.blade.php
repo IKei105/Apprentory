@@ -5,6 +5,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show_material.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/material_category.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
@@ -46,6 +47,15 @@
     </div>
     <div class="material-info">
         <div class="material-info-left">
+            <div class="material-category">
+                @if($material->category_id == 1)
+                    <a href=""class="material-category-text material-category-book-style">{{ $material->category->category_name }}</a>
+                @elseif($material->category_id == 2)
+                    <a href=""class="material-category-text material-category-web-style">{{ $material->category->category_name }}</a>
+                @elseif($material->category_id == 3)
+                    <a href=""class="material-category-text material-category-movie-style">{{ $material->category->category_name }}</a>
+                @endif
+            </div>
             <div class="material_posted_date">
                 <p>{{ $post->created_at->isoFormat('YYYY/MM/DD') }}</p>
             </div>

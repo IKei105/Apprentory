@@ -1,0 +1,23 @@
+/* 教材カテゴリ */
+.material-category-text  {
+    font-size: 12px;
+    padding: 4px 30px;
+}
+
+.material-category-book-style {
+    color: #49B3C3;
+    border: #49B3C3 1px solid;
+    border-radius: 15px;
+}
+
+.material-category-web-style {
+    color: #5022C3;
+    border: #5022C3 1px solid;
+    border-radius: 15px;
+}
+
+.material-category-movie-style {
+    color: #FF0033;
+    border: #FF0033 1px solid;
+    border-radius: 15px;
+}

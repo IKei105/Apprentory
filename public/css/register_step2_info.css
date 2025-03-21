@@ -186,8 +186,6 @@ input {
     position: relative; /* 矢印を相対配置 */
 }
 
-
-
 /* パスワードを入力する */
 .password-info {
     margin: 0 auto; /*　中央寄せ  */
