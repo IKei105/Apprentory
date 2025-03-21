@@ -18,7 +18,7 @@
         </div>
         <div class="filter-menu">
             <div class="filter">
-                <select name="tag" id="category-tag" class="filter-tag"  >
+                <select name="tag" id="tag" class="filter-tag"  >
                     <option value="">技術タグ</option>
                     <option value="1">Ruby</option>
                     <option value="2">PHP</option>
@@ -34,7 +34,7 @@
                 </select>
             </div>
             <div class="filter">
-                <select name="category" id="tag" class="filter-tag">
+                <select name="category" id="category-tag" class="filter-tag">
                     <option value="">カテゴリー</option>
                     <option value="1">書籍</option>
                     <option value="2">オンライン記事</option>
@@ -48,7 +48,7 @@
         <div class="materials-list">
         <?php $recommendedMaterialCount = 1?>
         @foreach ($officialRecommendedMaterials as $recommendedMaterial)
-            <div class="material-item recommended-material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$recommendedMaterial->category->category_name}}">
+            <div class="material-item recommended-material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$recommendedMaterial->category_id}}">
                 <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <?php sleep(0.3); ?>
                         <img class="material-book-image" src="{{ $recommendedMaterial->image_dir }}" alt="教材画像">
@@ -82,7 +82,7 @@
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <?php sleep(0.3); ?>
-                <div class="article latest-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$latestMaterial->category->category_name}}">
+                <div class="article latest-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$latestMaterial->category_id }}">
                     <div>
                         <a href="{{ route('materials.show', $latestMaterial->id) }}">
                             <img class="material-book-image" data-src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
@@ -145,17 +145,27 @@
             @php
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article high-rate-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$topRatedMaterial->category->category_name}}">
-                    
-                    <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
-                        <img class="material-book-image" data-src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
-                    </a>
-                    <div class="article-text-info">
+                <div class="article high-rate-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{ $topRatedMaterial->category_id }}">
+                    <div>
+                        <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
+                            <img class="material-book-image" data-src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
+                        </a>
                         <div class="post-user-info">
                             <a href="">
                                 <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="" loading="lazy">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
+                        </div>
+                    </div>
+                    <div class="article-text-info">
+                        <div class="material-category" data-category="{{ $topRatedMaterial->category->category_name }}">
+                            @if($topRatedMaterial->category_id == 1)
+                                <a href=""class="material-category-text material-category-book-style">{{ $topRatedMaterial->category->category_name }}</a>
+                            @elseif($topRatedMaterial->category_id == 2)
+                                <a href=""class="material-category-text material-category-web-style">{{ $topRatedMaterial->category->category_name }}</a>
+                            @elseif($topRatedMaterial->category_id == 3)
+                                <a href=""class="material-category-text material-category-movie-style">{{ $topRatedMaterial->category->category_name }}</a>
+                            @endif
                         </div>
                         <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                             <h3 class="material-title">{!! nl2br(e(mb_strimwidth($topRatedMaterial->title, 0, 40, '...'))) !!}</h3>
@@ -186,7 +196,7 @@
         <h2 class="recommended_materials-title">推奨教材一覧</h2>
         <div class="materials-list">
         @foreach ($officialRecommendedMaterials as $recommendedMaterial)
-            <div class="recommended-material-all material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$recommendedMaterial->category->category_name}}">
+            <div class="recommended-material-all material-item material" data-tags="{{ $recommendedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{ $recommendedMaterial->category_id }}">
             <a href="{{ route('materials.show', $recommendedMaterial->id) }}">
                     <img class="material-book-image" data-src="{{ asset($recommendedMaterial->image_dir) }}" alt="教材画像">
                     <h3 class="material-title">{!! nl2br(e(mb_strimwidth($recommendedMaterial->title, 0, 40, '...'))) !!}</h3>
@@ -209,16 +219,27 @@
             @php
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article latest-materials" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$latestMaterial->category->category_name}}">
-                    <a href="{{ route('materials.show', $latestMaterial->id) }}">
-                        <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="">
-                    </a>
-                    <div class="article-text-info">
+                <div class="article latest-materials" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$latestMaterial->category_id}}">
+                    <div>
+                        <a href="{{ route('materials.show', $latestMaterial->id) }}">
+                            <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="">
+                        </a>
                         <div class="post-user-info">
                             <a href="">
                                 <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
+                        </div>
+                    </div>
+                    <div class="article-text-info">
+                        <div class="material-category" data-category="{{ $latestMaterial->category->category_name }}">
+                            @if($latestMaterial->category_id == 1)
+                                <a href=""class="material-category-text material-category-book-style">{{ $latestMaterial->category->category_name }}</a>
+                            @elseif($latestMaterial->category_id == 2)
+                                <a href=""class="material-category-text material-category-web-style">{{ $latestMaterial->category->category_name }}</a>
+                            @elseif($latestMaterial->category_id == 3)
+                                <a href=""class="material-category-text material-category-movie-style">{{ $latestMaterial->category->category_name }}</a>
+                            @endif
                         </div>
                         <a href="">
                             <h3 class="material-title">{!! nl2br(e(mb_strimwidth($latestMaterial->title, 0, 40, '...'))) !!}</h3>
@@ -251,16 +272,27 @@
             @php
                 $post = $topRatedMaterial->posts->first(); // 最初の投稿を取得
             @endphp
-                <div class="article high-rate-materials material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$topRatedMaterial->category->category_name}}">
-                    <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
-                        <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
-                    </a>
-                    <div class="article-text-info">
+                <div class="article high-rate-materials material" data-tags="{{ $topRatedMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{ $topRatedMaterial->category_id }}">
+                    <div>
+                        <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
+                            <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
+                        </a>
                         <div class="post-user-info">
                             <a href="">
                                 <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
+                        </div>
+                    </div>
+                    <div class="article-text-info">
+                        <div class="material-category" data-category="{{ $topRatedMaterial->category->category_name }}">
+                            @if($topRatedMaterial->category_id == 1)
+                                <a href=""class="material-category-text material-category-book-style">{{ $topRatedMaterial->category->category_name }}</a>
+                            @elseif($topRatedMaterial->category_id == 2)
+                                <a href=""class="material-category-text material-category-web-style">{{ $topRatedMaterial->category->category_name }}</a>
+                            @elseif($topRatedMaterial->category_id == 3)
+                                <a href=""class="material-category-text material-category-movie-style">{{ $topRatedMaterial->category->category_name }}</a>
+                            @endif
                         </div>
                         <a href="">
                             <h3 class="material-title">{!! nl2br(e(mb_strimwidth($topRatedMaterial->title, 0, 40, '...'))) !!}</h3>
