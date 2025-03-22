@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Services\UserService;
 use \App\Models\Profile;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
