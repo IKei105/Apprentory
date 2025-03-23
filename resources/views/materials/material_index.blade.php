@@ -317,7 +317,6 @@
             @endforeach    
         </div>
     </div>
-    <script src="{{ asset('/js/materials_index.js') }}">
-    </script>
+    <script src="{{ asset('/js/materials_index.js') }}"></script>
     <script src="{{ asset('/js/image_load.js') }}"></script>
 @endsection

@@ -31,6 +31,7 @@ class UserRequest extends FormRequest
                 'size:16',
                 new ValidDiscordRegisterCode // カスタムバリデーションを適用
             ],
+            'user-profile-image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // 画像は必須ではなく、最大2MBまで
         ];
     }
 
@@ -52,6 +53,7 @@ class UserRequest extends FormRequest
             'register-code.required' => '登録コードを入力してください。',
             'register-code.string' => '登録コードは文字列で入力してください。',
             'register-code.size' => '登録コードは16桁で入力してください。',
+            'user-profile-image' => 'プロフィール画像は最大2MBまでです',
         ];
     }
 }
