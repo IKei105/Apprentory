@@ -42,7 +42,7 @@ class UserService
 
     public function createUser(array $request): User
     {
-        //dd($request);
+        $profileImagePath = request()->file('user-profile-image')->store('user_profile_images', 'public');
         return User::create([
             'userid' => $request['userid'], // ✅ 配列なので `[]` でアクセス
             'term_id' => $request['term'],
@@ -50,13 +50,20 @@ class UserService
         ]);
     }
 
-    public function createProfile(int $userid, array $request, string $profileImage): void
+    public function createProfile(int $userid, array $validatedRequest): void
     {
+        if (isset($validatedRequest['user-profile-image']) && $validatedRequest['user-profile-image'] !== null) {
+            // 画像が存在する場合、profile_image に画像パスを保存
+            $profileImagePath = request()->file('user-profile-image')->store('user_profile_images', 'public');
+        } else {
+            // 画像が選ばれていない場合は、デフォルト画像を設定
+            $profileImagePath = 'user_profile_images/sample_profile_image.png'; // デフォルトの画像を設定
+        }
         Profile::create([
             'user_id' => $userid, // Userの主キー
-            'username' => $request['userid'],
-            'profile_image' => $profileImage,
-            'discord_id' => $request['discord-ID'],
+            'username' => $validatedRequest['userid'],
+            'profile_image' => '/storage/' . $profileImagePath,
+            'discord_id' => $validatedRequest['discord-ID'],
         ]);
     }
 

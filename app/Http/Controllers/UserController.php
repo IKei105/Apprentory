@@ -66,6 +66,14 @@ class UserController extends Controller
 
     public function newRegister(UserRequest $request)
     {
+
+        // if ($request->hasFile('user-profile-image')) {
+        //     // 画像ファイルを取得
+        //     $profileImagePath = request()->file('user-profile-image')->store('user_profile_images', 'public');
+        // } else {
+        //     $profileImagePath = 'user_profile_images/sample_profile_image.png';
+        // }
+
         $validated = $request->validated();
 
         //ここで入力されたdiscordIDと確認コードが一致するなら
@@ -83,7 +91,7 @@ class UserController extends Controller
             //profileを登録
             $profileImage = $request->profile_image ?? 'public/assets/images/sample_image.png';
 
-            $this->userService->createProfile($user->id, $validated, $profileImage);
+            $this->userService->createProfile($user->id, $validated);
 
             // 登録後にログインさせる
             auth()->login($user);

@@ -14,7 +14,7 @@
         <a class="header-register-link" id="header-register-link" href="{{ route('login') }}">ログイン</a>
     </header>
     <div class="login">
-        <p class="login-title" >アカウント登録</p>
+        <p class="login-title" >新規登録</p>
         <form action="{{ route('register1') }}" method="POST">
             @csrf
             <div class=input-info>
