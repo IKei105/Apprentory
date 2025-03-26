@@ -18,7 +18,39 @@
             @yield('content')
         </div>
     </div>
-
+    <!-- 通知ボタン押下時ポップアップ -->
+    <div id="notification-popup" class="notification hidden">
+        <div class="notification-content">
+            <p>通知1</p>
+            <p>通知2</p>
+            <p>通知3</p>
+            <p>通知4</p>
+            <!-- スクロールするくらい長くしてOK -->
+            <p>通知1</p>
+            <p>通知2</p>
+            <p>通知3</p>
+            <p>通知4</p>
+            <p>通知1</p>
+            <p>通知2</p>
+            <p>通知3</p>
+            <p>通知4</p>
+            <!-- スクロールするくらい長くしてOK -->
+            <p>通知1</p>
+            <p>通知2</p>
+            <p>通知3</p>
+            <p>通知4</p>
+        </div>
+    </div>
+    <!-- <div class="user-menu" id="notification-menu">
+        <div class="user-menu-content">
+            <button class="user-menu-option" id="move-mypage" data-url="{{ route('mypage') }}">
+                マイページへ移動
+            </button>
+            <button class="user-menu-option" id="logout" data-url="{{ route('logout') }}">
+                ログアウトする
+            </button>
+        </div>
+    </div> -->
     <!-- プロフィール画像押下時ポップアップ -->
     <div class="user-menu" id="user-menu">
         <div class="user-menu-content">
@@ -30,7 +62,6 @@
             </button>
         </div>
     </div>
-
     <!--投稿ボタン押下時ポップアップ-->
     <div class="post-popup" id="post-popup">
         <div class="post-popup-content">
@@ -43,11 +74,13 @@
         </div>
     </div>
 
+
     <!-- 共通フッター（必要なら作成） -->
     {{-- @include('layouts.footer') --}}
 
     <!-- 共通スクリプト -->
     <script src="{{ asset('js/post_popup.js') }}" defer></script>
+    <script src="{{ asset('js/notification_menu.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

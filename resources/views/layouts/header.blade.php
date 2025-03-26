@@ -10,7 +10,9 @@
             </div>
             <div class="header-right">
                 <img src="{{ asset('assets/images/Search 02.svg') }}" class="search-button" id="search-button" alt="検索">
-                <img src="{{ asset('assets/images/Icon.svg') }}" alt="通知">
+                <button class="notification-button" id="notification-button">
+                    <img src="{{ asset('assets/images/Icon.svg') }}" alt="通知">
+                </button>
                 <button class="mypage-button" id="mypage-button">
                     <img id="user" src="{{ asset($profile->profile_image ?? '') }}" alt="" class="profile-img" >
                 </button>

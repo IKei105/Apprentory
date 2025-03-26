@@ -42,7 +42,6 @@ class UserService
 
     public function createUser(array $request): User
     {
-        $profileImagePath = request()->file('user-profile-image')->store('user_profile_images', 'public');
         return User::create([
             'userid' => $request['userid'], // ✅ 配列なので `[]` でアクセス
             'term_id' => $request['term'],
