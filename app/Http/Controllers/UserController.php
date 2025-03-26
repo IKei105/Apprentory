@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     private const LENGTH = 16;
+    private const price = 100;
 
     protected $discordService;
     protected $userService;
@@ -66,13 +67,6 @@ class UserController extends Controller
 
     public function newRegister(UserRequest $request)
     {
-
-        // if ($request->hasFile('user-profile-image')) {
-        //     // 画像ファイルを取得
-        //     $profileImagePath = request()->file('user-profile-image')->store('user_profile_images', 'public');
-        // } else {
-        //     $profileImagePath = 'user_profile_images/sample_profile_image.png';
-        // }
 
         $validated = $request->validated();
 
@@ -126,17 +120,10 @@ class UserController extends Controller
     
         // ユーザーに紐づくプロフィールを取得
         $profile = $user->profile;
-        // dd($profile);
 
-        // // 確認用ページへリダイレクト(後から消す)
-        // return redirect()->route('register.confirmation')->with([
-        //     'userid' => $request->userid,
-        //     'password' => $request->password,
-        //     'username' => $profile->username,
-        //     'profile_image' => $request->profile_image ?? 'public/assets/images/sample_image.png',
-        // ]);
         // 登録後にログインさせる
         auth()->login($user);    
+        
         // 登録後のリダイレクト
         return redirect('/')->with('success', 'ユーザー登録が完了しました！');
     }

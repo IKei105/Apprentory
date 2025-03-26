@@ -35,6 +35,9 @@ class FollowService
                 'following_id' => $followUserId
             ]);
 
+            //通知テーブルに保存する
+            
+
             $this->discordService->sendFollowMessage($followUserId, $loggedInUserId);
 
             return [
