@@ -44,4 +44,9 @@ class User extends Authenticatable
             $this->following()->detach($user->id);
         }
     }
+
+    public function show()
+    {
+        return false;
+    }
 }

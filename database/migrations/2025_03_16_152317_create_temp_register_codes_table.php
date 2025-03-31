@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('temp_register_codes', function (Blueprint $table) {
             $table->id();
             $table->string('discord_id')->comment('DiscordのID'); // unique を削除
-            $table->string('register_code', 16)->comment('16桁の登録コード');
+            $table->string('register_code', 128)->comment('16桁の登録コード');
             $table->date('expires_at')->comment('有効期限（日付のみ）');
             $table->timestamps();
         });

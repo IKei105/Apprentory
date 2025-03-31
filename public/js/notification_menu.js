@@ -1,4 +1,4 @@
-console.log('野獣先輩');
+
 
 // document.addEventListener('DOMContentLoaded', function () {
 //     const userMenu = document.getElementById('notification-menu');

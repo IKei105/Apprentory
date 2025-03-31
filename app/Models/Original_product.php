@@ -48,6 +48,18 @@ class Original_product extends Model
         );
     }
 
+    public function postedUser()
+    {
+        return $this->hasOneThrough(
+            User::class,                     // 通知の送り先にしたいユーザー
+            Original_product_post::class,   // 中間テーブル
+            'original_product_id',          // 中間テーブルの外部キー（original_products への）
+            'id',                           // Userの主キー
+            'id',                           // original_productsの主キー
+            'posted_user_profile_id'        // 中間テーブルにある user_id
+        );
+    }
+
     public function posts()
     {
         return $this->hasMany(Original_product_post::class, 'original_product_id', 'id');

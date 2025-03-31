@@ -10,10 +10,12 @@ use App\Services\DiscordService;
 class LikeService
 {
     protected $discordService;
+    protected $notificationService;
 
-    public function __construct(DiscordService $discordService)
+    public function __construct(DiscordService $discordService, NotificationService $notificationService)
     {
         $this->discordService = $discordService;
+        $this->notificationService = $notificationService;
     }
 
     public function toggleLike($table, $articleId)
@@ -46,6 +48,15 @@ class LikeService
                 'user_id' => $userId,
                 'material_id' => $articleId,
             ]);
+
+            $postedUserId = $material->posts->first()?->posted_user_id;
+
+            $this->notificationService->store(
+                toUserId: $postedUserId,
+                fromUserId: $userId,
+                typeName: 'like',
+                notifiable: $material
+            );
 
             //ここでディスコードに送信します
             if ($material && $material->postedUserProfile && $material->postedUserProfile->discord_id) {

@@ -8,15 +8,18 @@ use App\Models\Material_technologie_tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use App\Services\NotificationService;
 
 class FollowService
 {
 
     protected $discordService;
+    protected $notificationService;
 
-    public function __construct(DiscordService $discordService)
+    public function __construct(DiscordService $discordService, NotificationService $notificationService)
     {
         $this->discordService = $discordService;
+        $this->notificationService = $notificationService;
     }
 
     public function follow($loggedInUserId, $followUserId)
@@ -35,8 +38,20 @@ class FollowService
                 'following_id' => $followUserId
             ]);
 
-            //通知テーブルに保存する
-            
+            // ========================
+            // 🔔 通知保存処理
+            // ========================
+
+            // フォローした人の情報を取得（通知の対象として使う）
+            $fromUser = User::find($loggedInUserId);
+
+            // 通知を保存：フォローされたユーザーに通知が届く
+            $this->notificationService->store(
+                toUserId: $followUserId,          // 通知を受け取るユーザー（フォローされた側）
+                fromUserId: $loggedInUserId,      // 通知を送ったユーザー（フォローした側）
+                typeName: 'follow',               // 通知タイプ（'follow'）
+                notifiable: $fromUser             // 通知対象のモデル（誰にフォローされたか）
+            );
 
             $this->discordService->sendFollowMessage($followUserId, $loggedInUserId);
 
