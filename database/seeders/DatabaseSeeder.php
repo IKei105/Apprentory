@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TechnologieSeeder::class);
         $this->call(RatingsTableSeeder::class);
         $this->call(MaterialCategorySeeder::class);
+        $this->call(NotificationTypeSeeder::class);
     }
 }

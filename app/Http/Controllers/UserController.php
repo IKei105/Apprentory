@@ -12,6 +12,7 @@ use App\Services\UserService;
 use \App\Models\Profile;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Notification;
 
 class UserController extends Controller
 {
@@ -155,6 +156,17 @@ class UserController extends Controller
 
         // 認証を試みる
         if (auth()->attempt(['userid'=>$request->userid, 'password'=>$request->password])) {
+            $user = auth()->user();
+
+            $notifications = Notification::with(['fromUser.profile', 'notificationType'])
+            ->where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(30)
+            ->get();
+
+            //dd($notifications);
+
+            session(['user_notifications' => $notifications]);
             // 認証成功時のリダイレクト
             return redirect('/')->with('success', 'ログインに成功しました！');
         }

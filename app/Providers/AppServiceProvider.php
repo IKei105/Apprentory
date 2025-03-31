@@ -30,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $view->with('profile', Auth::user()->profile);
+                $view->with('notifications', session('user_notifications', [])); // ←これを追加！
+            } else {
+                $view->with('notifications', []); // 未ログインでも空配列を渡す
             }
         });
     }

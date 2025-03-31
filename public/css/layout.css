@@ -297,6 +297,7 @@ user-menu
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    cursor: pointer;
 }
 
 /* 通知の中身 */
@@ -322,4 +323,8 @@ user-menu
 /* 最後の通知の下線を消す */
 .notification-content p:last-child {
     border-bottom: none;
+}
+
+.notification-link p {
+    cursor: pointer; /* ← これを追加！ */
 }

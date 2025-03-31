@@ -21,36 +21,43 @@
     <!-- 通知ボタン押下時ポップアップ -->
     <div id="notification-popup" class="notification hidden">
         <div class="notification-content">
-            <p>通知1</p>
-            <p>通知2</p>
-            <p>通知3</p>
-            <p>通知4</p>
-            <!-- スクロールするくらい長くしてOK -->
-            <p>通知1</p>
-            <p>通知2</p>
-            <p>通知3</p>
-            <p>通知4</p>
-            <p>通知1</p>
-            <p>通知2</p>
-            <p>通知3</p>
-            <p>通知4</p>
-            <!-- スクロールするくらい長くしてOK -->
-            <p>通知1</p>
-            <p>通知2</p>
-            <p>通知3</p>
-            <p>通知4</p>
+            @foreach($notifications as $notification)
+                @php
+                    $type = $notification->notificationType->name ?? null;
+                    $from = $notification->fromUser->profile->username ?? $notification->fromUser->userid ?? '不明';
+                    $target = $notification->notifiable;
+
+                    // 遷移先リンク（デフォルトは「#」）
+                    $link = '#';
+
+                    // 通知タイプ別にリンクを設定
+                    if ($type === 'like' && $target) {
+                        $link = route('materials.show', ['material' => $target->id]);
+                    } elseif ($type === 'comment' && $target) {
+                        $link = route('products.show', ['product' => $target->id]);
+                    } elseif ($type === 'follow' && $notification->fromUser) {
+                        $link = route('users.show', ['user' => $notification->fromUser->id]);
+                    }
+                @endphp
+
+                <a href="{{ $link }}" class="notification-link">
+                    <p>
+                        {{ $from }} さんが
+                        @if ($type === 'like' && $target)
+                            あなたの教材「{{ $target->title }}」にいいねしました！
+                        @elseif ($type === 'comment' && $target)
+                            あなたのオリプロ「{{ $target->title }}」にコメントしました！
+                        @elseif ($type === 'follow')
+                            あなたをフォローしました！
+                        @else
+                            通知があります。
+                        @endif
+                    </p>
+                </a>
+            @endforeach
         </div>
     </div>
-    <!-- <div class="user-menu" id="notification-menu">
-        <div class="user-menu-content">
-            <button class="user-menu-option" id="move-mypage" data-url="{{ route('mypage') }}">
-                マイページへ移動
-            </button>
-            <button class="user-menu-option" id="logout" data-url="{{ route('logout') }}">
-                ログアウトする
-            </button>
-        </div>
-    </div> -->
+
     <!-- プロフィール画像押下時ポップアップ -->
     <div class="user-menu" id="user-menu">
         <div class="user-menu-content">
