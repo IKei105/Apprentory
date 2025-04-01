@@ -30,7 +30,6 @@ class UserService
     {
         $records = TempRegisterCode::where('discord_id', $discordId)->get();
 
-        dd($records);
         foreach ($records as $record) {
             if (Hash::check($registerCode, $record->register_code)) {
                 return true;
@@ -60,7 +59,7 @@ class UserService
         }
         Profile::create([
             'user_id' => $userid, // Userの主キー
-            'username' => $validatedRequest['userid'],
+            'username' => $validatedRequest['user-name'],
             'profile_image' => '/storage/' . $profileImagePath,
             'discord_id' => $validatedRequest['discord-ID'],
         ]);

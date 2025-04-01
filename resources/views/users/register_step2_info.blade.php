@@ -28,6 +28,9 @@
                     <div class="userid">
                         <input name="userid" class="userid-input" type="text" placeholder="ユーザーID" value="{{ old('userid') }}"/>
                     </div>
+                    <div class="userid">
+                        <input name="user-name" class="userid-input" type="text" placeholder="ユーザーネーム(公開されます)" value="{{ old('userid') }}"/>
+                    </div>
                     <div class="term">
                         <select id="term" class="term-input" name="term">
                             @foreach($terms as $term)

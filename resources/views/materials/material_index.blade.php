@@ -82,7 +82,7 @@
                 $post = $latestMaterial->posts->first(); // 最初の投稿を取得
             @endphp
                 <?php sleep(0.3); ?>
-                <div class="article latest-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{$latestMaterial->category_id }}">
+                <div class="article latest-material {{ $topRatedMaterialCount > 4 ? 'hidden' : '' }}" data-tags="{{ $latestMaterial->technologies->pluck('id')->implode(',') }}" data-category="{{ $latestMaterial->category_id }}">
                     <div>
                         <a href="{{ route('materials.show', $latestMaterial->id) }}">
                             <img class="material-book-image" data-src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">

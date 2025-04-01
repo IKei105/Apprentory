@@ -22,6 +22,7 @@ class UserRequest extends FormRequest
     {
         return [
             'userid' => 'required|unique:users', // ユーザーIDが必須 & ユニーク
+            'user-name' => 'required', // ユーザーIDが必須 & ユニーク
             'term' => 'required|exists:terms,id', // term_idが存在するかチェック
             'password' => 'required|min:8|confirmed', // 8文字以上 & 確認用と一致
             'discord-ID' => 'required|string', // Discord ID は必須の文字列
