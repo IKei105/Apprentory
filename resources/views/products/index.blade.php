@@ -22,14 +22,30 @@
         </div>
         <div class="filter">絞り込み<img src="{{ asset('assets/images/Audio Settings 01.svg') }}" alt="通知"></div>
     </div>
-    
-    
+    <div>
+        <div class="filter">
+            <select name="tag" id="technology-tag" class="filter-tag"  >
+                <option value="">技術タグ</option>
+                <option value="1">Ruby</option>
+                <option value="2">PHP</option>
+                <option value="3">SQL</option>
+                <option value="4">HTML</option>
+                <option value="5">CSS</option>
+                <option value="6">JavaScript</option>
+                <option value="7">GitHub</option>
+                <option value="8">Linux</option>
+                <option value="9">docker</option>
+                <option value="10">AWS</option>
+                <option value="11">その他</option>
+            </select>
+        </div>
+    </div>
     <div class="main-contents">
         <h1 class="title">アプレンティス生オリジナルプロダクト</h1>
 
         
         @foreach ($products as $product)
-            <article class="product">
+            <article class="product" data-tag="{{ $product->technologies->pluck('id')->implode(',') }}">
                 <div class="article-left">
                 <a href="{{ route('products.show', $product->id) }}">
                     <img src="{{ asset($product->images[0]->image_dir ?? '') }}" alt="" class="product-image">  
@@ -65,9 +81,9 @@
                 </div>        
             </article>
         @endforeach
-        
     </div>
 </main>
+<script src="{{ asset('/js/product_index.js') }}"></script>
 
 
 @endsection

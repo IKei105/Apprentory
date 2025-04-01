@@ -171,6 +171,7 @@ body {
 /* 評価という文字 */
 .post-material-rate-text {
     font-size: 24px;
+    margin-bottom: 25px;
 }
 
 .post-material-rate{
@@ -206,7 +207,7 @@ body {
 
 /* 金額を入力 */
 .post-material-price {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .post-material-price label{
@@ -229,7 +230,7 @@ body {
 
 /* URLを入力する欄 */
 .post-material-url {
-    margin-bottom: 16px;
+    margin-bottom: 35px;
 }
 
 .post-material-url label {
@@ -244,6 +245,10 @@ body {
 }
 
 /* タグ設定 */
+.post-material-tags {
+    margin-bottom: 35px;
+}
+
 .post-material-tags-select-wrapper {
     display: inline;
 }
@@ -251,7 +256,7 @@ body {
 
 .post-material-tags p {
     font-size: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .post-material-tags select{
