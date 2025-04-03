@@ -89,7 +89,7 @@
                         </a>
                         <div class="post-user-info">
                             <a href="">
-                                <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="" loading="lazy">
+                                <img class="post-user-image" src="{{ asset($latestMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="" loading="lazy">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
                         </div> 
@@ -152,7 +152,7 @@
                         </a>
                         <div class="post-user-info">
                             <a href="">
-                                <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="" loading="lazy">
+                                <img class="post-user-image" src="{{ asset($topRatedMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="" loading="lazy">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
                         </div>
@@ -226,7 +226,7 @@
                         </a>
                         <div class="post-user-info">
                             <a href="">
-                                <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                                <img class="post-user-image" src="{{ asset($latestMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
                         </div>
@@ -279,7 +279,7 @@
                         </a>
                         <div class="post-user-info">
                             <a href="">
-                                <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="">
+                                <img class="post-user-image" src="{{ asset($topRatedMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
                         </div>

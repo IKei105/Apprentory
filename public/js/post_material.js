@@ -100,8 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('image');
     const previewImage = document.querySelector('.material-book-sample-image');
 
-    console.log(fileInput);
-
     fileInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (file) {

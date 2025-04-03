@@ -12,6 +12,44 @@
 
 
     @yield('content')
+    <div id="notification-popup" class="notification hidden">
+        <div class="notification-content">
+            @foreach($notifications as $notification)
+                @php
+                    $type = $notification->notificationType->name ?? null;
+                    $from = $notification->fromUser->profile->username ?? $notification->fromUser->userid ?? '不明';
+                    $target = $notification->notifiable;
+
+                    // 遷移先リンク（デフォルトは「#」）
+                    $link = '#';
+
+                    // 通知タイプ別にリンクを設定
+                    if ($type === 'like' && $target) {
+                        $link = route('materials.show', ['material' => $target->id]);
+                    } elseif ($type === 'comment' && $target) {
+                        $link = route('products.show', ['product' => $target->id]);
+                    } elseif ($type === 'follow' && $notification->fromUser) {
+                        $link = route('users.show', ['user' => $notification->fromUser->id]);
+                    }
+                @endphp
+
+                <a href="{{ $link }}" class="notification-link">
+                    <p>
+                        {{ $from }} さんが
+                        @if ($type === 'like' && $target)
+                            あなたの教材「{{ $target->title }}」にいいねしました！
+                        @elseif ($type === 'comment' && $target)
+                            あなたのオリプロ「{{ $target->title }}」にコメントしました！
+                        @elseif ($type === 'follow')
+                            あなたをフォローしました！
+                        @else
+                            通知があります。
+                        @endif
+                    </p>
+                </a>
+            @endforeach
+        </div>
+    </div>
 
     <!-- プロフィール画像押下時ポップアップ -->
     <div class="user-menu" id="user-menu">
@@ -42,6 +80,7 @@
 
     <!-- 共通スクリプト -->
     <script src="{{ asset('js/post_popup.js') }}"></script>
+    <script src="{{ asset('js/notification_menu.js') }}"></script>
 
     @stack('scripts')
 </body>

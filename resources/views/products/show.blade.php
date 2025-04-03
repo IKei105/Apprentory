@@ -83,7 +83,7 @@
                         <div class="comment-left">
                             <a href="#" class="comment-user-image">
                                 <!-- リファクタリングしてくださいね -->
-                                <img class="comment-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                                <img class="comment-user-image" src="{{ asset($comment->user->profile->profile_image) }}" alt="M">
                             </a>
                         </div>
                         <div class="comment-right">

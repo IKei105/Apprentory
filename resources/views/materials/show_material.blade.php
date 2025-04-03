@@ -19,7 +19,7 @@
     <div class="material-actions">
         <div class="material-actions-left">
             <a class="posted-profile" href="">
-                <img class="posted-userimage" src="" alt="">
+                <img class="posted-user-image" src="{{ asset($material->posts[0]->user->profile['profile_image'] ?? '') }}" alt="">
                 <p class="posted-username">{!! nl2br(e($material->posts[0]->user->profile['username'])) !!}</p>
             </a>
             <div class="follow-action">

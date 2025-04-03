@@ -1,11 +1,11 @@
-console.log('ログインユーザーidは');
-console.log(loggedInUserId); // ログイン中のユーザーIDを取得
+// console.log('ログインユーザーidは');
+// console.log(loggedInUserId); // ログイン中のユーザーIDを取得
 
-console.log('記事投稿者は');
-console.log(followTargetUserId);
+// console.log('記事投稿者は');
+// console.log(followTargetUserId);
 
-console.log('isfollowは');
-console.log(isFollow);
+// console.log('isfollowは');
+// console.log(isFollow);
 
 
 document.addEventListener("DOMContentLoaded", function () {

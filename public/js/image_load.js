@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             img.src = src;
 
             img.onload = function () {
-                console.log(`画像読み込み成功: ${src}`);
+                // console.log(`画像読み込み成功: ${src}`);
                 resolve(); // 読み込み成功
             };
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         loadImage(img, retries + 1, maxRetries).then(resolve).catch(reject);
                     }, 1000); // 1秒後に再試行
                 } else {
-                    console.error(`画像読み込み最終失敗: ${src}`);
+                    // console.error(`画像読み込み最終失敗: ${src}`);
                     img.src = "/assets/material_images/no-image.png"; // デフォルト画像を表示
                     resolve(); // 失敗しても次に進む
                 }
@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 await loadImage(img); // 画像の読み込み完了を待つ
             } catch (error) {
-                console.error(error);
+                //console.error(error);
             }
         }
-        console.log("すべての画像の読み込みが完了しました！");
+        //console.log("すべての画像の読み込みが完了しました！");
     }
 
     loadImagesSequentially(); // 実行

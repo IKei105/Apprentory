@@ -175,6 +175,10 @@ margin-right: 16px;
     height: 100%;
     border-radius: 50%;
 }
+.comment-user-image img {
+    width: 72px;
+    height: 72px;
+}
 .comment-right{
     padding-left: 26px;
 }
