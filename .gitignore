@@ -25,3 +25,7 @@ yarn-error.log
 /storage/logs/*.log
 /storage/framework/cache/*
 /storage/backups/
+Desktop/
+docker/db/mysql_data/
+backup_apprentory/
+.DS_Store
