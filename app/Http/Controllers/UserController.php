@@ -38,7 +38,7 @@ class UserController extends Controller
     //discordに確認コードを送る
     public function sendDiscordRegisterCode(Request $request)
     {   
-        $discordId = $request['discord-ID'];
+        $discordId = $request->input('discord-ID'); // ここ変えとるスマソ
 
         session(['discord_ID' => $discordId]);
 
