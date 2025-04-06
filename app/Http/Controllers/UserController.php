@@ -13,6 +13,7 @@ use \App\Models\Profile;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Notification;
+use App\Http\Requests\SendDiscordRegisterCode;
 
 class UserController extends Controller
 {
@@ -36,8 +37,12 @@ class UserController extends Controller
     }
 
     //discordに確認コードを送る
-    public function sendDiscordRegisterCode(Request $request)
+    public function sendDiscordRegisterCode(SendDiscordRegisterCode $request)
     {   
+
+        $validated = $request->validated();
+
+
         $discordId = $request->input('discord-ID'); // ここ変えとるスマソ
 
         session(['discord_ID' => $discordId]);

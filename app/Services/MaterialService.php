@@ -232,19 +232,21 @@ class MaterialService
     /**
      * リクエストから選択されたテクノロジータグを取得
      */
-    private function getSelectedTechnologieTags($request)
+    private function getSelectedTechnologieTags(array $validatedData): array
     {
         $selectedTags = [];
-    
+
         for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
             $selectName = "select$i";
-            if (!empty($request->$selectName)) {
-                $selectedTags[] = $request->$selectName;
+
+            if (!empty($validatedData[$selectName])) {
+                $selectedTags[] = $validatedData[$selectName];
             }
         }
-    
+
         return array_unique($selectedTags);
     }
+
 
     public function storeMaterialPostDateTime($materialId)
     {
@@ -289,6 +291,7 @@ class MaterialService
 
     public function updateMaterialTechnologiesTags(Material $material, array $request)
     {
+        //dd($request);
         try {
             // 選択されたタグを取得（重複を削除）
             $selectedTechnologieTags = array_unique($this->getSelectedTechnologieTags($request));

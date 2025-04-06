@@ -55,7 +55,7 @@ class MaterialController extends Controller
         $materialId = $this->materialService->storeMaterial($validated);
 
         //タグを保存する
-        $this->materialService->storeMaterialTechnologiesTags($request, $materialId);
+        $this->materialService->storeMaterialTechnologiesTags($validated, $materialId);
 
         //投稿日時を保存する
         $this->materialService->storeMaterialPostDateTime($materialId);
