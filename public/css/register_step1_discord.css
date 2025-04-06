@@ -112,7 +112,6 @@ input {
 .input-info {
     margin: 0 auto; /*　中央寄せ  */
     margin-top: 32px;
-    margin-bottom: 40px;
     border: 1px solid #D9D9D9; /* 全体の枠線 */
     width: 316px; /* 全体の幅 */
     height: 50px;
@@ -193,11 +192,24 @@ input:focus {
 }
 
 /* ログインするボタン */
-.login-button {
+.send-button {
     width: 316px; /* 全体の幅 */
     height: 52px;
+    margin-top: 40px;
     background-color: #00D1D1;
     border: none; 
     border-radius: 10px;
     color: white;
+}
+
+/* エラーメッセージ */
+.border-red {
+    border: solid 1px red;
+}
+
+.error-message {
+    text-align: left;
+    margin-left: 5px;
+    font-size: 12px;
+    color: red;
 }

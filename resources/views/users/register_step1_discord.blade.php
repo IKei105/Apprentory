@@ -17,12 +17,16 @@
         <p class="login-title" >新規登録</p>
         <form action="{{ route('register1') }}" method="POST">
             @csrf
-            <div class=input-info>
+            <div class="input-info  {{ $errors->has('discord-id') ? 'border-red' : '' }}">
                 <fieldset class="userid">
-                    <input class="userid-input" name="discord-ID" type="text" placeholder="Discord IDを入力" />
+                    <input class="userid-input" name="discord-ID" type="text" placeholder="Discord IDを入力" required/>
                 </fieldset>
             </div>
-            <button class="login-button">Discordに送信</button>
+            @error('discord-id')
+                <div class="error-message">正しく入力してください</div>
+            @enderror
+            
+            <button class="send-button">Discordに送信</button>
             </form>
     </div>
     

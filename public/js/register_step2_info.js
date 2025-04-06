@@ -1,5 +1,4 @@
 document.getElementById('user-profile-image').addEventListener('change', function(event) {
-    console.log("おい、笑える");
     const file = event.target.files[0]; // ファイル選択があった場合、そのファイルを取得
 
     if (file) {
@@ -13,4 +12,15 @@ document.getElementById('user-profile-image').addEventListener('change', functio
 
         reader.readAsDataURL(file); // ファイルを読み込み、Base64エンコードされた画像データを生成
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    const button = document.getElementById('register-button');
+
+    form.addEventListener('submit', () => {
+        // ボタンを無効化して二重送信防止
+        button.disabled = true;
+        button.innerText = '送信中...'; // 任意：処理中の表示
+    });
 });

@@ -29,7 +29,7 @@
                         <input name="userid" class="userid-input" type="text" placeholder="ユーザーID" value="{{ old('userid') }}"/>
                     </div>
                     <div class="userid">
-                        <input name="user-name" class="userid-input" type="text" placeholder="ユーザーネーム(公開されます)" value="{{ old('userid') }}"/>
+                        <input name="user-name" class="userid-input" type="text" placeholder="ユーザーネーム(公開されます)" value="{{ old('user-name') }}"/>
                     </div>
                     <div class="term">
                         <select id="term" class="term-input" name="term">
@@ -68,9 +68,7 @@
                     @endif
                 </div>
                 <div class="input-register-code {{ $errors->has('register-code') ? 'border-red' : '' }}" >
-                    <div class="password password-upper">
-                        <input class="password-input " name="discord-ID" type="text" placeholder="Discord IDを入力" value="{{ old('discord-ID') ?? session('discord_ID') }}"  />
-                    </div>
+                    
                     <div class="password">
                         <input class="password-input" name="register-code" type="text" placeholder="確認コードを入力" value="{{ old('register-code') }}" />
                     </div>
@@ -78,7 +76,10 @@
                 @if($errors->has('register-code'))
                     <p class="error-message">{{ $errors->first('register-code') }}</p>
                 @endif
-                <button class="login-button">新規登録</button>
+                <div class="password password-upper">
+                        <input class="password-input hidden" name="discord-ID" type="text" placeholder="Discord IDを入力" value="{{ old('discord-ID') ?? session('discord_ID') }}"  />
+                    </div>
+                <button class="login-button" id="register-button">新規登録</button>
                 </form>
         </div>
     </body>
