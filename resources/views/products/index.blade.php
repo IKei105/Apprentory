@@ -13,12 +13,9 @@
     <h1 class="popular-tag-title">人気のタグ</h1>
     <div class="product-menu">
         <div class="popular-tag">
-            <a href="#">タグ</a>
-            <a href="#">タグ</a>
-            <a href="#">タグ</a>
-            <a href="#">タグ</a>
-            <a href="#">タグ</a>
-            <a href="#">タグ</a>
+            @foreach ($popularTags as $tag)
+            <a href="{{ route('products.indexTag', $tag->id) }}">{{ $tag->name }}</a>
+            @endforeach
         </div>
         <div class="filter">絞り込み<img src="{{ asset('assets/images/Audio Settings 01.svg') }}" alt="通知"></div>
     </div>
