@@ -20,7 +20,7 @@
     <div class="layout-main">
         <div class="main-left">
             @if($product->images->isNotEmpty())
-                <img src="{{ asset($product->images->first()->image_dir) }}" alt="投稿画像" class="product-image">
+                <img src="{{ asset(ltrim($product->images->first()->image_dir, '/')) }}" alt="投稿画像" class="product-image">
             @else
                 <img src="{{ asset('assets/images/default_image.png') }}" alt="デフォルト画像" class="product-image">
             @endif            
@@ -50,7 +50,7 @@
             <p class="product-subtitle">{{ $product->subtitle }}</p>
             <div class="post-user-layout">
                 <a href="" class="post-user">
-                    <img class="post-user-image" src="{{ asset($product->profile->profile_image) }}" alt="{{ $product->profile->username }}">
+                    <img class="post-user-image" src="{{ asset(ltrim($product->profile->profile_image, '/')) }}" alt="{{ $product->profile->username }}">
                     <p class="post-user-name">{{ $product->profile->username }}</p>
                 </a>
                 <p class="follow">フォロー</p>                

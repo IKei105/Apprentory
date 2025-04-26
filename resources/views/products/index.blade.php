@@ -13,9 +13,11 @@
     <h1 class="popular-tag-title">人気のタグ</h1>
     <div class="product-menu">
         <div class="popular-tag">
-            @foreach ($popularTags as $tag)
-            <a href="{{ route('products.indexTag', $tag->id) }}">{{ $tag->name }}</a>
-            @endforeach
+            @if (!empty($popularTags))
+                @foreach ($popularTags as $tag)
+                <a href="{{ route('products.indexTag', $tag->id) }}">{{ $tag->name }}</a>
+                @endforeach
+            @endif
         </div>
         <div class="filter">絞り込み<img src="{{ asset('assets/images/Audio Settings 01.svg') }}" alt="通知"></div>
     </div>
@@ -49,7 +51,7 @@
                 </a>              
                 <div class="post-user-info">
                         <a href="" class="post-user">
-                            <img class="post-user-image" src="{{ asset('assets/material_images/user_profile_image.png') }}" alt="M">
+                            <img class="post-user-image" src="{{ asset(ltrim($product->posts->first()->user->profile->profile_image ?? 'assets/material_images/user_profile_image.png', '/')) }}" alt="M">
                             <p class="post-user-name">{!! nl2br(e($product->posts->first()->user->profile->username ?? '未設定')) !!}
                             </p>
                         </a>
