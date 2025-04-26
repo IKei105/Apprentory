@@ -159,7 +159,8 @@ header{
     justify-content: center;
 }
 .content-wrapper{
-    max-width: 800px;
+    width: 100%;
+    max-width: 950px;
     position: relative;
 }
 

@@ -31,7 +31,10 @@
         </div>
 
         <div class="post-images">
-            <div class="post-images-left">
+            <div class="post-images-left" id="image-upload-area" data-sample-image="{{ asset('assets/images/sample_image.png') }}">
+            <!--以下js -->
+        </div>
+            <!-- <div class="post-images-left">
                 <label for="image-input-1" id="image-label" class="main-image">
                     <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
                     <p>ファイルを選択</p>
@@ -52,13 +55,12 @@
                     <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
                     <p>ファイルを選択</p>
                 </label>
-                <!-- <input type="file" id="image-input" name="images[]" style="display: none;" multiple> -->
                 <input type="file" name="images[]" id="image-input-1" style="display: none;" >
                 <input type="file" name="images[]" id="image-input-2" style="display: none;" >
                 <input type="file" name="images[]" id="image-input-3" style="display: none;" >
                 <input type="file" name="images[]" id="image-input-4" style="display: none;" >
                 <input type="file" name="images[]" id="image-input-5" style="display: none;" >
-            </div>    
+            </div>     -->
             <div class="post-images-right">
                 <!-- 投稿した画像のプレビュー表示(javascriptで実装)　-->
                 <!-- 入力データの復元 -->

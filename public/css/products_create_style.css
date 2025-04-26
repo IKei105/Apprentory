@@ -43,9 +43,16 @@
 .submit {
     cursor: pointer;
 }
-.layout-main{
+
+#productform {
+    width: 90%;        /* 画面が小さくても90%まで広がる */
+}
+
+.layout-main {
+    width: 100%; /* ← width:100% に戻す */
     padding-top: 75px;
 }
+
 .post-title{
     width: 100%;
     border-bottom: 2px solid #d9d9d9;
@@ -66,6 +73,7 @@
     margin-bottom: 64px;
     display: flex;
 }
+
 .post-images-left{
     display: flex;
     flex-wrap: wrap;
@@ -93,8 +101,11 @@
     height: auto;
 }
 
-.post-images-left label {
-    margin-right: 16px;
+.image-input-wrapper {
+    margin-right: 8px;
+    justify-content: space-between;
+    /* flex-direction: ; */
+    align-items: flex-end;
 }
 
 .post-images-left input{

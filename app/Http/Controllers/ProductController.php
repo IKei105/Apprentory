@@ -15,6 +15,7 @@ use App\Http\Requests\User;
 use App\Models\Original_product_comment;
 use App\Http\Requests\OriginalProductCommentRequest;
 use Illuminate\Support\Facades\Log;
+use App\Services\ProductService;
 
 
 
@@ -23,36 +24,30 @@ class ProductController extends Controller
     private const FIRST_POST_INDEX = 0;
     private const FIRST_SELECT_INDEX = 1;
     private const LAST_SELECT_INDEX = 5;    
+    
     /**
-     * Display a listing of the resource.
-     */
+     * service呼び出し
+    */
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
     public function index()
     {
-        
-        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])
-                                ->orderBy('created_at', 'desc') // 作成日時で降順
-                                ->get();
-
-        //dd($products);
-        // 人気タグを取得
-        $popularTags = $this->getPopularTags();
+        $products = $this->productService->index(); // ← サービス経由でプロダクト取得
+        $popularTags = $this->productService->getPopularTags(); // ← サービス経由で人気タグ取得
 
         return view('products.index', compact('products','popularTags'));
     }
 
     public function indexTag($id)
     {
-        // 指定されたタグIDを持つオリプロを絞り込み取得
-        $products = Original_product::whereHas('technologies', function($query) use ($id) {
-                                $query->where('technologie_id', $id);
-                            })
-                            ->with(['technologies', 'images', 'posts.user.profile'])
-                            ->orderBy('created_at', 'desc')
-                            ->get();
-
-        // 人気タグを取得
-        $popularTags = $this->getPopularTags();
-        // ビューに渡す（indexと同じビュー）
+        $products = $this->productService->getProductsByTag($id); // ← サービス経由
+        $popularTags = $this->productService->getPopularTags();
+    
+        return view('products.index', compact('products', 'popularTags'));
         return view('products.index', compact('products', 'popularTags'));
     }
 
