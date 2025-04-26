@@ -34,9 +34,28 @@ class ProductController extends Controller
                                 ->get();
 
         //dd($products);
+        // 人気タグを取得
+        $popularTags = $this->getPopularTags();
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products','popularTags'));
     }
+
+    public function indexTag($id)
+    {
+        // 指定されたタグIDを持つオリプロを絞り込み取得
+        $products = Original_product::whereHas('technologies', function($query) use ($id) {
+                                $query->where('technologie_id', $id);
+                            })
+                            ->with(['technologies', 'images', 'posts.user.profile'])
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        // 人気タグを取得
+        $popularTags = $this->getPopularTags();
+        // ビューに渡す（indexと同じビュー）
+        return view('products.index', compact('products', 'popularTags'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -115,7 +134,6 @@ class ProductController extends Controller
             }
         }
 
-
         // 投稿者と日時の保存
         $originalProductPost = new Original_product_post();
 
@@ -126,28 +144,6 @@ class ProductController extends Controller
 
         return redirect()->route('products.show', ['product' => $product->id]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 
         // アップロードされたファイルを確認
         if ($request->hasFile('images')) {
@@ -364,15 +360,15 @@ class ProductController extends Controller
         return view('tests.product_confirmation', ['product' => $product]);
     }
 
-    public function indexTag(string $id)
+    private function getPopularTags()
     {
-        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])
-        ->whereHas('technologies', function ($query) use ($id) {
-            $query->where('id', $id); // technologiesのidが一致するものを取得
-        })
-        ->orderBy('created_at', 'desc') // 作成日時で降順
-        ->get();
-        
-        return view('products.index', compact('products'));
+        $popularTagIds = DB::table('original_product_technologie_tags')
+            ->select('technologie_id', DB::raw('count(*) as count'))
+            ->groupBy('technologie_id')
+            ->orderByDesc('count')
+            ->limit(5)
+            ->pluck('technologie_id');
+
+        return Technologie::whereIn('id', $popularTagIds)->get();
     }
 }
