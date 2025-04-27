@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Term;
-use App\Services\DiscordService;
-use App\Models\TempRegisterCode;
-use Carbon\Carbon;
-use App\Models\User;
-use App\Services\UserService;
-use \App\Models\Profile;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use App\Models\Term;
+use App\Models\User;
+use App\Models\Profile;
+use App\Models\TempRegisterCode;
 use App\Models\Notification;
+use App\Services\DiscordService;
+use App\Services\UserService;
+use App\Http\Requests\UserRequest;
 use App\Http\Requests\SendDiscordRegisterCode;
 
 class UserController extends Controller
@@ -208,7 +208,23 @@ class UserController extends Controller
     //マイページへの遷移
     public function showMyPage()
     {
-        $profile = auth()->user()->profile;  // ログイン中のユーザーのプロフィールを取得
-        return view('users.mypage', compact('profile'));
-    }    
+        //マイページにリダイレクト専用のメソッドに変更
+        $userId = auth()->id();
+        return redirect()->route('users.show', ['user' => $userId]);
+        // $user = auth()->user();  // ← 最初にログインユーザーを取る
+        // $profile = $user->profile;  // そこからプロフィール
+        // //$profile = auth()->user()->profile;  // ログイン中のユーザーのプロフィールを取得 　ここ変えとる
+        // $materials = $this->userService->getUserMaterials($user); //教材データ取得
+        // $products = $this->userService->getUserProducts($user);   //オリプロデータ取得
+        // return view('users.mypage', compact('profile', 'materials', 'products'));
+    }
+    
+    //以降他ユーザーページのロジック諸々(データの取得もこっち)
+    public function showUserPage($userId)
+    {
+        $user = User::with('profile', 'materials', 'products')->findOrFail($userId);
+
+        return view('users.userpage', compact('user'));
+    }
+
 }

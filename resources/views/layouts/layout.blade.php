@@ -12,6 +12,15 @@
 </head>
 <body>
     @include('layouts.header')
+    {{-- ページ共通データ --}}
+    <div id="page-data"
+        data-logged-in-user-id="{{ auth()->id() }}"
+        data-follow-target-user-id="{{ $user->id ?? '' }}"
+        @if(auth()->check() && isset(auth()->user()->profile->discord_id))
+            data-discord-id="{{ auth()->user()->profile->discord_id }}"
+        @endif
+    >
+    </div>
 
     <div class="main-content">
         <div class="content-wrapper">
@@ -86,6 +95,7 @@
     {{-- @include('layouts.footer') --}}
 
     <!-- 共通スクリプト -->
+    <script src="{{ asset('js/page_data.js') }}" defer></script>
     <script src="{{ asset('js/post_popup.js') }}" defer></script>
     <script src="{{ asset('js/notification_menu.js') }}"></script>
     @stack('scripts')

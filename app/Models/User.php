@@ -49,4 +49,33 @@ class User extends Authenticatable
     {
         return false;
     }
+
+    public function materials()
+    {
+        return $this->hasManyThrough(
+            \App\Models\Material::class,   // ゴール: 取ってきたいモデル
+            \App\Models\Material_post::class, // 中間テーブル
+            'posted_user_id',              // 中間テーブルの、ユーザーIDカラム
+            'id',                          // materials テーブルの、idカラム
+            'id',                          // users テーブルの、idカラム
+            'material_id'                  // 中間テーブルの、materialsへの外部キー
+        );
+    }
+
+    public function products()
+    {
+        return $this->hasManyThrough(
+            \App\Models\Original_product::class,   
+            \App\Models\Original_product_post::class, 
+            'posted_user_profile_id',    
+            'id',              
+            'id',              
+            'original_product_id'   
+        );
+    }
+
+    public function term()
+    {
+        return $this->belongsTo(\App\Models\Term::class);
+    }
 }

@@ -13,6 +13,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
     Route::resource('materials', MaterialController::class)->except(['index']);
     Route::get('/mypage', [UserController::class, 'showMyPage'])->name('mypage');
+    Route::get('/users/{user}', [UserController::class, 'showUserPage'])->name('users.show');
     Route::get('/top_rated_materials', fn() => view('materials/top_rated_materials'));
     Route::get('/recommended_material', fn() => view('materials/recommended_materials'));
     Route::get('/material_detail', fn() => view('materials/material_detail'));

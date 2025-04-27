@@ -1,0 +1,110 @@
+.hidden {
+    display: none;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.profile-layout-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.profile-info img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.profile-info-text{
+    padding-top: 24px;
+}
+.username {
+    font-size: 32px;
+    margin: 4px 0;
+    font-weight: bold;
+}
+.userid,.term{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: #6d6d6d;
+}
+
+
+.profile-menu-button {
+    cursor: pointer;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.profile-menu-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    width: 160px; 
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.action-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px; /* ← 角を丸める */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* フォローするボタン */
+.follow-button {
+    background-color: #00D1D1;
+    color: white;
+}
+
+/* フォロー中ボタン */
+.following-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* プロフィール編集ボタン */
+.action-button[href="/mypage/edit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+.profile-post {
+    margin-top: 50px;
+}
+
+.profile-post h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-post ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-post li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
