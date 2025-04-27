@@ -85,8 +85,18 @@
 
 /* プロフィール編集ボタン */
 .action-button[href="/mypage/edit"] {
-    background-color: #4CAF50;
-    color: white;
+    border: 1.8px solid #6d6d6d;
+    text-decoration: none;
+    color: #000;
+}
+.action-button[href="/mypage/edit"]:link,
+.action-button[href="/mypage/edit"]:visited {
+    color: #000;
+}
+.action-button[href="/mypage/edit"]:hover {
+    color: #000;
+    background-color:  #EFF9FA;
+    transition: all 1s;
 }
 
 
