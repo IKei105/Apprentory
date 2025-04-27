@@ -52,15 +52,15 @@ class UserService
     {
         if (isset($validatedRequest['user-profile-image']) && $validatedRequest['user-profile-image'] !== null) {
             // 画像が存在する場合、profile_image に画像パスを保存
-            $profileImagePath = request()->file('user-profile-image')->store('user_profile_images', 'public');
+            $profileImagePath = '/storage/' . request()->file('user-profile-image')->store('user_profile_images', 'public'); // ←ここのパス変えた
         } else {
             // 画像が選ばれていない場合は、デフォルト画像を設定
-            $profileImagePath = 'user_profile_images/sample_profile_image.png'; // デフォルトの画像を設定
+            $profileImagePath = '/assets/images/user_image_default.svg'; // デフォルトの画像を設定 ←ここのパス変えた
         }
         Profile::create([
             'user_id' => $userid, // Userの主キー
             'username' => $validatedRequest['user-name'],
-            'profile_image' => '/storage/' . $profileImagePath,
+            'profile_image' => $profileImagePath,
             'discord_id' => $validatedRequest['discord-ID'],
         ]);
     }
