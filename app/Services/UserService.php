@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\TempRegisterCode;
+use App\Models\Material;
+use App\Models\Original_product;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
@@ -63,6 +66,21 @@ class UserService
             'profile_image' => $profileImagePath,
             'discord_id' => $validatedRequest['discord-ID'],
         ]);
+    }
+
+    //ユーザーの投稿した内容を取得
+    public function getUserMaterials(User $user): Collection
+    {
+        return Material::whereHas('posts', function ($query) use ($user) {
+            $query->where('posted_user_id', $user->id);
+        })->with('postedUserProfile')->latest()->get();
+    }
+
+    public function getUserProducts(User $user): Collection
+    {
+        return Original_product::whereHas('posts', function ($query) use ($user) {
+            $query->where('posted_user_profile_id', $user->id);
+        })->with('profile')->latest()->get();
     }
 
 
