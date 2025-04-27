@@ -19,7 +19,7 @@
                 @csrf
                 <div class="input-user-profile-image">
                     <label for="user-profile-image">
-                        <img class="user-profile-image" id="user-profile-image-preview" src="{{ asset('storage/user_profile_images/sample_profile_image.png') }}" alt="User Profile Image">
+                        <img class="user-profile-image" id="user-profile-image-preview" src="{{ asset('assets/images/user_image_default.svg') }}" alt="User Profile Image">
                         <p class="image-upload-text">プロフィール画像を選択</p>
                     </label>
                     <input class="hidden" type="file" id="user-profile-image" name="user-profile-image" >
