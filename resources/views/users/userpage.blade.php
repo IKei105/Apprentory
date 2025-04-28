@@ -39,34 +39,68 @@
     {{-- ユーザー基本情報 --}}
         <div class="profile-info-text">
             <p class = "username">{{ $user->profile->username }}</p>
-            <p class = "userid">{{ $user->userid }}</p>
+            <p class = "userid">{!! '@' . e($user->userid) !!}</p>
             <p class="term">{{ $user->term->term }}</p>
         </div>
 
 
         {{-- 投稿一覧 --}}
+
+        <div class="userpage-switch-buttons" style="margin-top: 30px;">
+            <button id="show-materials" class="userpage-switch-button">教材</button>
+            <button id="show-products" class="userpage-switch-button">オリプロ</button>
+        </div>
+
         <div class="profile-post">
             <h2>投稿一覧</h2>
             {{-- 投稿教材 --}}
-                <section style="margin-top: 40px;">
-                    <ul>
-                        @forelse ($user->materials as $material)
-                            <li>{{ $material->title ?? 'タイトル未設定' }}</li>
-                        @empty
-                            <li>まだ教材の投稿はありません</li>
-                        @endforelse
-                    </ul>
-                </section>
+            <section class="userpage-posts-section" id="userpage-materials" style="margin-top: 40px;">
+                <h2>投稿した教材</h2>
+                <div class="userpage-posts-list">
+                    @forelse ($user->materials as $material)
+                        <div class="userpage-post-item">
+                            <a href="{{ route('materials.show', $material->id) }}">
+                                <img src="{{ asset($material->image_dir) }}" alt="教材サムネイル" class="userpage-post-image">
+                                <h3 class="userpage-post-title">{{ $material->title ?? 'タイトル未設定' }}</h3>
+                            </a>
+                            <div class="userpage-post-tags">
+                                @foreach ($material->technologies as $tech)
+                                    <span class="userpage-post-tag">{{ $tech->name }}</span>
+                                @endforeach
+                            </div>
+                            <p class="userpage-post-likes">♡ {{ $material->likes_count ?? 0 }}</p>
+                        </div>
+                    @empty
+                        <p>まだ教材の投稿はありません</p>
+                    @endforelse
+                </div>
+            </section>
+
             {{-- オリプロ一覧 --}}
-                <section style="margin-top: 40px;">
-                    <ul>
-                        @forelse ($user->products as $product)
-                            <li>{{ $product->title ?? 'タイトル未設定' }}</li>
-                        @empty
-                            <li>まだオリプロの投稿はありません</li>
-                        @endforelse
-                    </ul>
-                </section>
+            <section class="userpage-posts-section" id="userpage-products" style="margin-top: 40px;">
+                <h2>投稿したオリプロ</h2>
+                <div class="userpage-posts-list">
+                    @forelse ($user->products as $product)
+                        <div class="userpage-post-item">
+                            <a href="{{ route('products.show', $product->id) }}">
+                                <img src="{{ asset($product->images[0]->image_dir ?? 'assets/material_images/no_image.png') }}" alt="オリプロサムネイル" class="userpage-post-image-product">
+                                <h3 class="userpage-post-title">{{ $product->title ?? 'タイトル未設定' }}</h3>
+                                @if (!empty($product->subtitle))
+                                    <p class="userpage-post-subtitle">{{ $product->subtitle }}</p>
+                                @endif
+                            </a>
+                            <div class="userpage-post-tags">
+                                @foreach ($product->technologies as $tech)
+                                    <span class="userpage-post-tag">{{ $tech->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @empty
+                        <p>まだオリプロの投稿はありません</p>
+                    @endforelse
+                </div>
+            </section>
+
         </div>
 
         <div class="logout">

@@ -21,4 +21,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    //以下教材・オリプロ切り替えボタン
+    const showMaterialsButton = document.getElementById('show-materials');
+    const showProductsButton = document.getElementById('show-products');
+    const materialsSection = document.getElementById('userpage-materials');
+    const productsSection = document.getElementById('userpage-products');
+
+    if (showMaterialsButton && showProductsButton && materialsSection && productsSection) {
+        materialsSection.style.display = 'block';
+        productsSection.style.display = 'none';
+
+        showMaterialsButton.addEventListener('click', function() {
+            materialsSection.style.display = 'block';
+            productsSection.style.display = 'none';
+        });
+
+        showProductsButton.addEventListener('click', function() {
+            materialsSection.style.display = 'none';
+            productsSection.style.display = 'block';
+        });
+    }
 });

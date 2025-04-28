@@ -118,3 +118,85 @@
     padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
+
+
+/*以下投稿リストCSS
+/* カードをまとめるコンテナ */
+.userpage-posts-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 0;
+}
+
+/* 単体カード */
+.userpage-post-item {
+    width: 160px;
+    background: #EFF9FA;
+    border-radius: 8px;
+    padding: 0; /* ★ ここゼロにする */
+    box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden; /* 念のためはみ出し対策 */
+}
+
+
+/* 教材用（通常） */
+.userpage-post-image {
+    width: 148px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-top: 12px; /* ★ 上だけ余白追加 */
+}
+
+/* オリプロ用（横長に見せたい） */
+.userpage-post-image-product {
+    padding: 8px;
+    width: 100%;
+    height: 100px; /* 高さ固定 */
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+
+/* タイトル */
+.userpage-post-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+/* サブタイトル（オリプロだけ使う） */
+.userpage-post-subtitle {
+    font-size: 13px;
+    color: #6d6d6d;
+    margin-bottom: 8px;
+}
+
+/* 技術タグ */
+.userpage-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.userpage-post-tag {
+    font-size: 11px;
+    background-color: #D9D9D9;
+    color: #555;
+    border-radius: 12px;
+    padding: 2px 8px;
+}
+
+/* いいね数（教材用） */
+.userpage-post-likes {
+    font-size: 11px;
+    color: #8F9FAA;
+    margin-top: 4px;
+}
