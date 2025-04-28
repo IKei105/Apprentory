@@ -231,6 +231,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
+        /**
+     * Display the specified resource.
+     */
     public function show(string $id)
     {
         // プロダクトをIDで取得し、関連するタグと画像も一緒に取得
@@ -246,7 +249,14 @@ class ProductController extends Controller
         
         
         // 現在のログインユーザーのプロフィールを取得
-        $profile = auth()->user()->profile;
+        $user = auth()->user();
+
+        if (!$user || !$user->profile) {
+            return redirect()->route('login');
+        }
+
+        $profile = $user->profile;
+        
 
         //dd($product);
         
@@ -271,6 +281,12 @@ class ProductController extends Controller
         if (auth()->id() !== $product->profile->user_id) {
             abort(403, '許可されていない操作です。');
         }
+
+
+        // $image = $product->images[0]->image_dir;
+
+        // dd($image);
+
         $technologieIds = $product->technologies->pluck('id');
         return view('products.edit2', compact('product','technologieIds'));
     }
@@ -279,58 +295,101 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $product = Original_product::findOrFail($id);
+{
+    
+    $product = Original_product::findOrFail($id);
 
-        // バリデーション
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'subtitle' => 'required|string|max:255',
-            'product_detail' => 'required|string',
-            'product_url' => 'nullable|url',
-            'github_url' => 'nullable|url',
-            'element' => 'required|string|in:need-tester,need-review',
-            'tag_ids' => 'nullable|array', // タグ用
-            'tag_ids.*' => 'exists:technologies,id', // タグIDがtechnologiesテーブルに存在することを確認
-        ]);
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'subtitle' => 'required|string|max:255',
+        'product_detail' => 'required|string',
+        'product_url' => 'nullable|url',
+        'github_url' => 'nullable|url',
+        'element' => 'required|string|in:need-tester,need-review',
+        'tag_ids' => 'nullable|array',
+        'tag_ids.*' => 'exists:technologies,id',
+    ]);
 
-        // 画像が投稿されている場合の処理
-        if ($request->hasFile('product_image')) {
-            $path = $request->file('product_image')->store('product_images', 'public');
-            $product->image_dir = '/storage/' . $path;
-        }    
+    DB::beginTransaction();
 
+    try {
+        // 基本情報更新
+        $product->update($validated);
 
-        //dd($request->all()); // 送信データを確認
-        // プロダクト情報を更新
-        $product->update([
-            'title' => $validated['title'],
-            'subtitle' => $validated['subtitle'],
-            'product_detail' => $validated['product_detail'],
-            'product_url' => $validated['product_url'],
-            'github_url' => $validated['github_url'],
-            'element' => $validated['element'],
-        ]);
-
-        $selectedTechnologieTags = [];
+        // タグ更新
+        $selectedTags = [];
         for ($i = self::FIRST_SELECT_INDEX; $i <= self::LAST_SELECT_INDEX; $i++) {
-            $selectName = "tag_select$i";
-            if ($request->$selectName) {
-                $selectedTechnologieTags[] = $request->$selectName;
+            $select = "tag_select$i";
+            if ($request->$select) {
+                $selectedTags[] = $request->$select;
+            }
+        }
+        $product->technologies()->sync(array_unique($selectedTags));
+
+        // 画像処理
+        $existingImageIds = $request->input('existing_image_ids', []);
+        $deletedImageIds = $request->input('deleted_image_ids', []);
+        $newImages = $request->file('images');
+
+        foreach ($existingImageIds as $index => $imageId) {
+            $image = Original_product_image::find($imageId);
+        
+            // 差し替え優先（削除対象にもなってるが、新しい画像があるなら差し替え）
+            if (isset($newImages[$index]) && $newImages[$index] instanceof \Illuminate\Http\UploadedFile && $newImages[$index]->isValid()) {
+                if ($image) {
+                    \Storage::delete(str_replace('/storage/', 'public/', $image->image_dir));
+                    $path = $newImages[$index]->store('original_product_images', 'public');
+                    $image->image_dir = '/storage/' . $path;
+                    $image->save(); // 上書き保存（順番保持）
+                }
+                continue; // 削除対象でも差し替えたので、削除処理スキップ
+            }
+        
+            // 削除だけの場合
+            if (in_array($imageId, $deletedImageIds)) {
+                if ($image) {
+                    \Storage::delete(str_replace('/storage/', 'public/', $image->image_dir));
+                    $image->delete();
+                }
+            }
+        }
+        
+        
+
+        // 空スロットへの新規追加
+        if ($newImages) {
+            foreach ($newImages as $index => $file) {
+                if ($file && $file->isValid() && empty($existingImageIds[$index])) {
+                    $path = $file->store('original_product_images', 'public');
+                    Original_product_image::create([
+                        'original_product_id' => $product->id,
+                        'image_dir' => '/storage/' . $path,
+                    ]);
+                }
             }
         }
 
-        $uniqueSelectedTechnologieTags = array_unique($selectedTechnologieTags);
+        //dd($existingImageIds, $newImages, $deletedImageIds);
 
-
-
-        // タグの変更
-        $product->technologies()->sync($uniqueSelectedTechnologieTags ?? []);
-    
-        // 更新完了後、詳細ページなどにリダイレクト
-        return redirect()->route('products.show', $product->id)
+        DB::commit();
+        return redirect()->route('products.show', ['product' => $product->id])
             ->with('success', '更新が完了しました！');
+
+    } catch (\Throwable $e) {
+        DB::rollBack();
+        return back()->withErrors([
+            'error' => '更新中にエラーが発生しました：' . $e->getMessage()
+        ]);
     }
+
+    
+}
+
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -355,15 +414,15 @@ class ProductController extends Controller
         return view('tests.product_confirmation', ['product' => $product]);
     }
 
-    private function getPopularTags()
+    public function indexTag(string $id)
     {
-        $popularTagIds = DB::table('original_product_technologie_tags')
-            ->select('technologie_id', DB::raw('count(*) as count'))
-            ->groupBy('technologie_id')
-            ->orderByDesc('count')
-            ->limit(5)
-            ->pluck('technologie_id');
-
-        return Technologie::whereIn('id', $popularTagIds)->get();
+        $products = Original_product::with(['technologies', 'images', 'posts.user.profile'])
+        ->whereHas('technologies', function ($query) use ($id) {
+            $query->where('id', $id); // technologiesのidが一致するものを取得
+        })
+        ->orderBy('created_at', 'desc') // 作成日時で降順
+        ->get();
+        
+        return view('products.index', compact('products'));
     }
 }
