@@ -333,3 +333,16 @@ body {
     border-radius: 50%;
     background-color: #49b3c3;
 }
+
+.post-popup-content {
+    position: fixed;         /* ビューポート基準に固定 */
+    top: 80px;               /* 上からの位置（調整可） */
+    right: 50px;             /* 右端から50px左に */
+    width: 160px;
+    height: auto;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1100;           /* ヘッダーより前に表示 */
+}
