@@ -117,6 +117,6 @@
     </div>
 @endif
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
-<script src="{{ asset('/js/image_preview.js') }}"></script>
+<script src="{{ asset('/js/image_preview2.js') }}"></script>
 
 @endsection

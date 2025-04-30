@@ -29,7 +29,7 @@
         </div>
 
         <div class="post-images">
-            <div class="post-images-left">
+            <!-- <div class="post-images-left">
                 @for ($i = 0; $i < 5; $i++)
                     @php
                         $imageModel = $product->images[$i] ?? null;
@@ -55,6 +55,15 @@
                         <button type="button" class="delete-btn" data-index="{{ $i }}">×</button>
                     </div>
                 @endfor
+            </div> -->
+            <div class="post-images-left"
+                id="image-upload-area"
+                data-sample-image="{{ asset('assets/images/sample_image.png') }}"
+                data-initial='@json($product->images->map(fn($image) => [
+                    "url" => asset($image->image_dir),
+                    "name" => "existing_image_{$image->id}",
+                    "id" => $image->id
+                ]))'>
             </div>
         </div>
 
@@ -136,5 +145,8 @@
 @endif
 
 <script src="{{ asset('/js/tag_selector.js') }}"></script>
-<script src="{{ asset('/js/edit_product.js') }}"></script>
+<script src="{{ asset('/js/image_preview2.js') }}"></script>
+<script src="{{ asset('/js/edit_product_renewal.js') }}"></script>
+<!-- <script src="{{ asset('/js/edit_product.js') }}"></script> -->
+
 @endsection
