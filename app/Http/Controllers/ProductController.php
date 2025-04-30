@@ -295,20 +295,22 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-{
-    
-    $product = Original_product::findOrFail($id);
+    {
+        Log::info('削除予定ID:', $request->input('deleted_image_ids', []));
 
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'subtitle' => 'required|string|max:255',
-        'product_detail' => 'required|string',
-        'product_url' => 'nullable|url',
-        'github_url' => 'nullable|url',
-        'element' => 'required|string|in:need-tester,need-review',
-        'tag_ids' => 'nullable|array',
-        'tag_ids.*' => 'exists:technologies,id',
-    ]);
+        
+        $product = Original_product::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'product_detail' => 'required|string',
+            'product_url' => 'nullable|url',
+            'github_url' => 'nullable|url',
+            'element' => 'required|string|in:need-tester,need-review',
+            'tag_ids' => 'nullable|array',
+            'tag_ids.*' => 'exists:technologies,id',
+        ]);
 
     DB::beginTransaction();
 
@@ -328,42 +330,39 @@ class ProductController extends Controller
 
         // 画像処理
         $existingImageIds = $request->input('existing_image_ids', []);
-        $deletedImageIds = $request->input('deleted_image_ids', []);
-        $newImages = $request->file('images');
+        $newImages        = $request->file('images');
 
-        foreach ($existingImageIds as $index => $imageId) {
-            $image = Original_product_image::find($imageId);
-        
-            // 差し替え優先（削除対象にもなってるが、新しい画像があるなら差し替え）
-            if (isset($newImages[$index]) && $newImages[$index] instanceof \Illuminate\Http\UploadedFile && $newImages[$index]->isValid()) {
-                if ($image) {
-                    \Storage::delete(str_replace('/storage/', 'public/', $image->image_dir));
-                    $path = $newImages[$index]->store('original_product_images', 'public');
-                    $image->image_dir = '/storage/' . $path;
-                    $image->save(); // 上書き保存（順番保持）
-                }
-                continue; // 削除対象でも差し替えたので、削除処理スキップ
-            }
-        
-            // 削除だけの場合
-            if (in_array($imageId, $deletedImageIds)) {
-                if ($image) {
-                    \Storage::delete(str_replace('/storage/', 'public/', $image->image_dir));
-                    $image->delete();
-                }
+        // ① 削除フラグのある画像を先にまとめて削除
+        $deletedImageIds = array_map('intval', $request->input('deleted_image_ids', []));
+        foreach ($deletedImageIds as $delImageId) {
+            if ($img = Original_product_image::find($delImageId)) {
+                \Storage::delete(str_replace('/storage/', 'public/', $img->image_dir));
+                $img->delete();
             }
         }
-        
-        
 
-        // 空スロットへの新規追加
+        // ② 差し替え or 残存
+        foreach ($existingImageIds as $index => $imageId) {
+            if (isset($newImages[$index])
+                && $newImages[$index] instanceof \Illuminate\Http\UploadedFile
+                && $newImages[$index]->isValid()
+            ) {
+                if ($img = Original_product_image::find($imageId)) {
+                    \Storage::delete(str_replace('/storage/', 'public/', $img->image_dir));
+                    $path = $newImages[$index]->store('original_product_images', 'public');
+                    $img->update(['image_dir' => '/storage/' . $path]);
+                }
+                continue;
+            }
+        }
+        // ③ 空スロットへの新規追加
         if ($newImages) {
             foreach ($newImages as $index => $file) {
-                if ($file && $file->isValid() && empty($existingImageIds[$index])) {
+                if ($file->isValid() && empty($existingImageIds[$index])) {
                     $path = $file->store('original_product_images', 'public');
                     Original_product_image::create([
                         'original_product_id' => $product->id,
-                        'image_dir' => '/storage/' . $path,
+                        'image_dir'           => '/storage/' . $path,
                     ]);
                 }
             }
@@ -375,15 +374,13 @@ class ProductController extends Controller
         return redirect()->route('products.show', ['product' => $product->id])
             ->with('success', '更新が完了しました！');
 
-    } catch (\Throwable $e) {
-        DB::rollBack();
-        return back()->withErrors([
-            'error' => '更新中にエラーが発生しました：' . $e->getMessage()
-        ]);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return back()->withErrors([
+                'error' => '更新中にエラーが発生しました：' . $e->getMessage()
+            ]);
+        }
     }
-
-    
-}
 
 
 

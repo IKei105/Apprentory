@@ -127,7 +127,7 @@
 .image-input-wrapper {
     margin-right: 8px;
     justify-content: space-between;
-    /* flex-direction: ; */
+    position: relative; 
     align-items: flex-end;
 }
 
