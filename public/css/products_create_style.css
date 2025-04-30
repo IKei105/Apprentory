@@ -14,7 +14,7 @@
 }
 .top-content{
     width: 100%;
-    max-width: 800px;
+    max-width: 950px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,11 +45,12 @@
 }
 
 #productform {
-    width: 90%;        /* 画面が小さくても90%まで広がる */
+    width: 100%;        /* 画面が小さくても90%まで広がる */
 }
 
 .layout-main {
     width: 100%; /* ← width:100% に戻す */
+    max-width: 950px;
     padding-top: 75px;
 }
 

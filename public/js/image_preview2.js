@@ -1,25 +1,3 @@
-// //ここからホンちゃんコード
-// document.addEventListener("DOMContentLoaded", () => {
-//     // 各inputタグにイベントリスナーを追加
-//     for (let i = 1; i <= 5; i++) {
-//         const input = document.getElementById(`image-input-${i}`);
-//         const label = document.querySelector(`label[for="image-input-${i}"]`);
-//         const img = label.querySelector("img");
-
-//         input.addEventListener("change", (event) => {
-//             const file = event.target.files[0]; // 1つの画像を取得
-//             if (file && file.type.startsWith("image/")) {
-//                 const reader = new FileReader();
-
-//                 reader.onload = (e) => {
-//                     img.src = e.target.result; // 選択した画像をプレビュー
-//                 };
-
-//                 reader.readAsDataURL(file); // 画像データを読み込む
-//             }
-//         });
-//     }
-// });
 document.addEventListener('DOMContentLoaded', () => {
     const uploadArea = document.getElementById('image-upload-area');
     const sampleImagePath = uploadArea.dataset.sampleImage;

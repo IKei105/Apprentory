@@ -14,8 +14,10 @@
     @method('PUT')
 
     <div class="layout-top">
-        <a href="{{ url()->previous() }}" class="back">←</a>
-        <button class="submit" type="submit">更新</button>
+        <div class="top-content">
+            <a href="{{ url()->previous() }}" class="back">←</a>
+            <button class="submit" type="submit">更新</button>
+        </div>
     </div>
 
     <div class="layout-main">

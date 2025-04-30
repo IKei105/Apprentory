@@ -32,49 +32,9 @@
 
         <div class="post-images">
             <div class="post-images-left" id="image-upload-area" data-sample-image="{{ asset('assets/images/sample_image.png') }}">
-            <!--以下js -->
-        </div>
-            <!-- <div class="post-images-left">
-                <label for="image-input-1" id="image-label" class="main-image">
-                    <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
-                    <p>ファイルを選択</p>
-                </label>
-                <label for="image-input-2" id="image-label" class="sub-image" >
-                    <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
-                    <p>ファイルを選択</p>
-                </label>
-                <label for="image-input-3" id="image-label" class="sub-image">
-                    <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
-                    <p>ファイルを選択</p>
-                </label>
-                <label for="image-input-4" id="image-label" class="sub-image">
-                    <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
-                    <p>ファイルを選択</p>
-                </label>
-                <label for="image-input-5" id="image-label" class="sub-image">
-                    <img src="{{ asset('assets/images/sample_image.png') }}" alt="" class="sample-image">
-                    <p>ファイルを選択</p>
-                </label>
-                <input type="file" name="images[]" id="image-input-1" style="display: none;" >
-                <input type="file" name="images[]" id="image-input-2" style="display: none;" >
-                <input type="file" name="images[]" id="image-input-3" style="display: none;" >
-                <input type="file" name="images[]" id="image-input-4" style="display: none;" >
-                <input type="file" name="images[]" id="image-input-5" style="display: none;" >
-            </div>     -->
-            <div class="post-images-right">
-                <!-- 投稿した画像のプレビュー表示(javascriptで実装)　-->
-                <!-- 入力データの復元 -->
-                @if (old('images'))
-                    @foreach (old('images') as $image)
-                        <div class="image-wrapper">
-                            <img src="{{ asset('storage/temp/' . $image) }}" alt="プレビュー画像" class="preview-image">
-                            <input type="hidden" name="images[]" value="{{ $image }}">
-                            <button type="button" class="delete-btn" data-image="{{ $image }}">×</button>
-                        </div>
-                    @endforeach
-                @endif
+                <!--以下js -->
             </div>
-                <div class="post-images-preview"></div>
+            <div class="post-images-preview">
                 <!-- 消去ボタンをどこかに作る -->
             </div>
         </div>
