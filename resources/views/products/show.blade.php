@@ -104,5 +104,15 @@
                 </form>
             </div>
         </div>
+
+        <!-- 画像の拡大表示機能 -->
+        <!-- Lightbox モーダル -->
+        <div id="lightbox-modal" class="hidden">
+            <div id="lightbox-image-wrapper">
+                <img id="lightbox-image" src="" alt="拡大画像">
+            </div>
+        </div>
     </div>
+    <script src="{{ asset('/js/image_lightbox.js') }}"></script>
+
 @endsection

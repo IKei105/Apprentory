@@ -251,12 +251,6 @@ input[type="text"]:focus {
     cursor: pointer;
 }
 
-.hidden {
-    display: none;
-}
-
-
-
 
 /**************************** 
 user-menu
@@ -313,10 +307,6 @@ user-menu
     padding: 10px;
 }
 
-/* 非表示用 */
-.hidden {
-    display: none;
-}
 
 /* 通知それぞれの見た目（任意で追加） */
 .notification-content p {
