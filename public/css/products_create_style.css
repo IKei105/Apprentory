@@ -91,14 +91,36 @@
 }
 .main-image{
     margin-right: 20px;
+    height: 180px;          /* 絶対必要：固定で統一する */
+    position: relative;     /* 相対位置でラベル内に下揃えを効かせる */
+    margin-right: 12px;
+}
+
+.main-image,
+.sub-image {
+    display: block;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+.main-image p,
+.sub-image p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    margin: 0;
+    color: #6d6d6d;
 }
 .main-image img {
-    max-width: 240px;
+    max-width: 280px;
     height: auto;
 }
 
 .sub-image img {
-    max-width: 120px;
+    max-width: 140px;
     height: auto;
 }
 
@@ -116,13 +138,6 @@
     box-shadow: -4px 4px 4px #00000040;
 }
 
-.post-images-right {
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 50px;
-    flex-wrap: wrap; /* プレビュー画像を折り返し可能に */
-    gap: 10px; /* プレビュー画像の間隔 */
-}
 .post-images-preview {
     display: flex;
     align-items: flex-end;
