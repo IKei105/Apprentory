@@ -114,5 +114,6 @@
         </div>
     </div>
     <script src="{{ asset('/js/image_lightbox.js') }}"></script>
+    <script src="{{ asset('/js/comment_button_control.js') }}"></script>
 
 @endsection
