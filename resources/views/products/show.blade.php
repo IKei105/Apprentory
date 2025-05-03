@@ -59,8 +59,8 @@
     </div>
     <div class="layout-bottom">
         <div class="select-summary"> 
-            <p class="product-detail">{{ $product->product_detail }}</p>
-            <h3>プロダクトURL</h3>
+        <p class="product-detail">{!! nl2br(e($product->product_detail)) !!}</p>
+        <h3>プロダクトURL</h3>
             <a href="{{ $product->product_url }}" class="product-url">{{ $product->product_url }}</a>
             <h3>GithubURL</h3>
             <a href="{{ $product->github_url }}" class="github-url">{{ $product->github_url }}</a>
