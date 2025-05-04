@@ -103,7 +103,7 @@ margin-right: 16px;
     border-radius: 50%;
     margin-right: 8px;
 }
-.follow{
+/* .follow{
     height: 28px;
     width: 86px;
     display: flex;
@@ -116,7 +116,53 @@ margin-right: 16px;
     margin-left: 36px;
     white-space: nowrap;
     border-radius: 12px;
+} */
+/* フォローボタン（未フォロー時） */
+#follow {
+    height: 28px;
+    width: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #00d1d1;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-left: 36px;
+    white-space: nowrap;
 }
+#follow:hover {
+    background-color: rgba(0, 209, 209, 0.7);
+}
+
+
+/* フォロー中ボタン（解除可能） */
+#unfollow {
+    height: 28px;
+    width: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #00d1d1;
+    background-color: #fff;
+    border: 2px solid #00d1d1;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-left: 36px;
+    white-space: nowrap;
+}
+#unfollow:hover {
+    background-color: rgba(0, 209, 209, 0.1); /* = #00d1d1 × 10% */
+    border: 1px solid #00d1d1;
+    color: #00d1d1;
+}
+
+
 .selecter{
     display: flex;
     font-size: 16px;

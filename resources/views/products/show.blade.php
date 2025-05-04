@@ -53,7 +53,12 @@
                     <img class="post-user-image" src="{{ asset(ltrim($product->profile->profile_image, '/')) }}" alt="{{ $product->profile->username }}">
                     <p class="post-user-name">{{ $product->profile->username }}</p>
                 </a>
-                <p class="follow">フォロー</p>                
+                <p class="follow">
+                    @if (auth()->check() && auth()->id() !== $product->profile->user_id)
+                        <button id="follow" class="{{ $isFollow ? 'hidden' : '' }}">フォロー</button>
+                        <button id="unfollow" class="{{ $isFollow ? '' : 'hidden' }}">フォロー解除</button>
+                    @endif
+                </p>                
             </div>
         </div>
     </div>
@@ -113,6 +118,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('/js/follow.js') }}"></script>
     <script src="{{ asset('/js/image_lightbox.js') }}"></script>
     <script src="{{ asset('/js/comment_button_control.js') }}"></script>
 

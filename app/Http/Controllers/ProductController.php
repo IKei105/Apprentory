@@ -16,6 +16,8 @@ use App\Models\Original_product_comment;
 use App\Http\Requests\OriginalProductCommentRequest;
 use Illuminate\Support\Facades\Log;
 use App\Services\ProductService;
+use App\Models\User_follow;
+
 
 
 
@@ -257,10 +259,17 @@ class ProductController extends Controller
 
         $profile = $user->profile;
         
-
-        //dd($product);
+        $isFollow = false;
+        if ($user->id !== $product->profile->user_id) {
+            $isFollow = \App\Models\User_follow::where('follower_id', $user->id)
+                ->where('following_id', $product->profile->user_id)
+                ->exists();
+        }
         
-        return view('products.show', compact('product','profile'));
+        $userToView = $product->profile->user;
+
+        return view('products.show', compact('product', 'profile', 'isFollow'))
+            ->with('user', $userToView);
     }
     
     /**
