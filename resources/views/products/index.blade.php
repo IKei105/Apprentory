@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="article-right">
-                    <p class="product-element">
+                    <p class="product-element {{ $product->element === 'need-tester' ? 'tester' : 'reviewer' }}">
                         @if ($product->element === 'need-tester')
                             テスター募集
                         @elseif ($product->element === 'need-review')
@@ -67,6 +67,7 @@
                             未定義
                         @endif
                     </p>
+
                     <a href="{{ route('products.show', $product->id) }}">
                         <h3 class="product-title">{!! nl2br(e($product->title ?? '未設定')) !!}</h3>
                         <p class="product-subtitle">{!! nl2br(e($product->subtitle ?? '未設定')) !!}</p>

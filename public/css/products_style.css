@@ -80,16 +80,32 @@ article{
 .product-image{
     width: 100%;
 }
-.product-element{  /*投稿の属性 */
+
+/* 共通スタイル */
+.product-element {
     margin: 0px;
     font-size: 12px;
-    color: #45bbc3;
     width: 84px;
-    border: 1px solid #45bbc3;
+    height: 24px;
     border-radius: 12px;
     text-align: center;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+/* テスター */
+.tester {
+    color: #45bbc3;
+    border: 1px solid #45bbc3;
+}
+
+/* レビュー */
+.reviewer {
+    color: #bd49c3;
+    border: 1px solid #bd49c3;
+}
+
 .product-title{
     font-size: 32px;
     margin-top: 10px;

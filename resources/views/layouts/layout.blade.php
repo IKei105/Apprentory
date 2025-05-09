@@ -34,6 +34,7 @@
                 @php
                     $type = $notification->notificationType->name ?? null;
                     $from = $notification->fromUser->profile->username ?? $notification->fromUser->userid ?? '不明';
+
                     $target = $notification->notifiable;
 
                     // 遷移先リンク（デフォルトは「#」）
