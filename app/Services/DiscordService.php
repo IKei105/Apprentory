@@ -66,8 +66,14 @@ class DiscordService
             return false;
         }
 
+        $followedUser = User::with('profile')->find($loggedInUserId);
+        if (!$followedUser || !$followedUser->profile) {
+            Log::error("Discord ID が見つかりません: ユーザーID {$followUserId}");
+            return false;
+        }
+
         $discordUserId = $followedUser->profile->discord_id;
-        $message = "あなたはユーザー {$loggedInUserId} にフォローされました！";
+        $message = "あなたは {$followedUser->profile->username} にフォローされました！";
 
         return $this->sendDirectMessage($discordUserId, $message);
         //通知テーブルに登録する

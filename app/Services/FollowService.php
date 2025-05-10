@@ -57,7 +57,8 @@ class FollowService
 
             return [
                 'success' => true, // 追加
-                'message' => 'フォロー処理成功'
+                'message' => 'フォロー処理成功',
+                'user' => $loggedInUserId,
             ];
         } catch (\Exception $e) {
             return ['error' => "フォロー処理に失敗しました", 'details' => $e->getMessage()];
