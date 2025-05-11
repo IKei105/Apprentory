@@ -64,11 +64,15 @@
     </div>
     <div class="layout-bottom">
         <div class="select-summary"> 
-        <p class="product-detail">{!! nl2br(e($product->product_detail)) !!}</p>
-        <h3>プロダクトURL</h3>
-            <a href="{{ $product->product_url }}" class="product-url">{{ $product->product_url }}</a>
+            <p class="product-detail">{!! nl2br(e($product->product_detail)) !!}</p>
+            <h3>プロダクトURL</h3>
+                <a href="{{ $product->product_url }}" class="product-url" target="_blank" rel="noopener noreferrer">
+                    {{ $product->product_url }}
+                </a>
             <h3>GithubURL</h3>
-            <a href="{{ $product->github_url }}" class="github-url">{{ $product->github_url }}</a>
+                <a href="{{ $product->github_url }}" class="github-url" target="_blank" rel="noopener noreferrer">
+                    {{ $product->github_url }}
+                </a>
             <h3>紹介画像</h3>
             <div class="products-images">
                 @foreach($product->images as $image)
