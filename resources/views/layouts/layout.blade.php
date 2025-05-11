@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/apprentory_logo.png') }}">
+
     @stack('styles')
 </head>
 <body>
