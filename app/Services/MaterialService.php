@@ -25,7 +25,9 @@ class MaterialService
         //     ->withCount('likes')   // likes の数をカウント
         //     ->get();
         // 修正後
-            return Material::with(['posts.user', 'technologies:id,name', 'category'])
+            return Material::whereBetween('id', [6, 12])
+            //↑ココいずれ修正！！
+            ->with(['posts.user', 'technologies:id,name', 'category'])
             ->withCount('likes')
             ->orderByDesc('created_at')
             ->take(8)
