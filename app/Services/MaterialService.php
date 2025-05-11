@@ -17,14 +17,22 @@ class MaterialService
     private const FIRST_SELECT_INDEX = 1;
     private const LAST_SELECT_INDEX = 5;
 
-    //アプレンティスおすすめ推奨教材を取得するメソッド
+    // アプレンティスおすすめ推奨教材を取得するメソッド
     public function getOfficialRecommendedMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        return Material::whereBetween('id', [1, 8])
-            ->with(['posts.user', 'technologies:id,name', 'category']) // posts を介して user をロード
-            ->withCount('likes')   // likes の数をカウント
+        // return Material::whereBetween('id', [1, 8])
+        //     ->with(['posts.user', 'technologies:id,name', 'category']) // posts を介して user をロード
+        //     ->withCount('likes')   // likes の数をカウント
+        //     ->get();
+        // 修正後
+            return Material::with(['posts.user', 'technologies:id,name', 'category'])
+            ->withCount('likes')
+            ->orderByDesc('created_at')
+            ->take(8)
             ->get();
     }
+
+    
 
     //評価の高い教材を取得するメソッド
     public function getTopRatedMaterials(): \Illuminate\Database\Eloquent\Collection
