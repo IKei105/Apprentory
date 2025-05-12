@@ -5,7 +5,7 @@
 ### リンク: https://apprentory.click/
 
 ## トップページ
-画像貼る
+[画像貼る](https://github.com/IKei105/Apprentory/issues/181#issue-3055637939)
 
 
 ## インフラ構成図
@@ -35,6 +35,11 @@ marcdownでかけるらしい
 カテゴリや使用言語毎の絞込みも可能です。
 
 一覧画面貼る(教材、オリプロ)
+#### 教材一覧
+https://github.com/IKei105/Apprentory/issues/182#issue-3055641821
+
+#### オリプロ一覧
+https://github.com/IKei105/Apprentory/issues/183#issue-3055642702
 
 ### 教材・オリジナルプロダクト共有
 - 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
@@ -48,7 +53,11 @@ marcdownでかけるらしい
 - 投稿された記事の詳細を閲覧出来ます。
 - 教材にはいいね機能、オリジナルプロダクトにはコメント欄を実装しています。
 
-画像(動画？貼る)
+#### 教材詳細画面
+https://github.com/IKei105/Apprentory/issues/186#issue-3055675815
+
+#### オリプロ詳細画面
+https://github.com/IKei105/Apprentory/issues/187#issue-3055676576
 
 
 ### 検索機能
