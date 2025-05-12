@@ -4,10 +4,6 @@
 
 ### リンク: https://apprentory.click/
 
-#### ご担当者様向けアカウント
-- **ユーザID**：`apprentory2025`
-- **パスワード**：`Apprentice`
-
 
 ## インフラ構成図
 ![インフラ](./docs/apprentory_diagram.png)
