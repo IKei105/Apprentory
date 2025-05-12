@@ -34,12 +34,16 @@
 
 カテゴリや使用言語毎の絞込みも可能です。
 
-一覧画面貼る(教材、オリプロ)
-#### 教材一覧
-![教材一覧](https://private-user-images.githubusercontent.com/180067613/442590664-b8b0d1dc-c5a6-4037-a5a6-024c7bcdd212.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDcwNjgyNTEsIm5iZiI6MTc0NzA2Nzk1MSwicGF0aCI6Ii8xODAwNjc2MTMvNDQyNTkwNjY0LWI4YjBkMWRjLWM1YTYtNDAzNy1hNWE2LTAyNGM3YmNkZDIxMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTEyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUxMlQxNjM5MTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xNjNhZTIyYWQyNzBmYjdjODRmZTMzMjI0NGRmYzk3YzRjZWZhYWRkODBlOTE3NzJlZTZlNDg2YWViM2JhYTA2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.y8x-olNFO2bMBRCir-Y0CW_dvxzDDyT_iQpdKx4KKzs)
-
-#### オリプロ一覧
-![オリプロ一覧](https://private-user-images.githubusercontent.com/180067613/442845953-ebc182c0-0adc-4467-8e6e-95a0c0304811.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDcwNjgyOTgsIm5iZiI6MTc0NzA2Nzk5OCwicGF0aCI6Ii8xODAwNjc2MTMvNDQyODQ1OTUzLWViYzE4MmMwLTBhZGMtNDQ2Ny04ZTZlLTk1YTBjMDMwNDgxMS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTEyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUxMlQxNjM5NThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iNmUwZGQ4OWNlM2Y5MjM2ZjhhY2UxOTY4OTU3MWQxODY2MzhjN2RiZTA0MDViNzU4YmMwYjc0MmUwNDkzMzY4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.oMes313w63A1hAH651O4SGcOUhmRxh_cyfWDtMBbNGE)
+<div style="display: flex; gap: 16px;">
+  <div>
+    <p><strong>教材一覧</strong></p>
+    <img src="./docs/material_screen.png" width="300"/>
+  </div>
+  <div>
+    <p><strong>オリプロ一覧</strong></p>
+    <img src="./docs/product_screen.png" width="300"/>
+  </div>
+</div>
 
 ### 教材・オリジナルプロダクト共有
 - 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
