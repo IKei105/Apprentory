@@ -1,66 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Apprentory
+『Apprentory』は、アプレンティス生向けに作成した教材、オリジナルプロダクト共有サイトです。<br>
+アプレンティス生が学習で使用した教材や、制作したプロダクトを共有することで、同期・他期との交流やスムーズな学習進行をサポートします。 <br>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### リンク: https://apprentory.click/
 
-## About Laravel
+## トップページ
+画像貼る
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## インフラ構成図
+画像貼る
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ER図
+marcdownでかけるらしい
 
-## Learning Laravel
+## 使用技術スタック
+- PHP (バージョン追記)
+- Laravel (バージョン追記)
+- MySQL (バージョン追記)
+- AWS (EC2 ELB Route53）
+- Docker
+- JavaScript
+- HTML/CSS
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 機能・画面
+### ログイン機能
+- Discord IDによる認証後、任意のユーザIDとパスワードでログイン可能です。 <br>
+ホーム画面に遷移後に各機能を使用できます。
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 一覧
+- アプレンティス生が共有した教材やオリジナルプロダクトを閲覧することが出来ます。
 
-## Laravel Sponsors
+カテゴリや使用言語毎の絞込みも可能です。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+一覧画面貼る(教材、オリプロ)
 
-### Premium Partners
+### 教材・オリジナルプロダクト共有
+- 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
+- 教材は5段階での評価に対応しており、媒体(書籍なのか動画コンテンツなのか、等)の選択が可能です。<br>
+- オリジナルプロダクトには複数枚の画像を添付でき、テスター募集やレビュー募集など、投稿の目的に応じた種別を選択できます。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+投稿動画貼る
+(教材とオリプロ)
 
-## Contributing
+### 詳細の閲覧
+- 投稿された記事の詳細を閲覧出来ます。
+- 教材にはいいね機能、オリジナルプロダクトにはコメント欄を実装しています。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+画像(動画？貼る)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 検索機能
+- サイト内検索に対応しており、言語、もしくはテキストから一致するものを絞り込めます。
 
-## Security Vulnerabilities
+### フォロー機能
+- 気になったユーザをフォローする事が出来ます。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 通知機能
+- 他ユーザからのアクション（フォロー・いいね・コメント）をリアルタイムで通知するため、Discord Botとの連携による通知機能を実装しました。
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 技術的に工夫したところ
+### ユーザをアプレンティス生のみに絞込むため、Discord APIを使用して登録可能なユーザを限定しました。<br>
+他ユーザからのアクションをリアルタイムで通知出来るよう、Botを経由した通知機能を実装しました。
+
+本番環境には CloudWatch を導入し、CPU・メモリ・ディスク使用率などの監視体制を構築。安定運用を支えています。
+## ユーザ目線で工夫したところ
+- アプレンティス生の「どの教材を選ぶべきか分からない」という悩み、そして「オリジナルプロダクトの要件定義が進まない」という壁をサポートするため、本サービスは教材共有とオリプロ投稿の2機能を軸に設計しています。それぞれが“失敗しづらい選択・企画”を後押しする「学習の心臓部」として機能することを目指しました。
+- SNSとしての使いやすさを重視し、投稿・いいね・コメント・フォロー・通知といった機能を一般的なサービスに倣って設計しました。ユーザーが迷わず使えるよう、既存SNSのUI/UXを積極的に参考にしています。
+- JavaScriptを活用し、可能な限りページ遷移を発生させない構成とすることで、操作のテンポを向上させました。
