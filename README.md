@@ -34,16 +34,19 @@
 
 カテゴリや使用言語毎の絞込みも可能です。
 
-<div style="display: flex; gap: 16px;">
-  <div>
-    <p><strong>教材一覧</strong></p>
-    <img src="./docs/material_screen.png" width="300"/>
-  </div>
-  <div>
-    <p><strong>オリプロ一覧</strong></p>
-    <img src="./docs/product_screen.png" width="300"/>
-  </div>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <strong>教材一覧</strong><br>
+      <img src="./docs/material_screen.png" width="300"/>
+    </td>
+    <td align="center">
+      <strong>オリプロ一覧</strong><br>
+      <img src="./docs/product_screen.png" width="300"/>
+    </td>
+  </tr>
+</table>
+
 
 ### 教材・オリジナルプロダクト共有
 - 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
