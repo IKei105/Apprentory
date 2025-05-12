@@ -4,12 +4,17 @@
 
 ### リンク: https://apprentory.click/
 
-## トップページ
-![画像貼る](https://private-user-images.githubusercontent.com/180067613/442590559-2aa01bb6-5280-41ba-9165-7ea07c1dae91.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDcwNjgwMDgsIm5iZiI6MTc0NzA2NzcwOCwicGF0aCI6Ii8xODAwNjc2MTMvNDQyNTkwNTU5LTJhYTAxYmI2LTUyODAtNDFiYS05MTY1LTdlYTA3YzFkYWU5MS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTEyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUxMlQxNjM1MDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05MDllNTA3MTNkM2E3ZDQyNjE3YzkyZDRjZmRiZDljZTNkY2Y2N2YyZGU5MjEwN2Y1MWEzNzdlNWZiMWUzODBiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.WOrN9v4T9MYn6Fvvsk5LYcUozxToCwANm0dDdmyxBeA)
+#### ご担当者様向けアカウント
+- **ユーザID**：`apprentory2025`
+- **パスワード**：`Apprentice`
 
 
 ## インフラ構成図
 ![インフラ](./docs/apprentory_diagram.png)
+
+##トップページ
+
+![トップページ](./docs/material_screen.png")
 
 ## ER図
 ![ER図](https://private-user-images.githubusercontent.com/180067613/442844785-bc2391c4-c528-487c-ae58-2750a3a31ffe.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDcwNjgxODgsIm5iZiI6MTc0NzA2Nzg4OCwicGF0aCI6Ii8xODAwNjc2MTMvNDQyODQ0Nzg1LWJjMjM5MWM0LWM1MjgtNDg3Yy1hZTU4LTI3NTBhM2EzMWZmZS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTEyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUxMlQxNjM4MDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01NDg1MDY5Yzg5NTA5ZjNmYWZmN2RmNzdhYThlNTI1NGZhZTFlMDhhYzVlZTk3MjFjMjNhYzZjODYyZTVmYTBiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.qes4KyZ4tMTleWwBr3a7Hd42f53jyNAn1G4CsFs91fo)
@@ -29,6 +34,24 @@
 ホーム画面に遷移後に各機能を使用できます。
 
 
+### 教材・オリジナルプロダクト共有
+- 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
+- 教材は5段階での評価に対応しており、媒体(書籍なのか動画コンテンツなのか、等)の選択が可能です。<br>
+- オリジナルプロダクトには複数枚の画像を添付でき、テスター募集やレビュー募集など、投稿の目的に応じた種別を選択できます。
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <strong>教材投稿</strong><br>
+      <img src="./docs/material_create_screen.png" width="300"/>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <strong>オリプロ投稿</strong><br>
+      <img src="./docs/product_create_screen.png" width="300"/>
+    </td>
+  </tr>
+</table>
+
 ### 一覧
 - アプレンティス生が共有した教材やオリジナルプロダクトを閲覧することが出来ます。
 
@@ -47,15 +70,6 @@
   </tr>
 </table>
 
-
-
-### 教材・オリジナルプロダクト共有
-- 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
-- 教材は5段階での評価に対応しており、媒体(書籍なのか動画コンテンツなのか、等)の選択が可能です。<br>
-- オリジナルプロダクトには複数枚の画像を添付でき、テスター募集やレビュー募集など、投稿の目的に応じた種別を選択できます。
-
-投稿動画貼る
-(教材とオリプロ)
 
 ### 詳細の閲覧
 - 投稿された記事の詳細を閲覧出来ます。
