@@ -36,16 +36,17 @@
 
 <table>
   <tr>
-    <td align="center">
+    <td align="center" valign="top" width="50%">
       <strong>教材一覧</strong><br>
       <img src="./docs/material_screen.png" width="300"/>
     </td>
-    <td align="center">
+    <td align="center" valign="top" width="50%">
       <strong>オリプロ一覧</strong><br>
       <img src="./docs/product_screen.png" width="300"/>
     </td>
   </tr>
 </table>
+
 
 
 ### 教材・オリジナルプロダクト共有
