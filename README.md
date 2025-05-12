@@ -8,7 +8,7 @@
 ## インフラ構成図
 ![インフラ](./docs/apprentory_diagram.png)
 
-##トップページ
+## トップページ
 
 ![トップページ](./docs/material_screen.png)
 
