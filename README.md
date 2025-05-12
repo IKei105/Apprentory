@@ -34,11 +34,16 @@
 
 カテゴリや使用言語毎の絞込みも可能です。
 
-#### 教材一覧
-![教材一覧](./docs/material_screen.png)
-
-#### オリプロ一覧
-![オリプロ一覧](./docs/product_screen.png)
+<div style="display: flex; gap: 16px;">
+  <div>
+    <p><strong>教材一覧</strong></p>
+    <img src="./docs/material_screen.png" width="300"/>
+  </div>
+  <div>
+    <p><strong>オリプロ一覧</strong></p>
+    <img src="./docs/product_screen.png" width="300"/>
+  </div>
+</div>
 
 ### 教材・オリジナルプロダクト共有
 - 自分が使用した教材、作成したオリジナルプロダクトを共有出来ます。<br>
