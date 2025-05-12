@@ -51,7 +51,7 @@ class CommentService
             $commentingUserName = $commentingUser->profile->username ?? $commentingUser->userid; // コメント投稿者の名前
 
             //Discord に送信するメッセージを作成
-            $message = "{$commentingUserName}さんがあなたのオリジナルプロダクツにコメントしました。\n\n **コメント内容:\n> {$commentText}";
+            $message = "{$commentingUserName}さんがあなたのオリジナルプロダクトにコメントしました。\n\n **コメント内容:\n> {$commentText}";
 
             //Discord に通知を送信
             $this->discordService->sendDirectMessage($discordUserId, $message);
