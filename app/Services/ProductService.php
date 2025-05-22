@@ -12,6 +12,7 @@ use App\Models\Original_product_image;
 use App\Models\Original_product_technologie_tag;
 use App\Models\Original_product_post;
 use App\Models\User_follow;
+use App\Models\Technologie;
 
 class ProductService
 {
@@ -24,12 +25,14 @@ class ProductService
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $popularTags = DB::table('original_product_technologie_tags')
+        $popularTagIds = DB::table('original_product_technologie_tags')
             ->select('technologie_id', DB::raw('count(*) as count'))
             ->groupBy('technologie_id')
             ->orderByDesc('count')
             ->limit(5)
             ->pluck('technologie_id');
+
+        $popularTags = Technologie::whereIn('id', $popularTagIds)->get();
 
         return [
             'products' => $products,
@@ -46,17 +49,24 @@ class ProductService
         ->orderBy('created_at', 'desc')
         ->get();
 
-        $popularTags = DB::table('original_product_technologie_tags')
+        $popularTagIds = DB::table('original_product_technologie_tags')
             ->select('technologie_id', DB::raw('count(*) as count'))
             ->groupBy('technologie_id')
             ->orderByDesc('count')
             ->limit(5)
             ->pluck('technologie_id');
 
+        $popularTags = Technologie::whereIn('id', $popularTagIds)->get();
+
         return [
             'products' => $products,
             'popularTags' => $popularTags,
         ];
+    }
+
+    public function create()
+    {
+        return view('products.create2');
     }
 
     public function store(array $data, array $images = [])
