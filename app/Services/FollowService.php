@@ -53,7 +53,7 @@ class FollowService
                 notifiable: $fromUser             // 通知対象のモデル（誰にフォローされたか）
             );
 
-            $this->discordService->sendFollowMessage($followUserId, $loggedInUserId);
+            $this->discordService->sendFollowMessage($loggedInUserId, $followUserId);
 
             return [
                 'success' => true, // 追加
