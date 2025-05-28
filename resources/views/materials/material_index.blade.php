@@ -19,7 +19,7 @@
         <div class="filter-menu">
             <div class="filter">
                 <select name="tag" id="tag" class="filter-tag"  >
-                    <option value="">技術タグ</option>
+                    <option value="0">技術タグ</option>
                     <option value="1">Ruby</option>
                     <option value="2">PHP</option>
                     <option value="3">SQL</option>
@@ -35,7 +35,7 @@
             </div>
             <div class="filter">
                 <select name="category" id="category-tag" class="filter-tag">
-                    <option value="">カテゴリー</option>
+                    <option value="0">カテゴリー</option>
                     <option value="1">書籍</option>
                     <option value="2">オンライン記事</option>
                     <option value="3">動画教材</option>
