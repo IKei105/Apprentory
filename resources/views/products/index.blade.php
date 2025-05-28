@@ -51,6 +51,7 @@
                 </a>              
                 <div class="post-user-info">
                         <a href="" class="post-user">
+                        <a href="{{ route('users.show', ['user' => $product->posts->first()->user->id]) }}" class="post-user">
                             <img class="post-user-image" src="{{ asset(ltrim($product->posts->first()->user->profile->profile_image ?? 'assets/material_images/user_profile_image.png', '/')) }}" alt="M">
                             <p class="post-user-name">{!! nl2br(e($product->posts->first()->user->profile->username ?? '未設定')) !!}
                             </p>
