@@ -19,12 +19,9 @@
                 @endforeach
             @endif
         </div>
-        <div class="filter">絞り込み<img src="{{ asset('assets/images/Audio Settings 01.svg') }}" alt="通知"></div>
-    </div>
-    <div>
         <div class="filter">
             <select name="tag" id="technology-tag" class="filter-tag"  >
-                <option value="">技術タグ</option>
+                <option value="0">技術タグ</option>
                 <option value="1">Ruby</option>
                 <option value="2">PHP</option>
                 <option value="3">SQL</option>
@@ -38,6 +35,9 @@
                 <option value="11">その他</option>
             </select>
         </div>
+        <!-- <div class="filter">絞り込み<img src="{{ asset('assets/images/Audio Settings 01.svg') }}" alt="通知"></div> -->
+    </div>
+    <div>
     </div>
     <div class="main-contents">
         <h1 class="title">アプレンティス生オリジナルプロダクト</h1>

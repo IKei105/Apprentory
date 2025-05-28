@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
         products.forEach(product => {
             const tags = product.getAttribute('data-tag').split(',');
 
-            if (selectedTag === '' || tags.includes(selectedTag)) {
+            // "0" ならすべて表示、それ以外はフィルター
+            if (selectedTag === '0' || tags.includes(selectedTag)) {
                 product.classList.remove('hidden');
             } else {
                 product.classList.add('hidden');
@@ -16,4 +17,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
