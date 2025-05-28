@@ -88,7 +88,7 @@
                             <img class="material-book-image" data-src="{{ asset($latestMaterial->image_dir) }}" alt="" loading="lazy">
                         </a>
                         <div class="post-user-info">
-                            <a href="">
+                            <a href="{{ route('users.show', ['user' => $latestMaterial->posts[0]->user->id]) }}">
                                 <img class="post-user-image" src="{{ asset($latestMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="" loading="lazy">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
@@ -151,7 +151,7 @@
                             <img class="material-book-image" data-src="{{ asset($topRatedMaterial->image_dir) }}" alt="" loading="lazy">
                         </a>
                         <div class="post-user-info">
-                            <a href="">
+                            <a href="{{ route('users.show', ['user' => $topRatedMaterial->posts[0]->user->id]) }}">
                                 <img class="post-user-image" src="{{ asset($topRatedMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="" loading="lazy">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
@@ -225,7 +225,7 @@
                             <img class="material-book-image" src="{{ asset($latestMaterial->image_dir) }}" alt="">
                         </a>
                         <div class="post-user-info">
-                            <a href="">
+                            <a href="{{ route('users.show', ['user' => $latestMaterial->posts[0]->user->id]) }}">
                                 <img class="post-user-image" src="{{ asset($latestMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
@@ -278,7 +278,7 @@
                             <img class="material-book-image" src="{{ asset($topRatedMaterial->image_dir) }}" alt="">
                         </a>
                         <div class="post-user-info">
-                            <a href="">
+                            <a href="{{ route('users.show', ['user' => $topRatedMaterial->posts[0]->user->id]) }}">
                                 <img class="post-user-image" src="{{ asset($topRatedMaterial->posts[0]->user->profile['profile_image'] ?? '') }}" alt="">
                                 <p class="post-user-name">{{ $post->user->profile->username  }}</p>
                             </a>
