@@ -333,3 +333,7 @@ body {
 .hidden {
     display: none !important;
 }
+
+.switch-button.active {
+    background-color: #D1E0E1; /* 青系 */
+}

@@ -51,8 +51,15 @@ function filterMaterials() {
     });
 }
 
-// ボタンクリック時のセクション切り替え
+function setActiveButton(clickedButton) {
+    const buttons = document.querySelectorAll('.switch-button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    clickedButton.classList.add('active');
+}
+
+
 document.getElementById('recommended-button').addEventListener('click', function () {
+    setActiveButton(this); // ←追加！
     document.getElementById('recommended_materials').classList.add('hidden');
     document.getElementById('high-rated-materials').classList.add('hidden');
     document.getElementById('latest-materials').classList.add('hidden');
@@ -62,6 +69,7 @@ document.getElementById('recommended-button').addEventListener('click', function
 });
 
 document.getElementById('new-button').addEventListener('click', function () {
+    setActiveButton(this);
     document.getElementById('recommended_materials').classList.add('hidden');
     document.getElementById('high-rated-materials').classList.add('hidden');
     document.getElementById('latest-materials').classList.add('hidden');
@@ -71,6 +79,7 @@ document.getElementById('new-button').addEventListener('click', function () {
 });
 
 document.getElementById('high-rated-button').addEventListener('click', function () {
+    setActiveButton(this);
     document.getElementById('recommended_materials').classList.add('hidden');
     document.getElementById('high-rated-materials').classList.add('hidden');
     document.getElementById('latest-materials').classList.add('hidden');
