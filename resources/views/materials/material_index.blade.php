@@ -241,7 +241,7 @@
                                 <a href=""class="material-category-text material-category-movie-style">{{ $latestMaterial->category->category_name }}</a>
                             @endif
                         </div>
-                        <a href="">
+                        <a href="{{ route('materials.show', $latestMaterial->id) }}">
                             <h3 class="material-title">{!! nl2br(e(mb_strimwidth($latestMaterial->title, 0, 40, '...'))) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $latestMaterial->rating_id; $i++)
@@ -294,7 +294,7 @@
                                 <a href=""class="material-category-text material-category-movie-style">{{ $topRatedMaterial->category->category_name }}</a>
                             @endif
                         </div>
-                        <a href="">
+                        <a href="{{ route('materials.show', $topRatedMaterial->id) }}">
                             <h3 class="material-title">{!! nl2br(e(mb_strimwidth($topRatedMaterial->title, 0, 40, '...'))) !!}</h3>
                             <div class="book-rating">
                             @for ($i = 1; $i <= $topRatedMaterial->rating_id; $i++)
