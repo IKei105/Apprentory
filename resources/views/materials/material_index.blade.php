@@ -12,9 +12,9 @@
 @section('content')
 <div class="menu-select">
         <div class="content-switch">
-            <button class="recommended-button" id="recommended-button">推奨教材</button>
-            <button class="new-button" id="new-button">高評価</button>
-            <button class="high-rated-button" id="high-rated-button">新着</button>
+            <button class="recommended-button switch-button" id="recommended-button">推奨教材</button>
+            <button class="new-button switch-button" id="new-button">高評価</button>
+            <button class="high-rated-button switch-button" id="high-rated-button">新着</button>
         </div>
         <div class="filter-menu">
             <div class="filter">
