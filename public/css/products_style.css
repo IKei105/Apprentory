@@ -137,3 +137,25 @@ article{
     padding-top: 3px;
     margin-right: 8px;
 }
+
+.filter {
+    display: inline-block;
+}
+
+
+/* 絞り込み */
+.filter-tag {
+    appearance: none; /* デフォルトのスタイルを無効化（全ブラウザ対応） */
+    -webkit-appearance: none; /* Safari, Chrome */
+    -moz-appearance: none; /* Firefox */
+    -ms-appearance: none; /* Internet Explorer */
+
+    background-color: #F2F2F2; /* 背景色 */
+    border: none; /* 枠線を削除 */
+    font-size: 16px; /* 文字サイズ */
+    border-radius: 5px; /* 角を丸める（不要なら削除） */
+    cursor: pointer; /* マウスポインターを変更 */
+    width: 100%; /* 必要に応じて幅を調整 */
+    outline: none;
+}
+
