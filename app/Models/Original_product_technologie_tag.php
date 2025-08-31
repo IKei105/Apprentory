@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Original_product_technologie_tag extends Model
 {
-    public $timestamps = false; // タイムスタンプを無効化
+    public $timestamps = false;
 
     protected $fillable = [
         'original_product_id',

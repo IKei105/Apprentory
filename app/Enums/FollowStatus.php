@@ -4,13 +4,10 @@ namespace App\Enums;
 
 enum FollowStatus: string
 {
-    case SELF = 'self';              // 自分の投稿
-    case FOLLOWING = 'following';    // フォロー中
-    case NOT_FOLLOWING = 'not_following'; // フォローしていない
+    case SELF = 'self';
+    case FOLLOWING = 'following';
+    case NOT_FOLLOWING = 'not_following';
 
-    /**
-     * ラベルを取得するメソッド
-     */
     public function label(): string
     {
         return match($this) {

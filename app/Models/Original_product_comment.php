@@ -13,17 +13,11 @@ class Original_product_comment extends Model
 
     protected $fillable = ['original_product_id', 'commented_user_id', 'comment'];
 
-    /**
-     * コメントが関連するオリジナルプロダクト
-     */
     public function product()
     {
         return $this->belongsTo(Original_product::class, 'original_product_id');
     }
 
-    /**
-     * コメントを投稿したユーザー
-     */
     public function user()
     {
         return $this->belongsTo(User::class, 'commented_user_id');

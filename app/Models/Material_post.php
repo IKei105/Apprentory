@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Material_post extends Model
 {
     protected $fillable = [
-        'material_id',       // 教材ID
-        'posted_user_id',    // 投稿したユーザーID
+        'material_id',
+        'posted_user_id',
     ];
 
-    // モデルのリレーションを定義
     public function material()
     {
         return $this->belongsTo(Material::class, 'material_id');
@@ -22,7 +21,4 @@ class Material_post extends Model
     {
         return $this->belongsTo(User::class, 'posted_user_id');
     }
-    
-    // material_posts テーブルとのリレーション
-    
 }
