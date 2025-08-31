@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class User_follow extends Model
 {
-    protected $fillable = ['follower_id', 'following_id']; // ✅ これを追加
-    public $timestamps = false; // timestamps を使わないなら追加
+    protected $fillable = ['follower_id', 'following_id'];
+    public $timestamps = false;
 
     public function followers()
     {

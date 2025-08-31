@@ -33,14 +33,14 @@ class User extends Authenticatable
 
     public function follow(User $user)
     {
-        if (!$this->isFollowing($user->id)) { // すでにフォローしている場合は実行しない
+        if (!$this->isFollowing($user->id)) {
             $this->following()->attach($user->id);
         }
     }
 
     public function unfollow(User $user)
     {
-        if ($this->isFollowing($user->id)) { // フォローしていない場合は実行しない
+        if ($this->isFollowing($user->id)) {
             $this->following()->detach($user->id);
         }
     }
@@ -53,12 +53,12 @@ class User extends Authenticatable
     public function materials()
     {
         return $this->hasManyThrough(
-            \App\Models\Material::class,   // ゴール: 取ってきたいモデル
-            \App\Models\Material_post::class, // 中間テーブル
-            'posted_user_id',              // 中間テーブルの、ユーザーIDカラム
-            'id',                          // materials テーブルの、idカラム
-            'id',                          // users テーブルの、idカラム
-            'material_id'                  // 中間テーブルの、materialsへの外部キー
+            \App\Models\Material::class,
+            \App\Models\Material_post::class,
+            'posted_user_id',
+            'id',
+            'id',
+            'material_id'
         );
     }
 

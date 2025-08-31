@@ -20,7 +20,7 @@ class LikeService
 
     public function toggleLike($table, $articleId)
     {
-        $userId = Auth::id(); // ログイン中のユーザーID
+        $userId = Auth::id();
 
         $modelClass = $this->resolveModel($table);
 
@@ -39,11 +39,9 @@ class LikeService
             ->first();
 
         if ($userArticleLike) {
-            // いいねを削除
             $userArticleLike->delete();
             return ['message' => 'Like removed'];
         } else {
-            // いいねを登録
             $modelClass::create([
                 'user_id' => $userId,
                 'material_id' => $articleId,
@@ -58,9 +56,8 @@ class LikeService
                 notifiable: $material
             );
 
-            //ここでディスコードに送信します
             if ($material && $material->postedUserProfile && $material->postedUserProfile->discord_id) {
-                $discordUserId = $material->postedUserProfile->discord_id; // 教材投稿者の Discord ID
+                $discordUserId = $material->postedUserProfile->discord_id;
                 $likedUser = Auth::user()->profile->username;
                 $message = "{$likedUser} さんがあなたの教材投稿にいいねしました！";
             
@@ -81,19 +78,17 @@ class LikeService
 
     private function sendLikeNotification($materialId, $likingUserId)
     {
-        // 投稿された教材の情報を取得
         $material = Material::with('posts.user.profile')->find($materialId);
 
         if (!$material || !$material->posts->first() || !$material->posts->first()->user->profile->discord_id) {
             return;
         }
 
-        $discordUserId = $material->posts->first()->user->profile->discord_id; // 教材投稿者の Discord ID
-        $likingUser = Auth::user()->name; // いいねしたユーザーの名前
+        $discordUserId = $material->posts->first()->user->profile->discord_id;
+        $likingUser = Auth::user()->name;
 
         $message = "{$likingUser} さんがあなたの教材にいいねしました！";
 
-        // Discord API で通知を送信
         $this->discordService->sendDirectMessage($discordUserId, $message);
     }
 }
