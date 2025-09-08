@@ -8,7 +8,6 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CommentController;
 
-// ログインが必要なルート
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
     Route::resource('materials', MaterialController::class)->except(['index']);
@@ -24,12 +23,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/like/{table}', [LikeController::class, 'toggleLike'])->name('like.toggle');
     Route::get('/products/tag/{id}', [ProductController::class, 'indexTag'])
     ->name('products.indexTag');
+    Route::resource('comments', CommentController::class);
+    Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+    Route::get('products/{id}/test-confirmation', [ProductController::class, 'testConfirmation'])->name('products.test-confirmation');
+    Route::resource("materials",MaterialController::class);
+    Route::resource("products",ProductController::class);
 });
 
-Route::resource("materials",MaterialController::class);
-Route::resource("products",ProductController::class);
-
-// ログイン不要のルート
 Route::get('/register', [UserController::class, 'showRegisterForm1'])->name('register1');
 Route::get('/register2', [UserController::class, 'showRegisterForm2'])->name('register2');
 Route::post('/register', [UserController::class, 'sendDiscordRegisterCode'])->name('register1');
@@ -37,28 +38,3 @@ Route::post('/register2', [UserController::class, 'newRegister'])->name('registe
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-
-// 特定のルートは除外
-Route::get('/register/confirmation', [UserController::class, 'showConfirmation'])->name('register.confirmation');
-Route::get('/logindashboard', [UserController::class, 'logindashboard'])->name('logindashboard');
-
-// 投稿後の確認ページ
-Route::get('products/{id}/test-confirmation', [ProductController::class, 'testConfirmation'])->name('products.test-confirmation');
-
-//検索用
-Route::get('/search', [SearchController::class, 'index'])->name('search.index');
-
-
-
-//コメント
-Route::resource('comments', CommentController::class);
-Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('comments.store');
-
-//テストルート
-Route::get('/test', function () {
-    return 'Hello World';
-});
-Route::get('/health', function () {
-    return response()->json(['status' => 'ok']);
-});
-
