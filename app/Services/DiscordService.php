@@ -12,10 +12,9 @@ class DiscordService
 
     public function __construct()
     {
-        $this->botToken = env('DISCORD_BOT_TOKEN'); // `.env` に Bot Token を保存
+        $this->botToken = env('DISCORD_BOT_TOKEN');
     }
 
-    // Discord の ID から DM チャンネルを取得
     private function getDmChannelId($userId)
     {
         $response = Http::withHeaders([
@@ -27,7 +26,7 @@ class DiscordService
     
         if ($response->successful()) {
             Log::info("✅ DM チャンネル取得成功: " . json_encode($response->json()));
-            return $response->json()['id']; // DMチャンネル ID を返す
+            return $response->json()['id'];
         }
     
         Log::error("DM チャンネル取得失敗: " . $response->body());
@@ -59,7 +58,6 @@ class DiscordService
 
     public function sendFollowMessage($loggedInUserId, $followUserId)
     {
-        //DMでメッセージを送る
         $followedUser = User::with('profile')->find($followUserId);
         if (!$followedUser || !$followedUser->profile || !$followedUser->profile->discord_id) {
             Log::error("Discord ID が見つかりません: ユーザーID {$followUserId}");
@@ -76,26 +74,11 @@ class DiscordService
         $message = "あなたは {$followedUser->profile->username} にフォローされました！";
 
         return $this->sendDirectMessage($discordUserId, $message);
-        //通知テーブルに登録する
     }
 
-    public function sendLikeMessage()
-    {
-        //DMでメッセージを送る
-
-        //通知テーブルに登録する
-    }
-
-    public function sendCommentMessage()
-    {
-        //DMでメッセージを送る
-
-        //通知テーブルに登録する
-    }
     
     public function sendDiscordRegisterCode($discordUserId, $registerCode)
     {
-        //ここでディスコードにメッセージを送る
         $message = "Apprentory 新規登録コード \n\n"
         . "あなたの登録コードは `{$registerCode}` です。\n\n"
         . "会員登録画面でこのコードを入力してください。\n"

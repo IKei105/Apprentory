@@ -45,7 +45,7 @@ class UserService
     public function createUser(array $request): User
     {
         return User::create([
-            'userid' => $request['userid'], // ✅ 配列なので `[]` でアクセス
+            'userid' => $request['userid'],
             'term_id' => $request['term'],
             'password' => bcrypt($request['password']),
         ]);
@@ -54,21 +54,18 @@ class UserService
     public function createProfile(int $userid, array $validatedRequest): void
     {
         if (isset($validatedRequest['user-profile-image']) && $validatedRequest['user-profile-image'] !== null) {
-            // 画像が存在する場合、profile_image に画像パスを保存
-            $profileImagePath = '/storage/' . request()->file('user-profile-image')->store('user_profile_images', 'public'); // ←ここのパス変えた
+            $profileImagePath = '/storage/' . request()->file('user-profile-image')->store('user_profile_images', 'public');
         } else {
-            // 画像が選ばれていない場合は、デフォルト画像を設定
-            $profileImagePath = '/assets/images/user_image_default.svg'; // デフォルトの画像を設定 ←ここのパス変えた
+            $profileImagePath = '/assets/images/user_image_default.svg';
         }
         Profile::create([
-            'user_id' => $userid, // Userの主キー
+            'user_id' => $userid,
             'username' => $validatedRequest['user-name'],
             'profile_image' => $profileImagePath,
             'discord_id' => $validatedRequest['discord-ID'],
         ]);
     }
 
-    //ユーザーの投稿した内容を取得
     public function getUserMaterials(User $user): Collection
     {
         return Material::whereHas('posts', function ($query) use ($user) {

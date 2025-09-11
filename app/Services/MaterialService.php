@@ -17,14 +17,8 @@ class MaterialService
     private const FIRST_SELECT_INDEX = 1;
     private const LAST_SELECT_INDEX = 5;
 
-    // アプレンティスおすすめ推奨教材を取得するメソッド
     public function getOfficialRecommendedMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        // return Material::whereBetween('id', [1, 8])
-        //     ->with(['posts.user', 'technologies:id,name', 'category']) // posts を介して user をロード
-        //     ->withCount('likes')   // likes の数をカウント
-        //     ->get();
-        // 修正後
             return Material::whereBetween('id', [6, 12])
             //↑ココいずれ修正！！
             ->with(['posts.user', 'technologies:id,name', 'category'])
@@ -34,23 +28,19 @@ class MaterialService
             ->get();
     }
 
-    
-
-    //評価の高い教材を取得するメソッド
     public function getTopRatedMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        return Material::with(['posts.user.profile', 'technologies:id,name', 'category']) // posts を介して user と profile をロード
-            ->withCount('likes') // likes の数を取得
-            ->orderBy('likes_count', 'desc') // likes_count の降順で並べ替え
+        return Material::with(['posts.user.profile', 'technologies:id,name', 'category'])
+            ->withCount('likes')
+            ->orderBy('likes_count', 'desc')
             ->get();
     }
 
-    //直近の投稿を取得するメソッド
     public function getLatestMaterials(): \Illuminate\Database\Eloquent\Collection
     {
-        return Material::with(['posts.user.profile', 'technologies:id,name', 'category']) // posts を介して user と profile をロード
-            ->withCount('likes')   // likes の数を取得
-            ->orderBy('created_at', 'desc') // created_at の降順で並べ替え
+        return Material::with(['posts.user.profile', 'technologies:id,name', 'category'])
+            ->withCount('likes')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -61,42 +51,39 @@ class MaterialService
 
     public function getPersonalizedRecommendationsBasedOnTags(array $tags)
     {
-        $recommendedMaterials = collect(); // 最終的に表示するおすすめ教材
-        $maxRecommendations = 4;           //  最大表示数
+        $recommendedMaterials = collect();
+        $maxRecommendations = 4;
 
-        // 取得済み教材のIDを追跡するための配列
         $alreadySelectedIds = [];
 
         switch (count($tags)) {
             case 5:
-                //【タグが5つの場合】タグをシャッフルして先頭4つを使用
                 shuffle($tags);
                 $selectedTags = array_slice($tags, 0, 4);
 
                 foreach ($selectedTags as $tagId) {
                     $material = Material::whereHas('technologies', function ($query) use ($tagId) {
-                            $query->where('id', $tagId); //  タグが一致する教材を検索
+                            $query->where('id', $tagId);
                         })
-                        ->withCount('likes')             //  いいね数を取得
-                        ->whereNotIn('id', $alreadySelectedIds) // すでに選んだ教材は除外
-                        ->orderByDesc('likes_count')     //  いいねが多い順
-                        ->first();                       //  1番いいねが多い教材を取得
+                        ->withCount('likes')
+                        ->whereNotIn('id', $alreadySelectedIds)
+                        ->orderByDesc('likes_count')
+                        ->first();
 
                     if ($material) {
-                        $recommendedMaterials->push($material);  // 教材を追加
-                        $alreadySelectedIds[] = $material->id;   //  取得済みIDを記録
+                        $recommendedMaterials->push($material);
+                        $alreadySelectedIds[] = $material->id;
                     }
                 }
                 break;
 
             case 4:
-                //【タグが4つの場合】各タグから1つずつ取得
                 foreach ($tags as $tagId) {
                     $material = Material::whereHas('technologies', function ($query) use ($tagId) {
                             $query->where('id', $tagId);
                         })
                         ->withCount('likes')
-                        ->whereNotIn('id', $alreadySelectedIds) // 重複教材を除外
+                        ->whereNotIn('id', $alreadySelectedIds)
                         ->orderByDesc('likes_count')
                         ->first();
 
@@ -108,7 +95,6 @@ class MaterialService
                 break;
 
             case 3:
-                //【タグが3つの場合】各タグから1つずつ取得
                 foreach ($tags as $tagId) {
                     $material = Material::whereHas('technologies', function ($query) use ($tagId) {
                             $query->where('id', $tagId);
@@ -124,7 +110,6 @@ class MaterialService
                     }
                 }
 
-                //残りの1枠を確保 (2番目に多い教材の中で最もいいね数が多いもの)
                 $secondBestMaterials = collect();
 
                 foreach ($tags as $tagId) {
@@ -132,9 +117,9 @@ class MaterialService
                             $query->where('id', $tagId);
                         })
                         ->withCount('likes')
-                        ->whereNotIn('id', $alreadySelectedIds) // すでに取得した教材は除外
+                        ->whereNotIn('id', $alreadySelectedIds)
                         ->orderByDesc('likes_count')
-                        ->skip(1)  //  2番目にいいねが多い教材を取得
+                        ->skip(1)
                         ->first();
 
                     if ($secondMaterial) {
@@ -142,7 +127,6 @@ class MaterialService
                     }
                 }
 
-                // 2番目の候補から最もいいねが多い教材を1つ追加
                 if ($secondBestMaterials->isNotEmpty()) {
                     $materialToAdd = $secondBestMaterials->sortByDesc('likes_count')->first();
                     $recommendedMaterials->push($materialToAdd);
@@ -151,13 +135,12 @@ class MaterialService
                 break;
 
             case 2:
-                //【タグが2つの場合】各タグから2つずつ取得
                 foreach ($tags as $tagId) {
                     $materials = Material::whereHas('technologies', function ($query) use ($tagId) {
                             $query->where('id', $tagId);
                         })
                         ->withCount('likes')
-                        ->whereNotIn('id', $alreadySelectedIds) // 既に取得済み教材を除外
+                        ->whereNotIn('id', $alreadySelectedIds)
                         ->orderByDesc('likes_count')
                         ->take(2)
                         ->get();
@@ -170,7 +153,6 @@ class MaterialService
                 break;
 
             case 1:
-                //【タグが1つの場合】1つのタグから上位4つ取得
                 $materials = Material::whereHas('technologies', function ($query) use ($tags) {
                         $query->where('id', $tags[0]);
                     })
@@ -184,11 +166,9 @@ class MaterialService
                 break;
 
             default:
-                //【タグがない場合】おすすめは空
                 break;
         }
 
-        // 📢 最終的に重複を除外し、最大4つを返却
         return $recommendedMaterials->unique('id')->take($maxRecommendations);
     }
 
@@ -203,7 +183,7 @@ class MaterialService
                 'rating_id' => $validatedRequest['material-rate'],
                 'price' => $price,
                 'material_url' => $validatedRequest['material-url'],
-                'image_dir' => '/storage/' . $path, // 画像パスをセット
+                'image_dir' => '/storage/' . $path,
                 'category_id' => $validatedRequest['material-category'],
             ]);
     
@@ -211,22 +191,18 @@ class MaterialService
         } catch (\Exception $e) {
             dd($e->getMessage());
             Log::error('Material creation failed: ' . $e->getMessage());
-            return null; // エラー時はnullを返す（呼び出し元で対処）
+            return null;
         }
     }
 
-    //タグを保存するメソッド
     public function storeMaterialTechnologiesTags($request, $materialId)
     {
-        // 選択されたタグを取得（重複を削除）
         $selectedTechnologieTags = $this->getSelectedTechnologieTags($request);
     
-        // タグが1つも選択されていない場合は処理をスキップ
         if (empty($selectedTechnologieTags)) {
             return;
         }
     
-        // 一括挿入用のデータを準備
         $insertData = [];
         foreach ($selectedTechnologieTags as $tagId) {
             $insertData[] = [
@@ -235,13 +211,10 @@ class MaterialService
             ];
         }
 
-        //まとめてDBに保存
         Material_technologie_tag::insert($insertData);
     }
     
-    /**
-     * リクエストから選択されたテクノロジータグを取得
-     */
+
     private function getSelectedTechnologieTags(array $validatedData): array
     {
         $selectedTags = [];
@@ -267,7 +240,7 @@ class MaterialService
             ]);
         } catch (\Exception $e) {
             Log::error('MaterialPost creation failed: ' . $e->getMessage());
-            return null; // エラー時はnullを返す（呼び出し元で対処）
+            return null;
         }
 
         return true;
@@ -276,20 +249,18 @@ class MaterialService
     public function updateMaterial(Material $material, array $validatedRequest)
     {
         try {
-            // 画像がアップロードされていれば更新
             if (request()->hasFile('material-image')) {
                 $path = request()->file('material-image')->store('material_images', 'public');
                 $validatedRequest['image_dir'] = '/storage/' . $path;
             }
 
-            // 教材情報を一括更新
             $material->update([
                 'title' => $validatedRequest['material-title'],
                 'material_detail' => $validatedRequest['material-thoughts'],
                 'rating_id' => $validatedRequest['material-rate'],
                 'price' => $validatedRequest['material-price'],
                 'material_url' => $validatedRequest['material-url'],
-                'image_dir' => $validatedRequest['image_dir'] ?? $material->image_dir, // 画像なしの場合は元の値を維持
+                'image_dir' => $validatedRequest['image_dir'] ?? $material->image_dir,
             ]);
 
             return $material;
@@ -301,21 +272,12 @@ class MaterialService
 
     public function updateMaterialTechnologiesTags(Material $material, array $request)
     {
-        //dd($request);
         try {
-            // 選択されたタグを取得（重複を削除）
             $selectedTechnologieTags = array_unique($this->getSelectedTechnologieTags($request));
-
-            // 現在のタグを取得
             $currentTags = $material->technologies->pluck('id')->toArray();
-
-            // 追加が必要なタグ
             $tagsToAdd = array_diff($selectedTechnologieTags, $currentTags);
-
-            // 削除が必要なタグ
             $tagsToRemove = array_diff($currentTags, $selectedTechnologieTags);
 
-            // タグを追加
             if (!empty($tagsToAdd)) {
                 $insertData = array_map(fn($tagId) => [
                     'material_id' => $material->id,
@@ -325,7 +287,6 @@ class MaterialService
                 Material_technologie_tag::insert($insertData);
             }
 
-            // タグを削除
             if (!empty($tagsToRemove)) {
                 Material_technologie_tag::where('material_id', $material->id)
                     ->whereIn('technologie_id', $tagsToRemove)
@@ -336,37 +297,31 @@ class MaterialService
         }
     }
 
-    //教材のリレーションをロード
     public function loadMaterialRelations(Material $material): void
     {
         $material->load(['posts.user.profile', 'likes', 'technologies']);
     }
 
-    //教材投稿者がログインユーザーか判定
     public function isOwner(Material $material, int $loggedInUserId): bool
     {
         return $material->posts->contains('posted_user_id', $loggedInUserId);
     }
 
-    //ログインユーザが教材をいいねしているか取得
     public function isLikedByUser(Material $material, int $loggedInUserId): bool
     {
         return $material->likes->contains($loggedInUserId);
     }
 
-    //教材のいいね数を取得
     public function getLikeCount(Material $material): int
     {
         return $material->likes->count();
     }
 
-    //教材の投稿日時や投稿者の情報を取得
     public function getFirstPost(Material $material)
     {
         return $material->posts->first();
     }
 
-    //おすすめ教材を取得
     public function getPersonalizedRecommendations(Material $material)
     {
         $tagIds = $this->getTagIdsForMaterial($material);
