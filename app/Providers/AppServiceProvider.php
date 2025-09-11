@@ -14,21 +14,17 @@ class AppServiceProvider extends ServiceProvider
     {
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         if (request()->header('x-forwarded-proto') == 'https') {
             URL::forceScheme('https');
         }
-        // ログイン中のユーザーがいる場合のみ、プロフィール情報を共有
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $view->with('profile', Auth::user()->profile);
-                $view->with('notifications', session('user_notifications', [])); // ←これを追加！
+                $view->with('notifications', session('user_notifications', []));
             } else {
-                $view->with('notifications', []); // 未ログインでも空配列を渡す
+                $view->with('notifications', []);
             }
         });
     }

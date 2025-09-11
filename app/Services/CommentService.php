@@ -22,18 +22,15 @@ class CommentService
     public function createComment(array $data, int $productId)
 {
     try {
-        //コメントをデータベースに登録
         $comment = Original_product_comment::create([
             'original_product_id' => $productId,
             'commented_user_id' => Auth::id(),
             'comment' => $data['original-product-comment'],
         ]);
 
-        //コメントしたユーザーの情報
         $commentingUser = Auth::user();
         $commentText = $data['original-product-comment'];
 
-        //オリプロの投稿者の情報を取得
         $originalProduct = Original_product::with(['profile', 'postedUser'])->find($productId);
 
         $postedUserId = $originalProduct->postedUser?->id;
@@ -49,11 +46,7 @@ class CommentService
         if ($originalProduct && $originalProduct->profile && $originalProduct->profile->discord_id) {
             $discordUserId = $originalProduct->profile->discord_id;
             $commentingUserName = $commentingUser->profile->username ?? $commentingUser->userid; // コメント投稿者の名前
-
-            //Discord に送信するメッセージを作成
             $message = "{$commentingUserName}さんがあなたのオリジナルプロダクトにコメントしました。\n\n **コメント内容:\n> {$commentText}";
-
-            //Discord に通知を送信
             $this->discordService->sendDirectMessage($discordUserId, $message);
         }
 
