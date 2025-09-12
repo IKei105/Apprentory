@@ -75,10 +75,6 @@
                     step="1" 
                     oninput="this.value = this.value.replace(/^0+/, '');"
                 />
-                <!-- <div class="custom-radio material-price-radio-button">
-                    <input type="radio" name="is_free" id="material-price-free-button" value="0">
-                    <label class="material-price-free-button-label" for="material-price-free-button">無料</label>
-                </div> -->
                 <div>
                     <label class="custom-radio material-price-radio-button">
                         <input class="material-free-button" type="checkbox" name="is_free" id="material-price-free-button" value="0" />
