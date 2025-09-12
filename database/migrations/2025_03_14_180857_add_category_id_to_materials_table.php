@@ -9,9 +9,9 @@ return new class extends Migration {
     {
         Schema::table('materials', function (Blueprint $table) {
             $table->foreignId('category_id')
-                ->after('image_dir') // image_dir の後に追加
-                ->constrained('material_categories') // material_categories.id に外部キー制約
-                ->onDelete('cascade'); // カテゴリー削除時に教材も削除
+                ->after('image_dir')
+                ->constrained('material_categories')
+                ->onDelete('cascade');
         });
     }
 

@@ -12,7 +12,7 @@ class TermFactory extends Factory
     public function definition(): array
     {
         return [
-            'term' => '第1期生', // ← ✅ これだけ！"name"は絶対に消す！
+            'term' => '第1期生',
         ];
     }
 }
