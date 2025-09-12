@@ -20,7 +20,6 @@ class MaterialService
     public function getOfficialRecommendedMaterials(): \Illuminate\Database\Eloquent\Collection
     {
             return Material::whereBetween('id', [6, 12])
-            //↑ココいずれ修正！！
             ->with(['posts.user', 'technologies:id,name', 'category'])
             ->withCount('likes')
             ->orderByDesc('created_at')

@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class TermsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::table('terms')->insert([

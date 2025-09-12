@@ -48,7 +48,7 @@ class MaterialController extends Controller
         $this->materialService->storeMaterialTechnologiesTags($validated, $materialId);
         $this->materialService->storeMaterialPostDateTime($materialId);
 
-        return $this->index();
+        return redirect()->route('materials.index');
     }
 
     public function show(Material $material)

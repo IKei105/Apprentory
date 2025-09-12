@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 
 use App\Models\Term;
@@ -61,7 +57,7 @@ class UserRegisterTest extends TestCase
             'expires_at'   => now()->addDay(),
         ]);
 
-        $response = $this->from('/register2') // 直前ページ（バリデーションNG時に戻る先）
+        $response = $this->from('/register2')
             ->post('/register2', [
                 'userid'               => 'unit_test_user',
                 'term'                 => $term->id,
@@ -69,7 +65,7 @@ class UserRegisterTest extends TestCase
                 'password_confirmation'=> 'password123',
                 'user-name'            => 'ユニットテスト',
                 'discord-ID'           => $discordId,
-                'register-code'        => 'wrong-code', // ←わざと不一致
+                'register-code'        => 'wrong-code',
                 'profile_image'        => null,
             ]);
 
