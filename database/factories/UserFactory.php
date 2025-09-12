@@ -15,7 +15,7 @@ class UserFactory extends Factory
     {
         return [
             'userid' => 'user_' . $this->faker->unique()->word(),
-            'term_id' => 1, // テスト時に正しく設定すること（必要に応じてfactory内で作ってもOK）
+            'term_id' => 1,
             'password' => bcrypt('password123'),
         ];
     }

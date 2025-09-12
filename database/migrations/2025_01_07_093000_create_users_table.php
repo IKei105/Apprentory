@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -17,15 +15,12 @@ return new class extends Migration
             $table->string('password');
 
             $table->foreignId('term_id')
-            ->constrained('terms')   // ← 'terms'テーブルを参照
+            ->constrained('terms')
             ->cascadeOnUpdate()
             ->cascadeOnDelete();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');
