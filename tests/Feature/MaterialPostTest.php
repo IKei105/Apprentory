@@ -21,6 +21,20 @@ class MaterialPostTest extends TestCase
         parent::setUp();
     }
 
+    protected function loginUser()
+    {
+        $user = User::factory()->create();
+
+        Profile::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->actingAs($user);
+
+        return $user;
+    }
+
+
     private function validPayload(array $overrides = []): array
     {
         return array_merge([
@@ -81,4 +95,29 @@ class MaterialPostTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
+    public function test_material_post_fails_with_rate_over_5(): void
+    {
+        $user = $this->loginUser();
+
+        Storage::fake('public');
+
+        $payload = $this->validPayload([
+            'material-image' => new UploadedFile(
+                base_path('tests/fixtures/test-cover.png'),
+                'test-cover.png',
+                'image/jpeg',
+                null,
+                true
+            ),
+            'material-rate' => 6,
+        ]);
+
+        $response = $this->post(route('materials.store'), $payload);
+
+        $response->assertStatus(302);
+
+        $response->assertSessionHasErrors(['material-rate']);
+    }
+
 }
