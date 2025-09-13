@@ -17,7 +17,7 @@ class MaterialRequest extends FormRequest
         return [
             'material-image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'material-title' => 'required|max:255',
-            'material-thoughts' => 'required|integer|max:1000',
+            'material-thoughts' => 'required|max:1000',
             'material-rate' => 'required|exists:ratings,id',
             'material-price' => 'nullable|integer|between:0,100000',
             'is_free' => 'nullable|in:0',
