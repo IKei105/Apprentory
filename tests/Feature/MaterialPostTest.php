@@ -19,6 +19,7 @@ class MaterialPostTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Storage::fake('public');
     }
 
     protected function loginUser()
@@ -45,6 +46,13 @@ class MaterialPostTest extends TestCase
             'material-url'      => 'https://example.com/article',
             'select1'           => 2,
             'material-category' => 1,
+            'material-image' => new UploadedFile(
+                base_path('tests/fixtures/test-cover.png'),
+                'test-cover.png',
+                'image/jpeg',
+                null,
+                true
+            ),
         ], $overrides);
     }
 
@@ -53,17 +61,8 @@ class MaterialPostTest extends TestCase
         $this->withoutExceptionHandling();
         $user = User::factory()->create();
         Profile::factory()->create();
-        Storage::fake('public');
 
-        $payload = $this->validPayload([
-            'material-image' => new UploadedFile(
-                base_path('tests/fixtures/test-cover.png'),
-                'test-cover.png',
-                'image/jpeg',
-                null,
-                true
-            ),
-        ]);
+        $payload = $this->validPayload();
 
         $response = $this->actingAs($user)->post(route('materials.store'), $payload);
         $response->assertRedirect();
@@ -96,11 +95,43 @@ class MaterialPostTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
+    public function test_material_post_fails_with_image(): void
+    {
+        $user = $this->loginUser();
+
+        
+
+        $payload = $this->validPayload([
+            'material-image' => null,
+        ]);
+
+        $response = $this->post(route('materials.store'), $payload);
+
+        $response->assertStatus(302);
+
+        $response->assertSessionHasErrors(['material-image']);
+    }
+
+    public function test_material_post_fails_title_over_255(): void
+    {
+        $user = $this->loginUser();
+
+        $payload = $this->validPayload([
+            'material-title' => str_repeat('あ', 256), // 256文字
+        ]);
+
+        $response = $this->post(route('materials.store'), $payload);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors(['material-title']);
+    }
+
+
     public function test_material_post_fails_with_rate_over_5(): void
     {
         $user = $this->loginUser();
 
-        Storage::fake('public');
+        
 
         $payload = $this->validPayload([
             'material-image' => new UploadedFile(
