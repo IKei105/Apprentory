@@ -72,4 +72,13 @@ class MaterialPostTest extends TestCase
             Storage::disk('public')->assertExists($material->image_path);
         }
     }
+
+    public function test_guest_cannot_post_material(): void
+    {
+        $payload = $this->validPayload();
+
+        $response = $this->post(route('materials.store'), $payload);
+
+        $response->assertRedirect(route('login'));
+    }
 }
